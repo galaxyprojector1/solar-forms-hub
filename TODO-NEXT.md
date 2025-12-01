@@ -159,7 +159,10 @@ git push
 # DÉPLOYER sur Vercel :
 npx vercel --prod --yes
 
-# VÉRIFIER sur Vercel que c'est visible AVANT de dire "terminé" !
+# ⚠️ NE PAS UTILISER web_fetch_vercel_url pour vérifier !
+# Ça télécharge tout le HTML et consomme trop de tokens.
+# Faire confiance au déploiement si "Production" s'affiche.
+
 # URL projet : https://solar-forms-hub.vercel.app/
 
 # SI FIN DE CONTEXTE → mettre à jour ce TODO + écrire prompt pour le suivant
