@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Aventure Solaire | Story Mode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #14b8a6;
+            --secondary: #f97316;
+            --accent: #eab308;
+            --dark: #0f172a;
+            --darker: #020617;
+            --card: rgba(15, 23, 42, 0.95);
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--darker);
+            min-height: 100vh;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Animated Gradient Background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #0f172a, #1e3a5f, #0f172a, #134e4a);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Sun/Moon animation */
+        .celestial {
+            position: fixed;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            z-index: 1;
+            transition: all 2s ease;
+        }
+
+        .sun {
+            background: radial-gradient(circle, #fbbf24, #f59e0b);
+            box-shadow: 0 0 60px #fbbf24, 0 0 100px rgba(251, 191, 36, 0.5);
+            top: 10%;
+            right: 10%;
+        }
+
+        /* Floating clouds */
+        .clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            filter: blur(5px);
+        }
+
+        .cloud-1 {
+            width: 200px;
+            height: 60px;
+            top: 15%;
+            left: -200px;
+            animation: cloudMove 30s linear infinite;
+        }
+
+        .cloud-2 {
+            width: 150px;
+            height: 45px;
+            top: 25%;
+            left: -150px;
+            animation: cloudMove 40s linear infinite 10s;
+        }
+
+        .cloud-3 {
+            width: 180px;
+            height: 55px;
+            top: 8%;
+            left: -180px;
+            animation: cloudMove 35s linear infinite 5s;
+        }
+
+        @keyframes cloudMove {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(100vw + 300px)); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Story Progress */
+        .story-progress {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .story-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .story-dot.active {
+            background: var(--primary);
+            box-shadow: 0 0 15px var(--primary);
+            transform: scale(1.3);
+        }
+
+        .story-dot.completed {
+            background: var(--accent);
+        }
+
+        .story-dot.completed::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.6rem;
+            color: var(--darker);
+        }
+
+        /* Character */
+        .character-container {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .character {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            position: relative;
+        }
+
+        .character-avatar {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), #0d9488);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(20, 184, 166, 0.4);
+            animation: characterFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes characterFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .character-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .character-role {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Speech Bubble */
+        .speech-bubble {
+            background: var(--card);
+            border: 1px solid rgba(20, 184, 166, 0.3);
+            border-radius: 24px;
+            padding: 30px;
+            position: relative;
+            margin-bottom: 25px;
+            backdrop-filter: blur(20px);
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 12px solid var(--card);
+        }
+
+        .speech-text {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        .speech-text .highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .typing-indicator {
+            display: inline-flex;
+            gap: 4px;
+            margin-left: 8px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: typingBounce 1.4s ease-in-out infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        /* Form Card */
+        .form-card {
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(20, 184, 166, 0.2);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Chapter Title */
+        .chapter {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .chapter-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--darker);
+            margin-bottom: 12px;
+        }
+
+        .chapter-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Steps */
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+            animation: storyFadeIn 0.8s ease;
+        }
+
+        @keyframes storyFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Options */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: var(--primary);
+            background: rgba(20, 184, 166, 0.05);
+            transform: translateX(8px);
+        }
+
+        .option:hover::before {
+            transform: scaleY(1);
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: rgba(20, 184, 166, 0.1);
+        }
+
+        .option.selected::before {
+            transform: scaleY(1);
+            background: var(--accent);
+        }
+
+        .option-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(20, 184, 166, 0.2);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        .option-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .option-arrow {
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        .option:hover .option-arrow {
+            transform: translateX(5px);
+            color: var(--primary);
+        }
+
+        /* Input Fields */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .input-field {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 18px 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(20, 184, 166, 0.05);
+            box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.1);
+        }
+
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 18px 28px;
+            border-radius: 14px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-back {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            flex: 0.4;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, var(--primary), #0d9488);
+            border: none;
+            color: white;
+            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.4);
+        }
+
+        .btn-next:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(20, 184, 166, 0.5);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* Success */
+        .success-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .success-scene {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .success-house {
+            font-size: 6rem;
+            animation: houseReveal 1s ease;
+        }
+
+        @keyframes houseReveal {
+            from {
+                opacity: 0;
+                transform: scale(0.5) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .solar-panels {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            animation: panelsGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes panelsGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px var(--accent)); }
+            50% { filter: drop-shadow(0 0 25px var(--accent)); }
+        }
+
+        .success-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .success-message {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .story-complete {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            color: var(--darker);
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .speech-text {
+                font-size: 1rem;
+            }
+
+            .character-avatar {
+                width: 90px;
+                height: 90px;
+                font-size: 2.5rem;
+            }
+
+            .chapter-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+    <div class="celestial sun"></div>
+    <div class="clouds">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Story Progress -->
+        <div class="story-progress" id="storyProgress">
+            <div class="story-dot active"></div>
+            <div class="story-dot"></div>
+            <div class="story-dot"></div>
+            <div class="story-dot"></div>
+            <div class="story-dot"></div>
+            <div class="story-dot"></div>
+            <div class="story-dot"></div>
+            <div class="story-dot"></div>
+        </div>
+
+        <!-- Character -->
+        <div class="character-container">
+            <div class="character">
+                <div class="character-avatar" id="characterAvatar">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+            </div>
+            <div class="character-name">Lucas</div>
+            <div class="character-role">Votre conseiller énergie</div>
+        </div>
+
+        <!-- Speech Bubble -->
+        <div class="speech-bubble">
+            <p class="speech-text" id="speechText">
+                Bonjour ! Je suis <span class="highlight">Lucas</span>, votre guide vers l'indépendance énergétique. Ensemble, nous allons découvrir comment le solaire peut transformer votre quotidien...
+            </p>
+        </div>
+
+        <!-- Form Card -->
+        <div class="form-card">
+            <!-- Step 1 -->
+            <div class="step active" id="step1">
+                <div class="chapter">
+                    <span class="chapter-number">Chapitre 1</span>
+                    <h2 class="chapter-title">Le Commencement</h2>
+                </div>
+                <div class="options">
+                    <div class="option" data-value="propriétaire">
+                        <div class="option-icon"><i class="fas fa-castle"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">Je suis propriétaire</div>
+                            <div class="option-desc">Maître de mon destin énergétique</div>
+                        </div>
+                        <i class="fas fa-chevron-right option-arrow"></i>
+                    </div>
+                    <div class="option" data-value="locataire">
+                        <div class="option-icon"><i class="fas fa-key"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">Je suis locataire</div>
+                            <div class="option-desc">En quête de solutions adaptées</div>
+                        </div>
+                        <i class="fas fa-chevron-right option-arrow"></i>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-next" disabled>
+                        Continuer l'aventure
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step" id="step2">
+                <div class="chapter">
+                    <span class="chapter-number">Chapitre 2</span>
+                    <h2 class="chapter-title">Votre Royaume</h2>
+                </div>
+                <div class="options">
+                    <div class="option" data-value="maison">
+                        <div class="option-icon"><i class="fas fa-home"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">Une maison</div>
+                            <div class="option-desc">Avec un toit prêt à capter le soleil</div>
+                        </div>
+                        <i class="fas fa-chevron-right option-arrow"></i>
+                    </div>
+                    <div class="option" data-value="appartement">
+                        <div class="option-icon"><i class="fas fa-building"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">Un appartement</div>
+                            <div class="option-desc">Des solutions existent aussi !</div>
+                        </div>
+                        <i class="fas fa-chevron-right option-arrow"></i>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer<i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step" id="step3">
+                <div class="chapter">
+                    <span class="chapter-number">Chapitre 3</span>
+                    <h2 class="chapter-title">L'Énergie Actuelle</h2>
+                </div>
+                <div class="options">
+                    <div class="option" data-value="électrique">
+                        <div class="option-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">Électricité</div>
+                            <div class="option-desc">L'énergie classique</div>
+                        </div>
+                        <i class="fas fa-chevron-right option-arrow"></i>
+                    </div>
+                    <div class="option" data-value="gaz">
+                        <div class="option-icon"><i class="fas fa-fire-flame-simple"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">Gaz</div>
+                            <div class="option-desc">Énergie fossile à transformer</div>
+                        </div>
+                        <i class="fas fa-chevron-right option-arrow"></i>
+                    </div>
+                    <div class="option" data-value="autre">
+                        <div class="option-icon"><i class="fas fa-leaf"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">Autre (bois, fioul...)</div>
+                            <div class="option-desc">Prêt pour le changement</div>
+                        </div>
+                        <i class="fas fa-chevron-right option-arrow"></i>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer<i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step" id="step4">
+                <div class="chapter">
+                    <span class="chapter-number">Chapitre 4</span>
+                    <h2 class="chapter-title">Le Potentiel</h2>
+                </div>
+                <div class="options">
+                    <div class="option" data-value="moins_30">
+                        <div class="option-icon"><i class="fas fa-solar-panel"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">Moins de 30m²</div>
+                            <div class="option-desc">Petit mais efficace</div>
+                        </div>
+                        <i class="fas fa-chevron-right option-arrow"></i>
+                    </div>
+                    <div class="option" data-value="30_60">
+                        <div class="option-icon"><i class="fas fa-solar-panel"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">30 à 60m²</div>
+                            <div class="option-desc">Un beau potentiel</div>
+                        </div>
+                        <i class="fas fa-chevron-right option-arrow"></i>
+                    </div>
+                    <div class="option" data-value="plus_60">
+                        <div class="option-icon"><i class="fas fa-solar-panel"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">Plus de 60m²</div>
+                            <div class="option-desc">Un terrain de jeu idéal !</div>
+                        </div>
+                        <i class="fas fa-chevron-right option-arrow"></i>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer<i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step" id="step5">
+                <div class="chapter">
+                    <span class="chapter-number">Chapitre 5</span>
+                    <h2 class="chapter-title">La Localisation</h2>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Votre code postal</label>
+                    <input type="text" class="input-field" id="codePostal" placeholder="Ex: 75001" maxlength="5">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer<i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="step" id="step6">
+                <div class="chapter">
+                    <span class="chapter-number">Chapitre 6</span>
+                    <h2 class="chapter-title">L'Identité du Héros</h2>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Comment vous appelez-vous ?</label>
+                    <input type="text" class="input-field" id="nomComplet" placeholder="Prénom Nom">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer<i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 7 -->
+            <div class="step" id="step7">
+                <div class="chapter">
+                    <span class="chapter-number">Chapitre 7</span>
+                    <h2 class="chapter-title">Le Contact</h2>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Votre email</label>
+                    <input type="email" class="input-field" id="email" placeholder="vous@exemple.fr">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer<i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 8 -->
+            <div class="step" id="step8">
+                <div class="chapter">
+                    <span class="chapter-number">Chapitre Final</span>
+                    <h2 class="chapter-title">L'Appel du Destin</h2>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Votre téléphone</label>
+                    <input type="tel" class="input-field" id="telephone" placeholder="06 12 34 56 78" maxlength="14">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>
+                        <i class="fas fa-star"></i>
+                        Terminer mon histoire
+                    </button>
+                </div>
+            </div>
+
+            <!-- Success -->
+            <div class="step" id="success">
+                <div class="success-container">
+                    <div class="success-scene">
+                        <div class="solar-panels"><i class="fas fa-sun"></i></div>
+                        <div class="success-house"><i class="fas fa-house-chimney"></i></div>
+                    </div>
+                    <h2 class="success-title">Votre Histoire Commence !</h2>
+                    <p class="success-message">
+                        Félicitations <strong id="heroName">Héros</strong> !<br>
+                        Votre quête vers l'indépendance énergétique est lancée.<br>
+                        Un expert vous contactera sous 24h pour écrire le prochain chapitre.
+                    </p>
+                    <div class="story-complete">
+                        <i class="fas fa-book-open"></i>
+                        Histoire complétée !
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const formData = {};
+        let currentStep = 1;
+        const totalSteps = 8;
+
+        const speeches = {
+            1: "Tout commence par une question simple : êtes-vous le <span class='highlight'>maître de votre logement</span> ? Cela déterminera les possibilités qui s'offrent à vous...",
+            2: "Magnifique ! Parlons maintenant de votre <span class='highlight'>royaume</span>. Chaque habitat a son potentiel solaire unique...",
+            3: "Intéressant ! Votre mode de chauffage actuel nous aide à comprendre vos besoins. Le solaire pourrait <span class='highlight'>révolutionner</span> votre consommation...",
+            4: "La surface de votre toit est comme une <span class='highlight'>toile vierge</span> prête à accueillir l'énergie du soleil. Quelle est sa taille ?",
+            5: "Chaque région de France reçoit le soleil différemment. Votre <span class='highlight'>localisation</span> est clé pour optimiser votre installation...",
+            6: "Tout héros a un nom ! Comment dois-je vous appeler pour la suite de cette <span class='highlight'>aventure</span> ?",
+            7: "Parfait ! Votre email me permettra de vous envoyer une <span class='highlight'>estimation personnalisée</span> de vos économies potentielles.",
+            8: "Dernière étape ! Un numéro pour que notre expert puisse vous appeler et <span class='highlight'>concrétiser votre projet</span>..."
+        };
+
+        const characterEmojis = {
+            1: 'fa-user-tie',
+            2: 'fa-hard-hat',
+            3: 'fa-fire',
+            4: 'fa-ruler-combined',
+            5: 'fa-map-location-dot',
+            6: 'fa-user-astronaut',
+            7: 'fa-envelope',
+            8: 'fa-phone'
+        };
+
+        function updateSpeech(step) {
+            const speechText = document.getElementById('speechText');
+            speechText.innerHTML = speeches[step] || speeches[1];
+
+            gsap.fromTo(speechText,
+                { opacity: 0, y: 10 },
+                { opacity: 1, y: 0, duration: 0.5 }
+            );
+
+            // Update character
+            const avatar = document.getElementById('characterAvatar');
+            avatar.innerHTML = `<i class="fas ${characterEmojis[step]}"></i>`;
+
+            gsap.fromTo(avatar,
+                { scale: 0.8, rotation: -10 },
+                { scale: 1, rotation: 0, duration: 0.5, ease: 'back.out(1.7)' }
+            );
+        }
+
+        function updateProgress(step) {
+            document.querySelectorAll('.story-dot').forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index + 1 < step) dot.classList.add('completed');
+                if (index + 1 === step) dot.classList.add('active');
+            });
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            const target = step === 'success' ? document.getElementById('success') : document.getElementById('step' + step);
+            if (target) {
+                target.classList.add('active');
+            }
+            updateProgress(step);
+            if (step !== 'success') {
+                updateSpeech(step);
+            }
+        }
+
+        // Option selection
+        document.querySelectorAll('.options').forEach(container => {
+            container.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', () => {
+                    container.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+
+                    gsap.fromTo(option, { x: 0 }, { x: 10, duration: 0.1, yoyo: true, repeat: 1 });
+
+                    option.closest('.step').querySelector('.btn-next').disabled = false;
+                });
+            });
+        });
+
+        // Input validation
+        document.getElementById('codePostal').addEventListener('input', function() {
+            const valid = /^\d{5}$/.test(this.value);
+            document.getElementById('step5').querySelector('.btn-next').disabled = !valid;
+        });
+
+        document.getElementById('nomComplet').addEventListener('input', function() {
+            document.getElementById('step6').querySelector('.btn-next').disabled = this.value.trim().length < 2;
+        });
+
+        document.getElementById('email').addEventListener('input', function() {
+            const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+            document.getElementById('step7').querySelector('.btn-next').disabled = !valid;
+        });
+
+        document.getElementById('telephone').addEventListener('input', function() {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            this.value = value.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            const valid = /^0[1-9]\d{8}$/.test(value);
+            document.getElementById('step8').querySelector('.btn-next').disabled = !valid;
+        });
+
+        // Navigation
+        document.querySelectorAll('.btn-next').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const step = btn.closest('.step');
+                const selected = step.querySelector('.option.selected');
+                const input = step.querySelector('.input-field');
+
+                if (selected) formData['step' + currentStep] = selected.dataset.value;
+                if (input) formData[input.id] = input.value;
+
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    showStep(currentStep);
+                } else {
+                    document.getElementById('heroName').textContent = formData.nomComplet || 'Héros';
+                    showStep('success');
+
+                    // Success animation
+                    gsap.fromTo('.success-house', { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 1, ease: 'elastic.out(1, 0.5)' });
+                }
+            });
+        });
+
+        document.querySelectorAll('.btn-back').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            });
+        });
+
+        // Initial animations
+        gsap.fromTo('.story-progress', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 });
+        gsap.fromTo('.character-container', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, delay: 0.4 });
+        gsap.fromTo('.speech-bubble', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.6 });
+        gsap.fromTo('.form-card', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.8 });
+
+        updateSpeech(1);
+    </script>
+</body>
+</html>

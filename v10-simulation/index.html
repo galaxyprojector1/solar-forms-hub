@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur Solaire | Calculez vos économies en direct</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/countup.js@2.6.0/dist/countUp.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #22c55e;
+            --primary-dark: #16a34a;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --dark: #111827;
+            --darker: #030712;
+            --card: rgba(17, 24, 39, 0.95);
+            --text: #f9fafb;
+            --text-muted: #9ca3af;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--darker);
+            min-height: 100vh;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Animated Grid Background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+        }
+
+        /* Glowing orbs */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow-orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: -100px;
+            left: -100px;
+            animation: orbFloat 10s ease-in-out infinite;
+        }
+
+        .glow-orb-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary);
+            bottom: -50px;
+            right: -50px;
+            animation: orbFloat 12s ease-in-out infinite reverse;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 30px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            min-height: 100vh;
+        }
+
+        /* Live Stats Dashboard */
+        .live-dashboard {
+            background: var(--card);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(20px);
+        }
+
+        .dashboard-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(34, 197, 94, 0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: livePulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+            margin: 0 auto 12px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .stat-card:nth-child(1) .stat-icon {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--primary);
+        }
+
+        .stat-card:nth-child(2) .stat-icon {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--secondary);
+        }
+
+        .stat-card:nth-child(3) .stat-icon {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--accent);
+        }
+
+        .stat-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .stat-value.positive {
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Economy Counter - Big Display */
+        .economy-display {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.3);
+        }
+
+        .economy-display::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: economyShine 3s ease-in-out infinite;
+        }
+
+        @keyframes economyShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .economy-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .economy-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .economy-period {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .economy-trend {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        /* CO2 Impact */
+        .impact-bar {
+            background: var(--card);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .impact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(34, 197, 94, 0.2);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .impact-info {
+            flex: 1;
+        }
+
+        .impact-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .impact-progress {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .impact-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1s ease;
+        }
+
+        .impact-value {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Form Card */
+        .form-card {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 35px;
+            backdrop-filter: blur(20px);
+        }
+
+        /* Steps */
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+            animation: stepFade 0.5s ease;
+        }
+
+        @keyframes stepFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-header {
+            margin-bottom: 30px;
+        }
+
+        .step-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Options */
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 22px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+        }
+
+        .option:hover {
+            border-color: var(--primary);
+            background: rgba(34, 197, 94, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: rgba(34, 197, 94, 0.1);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+        }
+
+        .option-value {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--primary);
+            color: var(--darker);
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .option-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .option-text {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Slider Input */
+        .slider-group {
+            margin-bottom: 30px;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .slider-label {
+            font-weight: 600;
+        }
+
+        .slider-value {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .slider-input {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .slider-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .slider-input::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        .slider-marks {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Input Fields */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .input-field {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 16px 20px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(34, 197, 94, 0.05);
+        }
+
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 18px 28px;
+            border-radius: 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-back {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            flex: 0.4;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none;
+            color: white;
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+        }
+
+        .btn-next:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(34, 197, 94, 0.5);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* Success */
+        .success-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 25px;
+            box-shadow: 0 20px 40px rgba(34, 197, 94, 0.4);
+            animation: successPop 0.6s ease;
+        }
+
+        @keyframes successPop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .success-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .success-economy {
+            font-family: 'Space Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 20px 0;
+            text-shadow: 0 0 30px rgba(34, 197, 94, 0.5);
+        }
+
+        .success-period {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .success-cta {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .success-cta p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .success-cta strong {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            .economy-value {
+                font-size: 2.5rem;
+            }
+
+            .stat-value {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <div class="container">
+        <!-- Economy Display -->
+        <div class="economy-display">
+            <div class="economy-label">Économies estimées</div>
+            <div class="economy-value" id="economyValue">0 €</div>
+            <div class="economy-period">par an sur votre facture</div>
+            <div class="economy-trend">
+                <i class="fas fa-arrow-trend-up"></i>
+                <span id="economyPercent">0%</span> d'économies
+            </div>
+        </div>
+
+        <!-- Live Dashboard -->
+        <div class="live-dashboard">
+            <div class="dashboard-header">
+                <div class="dashboard-title">
+                    <i class="fas fa-chart-line"></i>
+                    Simulation en direct
+                </div>
+                <div class="live-indicator">
+                    <div class="live-dot"></div>
+                    LIVE
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-solar-panel"></i></div>
+                    <div class="stat-value" id="panelsCount">0</div>
+                    <div class="stat-label">Panneaux estimés</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="stat-value" id="powerOutput">0 kWc</div>
+                    <div class="stat-label">Puissance</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-piggy-bank"></i></div>
+                    <div class="stat-value positive" id="roi">0 ans</div>
+                    <div class="stat-label">Rentabilité</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CO2 Impact -->
+        <div class="impact-bar">
+            <div class="impact-icon"><i class="fas fa-leaf"></i></div>
+            <div class="impact-info">
+                <div class="impact-label">Impact CO2 évité : <span class="impact-value" id="co2Value">0 tonnes/an</span></div>
+                <div class="impact-progress">
+                    <div class="impact-fill" id="co2Fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="form-card">
+            <!-- Step 1 -->
+            <div class="step active" id="step1">
+                <div class="step-header">
+                    <div class="step-badge"><i class="fas fa-home"></i> Étape 1/6</div>
+                    <h2 class="step-title">Votre situation</h2>
+                    <p class="step-desc">Propriétaire ou locataire ?</p>
+                </div>
+                <div class="options">
+                    <div class="option" data-value="propriétaire" data-economy="100">
+                        <span class="option-value">+100€</span>
+                        <span class="option-icon"><i class="fas fa-key"></i></span>
+                        <span class="option-text">Propriétaire</span>
+                    </div>
+                    <div class="option" data-value="locataire" data-economy="50">
+                        <span class="option-value">+50€</span>
+                        <span class="option-icon"><i class="fas fa-file-contract"></i></span>
+                        <span class="option-text">Locataire</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-next" disabled>Calculer<i class="fas fa-calculator"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step" id="step2">
+                <div class="step-header">
+                    <div class="step-badge"><i class="fas fa-building"></i> Étape 2/6</div>
+                    <h2 class="step-title">Type de logement</h2>
+                    <p class="step-desc">Maison ou appartement ?</p>
+                </div>
+                <div class="options">
+                    <div class="option" data-value="maison" data-economy="200" data-panels="8">
+                        <span class="option-value">+200€</span>
+                        <span class="option-icon"><i class="fas fa-house-chimney"></i></span>
+                        <span class="option-text">Maison</span>
+                    </div>
+                    <div class="option" data-value="appartement" data-economy="80" data-panels="3">
+                        <span class="option-value">+80€</span>
+                        <span class="option-icon"><i class="fas fa-city"></i></span>
+                        <span class="option-text">Appartement</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Calculer<i class="fas fa-calculator"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 3 - Facture Slider -->
+            <div class="step" id="step3">
+                <div class="step-header">
+                    <div class="step-badge"><i class="fas fa-file-invoice-dollar"></i> Étape 3/6</div>
+                    <h2 class="step-title">Votre facture actuelle</h2>
+                    <p class="step-desc">Facture électrique mensuelle moyenne</p>
+                </div>
+                <div class="slider-group">
+                    <div class="slider-header">
+                        <span class="slider-label">Montant mensuel</span>
+                        <span class="slider-value" id="billValue">100 €</span>
+                    </div>
+                    <input type="range" class="slider-input" id="billSlider" min="50" max="300" value="100" step="10">
+                    <div class="slider-marks">
+                        <span>50€</span>
+                        <span>150€</span>
+                        <span>300€</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next">Calculer<i class="fas fa-calculator"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 4 - Surface -->
+            <div class="step" id="step4">
+                <div class="step-header">
+                    <div class="step-badge"><i class="fas fa-ruler-combined"></i> Étape 4/6</div>
+                    <h2 class="step-title">Surface de toiture</h2>
+                    <p class="step-desc">Espace disponible pour les panneaux</p>
+                </div>
+                <div class="options">
+                    <div class="option" data-value="moins_30" data-economy="150" data-panels="4" data-power="1.5">
+                        <span class="option-value">+150€</span>
+                        <span class="option-icon"><i class="fas fa-compress"></i></span>
+                        <span class="option-text">< 30m²</span>
+                    </div>
+                    <div class="option" data-value="30_60" data-economy="350" data-panels="10" data-power="3.5">
+                        <span class="option-value">+350€</span>
+                        <span class="option-icon"><i class="fas fa-expand"></i></span>
+                        <span class="option-text">30-60m²</span>
+                    </div>
+                    <div class="option" data-value="plus_60" data-economy="600" data-panels="16" data-power="6">
+                        <span class="option-value">+600€</span>
+                        <span class="option-icon"><i class="fas fa-maximize"></i></span>
+                        <span class="option-text">> 60m²</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Calculer<i class="fas fa-calculator"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 5 - Code Postal -->
+            <div class="step" id="step5">
+                <div class="step-header">
+                    <div class="step-badge"><i class="fas fa-map-marker-alt"></i> Étape 5/6</div>
+                    <h2 class="step-title">Votre localisation</h2>
+                    <p class="step-desc">Le soleil varie selon les régions</p>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Code postal</label>
+                    <input type="text" class="input-field" id="codePostal" placeholder="Ex: 75001" maxlength="5">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Calculer<i class="fas fa-calculator"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 6 - Contact -->
+            <div class="step" id="step6">
+                <div class="step-header">
+                    <div class="step-badge"><i class="fas fa-user"></i> Étape 6/6</div>
+                    <h2 class="step-title">Recevez votre devis</h2>
+                    <p class="step-desc">Vos coordonnées pour le devis personnalisé</p>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Nom complet</label>
+                    <input type="text" class="input-field" id="nomComplet" placeholder="Jean Dupont">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Email</label>
+                    <input type="email" class="input-field" id="email" placeholder="jean@exemple.fr">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Téléphone</label>
+                    <input type="tel" class="input-field" id="telephone" placeholder="06 12 34 56 78" maxlength="14">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                        Recevoir mon devis
+                    </button>
+                </div>
+            </div>
+
+            <!-- Success -->
+            <div class="step" id="success">
+                <div class="success-container">
+                    <div class="success-icon"><i class="fas fa-check"></i></div>
+                    <h2 class="success-title">Simulation terminée !</h2>
+                    <div class="success-economy" id="finalEconomy">0 €</div>
+                    <p class="success-period">d'économies estimées par an</p>
+                    <div class="success-cta">
+                        <p>Un expert vous contactera sous <strong>24h</strong> pour finaliser votre projet et vous présenter un devis détaillé.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulation State
+        let totalEconomy = 0;
+        let panels = 0;
+        let power = 0;
+        let currentStep = 1;
+        const totalSteps = 6;
+        const formData = {};
+
+        function updateDisplay() {
+            // Animate economy value
+            gsap.to('#economyValue', {
+                innerHTML: totalEconomy + ' €',
+                duration: 0.5,
+                snap: { innerHTML: 1 }
+            });
+
+            // Update percentage (assuming 1500€ annual bill baseline)
+            const percent = Math.min(Math.round((totalEconomy / 1500) * 100), 70);
+            document.getElementById('economyPercent').textContent = percent + '%';
+
+            // Update panels
+            document.getElementById('panelsCount').textContent = panels;
+
+            // Update power
+            document.getElementById('powerOutput').textContent = power.toFixed(1) + ' kWc';
+
+            // Calculate ROI (assuming 8000€ average installation cost)
+            const roi = totalEconomy > 0 ? Math.round(8000 / totalEconomy) : 0;
+            document.getElementById('roi').textContent = roi + ' ans';
+
+            // CO2 (0.5 tonnes per 1000€ saved approximately)
+            const co2 = (totalEconomy / 1000 * 0.8).toFixed(1);
+            document.getElementById('co2Value').textContent = co2 + ' tonnes/an';
+            document.getElementById('co2Fill').style.width = Math.min(co2 * 20, 100) + '%';
+
+            // Animate the economy display
+            gsap.fromTo('.economy-display', { scale: 1 }, { scale: 1.02, duration: 0.2, yoyo: true, repeat: 1 });
+        }
+
+        function addEconomy(amount, panelsAdd = 0, powerAdd = 0) {
+            totalEconomy += amount;
+            panels += panelsAdd;
+            power += powerAdd;
+            updateDisplay();
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            const target = step === 'success' ? document.getElementById('success') : document.getElementById('step' + step);
+            if (target) {
+                target.classList.add('active');
+            }
+        }
+
+        // Option selection
+        document.querySelectorAll('.options').forEach(container => {
+            container.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', () => {
+                    container.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+
+                    gsap.fromTo(option, { scale: 0.95 }, { scale: 1, duration: 0.3, ease: 'back.out(1.7)' });
+
+                    option.closest('.step').querySelector('.btn-next').disabled = false;
+                });
+            });
+        });
+
+        // Bill slider
+        const billSlider = document.getElementById('billSlider');
+        billSlider.addEventListener('input', function() {
+            document.getElementById('billValue').textContent = this.value + ' €';
+        });
+
+        // Input validation
+        document.getElementById('codePostal').addEventListener('input', function() {
+            const valid = /^\d{5}$/.test(this.value);
+            document.getElementById('step5').querySelector('.btn-next').disabled = !valid;
+        });
+
+        function validateStep6() {
+            const nom = document.getElementById('nomComplet').value.trim().length >= 2;
+            const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value);
+            const tel = /^0[1-9]\d{8}$/.test(document.getElementById('telephone').value.replace(/\D/g, ''));
+            document.getElementById('step6').querySelector('.btn-next').disabled = !(nom && email && tel);
+        }
+
+        document.getElementById('nomComplet').addEventListener('input', validateStep6);
+        document.getElementById('email').addEventListener('input', validateStep6);
+        document.getElementById('telephone').addEventListener('input', function() {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            this.value = value.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            validateStep6();
+        });
+
+        // Navigation
+        document.querySelectorAll('.btn-next').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const step = btn.closest('.step');
+                const selected = step.querySelector('.option.selected');
+                const slider = step.querySelector('.slider-input');
+                const input = step.querySelector('.input-field');
+
+                if (selected) {
+                    formData['step' + currentStep] = selected.dataset.value;
+                    const eco = parseInt(selected.dataset.economy) || 0;
+                    const pan = parseInt(selected.dataset.panels) || 0;
+                    const pow = parseFloat(selected.dataset.power) || 0;
+                    addEconomy(eco, pan, pow);
+                }
+
+                if (slider) {
+                    formData.facture = slider.value;
+                    // Add economy based on bill (higher bill = more savings potential)
+                    const billSavings = Math.round(slider.value * 0.4 * 12); // 40% savings annual
+                    addEconomy(billSavings, 0, 0);
+                }
+
+                if (currentStep === 5) {
+                    // Region bonus (simplified - south = more sun)
+                    const cp = document.getElementById('codePostal').value;
+                    const south = ['13', '06', '83', '34', '30', '84', '66', '11'].some(d => cp.startsWith(d));
+                    if (south) {
+                        addEconomy(150, 0, 0);
+                    }
+                }
+
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    showStep(currentStep);
+                } else {
+                    document.getElementById('finalEconomy').textContent = totalEconomy + ' €';
+                    showStep('success');
+                }
+            });
+        });
+
+        document.querySelectorAll('.btn-back').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            });
+        });
+
+        // Initial animations
+        gsap.fromTo('.economy-display', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 });
+        gsap.fromTo('.live-dashboard', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.3 });
+        gsap.fromTo('.impact-bar', { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.6, delay: 0.4 });
+        gsap.fromTo('.form-card', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.5 });
+    </script>
+</body>
+</html>

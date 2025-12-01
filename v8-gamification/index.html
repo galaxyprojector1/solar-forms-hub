@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Devis Solaire | Gagnez des points !</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8b5cf6;
+            --primary-light: #a78bfa;
+            --secondary: #f59e0b;
+            --success: #10b981;
+            --pink: #ec4899;
+            --blue: #3b82f6;
+            --dark: #1e1b4b;
+            --darker: #0f0d24;
+            --card: rgba(30, 27, 75, 0.9);
+            --text: #ffffff;
+            --text-muted: #a5b4fc;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, #1a1333 50%, var(--darker) 100%);
+            min-height: 100vh;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Animated stars background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: var(--opacity); transform: scale(1); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            min-height: 100vh;
+        }
+
+        /* Top Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+        }
+
+        .xp-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .xp-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--secondary), #fbbf24);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .xp-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .xp-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .xp-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+
+        .streak-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--pink), #f472b6);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 20px rgba(236, 72, 153, 0.4);
+        }
+
+        /* Level Progress */
+        .level-container {
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .level-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .level-badge {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--pink));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .level-text {
+            font-weight: 700;
+        }
+
+        .level-next {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .level-bar {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .level-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--pink), var(--secondary));
+            background-size: 200% 100%;
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: gradientMove 2s linear infinite;
+            position: relative;
+        }
+
+        .level-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 2s ease-in-out infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Badges Section */
+        .badges-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            overflow-x: auto;
+            padding: 5px;
+        }
+
+        .badge {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .badge.locked {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            filter: grayscale(1);
+            opacity: 0.5;
+        }
+
+        .badge.unlocked {
+            background: linear-gradient(135deg, var(--primary), var(--pink));
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
+            animation: badgePop 0.5s ease;
+        }
+
+        @keyframes badgePop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .badge-tooltip {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .badge:hover .badge-tooltip {
+            opacity: 1;
+        }
+
+        /* Form Card */
+        .form-card {
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 24px;
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--pink), var(--secondary));
+        }
+
+        /* XP Popup */
+        .xp-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, var(--secondary), #fbbf24);
+            padding: 20px 40px;
+            border-radius: 20px;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--darker);
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 20px 60px rgba(245, 158, 11, 0.5);
+        }
+
+        /* Steps */
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        .step-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .step-emoji {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            display: block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .step-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .step-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .xp-reward {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid var(--secondary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-top: 10px;
+        }
+
+        /* Options */
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 25px 15px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--primary), var(--pink));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .option:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--primary);
+        }
+
+        .option.selected {
+            border-color: var(--secondary);
+            background: rgba(245, 158, 11, 0.1);
+            transform: scale(1.02);
+        }
+
+        .option.selected::before {
+            opacity: 0.1;
+        }
+
+        .option-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .option-text {
+            font-weight: 700;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .option-points {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--secondary);
+            color: var(--darker);
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 800;
+        }
+
+        /* Input Fields */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-field {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 18px 20px;
+            padding-left: 55px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .input-field:focus + .input-icon {
+            color: var(--primary);
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .input-field.valid {
+            border-color: var(--success);
+        }
+
+        .input-field.valid + .input-icon {
+            color: var(--success);
+        }
+
+        .input-hint {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 18px 28px;
+            border-radius: 16px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-back {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, var(--primary), var(--pink));
+            border: none;
+            color: white;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-next::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(45deg);
+            animation: btnShine 3s ease-in-out infinite;
+        }
+
+        @keyframes btnShine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .btn-next:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* Success */
+        .success-container {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .success-trophy {
+            font-size: 5rem;
+            margin-bottom: 25px;
+            animation: trophyBounce 1s ease-in-out infinite;
+        }
+
+        @keyframes trophyBounce {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .success-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--secondary), #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .success-xp {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--secondary);
+            margin: 20px 0;
+            text-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+        }
+
+        .success-text {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .final-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .final-badge {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--pink));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+            animation: badgeFloat 2s ease-in-out infinite;
+        }
+
+        .final-badge:nth-child(2) { animation-delay: 0.2s; }
+        .final-badge:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes badgeFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .step-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="xp-popup" id="xpPopup">+50 XP!</div>
+
+    <div class="container">
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="xp-container">
+                <div class="xp-icon"><i class="fas fa-star"></i></div>
+                <div class="xp-info">
+                    <span class="xp-label">Points XP</span>
+                    <span class="xp-value" id="totalXP">0</span>
+                </div>
+            </div>
+            <div class="streak-badge">
+                <i class="fas fa-fire"></i>
+                <span id="streakCount">0</span> combo
+            </div>
+        </div>
+
+        <!-- Level Progress -->
+        <div class="level-container">
+            <div class="level-header">
+                <div class="level-info">
+                    <div class="level-badge" id="levelBadge">1</div>
+                    <div>
+                        <div class="level-text">Niveau <span id="currentLevel">1</span></div>
+                        <div class="level-next">Encore <span id="xpToNext">100</span> XP</div>
+                    </div>
+                </div>
+                <div class="level-next" id="progressText">0%</div>
+            </div>
+            <div class="level-bar">
+                <div class="level-fill" id="levelFill"></div>
+            </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="badges-container" id="badgesContainer">
+            <div class="badge locked" data-badge="start" data-name="Démarrage">
+                <i class="fas fa-play"></i>
+                <span class="badge-tooltip">Démarrage</span>
+            </div>
+            <div class="badge locked" data-badge="house" data-name="Propriétaire">
+                <i class="fas fa-home"></i>
+                <span class="badge-tooltip">Propriétaire</span>
+            </div>
+            <div class="badge locked" data-badge="energy" data-name="Énergie">
+                <i class="fas fa-bolt"></i>
+                <span class="badge-tooltip">Énergie</span>
+            </div>
+            <div class="badge locked" data-badge="location" data-name="Localisé">
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="badge-tooltip">Localisé</span>
+            </div>
+            <div class="badge locked" data-badge="identity" data-name="Identité">
+                <i class="fas fa-user"></i>
+                <span class="badge-tooltip">Identité</span>
+            </div>
+            <div class="badge locked" data-badge="champion" data-name="Champion">
+                <i class="fas fa-trophy"></i>
+                <span class="badge-tooltip">Champion</span>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="form-card">
+            <!-- Step 1 -->
+            <div class="step active" id="step1">
+                <div class="step-header">
+                    <span class="step-emoji"><i class="fas fa-rocket"></i></span>
+                    <h2 class="step-title">Prêt à décoller ?</h2>
+                    <p class="step-subtitle">Vous êtes propriétaire ou locataire ?</p>
+                    <div class="xp-reward"><i class="fas fa-star"></i> +50 XP</div>
+                </div>
+                <div class="options">
+                    <div class="option" data-value="propriétaire">
+                        <span class="option-points">+50</span>
+                        <span class="option-icon"><i class="fas fa-key"></i></span>
+                        <span class="option-text">Propriétaire</span>
+                    </div>
+                    <div class="option" data-value="locataire">
+                        <span class="option-points">+50</span>
+                        <span class="option-icon"><i class="fas fa-file-signature"></i></span>
+                        <span class="option-text">Locataire</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-next" disabled>
+                        Continuer
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step" id="step2">
+                <div class="step-header">
+                    <span class="step-emoji"><i class="fas fa-home"></i></span>
+                    <h2 class="step-title">Votre nid douillet</h2>
+                    <p class="step-subtitle">Quel type de logement ?</p>
+                    <div class="xp-reward"><i class="fas fa-star"></i> +75 XP</div>
+                </div>
+                <div class="options">
+                    <div class="option" data-value="maison">
+                        <span class="option-points">+75</span>
+                        <span class="option-icon"><i class="fas fa-house-chimney"></i></span>
+                        <span class="option-text">Maison</span>
+                    </div>
+                    <div class="option" data-value="appartement">
+                        <span class="option-points">+75</span>
+                        <span class="option-icon"><i class="fas fa-building"></i></span>
+                        <span class="option-text">Appartement</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer<i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step" id="step3">
+                <div class="step-header">
+                    <span class="step-emoji"><i class="fas fa-fire-flame-curved"></i></span>
+                    <h2 class="step-title">Votre chauffage</h2>
+                    <p class="step-subtitle">Comment chauffez-vous ?</p>
+                    <div class="xp-reward"><i class="fas fa-star"></i> +100 XP</div>
+                </div>
+                <div class="options">
+                    <div class="option" data-value="électrique">
+                        <span class="option-points">+100</span>
+                        <span class="option-icon"><i class="fas fa-plug"></i></span>
+                        <span class="option-text">Électrique</span>
+                    </div>
+                    <div class="option" data-value="gaz">
+                        <span class="option-points">+100</span>
+                        <span class="option-icon"><i class="fas fa-fire"></i></span>
+                        <span class="option-text">Gaz</span>
+                    </div>
+                    <div class="option" data-value="bois">
+                        <span class="option-points">+100</span>
+                        <span class="option-icon"><i class="fas fa-tree"></i></span>
+                        <span class="option-text">Bois</span>
+                    </div>
+                    <div class="option" data-value="pompe">
+                        <span class="option-points">+100</span>
+                        <span class="option-icon"><i class="fas fa-wind"></i></span>
+                        <span class="option-text">Pompe</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer<i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step" id="step4">
+                <div class="step-header">
+                    <span class="step-emoji"><i class="fas fa-solar-panel"></i></span>
+                    <h2 class="step-title">Surface toiture</h2>
+                    <p class="step-subtitle">Quelle surface disponible ?</p>
+                    <div class="xp-reward"><i class="fas fa-star"></i> +75 XP</div>
+                </div>
+                <div class="options">
+                    <div class="option" data-value="moins_30">
+                        <span class="option-points">+75</span>
+                        <span class="option-icon"><i class="fas fa-compress"></i></span>
+                        <span class="option-text">< 30m²</span>
+                    </div>
+                    <div class="option" data-value="30_60">
+                        <span class="option-points">+75</span>
+                        <span class="option-icon"><i class="fas fa-expand"></i></span>
+                        <span class="option-text">30-60m²</span>
+                    </div>
+                    <div class="option" data-value="plus_60">
+                        <span class="option-points">+75</span>
+                        <span class="option-icon"><i class="fas fa-maximize"></i></span>
+                        <span class="option-text">> 60m²</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer<i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step" id="step5">
+                <div class="step-header">
+                    <span class="step-emoji"><i class="fas fa-map-location-dot"></i></span>
+                    <h2 class="step-title">Votre localisation</h2>
+                    <p class="step-subtitle">Code postal du projet</p>
+                    <div class="xp-reward"><i class="fas fa-star"></i> +100 XP</div>
+                </div>
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <input type="text" class="input-field" id="codePostal" placeholder="75001" maxlength="5">
+                        <i class="fas fa-location-dot input-icon"></i>
+                    </div>
+                    <p class="input-hint"><i class="fas fa-info-circle"></i> 5 chiffres pour débloquer le badge !</p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer<i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="step" id="step6">
+                <div class="step-header">
+                    <span class="step-emoji"><i class="fas fa-id-card"></i></span>
+                    <h2 class="step-title">Qui êtes-vous ?</h2>
+                    <p class="step-subtitle">Votre nom complet</p>
+                    <div class="xp-reward"><i class="fas fa-star"></i> +100 XP</div>
+                </div>
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <input type="text" class="input-field" id="nomComplet" placeholder="Jean Dupont">
+                        <i class="fas fa-user input-icon"></i>
+                    </div>
+                    <p class="input-hint"><i class="fas fa-gift"></i> Badge identité en approche !</p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer<i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 7 -->
+            <div class="step" id="step7">
+                <div class="step-header">
+                    <span class="step-emoji"><i class="fas fa-envelope-open-text"></i></span>
+                    <h2 class="step-title">Votre email</h2>
+                    <p class="step-subtitle">Pour recevoir votre devis</p>
+                    <div class="xp-reward"><i class="fas fa-star"></i> +100 XP</div>
+                </div>
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <input type="email" class="input-field" id="email" placeholder="jean@exemple.fr">
+                        <i class="fas fa-at input-icon"></i>
+                    </div>
+                    <p class="input-hint"><i class="fas fa-shield-check"></i> Vos données sont sécurisées</p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer<i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 8 -->
+            <div class="step" id="step8">
+                <div class="step-header">
+                    <span class="step-emoji"><i class="fas fa-phone-volume"></i></span>
+                    <h2 class="step-title">Dernière étape !</h2>
+                    <p class="step-subtitle">Votre téléphone pour le jackpot</p>
+                    <div class="xp-reward"><i class="fas fa-trophy"></i> +200 XP BONUS</div>
+                </div>
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <input type="tel" class="input-field" id="telephone" placeholder="06 12 34 56 78" maxlength="14">
+                        <i class="fas fa-mobile-screen input-icon"></i>
+                    </div>
+                    <p class="input-hint"><i class="fas fa-crown"></i> Débloquez le badge CHAMPION !</p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>
+                        <i class="fas fa-trophy"></i>
+                        Terminer !
+                    </button>
+                </div>
+            </div>
+
+            <!-- Success -->
+            <div class="step" id="success">
+                <div class="success-container">
+                    <div class="success-trophy"><i class="fas fa-trophy"></i></div>
+                    <h2 class="success-title">FÉLICITATIONS !</h2>
+                    <div class="success-xp" id="finalXP">800 XP</div>
+                    <p class="success-text">
+                        Vous avez atteint le niveau <strong id="finalLevel">8</strong> !<br>
+                        Un expert vous contactera sous 24h.
+                    </p>
+                    <div class="final-badges">
+                        <div class="final-badge"><i class="fas fa-medal"></i></div>
+                        <div class="final-badge"><i class="fas fa-crown"></i></div>
+                        <div class="final-badge"><i class="fas fa-gem"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            star.style.setProperty('--opacity', Math.random() * 0.5 + 0.3);
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Game State
+        let totalXP = 0;
+        let currentLevel = 1;
+        let streak = 0;
+        let currentStep = 1;
+        const totalSteps = 8;
+        const formData = {};
+        const xpPerStep = [50, 75, 100, 75, 100, 100, 100, 200];
+        const badgeUnlocks = {
+            1: 'start',
+            2: 'house',
+            3: 'energy',
+            5: 'location',
+            6: 'identity',
+            8: 'champion'
+        };
+
+        function addXP(amount) {
+            const popup = document.getElementById('xpPopup');
+            popup.textContent = `+${amount} XP!`;
+            popup.style.display = 'block';
+
+            gsap.fromTo(popup,
+                { scale: 0.5, opacity: 0, y: 20 },
+                { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: 'back.out(1.7)' }
+            );
+
+            setTimeout(() => {
+                gsap.to(popup, {
+                    scale: 0.5, opacity: 0, y: -30, duration: 0.3,
+                    onComplete: () => popup.style.display = 'none'
+                });
+            }, 800);
+
+            totalXP += amount;
+            document.getElementById('totalXP').textContent = totalXP;
+
+            gsap.fromTo('#totalXP', { scale: 1.5 }, { scale: 1, duration: 0.3 });
+
+            // Update level
+            const newLevel = Math.floor(totalXP / 100) + 1;
+            if (newLevel > currentLevel) {
+                currentLevel = newLevel;
+                document.getElementById('currentLevel').textContent = currentLevel;
+                document.getElementById('levelBadge').textContent = currentLevel;
+
+                // Level up confetti
+                confetti({
+                    particleCount: 50,
+                    spread: 60,
+                    origin: { y: 0.6 },
+                    colors: ['#8b5cf6', '#ec4899', '#f59e0b']
+                });
+            }
+
+            // Update progress bar
+            const progressInLevel = (totalXP % 100);
+            const progressPercent = progressInLevel;
+            document.getElementById('levelFill').style.width = progressPercent + '%';
+            document.getElementById('progressText').textContent = progressPercent + '%';
+            document.getElementById('xpToNext').textContent = 100 - progressInLevel;
+
+            // Update streak
+            streak++;
+            document.getElementById('streakCount').textContent = streak;
+        }
+
+        function unlockBadge(badgeId) {
+            const badge = document.querySelector(`[data-badge="${badgeId}"]`);
+            if (badge && badge.classList.contains('locked')) {
+                badge.classList.remove('locked');
+                badge.classList.add('unlocked');
+
+                // Badge unlock confetti
+                confetti({
+                    particleCount: 30,
+                    spread: 50,
+                    origin: { y: 0.5 },
+                    colors: ['#8b5cf6', '#ec4899', '#fbbf24']
+                });
+            }
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            const target = step === 'success' ? document.getElementById('success') : document.getElementById('step' + step);
+            if (target) {
+                target.classList.add('active');
+            }
+        }
+
+        // Option selection
+        document.querySelectorAll('.options').forEach(container => {
+            container.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', () => {
+                    container.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+
+                    gsap.fromTo(option, { scale: 0.95 }, { scale: 1.02, duration: 0.3, ease: 'back.out(1.7)' });
+
+                    option.closest('.step').querySelector('.btn-next').disabled = false;
+                });
+            });
+        });
+
+        // Input validation
+        document.getElementById('codePostal').addEventListener('input', function() {
+            const valid = /^\d{5}$/.test(this.value);
+            this.classList.toggle('valid', valid);
+            document.getElementById('step5').querySelector('.btn-next').disabled = !valid;
+        });
+
+        document.getElementById('nomComplet').addEventListener('input', function() {
+            const valid = this.value.trim().length >= 2;
+            this.classList.toggle('valid', valid);
+            document.getElementById('step6').querySelector('.btn-next').disabled = !valid;
+        });
+
+        document.getElementById('email').addEventListener('input', function() {
+            const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+            this.classList.toggle('valid', valid);
+            document.getElementById('step7').querySelector('.btn-next').disabled = !valid;
+        });
+
+        document.getElementById('telephone').addEventListener('input', function() {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            this.value = value.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            const valid = /^0[1-9]\d{8}$/.test(value);
+            this.classList.toggle('valid', valid);
+            document.getElementById('step8').querySelector('.btn-next').disabled = !valid;
+        });
+
+        // Navigation
+        document.querySelectorAll('.btn-next').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const step = btn.closest('.step');
+                const selected = step.querySelector('.option.selected');
+                const input = step.querySelector('.input-field');
+
+                if (selected) formData['step' + currentStep] = selected.dataset.value;
+                if (input) formData[input.id] = input.value;
+
+                // Add XP
+                addXP(xpPerStep[currentStep - 1]);
+
+                // Check badge unlock
+                if (badgeUnlocks[currentStep]) {
+                    setTimeout(() => unlockBadge(badgeUnlocks[currentStep]), 500);
+                }
+
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    showStep(currentStep);
+                } else {
+                    // Final celebration!
+                    document.getElementById('finalXP').textContent = totalXP + ' XP';
+                    document.getElementById('finalLevel').textContent = currentLevel;
+                    showStep('success');
+
+                    // Big confetti explosion
+                    const duration = 3000;
+                    const end = Date.now() + duration;
+
+                    (function frame() {
+                        confetti({
+                            particleCount: 5,
+                            angle: 60,
+                            spread: 55,
+                            origin: { x: 0 },
+                            colors: ['#8b5cf6', '#ec4899', '#f59e0b', '#10b981']
+                        });
+                        confetti({
+                            particleCount: 5,
+                            angle: 120,
+                            spread: 55,
+                            origin: { x: 1 },
+                            colors: ['#8b5cf6', '#ec4899', '#f59e0b', '#10b981']
+                        });
+
+                        if (Date.now() < end) {
+                            requestAnimationFrame(frame);
+                        }
+                    }());
+                }
+            });
+        });
+
+        document.querySelectorAll('.btn-back').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            });
+        });
+
+        // Initial animation
+        gsap.fromTo('.stats-bar', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 });
+        gsap.fromTo('.level-container', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.3 });
+        gsap.fromTo('.badges-container', { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.6, delay: 0.4 });
+        gsap.fromTo('.form-card', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.5 });
+    </script>
+</body>
+</html>
