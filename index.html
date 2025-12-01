@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaires Solaires - Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background: #0f0f0f;
+            background: #0a0a0f;
             min-height: 100vh;
             color: #fff;
             padding: 40px 20px;
         }
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         .header {
@@ -23,10 +24,10 @@
             margin-bottom: 60px;
         }
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #ffd93d, #ff6b6b, #4ecdc4);
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #6366f1, #ec4899, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -34,39 +35,85 @@
             color: #888;
             font-size: 1.1rem;
         }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .section {
+            margin-bottom: 50px;
+        }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
         }
         .card {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
-            border-radius: 16px;
+            background: #12121a;
+            border: 1px solid #1f1f2e;
+            border-radius: 20px;
             padding: 30px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             color: inherit;
             display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        .card:hover::before {
+            transform: scaleX(1);
         }
         .card:hover {
-            transform: translateY(-5px);
-            border-color: #444;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transform: translateY(-8px);
+            border-color: #2a2a3e;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+        }
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
         }
         .card-icon {
-            font-size: 3rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
             margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt, var(--accent)));
         }
         .card-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .card-desc {
             color: #888;
             font-size: 0.9rem;
-            line-height: 1.5;
+            line-height: 1.6;
             margin-bottom: 20px;
         }
         .card-tags {
@@ -75,80 +122,150 @@
             flex-wrap: wrap;
         }
         .tag {
-            background: #2a2a2a;
-            padding: 5px 12px;
+            background: #1a1a2e;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.75rem;
             color: #aaa;
+            border: 1px solid #2a2a3e;
         }
-        .card-neon { border-left: 3px solid #00ff88; }
-        .card-nature { border-left: 3px solid #5a8f5c; }
-        .card-glass { border-left: 3px solid #a855f7; }
-        .card-minimal { border-left: 3px solid #c9a227; }
-        
+
+        /* Original versions */
+        .card-neon { --accent: #00ff88; --accent-alt: #00d4ff; }
+        .card-nature { --accent: #22c55e; --accent-alt: #84cc16; }
+        .card-glass { --accent: #a855f7; --accent-alt: #ec4899; }
+        .card-minimal { --accent: #f59e0b; --accent-alt: #eab308; }
+
+        /* New versions */
+        .card-particles { --accent: #6366f1; --accent-alt: #ec4899; }
+        .card-morphing { --accent: #ff6b6b; --accent-alt: #feca57; }
+        .card-3d { --accent: #00d9ff; --accent-alt: #7c3aed; }
+
         .footer {
             text-align: center;
             margin-top: 60px;
-            color: #555;
+            color: #444;
             font-size: 0.85rem;
+        }
+        .footer a {
+            color: #6366f1;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1>🌞 Formulaires Solaires</h1>
-            <p>4 versions de design pour vos campagnes de lead generation</p>
+            <h1><i class="fas fa-bolt"></i> Formulaires Solaires</h1>
+            <p>7 versions de design pour vos campagnes de lead generation</p>
         </header>
 
-        <div class="grid">
-            <a href="./v1-neon/" class="card card-neon">
-                <div class="card-icon">🌌</div>
-                <h2 class="card-title">V1 - Néon Futuriste</h2>
-                <p class="card-desc">Design dark mode cyberpunk avec accents néon vert et cyan. Grille 3D animée et effets glow.</p>
-                <div class="card-tags">
-                    <span class="tag">Dark Mode</span>
-                    <span class="tag">Néon</span>
-                    <span class="tag">Tech</span>
-                </div>
-            </a>
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-star"></i> Nouvelles Versions - Animations Avancées</h2>
+            <div class="grid">
+                <a href="./v5-particles/" class="card card-particles">
+                    <span class="card-badge">Nouveau</span>
+                    <div class="card-icon">
+                        <i class="fas fa-sparkles"></i>
+                    </div>
+                    <h2 class="card-title">V5 - Particles</h2>
+                    <p class="card-desc">Particules interactives flottantes avec tsParticles + GSAP. Effet immersif et moderne.</p>
+                    <div class="card-tags">
+                        <span class="tag">tsParticles</span>
+                        <span class="tag">GSAP</span>
+                        <span class="tag">Interactif</span>
+                    </div>
+                </a>
 
-            <a href="./v2-nature/" class="card card-nature">
-                <div class="card-icon">🌿</div>
-                <h2 class="card-title">V2 - Nature Organique</h2>
-                <p class="card-desc">Tons terreux et verts naturels. Ambiance éco-responsable avec formes organiques.</p>
-                <div class="card-tags">
-                    <span class="tag">Éco</span>
-                    <span class="tag">Naturel</span>
-                    <span class="tag">Chaleureux</span>
-                </div>
-            </a>
+                <a href="./v6-morphing/" class="card card-morphing">
+                    <span class="card-badge">Nouveau</span>
+                    <div class="card-icon">
+                        <i class="fas fa-shapes"></i>
+                    </div>
+                    <h2 class="card-title">V6 - Morphing</h2>
+                    <p class="card-desc">Blobs fluides qui se transforment avec Anime.js. Couleurs vives et transitions douces.</p>
+                    <div class="card-tags">
+                        <span class="tag">Anime.js</span>
+                        <span class="tag">Blobs</span>
+                        <span class="tag">Coloré</span>
+                    </div>
+                </a>
 
-            <a href="./v3-glass/" class="card card-glass">
-                <div class="card-icon">💎</div>
-                <h2 class="card-title">V3 - Glassmorphism</h2>
-                <p class="card-desc">Effet verre dépoli sur fond dégradé vivant. Blobs animés et design premium.</p>
-                <div class="card-tags">
-                    <span class="tag">Glass</span>
-                    <span class="tag">Dégradé</span>
-                    <span class="tag">Premium</span>
-                </div>
-            </a>
+                <a href="./v7-3d/" class="card card-3d">
+                    <span class="card-badge">Nouveau</span>
+                    <div class="card-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h2 class="card-title">V7 - 3D Experience</h2>
+                    <p class="card-desc">Environnement 3D immersif avec Three.js. Formes géométriques flottantes et particules.</p>
+                    <div class="card-tags">
+                        <span class="tag">Three.js</span>
+                        <span class="tag">3D</span>
+                        <span class="tag">WebGL</span>
+                    </div>
+                </a>
+            </div>
+        </section>
 
-            <a href="./v4-minimal/" class="card card-minimal">
-                <div class="card-icon">✨</div>
-                <h2 class="card-title">V4 - Minimaliste</h2>
-                <p class="card-desc">Design scandinave ultra-épuré. Beaucoup d'espace blanc, typographie élégante.</p>
-                <div class="card-tags">
-                    <span class="tag">Minimal</span>
-                    <span class="tag">Luxe</span>
-                    <span class="tag">Épuré</span>
-                </div>
-            </a>
-        </div>
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-palette"></i> Versions Classiques</h2>
+            <div class="grid">
+                <a href="./v1-neon/" class="card card-neon">
+                    <div class="card-icon">
+                        <i class="fas fa-bolt-lightning"></i>
+                    </div>
+                    <h2 class="card-title">V1 - Néon Futuriste</h2>
+                    <p class="card-desc">Design dark mode cyberpunk avec accents néon vert et cyan. Grille 3D animée et effets glow.</p>
+                    <div class="card-tags">
+                        <span class="tag">Dark Mode</span>
+                        <span class="tag">Néon</span>
+                        <span class="tag">Tech</span>
+                    </div>
+                </a>
+
+                <a href="./v2-nature/" class="card card-nature">
+                    <div class="card-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h2 class="card-title">V2 - Nature Organique</h2>
+                    <p class="card-desc">Tons terreux et verts naturels. Ambiance éco-responsable avec formes organiques.</p>
+                    <div class="card-tags">
+                        <span class="tag">Éco</span>
+                        <span class="tag">Naturel</span>
+                        <span class="tag">Chaleureux</span>
+                    </div>
+                </a>
+
+                <a href="./v3-glass/" class="card card-glass">
+                    <div class="card-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h2 class="card-title">V3 - Glassmorphism</h2>
+                    <p class="card-desc">Effet verre dépoli sur fond dégradé vivant. Blobs animés et design premium.</p>
+                    <div class="card-tags">
+                        <span class="tag">Glass</span>
+                        <span class="tag">Dégradé</span>
+                        <span class="tag">Premium</span>
+                    </div>
+                </a>
+
+                <a href="./v4-minimal/" class="card card-minimal">
+                    <div class="card-icon">
+                        <i class="fas fa-feather"></i>
+                    </div>
+                    <h2 class="card-title">V4 - Minimaliste</h2>
+                    <p class="card-desc">Design scandinave ultra-épuré. Beaucoup d'espace blanc, typographie élégante.</p>
+                    <div class="card-tags">
+                        <span class="tag">Minimal</span>
+                        <span class="tag">Luxe</span>
+                        <span class="tag">Épuré</span>
+                    </div>
+                </a>
+            </div>
+        </section>
 
         <footer class="footer">
-            <p>Créé pour tests A/B • Leads Solaires PV</p>
+            <p>Créé pour tests A/B • Leads Solaires PV • <a href="https://github.com/galaxyprojector1/solar-forms-hub" target="_blank"><i class="fab fa-github"></i> GitHub</a></p>
         </footer>
     </div>
 </body>
