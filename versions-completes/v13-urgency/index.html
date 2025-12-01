@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offre Limitée - Devis Panneaux Solaires</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #dc2626;
+            --primary-dark: #b91c1c;
+            --accent: #f59e0b;
+            --success: #22c55e;
+            --dark: #111827;
+            --text: #111827;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fef2f2;
+            min-height: 100vh;
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        /* Urgency Banner */
+        .urgency-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 14px 20px;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+        }
+
+        .urgency-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .urgency-timer {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .timer-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timer-value {
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .timer-label {
+            font-size: 0.65rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        .timer-sep {
+            font-size: 1.5rem;
+            font-weight: 700;
+            opacity: 0.5;
+        }
+
+        /* Spots counter */
+        .spots-banner {
+            background: white;
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .spots-icon {
+            width: 48px;
+            height: 48px;
+            background: #fef3c7;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .spots-content {
+            flex: 1;
+        }
+
+        .spots-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .spots-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .spots-bar {
+            height: 6px;
+            background: #fee2e2;
+            border-radius: 6px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .spots-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #ef4444);
+            border-radius: 6px;
+            width: 85%;
+            animation: spotsFlash 1.5s infinite;
+        }
+
+        @keyframes spotsFlash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Savings card */
+        .savings-card {
+            background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .savings-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(25deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(25deg); }
+            100% { transform: translateX(100%) rotate(25deg); }
+        }
+
+        .savings-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .savings-content {
+            flex: 1;
+            z-index: 1;
+        }
+
+        .savings-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .savings-value {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .savings-period {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Bonus badge */
+        .bonus-badge {
+            background: white;
+            border: 2px dashed var(--primary);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bonus-icon {
+            font-size: 1.8rem;
+        }
+
+        .bonus-text {
+            flex: 1;
+        }
+
+        .bonus-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--primary);
+        }
+
+        .bonus-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Progress */
+        .progress-container {
+            margin-bottom: 16px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 6px;
+            transition: width 0.4s ease;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Form */
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 24px 20px;
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .step-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        /* Options */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px;
+            background: #fafafa;
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .option:hover {
+            border-color: var(--primary);
+            background: #fef2f2;
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: #fef2f2;
+        }
+
+        .option-icon {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        .option.selected .option-icon {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .option-text {
+            flex: 1;
+        }
+
+        .option-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .option-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .option-bonus {
+            position: absolute;
+            top: -8px;
+            right: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* Inputs */
+        .input-group {
+            margin-bottom: 14px;
+        }
+
+        .input-label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 1rem;
+            font-family: inherit;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            transition: border-color 0.2s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Slider */
+        .slider-container {
+            margin-bottom: 20px;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .slider-label {
+            font-weight: 600;
+        }
+
+        .slider-value {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .slider-input {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            background: #e5e7eb;
+            border-radius: 8px;
+        }
+
+        .slider-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 26px;
+            height: 26px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(220, 38, 38, 0.3);
+        }
+
+        .slider-marks {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 16px 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: inherit;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-back {
+            background: white;
+            border: 2px solid var(--border);
+            color: var(--text-muted);
+            flex: 0 0 50px;
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border: none;
+            color: white;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .btn-next:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* CTA urgent */
+        .cta-urgent {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cta-urgent i {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Success */
+        .success-container {
+            text-align: center;
+            padding: 16px 0;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            margin: 0 auto 20px;
+            animation: pop 0.5s ease;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .success-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .success-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .success-savings {
+            background: #f0fdf4;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .success-savings-label {
+            font-size: 0.85rem;
+            color: #166534;
+        }
+
+        .success-savings-value {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #15803d;
+        }
+
+        .success-bonus {
+            background: #fffbeb;
+            border: 2px dashed var(--accent);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .success-bonus-title {
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 4px;
+        }
+
+        .success-bonus-text {
+            font-size: 0.85rem;
+            color: #a16207;
+        }
+
+        .success-info {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 400px) {
+            .timer-value { font-size: 1.4rem; }
+            .savings-value { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Urgency Timer -->
+        <div class="urgency-banner">
+            <div class="urgency-title"><i class="fas fa-bolt"></i> Offre Flash - Se termine dans</div>
+            <div class="urgency-timer">
+                <div class="timer-block">
+                    <span class="timer-value" id="hours">02</span>
+                    <span class="timer-label">Heures</span>
+                </div>
+                <span class="timer-sep">:</span>
+                <div class="timer-block">
+                    <span class="timer-value" id="minutes">47</span>
+                    <span class="timer-label">Minutes</span>
+                </div>
+                <span class="timer-sep">:</span>
+                <div class="timer-block">
+                    <span class="timer-value" id="seconds">33</span>
+                    <span class="timer-label">Secondes</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Spots Counter -->
+        <div class="spots-banner">
+            <div class="spots-icon"><i class="fas fa-users"></i></div>
+            <div class="spots-content">
+                <div class="spots-label">Places restantes ce mois-ci</div>
+                <div class="spots-value"><span id="spotsCount">7</span> places sur 50</div>
+                <div class="spots-bar">
+                    <div class="spots-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Savings Card -->
+        <div class="savings-card">
+            <div class="savings-icon"><i class="fas fa-piggy-bank"></i></div>
+            <div class="savings-content">
+                <div class="savings-label">Économies estimées</div>
+                <div class="savings-value" id="savingsValue">0 €</div>
+                <div class="savings-period">par an sur votre facture</div>
+            </div>
+        </div>
+
+        <!-- Bonus Badge -->
+        <div class="bonus-badge">
+            <div class="bonus-icon">🎁</div>
+            <div class="bonus-text">
+                <div class="bonus-title">BONUS : Audit énergétique offert</div>
+                <div class="bonus-subtitle">Valeur 290€ - Uniquement ce mois-ci</div>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">
+                <span id="progressStep">Étape 1/5</span>
+                <span id="progressPercent">0%</span>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="form-card">
+            <!-- Step 1 -->
+            <div class="step active" id="step1">
+                <h2 class="step-title">Vous êtes :</h2>
+                <p class="step-desc">Vérifiez votre éligibilité en 30 secondes</p>
+                <div class="options">
+                    <div class="option" data-value="proprietaire" data-savings="250">
+                        <span class="option-bonus">ÉLIGIBLE</span>
+                        <div class="option-icon"><i class="fas fa-key"></i></div>
+                        <div class="option-text">
+                            <div class="option-title">Propriétaire</div>
+                            <div class="option-subtitle">Maison ou appartement</div>
+                        </div>
+                    </div>
+                    <div class="option" data-value="bailleur" data-savings="180">
+                        <span class="option-bonus">ÉLIGIBLE</span>
+                        <div class="option-icon"><i class="fas fa-building"></i></div>
+                        <div class="option-text">
+                            <div class="option-title">Bailleur</div>
+                            <div class="option-subtitle">Bien en location</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-next" disabled>Vérifier mon éligibilité <i class="fas fa-arrow-right"></i></button>
+                </div>
+                <div class="cta-urgent">
+                    <i class="fas fa-fire"></i>
+                    <span>3 personnes regardent cette offre</span>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step" id="step2">
+                <h2 class="step-title">Type de logement</h2>
+                <p class="step-desc">Les maisons bénéficient des meilleures économies</p>
+                <div class="options">
+                    <div class="option" data-value="maison" data-savings="450">
+                        <span class="option-bonus">+45% ECO</span>
+                        <div class="option-icon"><i class="fas fa-home"></i></div>
+                        <div class="option-text">
+                            <div class="option-title">Maison individuelle</div>
+                            <div class="option-subtitle">Grande surface de toiture</div>
+                        </div>
+                    </div>
+                    <div class="option" data-value="appartement" data-savings="150">
+                        <div class="option-icon"><i class="fas fa-city"></i></div>
+                        <div class="option-text">
+                            <div class="option-title">Appartement</div>
+                            <div class="option-subtitle">Toit accessible</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step" id="step3">
+                <h2 class="step-title">Facture électrique</h2>
+                <p class="step-desc">Plus elle est haute, plus vous économisez !</p>
+                <div class="slider-container">
+                    <div class="slider-header">
+                        <span class="slider-label">Facture mensuelle</span>
+                        <span class="slider-value" id="billDisplay">100 €</span>
+                    </div>
+                    <input type="range" class="slider-input" id="billSlider" min="50" max="400" value="100" step="10">
+                    <div class="slider-marks">
+                        <span>50 €</span>
+                        <span>200 €</span>
+                        <span>400 €</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next">Calculer mes économies <i class="fas fa-calculator"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step" id="step4">
+                <h2 class="step-title">Votre localisation</h2>
+                <p class="step-desc">Le Sud bénéficie de +20% d'ensoleillement</p>
+                <div class="input-group">
+                    <label class="input-label">Code postal</label>
+                    <input type="text" class="input-field" id="postalCode" placeholder="Ex: 75001" maxlength="5" inputmode="numeric">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step" id="step5">
+                <h2 class="step-title">Réservez votre place !</h2>
+                <p class="step-desc">Plus que <strong id="spotsLeft">7 places</strong> disponibles</p>
+                <div class="input-group">
+                    <label class="input-label">Prénom et nom</label>
+                    <input type="text" class="input-field" id="fullName" placeholder="Jean Dupont">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Téléphone</label>
+                    <input type="tel" class="input-field" id="phone" placeholder="06 12 34 56 78" maxlength="14">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Email</label>
+                    <input type="email" class="input-field" id="email" placeholder="jean@exemple.fr">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled><i class="fas fa-lock"></i> Réserver ma place GRATUIT</button>
+                </div>
+                <div class="cta-urgent">
+                    <i class="fas fa-clock"></i>
+                    <span>Offre valable encore <span id="timerInline">02:47</span></span>
+                </div>
+            </div>
+
+            <!-- Success -->
+            <div class="step" id="success">
+                <div class="success-container">
+                    <div class="success-icon"><i class="fas fa-check"></i></div>
+                    <h2 class="success-title">Place réservée !</h2>
+                    <p class="success-subtitle">Vous faites partie des 50 sélectionnés ce mois-ci</p>
+                    <div class="success-savings">
+                        <div class="success-savings-label">Économies estimées par an</div>
+                        <div class="success-savings-value" id="finalSavings">0 €</div>
+                    </div>
+                    <div class="success-bonus">
+                        <div class="success-bonus-title">🎁 Votre bonus est activé !</div>
+                        <div class="success-bonus-text">Audit énergétique offert (valeur 290€)</div>
+                    </div>
+                    <div class="success-info">
+                        Un expert vous contactera sous <strong>24h</strong> pour finaliser votre dossier prioritaire.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown timer
+        let totalSeconds = 2 * 3600 + 47 * 60 + 33;
+
+        function updateTimer() {
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            document.getElementById('timerInline').textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+
+            if (totalSeconds > 0) {
+                totalSeconds--;
+            }
+        }
+
+        setInterval(updateTimer, 1000);
+
+        // Spots counter - occasionally decrease
+        let spots = 7;
+        function updateSpots() {
+            if (spots > 3 && Math.random() > 0.7) {
+                spots--;
+                document.getElementById('spotsCount').textContent = spots;
+                document.getElementById('spotsLeft').textContent = spots + ' places';
+            }
+        }
+        setInterval(updateSpots, 30000);
+
+        // State
+        let currentStep = 1;
+        const totalSteps = 5;
+        let totalSavings = 0;
+
+        // Elements
+        const progressFill = document.getElementById('progressFill');
+        const progressStep = document.getElementById('progressStep');
+        const progressPercent = document.getElementById('progressPercent');
+        const savingsValue = document.getElementById('savingsValue');
+
+        function updateProgress() {
+            const percent = ((currentStep - 1) / totalSteps) * 100;
+            progressFill.style.width = percent + '%';
+            progressStep.textContent = `Étape ${currentStep}/${totalSteps}`;
+            progressPercent.textContent = Math.round(percent) + '%';
+        }
+
+        function updateSavings(amount) {
+            totalSavings += amount;
+            animateSavings();
+        }
+
+        function animateSavings() {
+            const target = totalSavings;
+            const current = parseInt(savingsValue.textContent.replace(/\D/g, '')) || 0;
+            const diff = target - current;
+            const duration = 600;
+            const start = performance.now();
+
+            function animate(time) {
+                const elapsed = time - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const value = Math.round(current + diff * eased);
+                savingsValue.textContent = value.toLocaleString('fr-FR') + ' €';
+                if (progress < 1) requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            const target = step === 'success' ? document.getElementById('success') : document.getElementById('step' + step);
+            if (target) target.classList.add('active');
+            updateProgress();
+        }
+
+        // Options
+        document.querySelectorAll('.options').forEach(container => {
+            container.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', () => {
+                    container.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+                    option.closest('.step').querySelector('.btn-next').disabled = false;
+                });
+            });
+        });
+
+        // Slider
+        const billSlider = document.getElementById('billSlider');
+        const billDisplay = document.getElementById('billDisplay');
+        billSlider.addEventListener('input', function() {
+            billDisplay.textContent = this.value + ' €';
+        });
+
+        // Postal code
+        const postalCode = document.getElementById('postalCode');
+        postalCode.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '');
+            document.getElementById('step4').querySelector('.btn-next').disabled = !/^\d{5}$/.test(this.value);
+        });
+
+        // Contact
+        const fullName = document.getElementById('fullName');
+        const phone = document.getElementById('phone');
+        const email = document.getElementById('email');
+
+        function validateContact() {
+            const nameValid = fullName.value.trim().length >= 2;
+            const phoneValid = /^0[1-9]\d{8}$/.test(phone.value.replace(/\D/g, ''));
+            const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
+            document.getElementById('step5').querySelector('.btn-next').disabled = !(nameValid && phoneValid && emailValid);
+        }
+
+        fullName.addEventListener('input', validateContact);
+        email.addEventListener('input', validateContact);
+        phone.addEventListener('input', function() {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            this.value = value.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            validateContact();
+        });
+
+        // Navigation
+        document.querySelectorAll('.btn-next').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const step = btn.closest('.step');
+                const selected = step.querySelector('.option.selected');
+
+                if (selected) {
+                    updateSavings(parseInt(selected.dataset.savings) || 0);
+                }
+
+                if (currentStep === 3) {
+                    const bill = parseInt(billSlider.value);
+                    updateSavings(Math.round(bill * 0.42 * 12));
+                }
+
+                if (currentStep === 4) {
+                    const southDepts = ['06', '13', '83', '34', '30', '84', '66', '11', '33', '40', '64', '31', '82', '81'];
+                    if (southDepts.some(d => postalCode.value.startsWith(d))) {
+                        updateSavings(150);
+                    }
+                }
+
+                if (currentStep === 5) {
+                    document.getElementById('finalSavings').textContent = totalSavings.toLocaleString('fr-FR') + ' €';
+                }
+
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    showStep(currentStep);
+                } else {
+                    showStep('success');
+                }
+            });
+        });
+
+        document.querySelectorAll('.btn-back').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            });
+        });
+
+        updateProgress();
+    </script>
+</body>
+</html>

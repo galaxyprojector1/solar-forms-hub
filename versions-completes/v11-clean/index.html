@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devis Panneaux Solaires - Gratuit en 30 secondes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --success: #22c55e;
+            --bg: #ffffff;
+            --text: #111827;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #f9fafb;
+            min-height: 100vh;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header minimaliste */
+        .header {
+            text-align: center;
+            padding: 20px 0 30px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .logo i {
+            font-size: 1.4rem;
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            margin-bottom: 24px;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Form card */
+        .form-card {
+            background: var(--bg);
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border);
+            padding: 28px 24px;
+            flex: 1;
+        }
+
+        /* Steps */
+        .step {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .step-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        /* Options - Clean buttons */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            background: #f9fafb;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option:hover {
+            border-color: #d1d5db;
+            background: #f3f4f6;
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .option-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .option.selected .option-icon {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .option-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .option-check {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        .option.selected .option-check {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Input fields */
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 1rem;
+            font-family: inherit;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: white;
+            color: var(--text);
+            transition: border-color 0.2s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .input-field::placeholder {
+            color: #9ca3af;
+        }
+
+        /* Slider */
+        .slider-container {
+            margin-bottom: 24px;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .slider-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .slider-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .slider-input {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--border);
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .slider-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .slider-marks {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 16px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-back {
+            background: white;
+            border: 2px solid var(--border);
+            color: var(--text-muted);
+            flex: 0 0 50px;
+        }
+
+        .btn-back:hover {
+            background: #f3f4f6;
+        }
+
+        .btn-next {
+            background: var(--primary);
+            border: none;
+            color: white;
+        }
+
+        .btn-next:hover:not(:disabled) {
+            background: var(--primary-hover);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Savings display - visible from start */
+        .savings-banner {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border: 1px solid #86efac;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .savings-icon {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--success);
+            flex-shrink: 0;
+        }
+
+        .savings-content {
+            flex: 1;
+        }
+
+        .savings-label {
+            font-size: 0.8rem;
+            color: #166534;
+            margin-bottom: 2px;
+        }
+
+        .savings-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #15803d;
+        }
+
+        .savings-period {
+            font-size: 0.85rem;
+            color: #166534;
+        }
+
+        /* Success screen */
+        .success-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            margin: 0 auto 24px;
+            animation: successPop 0.5s ease;
+        }
+
+        @keyframes successPop {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .success-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .success-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .success-savings {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .success-savings-label {
+            font-size: 0.85rem;
+            color: #166534;
+            margin-bottom: 4px;
+        }
+
+        .success-savings-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #15803d;
+        }
+
+        .success-info {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .success-info strong {
+            color: var(--primary);
+        }
+
+        /* Trust badge */
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .trust-badge i {
+            color: var(--success);
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 1.4rem;
+            }
+
+            .savings-value {
+                font-size: 1.3rem;
+            }
+
+            .form-card {
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-solar-panel"></i>
+                Solaire Express
+            </div>
+            <h1>Devis gratuit en 30 secondes</h1>
+            <p>Estimez vos économies avec le solaire</p>
+        </header>
+
+        <!-- Savings banner - visible from start -->
+        <div class="savings-banner">
+            <div class="savings-icon">
+                <i class="fas fa-piggy-bank"></i>
+            </div>
+            <div class="savings-content">
+                <div class="savings-label">Économies estimées</div>
+                <div class="savings-value" id="savingsValue">0 €</div>
+                <div class="savings-period">par an sur votre facture</div>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">
+                <span id="progressStep">Étape 1/5</span>
+                <span id="progressPercent">0%</span>
+            </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="form-card">
+            <!-- Step 1: Propriétaire -->
+            <div class="step active" id="step1">
+                <h2 class="step-title">Vous êtes :</h2>
+                <p class="step-desc">Seuls les propriétaires peuvent installer des panneaux</p>
+                <div class="options">
+                    <div class="option" data-value="proprietaire" data-savings="200">
+                        <div class="option-icon"><i class="fas fa-key"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">Propriétaire</div>
+                            <div class="option-subtitle">J'habite dans mon bien</div>
+                        </div>
+                        <div class="option-check"><i class="fas fa-check"></i></div>
+                    </div>
+                    <div class="option" data-value="bailleur" data-savings="150">
+                        <div class="option-icon"><i class="fas fa-building"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">Bailleur</div>
+                            <div class="option-subtitle">Je loue mon bien</div>
+                        </div>
+                        <div class="option-check"><i class="fas fa-check"></i></div>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-next" disabled>Continuer <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 2: Type de logement -->
+            <div class="step" id="step2">
+                <h2 class="step-title">Type de logement</h2>
+                <p class="step-desc">Les maisons offrent plus d'espace pour les panneaux</p>
+                <div class="options">
+                    <div class="option" data-value="maison" data-savings="400">
+                        <div class="option-icon"><i class="fas fa-home"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">Maison individuelle</div>
+                            <div class="option-subtitle">Avec toiture accessible</div>
+                        </div>
+                        <div class="option-check"><i class="fas fa-check"></i></div>
+                    </div>
+                    <div class="option" data-value="appartement" data-savings="100">
+                        <div class="option-icon"><i class="fas fa-building"></i></div>
+                        <div class="option-content">
+                            <div class="option-title">Appartement</div>
+                            <div class="option-subtitle">Dernier étage avec toit</div>
+                        </div>
+                        <div class="option-check"><i class="fas fa-check"></i></div>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 3: Facture -->
+            <div class="step" id="step3">
+                <h2 class="step-title">Facture électrique</h2>
+                <p class="step-desc">Montant mensuel moyen de votre facture</p>
+                <div class="slider-container">
+                    <div class="slider-header">
+                        <span class="slider-label">Facture mensuelle</span>
+                        <span class="slider-value" id="billDisplay">100 €</span>
+                    </div>
+                    <input type="range" class="slider-input" id="billSlider" min="50" max="350" value="100" step="10">
+                    <div class="slider-marks">
+                        <span>50 €</span>
+                        <span>200 €</span>
+                        <span>350 €</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next">Continuer <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 4: Code postal -->
+            <div class="step" id="step4">
+                <h2 class="step-title">Votre localisation</h2>
+                <p class="step-desc">L'ensoleillement varie selon les régions</p>
+                <div class="input-group">
+                    <label class="input-label">Code postal</label>
+                    <input type="text" class="input-field" id="postalCode" placeholder="Ex: 75001" maxlength="5" inputmode="numeric">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled>Continuer <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 5: Coordonnées -->
+            <div class="step" id="step5">
+                <h2 class="step-title">Recevez votre devis</h2>
+                <p class="step-desc">Un expert vous contactera rapidement</p>
+                <div class="input-group">
+                    <label class="input-label">Prénom et nom</label>
+                    <input type="text" class="input-field" id="fullName" placeholder="Jean Dupont">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Téléphone</label>
+                    <input type="tel" class="input-field" id="phone" placeholder="06 12 34 56 78" maxlength="14">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Email</label>
+                    <input type="email" class="input-field" id="email" placeholder="jean@exemple.fr">
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn btn-next" disabled><i class="fas fa-paper-plane"></i> Obtenir mon devis</button>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    Données sécurisées - Sans engagement
+                </div>
+            </div>
+
+            <!-- Success -->
+            <div class="step" id="success">
+                <div class="success-container">
+                    <div class="success-icon"><i class="fas fa-check"></i></div>
+                    <h2 class="success-title">Demande envoyée !</h2>
+                    <p class="success-subtitle">Nous avons bien reçu votre demande</p>
+                    <div class="success-savings">
+                        <div class="success-savings-label">Économies estimées par an</div>
+                        <div class="success-savings-value" id="finalSavings">0 €</div>
+                    </div>
+                    <div class="success-info">
+                        Un expert solaire vous contactera sous <strong>24h</strong> pour vous présenter une étude personnalisée.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let currentStep = 1;
+        const totalSteps = 5;
+        let totalSavings = 0;
+        const formData = {};
+
+        // DOM
+        const progressFill = document.getElementById('progressFill');
+        const progressStep = document.getElementById('progressStep');
+        const progressPercent = document.getElementById('progressPercent');
+        const savingsValue = document.getElementById('savingsValue');
+
+        // Update progress
+        function updateProgress() {
+            const percent = ((currentStep - 1) / totalSteps) * 100;
+            progressFill.style.width = percent + '%';
+            progressStep.textContent = `Étape ${currentStep}/${totalSteps}`;
+            progressPercent.textContent = Math.round(percent) + '%';
+        }
+
+        // Update savings with animation
+        function updateSavings(amount) {
+            totalSavings += amount;
+            animateSavings();
+        }
+
+        function animateSavings() {
+            const target = totalSavings;
+            const current = parseInt(savingsValue.textContent.replace(/\D/g, '')) || 0;
+            const diff = target - current;
+            const duration = 500;
+            const start = performance.now();
+
+            function animate(time) {
+                const elapsed = time - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const value = Math.round(current + diff * eased);
+                savingsValue.textContent = value.toLocaleString('fr-FR') + ' €';
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        // Show step
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            const target = step === 'success' ? document.getElementById('success') : document.getElementById('step' + step);
+            if (target) {
+                target.classList.add('active');
+            }
+            updateProgress();
+        }
+
+        // Option selection
+        document.querySelectorAll('.options').forEach(container => {
+            container.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', () => {
+                    container.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+                    option.closest('.step').querySelector('.btn-next').disabled = false;
+                });
+            });
+        });
+
+        // Bill slider
+        const billSlider = document.getElementById('billSlider');
+        const billDisplay = document.getElementById('billDisplay');
+        billSlider.addEventListener('input', function() {
+            billDisplay.textContent = this.value + ' €';
+        });
+
+        // Postal code validation
+        const postalCode = document.getElementById('postalCode');
+        postalCode.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '');
+            const valid = /^\d{5}$/.test(this.value);
+            document.getElementById('step4').querySelector('.btn-next').disabled = !valid;
+        });
+
+        // Contact form validation
+        const fullName = document.getElementById('fullName');
+        const phone = document.getElementById('phone');
+        const email = document.getElementById('email');
+
+        function validateContact() {
+            const nameValid = fullName.value.trim().length >= 2;
+            const phoneValid = /^0[1-9]\d{8}$/.test(phone.value.replace(/\D/g, ''));
+            const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
+            document.getElementById('step5').querySelector('.btn-next').disabled = !(nameValid && phoneValid && emailValid);
+        }
+
+        fullName.addEventListener('input', validateContact);
+        email.addEventListener('input', validateContact);
+        phone.addEventListener('input', function() {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            this.value = value.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            validateContact();
+        });
+
+        // Navigation
+        document.querySelectorAll('.btn-next').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const step = btn.closest('.step');
+                const selected = step.querySelector('.option.selected');
+
+                // Collect data and update savings
+                if (selected) {
+                    const savings = parseInt(selected.dataset.savings) || 0;
+                    formData['step' + currentStep] = selected.dataset.value;
+                    updateSavings(savings);
+                }
+
+                // Bill step
+                if (currentStep === 3) {
+                    const bill = parseInt(billSlider.value);
+                    formData.bill = bill;
+                    // 35% savings on annual bill
+                    const billSavings = Math.round(bill * 0.35 * 12);
+                    updateSavings(billSavings);
+                }
+
+                // Postal code step - region bonus
+                if (currentStep === 4) {
+                    formData.postalCode = postalCode.value;
+                    const southDepts = ['06', '13', '83', '34', '30', '84', '66', '11', '33', '40', '64'];
+                    if (southDepts.some(d => postalCode.value.startsWith(d))) {
+                        updateSavings(100); // Sun bonus
+                    }
+                }
+
+                // Contact step
+                if (currentStep === 5) {
+                    formData.name = fullName.value;
+                    formData.phone = phone.value;
+                    formData.email = email.value;
+                    document.getElementById('finalSavings').textContent = totalSavings.toLocaleString('fr-FR') + ' €';
+                }
+
+                // Move to next step
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    showStep(currentStep);
+                } else {
+                    showStep('success');
+                }
+            });
+        });
+
+        document.querySelectorAll('.btn-back').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            });
+        });
+
+        // Initial setup
+        updateProgress();
+    </script>
+</body>
+</html>

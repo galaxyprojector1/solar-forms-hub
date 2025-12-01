@@ -146,6 +146,12 @@
         .card-story { --accent: #14b8a6; --accent-alt: #f97316; }
         .card-simulation { --accent: #22c55e; --accent-alt: #3b82f6; }
 
+        /* PRO versions */
+        .card-clean { --accent: #2563eb; --accent-alt: #3b82f6; }
+        .card-trust { --accent: #0f766e; --accent-alt: #14b8a6; }
+        .card-urgency { --accent: #dc2626; --accent-alt: #f59e0b; }
+        .card-mobile { --accent: #6366f1; --accent-alt: #8b5cf6; }
+
         .footer {
             text-align: center;
             margin-top: 60px;
@@ -162,13 +168,95 @@
     <div class="container">
         <header class="header">
             <h1><i class="fas fa-bolt"></i> Formulaires Solaires</h1>
-            <p>10 versions de design pour vos campagnes de lead generation</p>
+            <p>Bibliothèque modulaire : Formulaires, Success Screens, Landing Pages</p>
         </header>
 
+        <!-- Navigation rapide -->
+        <nav style="display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap;">
+            <a href="#versions-completes" style="background: linear-gradient(135deg, #6366f1, #ec4899); padding: 12px 24px; border-radius: 30px; text-decoration: none; color: white; font-weight: 600; transition: transform 0.2s;">
+                <i class="fas fa-box"></i> Versions Complètes
+            </a>
+            <a href="#formulaires" style="background: #22c55e; padding: 12px 24px; border-radius: 30px; text-decoration: none; color: white; font-weight: 600; transition: transform 0.2s;">
+                <i class="fas fa-clipboard-list"></i> Formulaires
+            </a>
+            <a href="#success-screens" style="background: #f59e0b; padding: 12px 24px; border-radius: 30px; text-decoration: none; color: white; font-weight: 600; transition: transform 0.2s;">
+                <i class="fas fa-trophy"></i> Success Screens
+            </a>
+            <a href="#landing-pages" style="background: #06b6d4; padding: 12px 24px; border-radius: 30px; text-decoration: none; color: white; font-weight: 600; transition: transform 0.2s;">
+                <i class="fas fa-rocket"></i> Landing Pages
+            </a>
+        </nav>
+
+        <!-- ===== VERSIONS COMPLÈTES ===== -->
+        <section class="section" id="versions-completes">
+            <h2 class="section-title"><i class="fas fa-box"></i> Versions Complètes (Formulaire + Success)</h2>
+        </section>
+
         <section class="section">
-            <h2 class="section-title"><i class="fas fa-fire"></i> Ultra Conversion - Maximum Impact</h2>
+            <h3 style="color: #2563eb; font-size: 1rem; margin-bottom: 20px;"><i class="fas fa-crown"></i> VERSIONS PRO - NOUVELLES</h3>
             <div class="grid">
-                <a href="./v8-gamification/" class="card card-gamification">
+                <a href="./versions-completes/v11-clean/" class="card card-clean">
+                    <span class="card-badge">NEW</span>
+                    <div class="card-icon">
+                        <i class="fas fa-sparkles"></i>
+                    </div>
+                    <h2 class="card-title">V11 - Clean Conversion</h2>
+                    <p class="card-desc">Ultra épuré, focus maximum sur la conversion. Design Apple-like, zéro distraction.</p>
+                    <div class="card-tags">
+                        <span class="tag">Minimaliste</span>
+                        <span class="tag">Apple-like</span>
+                        <span class="tag">Pro</span>
+                    </div>
+                </a>
+
+                <a href="./versions-completes/v12-trust/" class="card card-trust">
+                    <span class="card-badge">NEW</span>
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2 class="card-title">V12 - Trust Builder</h2>
+                    <p class="card-desc">Avis clients, badges RGE, garanties 25 ans. Maximum confiance pour les sceptiques.</p>
+                    <div class="card-tags">
+                        <span class="tag">Avis clients</span>
+                        <span class="tag">Badges</span>
+                        <span class="tag">Confiance</span>
+                    </div>
+                </a>
+
+                <a href="./versions-completes/v13-urgency/" class="card card-urgency">
+                    <span class="card-badge">NEW</span>
+                    <div class="card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h2 class="card-title">V13 - Urgency</h2>
+                    <p class="card-desc">Compteur temps réel, places limitées, bonus exclusif. FOMO maximum pour convertir vite.</p>
+                    <div class="card-tags">
+                        <span class="tag">Timer</span>
+                        <span class="tag">FOMO</span>
+                        <span class="tag">Scarcity</span>
+                    </div>
+                </a>
+
+                <a href="./versions-completes/v14-mobile/" class="card card-mobile">
+                    <span class="card-badge">NEW</span>
+                    <div class="card-icon">
+                        <i class="fas fa-mobile-screen"></i>
+                    </div>
+                    <h2 class="card-title">V14 - Mobile Ultra</h2>
+                    <p class="card-desc">100% tactile, swipe navigation, gros boutons. Expérience app native sur mobile.</p>
+                    <div class="card-tags">
+                        <span class="tag">Swipe</span>
+                        <span class="tag">Touch</span>
+                        <span class="tag">App-like</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3 style="color: #ff6b6b; font-size: 1rem; margin-bottom: 20px;"><i class="fas fa-fire"></i> ULTRA CONVERSION</h3>
+            <div class="grid">
+                <a href="./versions-completes/v8-gamification/" class="card card-gamification">
                     <span class="card-badge">HOT</span>
                     <div class="card-icon">
                         <i class="fas fa-trophy"></i>
@@ -182,7 +270,7 @@
                     </div>
                 </a>
 
-                <a href="./v9-story/" class="card card-story">
+                <a href="./versions-completes/v9-story/" class="card card-story">
                     <span class="card-badge">HOT</span>
                     <div class="card-icon">
                         <i class="fas fa-book-open"></i>
@@ -196,7 +284,7 @@
                     </div>
                 </a>
 
-                <a href="./v10-simulation/" class="card card-simulation">
+                <a href="./versions-completes/v10-simulation/" class="card card-simulation">
                     <span class="card-badge">HOT</span>
                     <div class="card-icon">
                         <i class="fas fa-calculator"></i>
@@ -213,10 +301,9 @@
         </section>
 
         <section class="section">
-            <h2 class="section-title"><i class="fas fa-star"></i> Animations Avancées</h2>
+            <h3 style="color: #a855f7; font-size: 1rem; margin-bottom: 20px;"><i class="fas fa-star"></i> ANIMATIONS AVANCÉES</h3>
             <div class="grid">
-                <a href="./v5-particles/" class="card card-particles">
-                    <span class="card-badge">Nouveau</span>
+                <a href="./versions-completes/v5-particles/" class="card card-particles">
                     <div class="card-icon">
                         <i class="fas fa-sparkles"></i>
                     </div>
@@ -229,8 +316,7 @@
                     </div>
                 </a>
 
-                <a href="./v6-morphing/" class="card card-morphing">
-                    <span class="card-badge">Nouveau</span>
+                <a href="./versions-completes/v6-morphing/" class="card card-morphing">
                     <div class="card-icon">
                         <i class="fas fa-shapes"></i>
                     </div>
@@ -243,8 +329,7 @@
                     </div>
                 </a>
 
-                <a href="./v7-3d/" class="card card-3d">
-                    <span class="card-badge">Nouveau</span>
+                <a href="./versions-completes/v7-3d/" class="card card-3d">
                     <div class="card-icon">
                         <i class="fas fa-cube"></i>
                     </div>
@@ -260,9 +345,9 @@
         </section>
 
         <section class="section">
-            <h2 class="section-title"><i class="fas fa-palette"></i> Versions Classiques</h2>
+            <h3 style="color: #22c55e; font-size: 1rem; margin-bottom: 20px;"><i class="fas fa-palette"></i> CLASSIQUES</h3>
             <div class="grid">
-                <a href="./v1-neon/" class="card card-neon">
+                <a href="./versions-completes/v1-neon/" class="card card-neon">
                     <div class="card-icon">
                         <i class="fas fa-bolt-lightning"></i>
                     </div>
@@ -275,7 +360,7 @@
                     </div>
                 </a>
 
-                <a href="./v2-nature/" class="card card-nature">
+                <a href="./versions-completes/v2-nature/" class="card card-nature">
                     <div class="card-icon">
                         <i class="fas fa-leaf"></i>
                     </div>
@@ -288,7 +373,7 @@
                     </div>
                 </a>
 
-                <a href="./v3-glass/" class="card card-glass">
+                <a href="./versions-completes/v3-glass/" class="card card-glass">
                     <div class="card-icon">
                         <i class="fas fa-gem"></i>
                     </div>
@@ -301,7 +386,7 @@
                     </div>
                 </a>
 
-                <a href="./v4-minimal/" class="card card-minimal">
+                <a href="./versions-completes/v4-minimal/" class="card card-minimal">
                     <div class="card-icon">
                         <i class="fas fa-feather"></i>
                     </div>
@@ -313,6 +398,48 @@
                         <span class="tag">Épuré</span>
                     </div>
                 </a>
+            </div>
+        </section>
+
+        <!-- ===== FORMULAIRES SEULS ===== -->
+        <section class="section" id="formulaires">
+            <h2 class="section-title" style="color: #22c55e;"><i class="fas fa-clipboard-list"></i> Formulaires Seuls (Modules)</h2>
+            <div class="grid">
+                <div class="card" style="border: 2px dashed #333; opacity: 0.6; cursor: default;">
+                    <div class="card-icon" style="background: #333;">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <h2 class="card-title">À venir...</h2>
+                    <p class="card-desc">Formulaires extraits sans écran final, prêts à être connectés à n'importe quel Success Screen.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SUCCESS SCREENS ===== -->
+        <section class="section" id="success-screens">
+            <h2 class="section-title" style="color: #f59e0b;"><i class="fas fa-trophy"></i> Success Screens (Modules)</h2>
+            <div class="grid">
+                <div class="card" style="border: 2px dashed #333; opacity: 0.6; cursor: default;">
+                    <div class="card-icon" style="background: #333;">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <h2 class="card-title">À venir...</h2>
+                    <p class="card-desc">Écrans de fin spectaculaires : confetti, simulation économies, gamification, etc.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== LANDING PAGES ===== -->
+        <section class="section" id="landing-pages">
+            <h2 class="section-title" style="color: #06b6d4;"><i class="fas fa-rocket"></i> Landing Pages Complètes</h2>
+            <div class="grid">
+                <div class="card" style="border: 2px dashed #333; opacity: 0.6; cursor: default;">
+                    <div class="card-icon" style="background: #333;">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <h2 class="card-title">À venir...</h2>
+                    <p class="card-desc">Pages complètes : Hero + Formulaire intégré + Footer. Prêtes à déployer.</p>
+                </div>
             </div>
         </section>
 

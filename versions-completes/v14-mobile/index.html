@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Devis Solaire Express - Mobile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --success: #22c55e;
+            --text: #111827;
+            --text-muted: #6b7280;
+            --bg: #f8fafc;
+            --card: #ffffff;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            touch-action: pan-y;
+        }
+
+        .app {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        /* Header fixe */
+        .app-header {
+            background: var(--card);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e5e7eb;
+            flex-shrink: 0;
+        }
+
+        .app-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .app-logo i {
+            font-size: 1.3rem;
+        }
+
+        .app-savings {
+            background: linear-gradient(135deg, var(--success), #16a34a);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Progress dots */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px;
+            background: var(--card);
+            flex-shrink: 0;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            width: 28px;
+            border-radius: 10px;
+            background: var(--primary);
+        }
+
+        .dot.completed {
+            background: var(--success);
+        }
+
+        /* Swiper container */
+        .swiper-container {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .swiper-wrapper {
+            display: flex;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .swiper-slide {
+            flex: 0 0 100%;
+            height: 100%;
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Step content */
+        .step-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-emoji {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .step-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .step-desc {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-size: 1rem;
+        }
+
+        /* Big touch options */
+        .touch-options {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            flex: 1;
+        }
+
+        .touch-option {
+            background: var(--card);
+            border: 3px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 90px;
+        }
+
+        .touch-option:active {
+            transform: scale(0.98);
+        }
+
+        .touch-option.selected {
+            border-color: var(--primary);
+            background: #eef2ff;
+        }
+
+        .touch-option-icon {
+            width: 60px;
+            height: 60px;
+            background: #f3f4f6;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .touch-option.selected .touch-option-icon {
+            background: var(--primary);
+            color: white;
+        }
+
+        .touch-option-text {
+            flex: 1;
+        }
+
+        .touch-option-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .touch-option-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .touch-option-check {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #d1d5db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .touch-option.selected .touch-option-check {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Slider touch-friendly */
+        .touch-slider {
+            padding: 20px 0;
+        }
+
+        .slider-display {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .slider-value-big {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .slider-unit {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        .slider-track {
+            position: relative;
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+
+        .slider-input {
+            width: 100%;
+            height: 16px;
+            -webkit-appearance: none;
+            background: linear-gradient(to right, var(--primary) 0%, #e5e7eb 0%);
+            border-radius: 16px;
+            outline: none;
+        }
+
+        .slider-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: grab;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+            border: 4px solid white;
+        }
+
+        .slider-input::-webkit-slider-thumb:active {
+            cursor: grabbing;
+            transform: scale(1.1);
+        }
+
+        .slider-marks {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Touch input fields */
+        .touch-input-group {
+            margin-bottom: 18px;
+        }
+
+        .touch-input-label {
+            display: block;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .touch-input {
+            width: 100%;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-family: inherit;
+            border: 3px solid #e5e7eb;
+            border-radius: 16px;
+            background: var(--card);
+            transition: border-color 0.2s;
+        }
+
+        .touch-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .touch-input::placeholder {
+            color: #9ca3af;
+        }
+
+        /* Bottom nav */
+        .bottom-nav {
+            background: var(--card);
+            padding: 20px;
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: inherit;
+            border-radius: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .nav-btn:active {
+            transform: scale(0.98);
+        }
+
+        .nav-btn-back {
+            background: #f3f4f6;
+            color: var(--text-muted);
+            flex: 0 0 70px;
+        }
+
+        .nav-btn-next {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .nav-btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Success screen */
+        .success-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 24px;
+            animation: successBounce 0.6s ease;
+        }
+
+        @keyframes successBounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.15); }
+            70% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
+        .success-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .success-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .success-savings-card {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            border-radius: 24px;
+            padding: 28px 36px;
+            margin-bottom: 24px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .success-savings-label {
+            font-size: 0.9rem;
+            color: #166534;
+            margin-bottom: 4px;
+        }
+
+        .success-savings-value {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #15803d;
+        }
+
+        .success-savings-period {
+            font-size: 0.9rem;
+            color: #166534;
+        }
+
+        .success-info {
+            background: #f9fafb;
+            border-radius: 16px;
+            padding: 20px;
+            font-size: 1rem;
+            color: var(--text-muted);
+            width: 100%;
+        }
+
+        .success-info strong {
+            color: var(--primary);
+        }
+
+        /* Swipe indicator */
+        .swipe-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            opacity: 0;
+            animation: swipeHint 2s ease 1s infinite;
+        }
+
+        @keyframes swipeHint {
+            0%, 100% { opacity: 0; transform: translateX(-50%); }
+            50% { opacity: 0.7; transform: translateX(-40%); }
+        }
+
+        /* Haptic feedback simulation */
+        .haptic {
+            animation: haptic 0.1s ease;
+        }
+
+        @keyframes haptic {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(0.98); }
+        }
+
+        /* Desktop adaptation */
+        @media (min-width: 600px) {
+            .app {
+                max-width: 480px;
+                margin: 0 auto;
+                box-shadow: 0 0 60px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="app-logo">
+                <i class="fas fa-solar-panel"></i>
+                Solaire
+            </div>
+            <div class="app-savings" id="headerSavings">
+                <i class="fas fa-piggy-bank"></i>
+                <span id="savingsDisplay">0 €</span>
+            </div>
+        </header>
+
+        <!-- Progress dots -->
+        <div class="progress-dots" id="progressDots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="swiperWrapper">
+                <!-- Step 1 -->
+                <div class="swiper-slide">
+                    <div class="step-content">
+                        <div class="step-emoji">🏠</div>
+                        <h2 class="step-title">Vous êtes ?</h2>
+                        <p class="step-desc">Touchez pour sélectionner</p>
+                        <div class="touch-options">
+                            <div class="touch-option" data-value="proprietaire" data-savings="200">
+                                <div class="touch-option-icon"><i class="fas fa-key"></i></div>
+                                <div class="touch-option-text">
+                                    <div class="touch-option-title">Propriétaire</div>
+                                    <div class="touch-option-subtitle">J'habite dans mon bien</div>
+                                </div>
+                                <div class="touch-option-check"><i class="fas fa-check"></i></div>
+                            </div>
+                            <div class="touch-option" data-value="bailleur" data-savings="150">
+                                <div class="touch-option-icon"><i class="fas fa-building"></i></div>
+                                <div class="touch-option-text">
+                                    <div class="touch-option-title">Bailleur</div>
+                                    <div class="touch-option-subtitle">Je loue mon bien</div>
+                                </div>
+                                <div class="touch-option-check"><i class="fas fa-check"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="swiper-slide">
+                    <div class="step-content">
+                        <div class="step-emoji">🏡</div>
+                        <h2 class="step-title">Type de logement</h2>
+                        <p class="step-desc">Plus c'est grand, plus vous économisez</p>
+                        <div class="touch-options">
+                            <div class="touch-option" data-value="maison" data-savings="400">
+                                <div class="touch-option-icon"><i class="fas fa-home"></i></div>
+                                <div class="touch-option-text">
+                                    <div class="touch-option-title">Maison</div>
+                                    <div class="touch-option-subtitle">Avec toiture</div>
+                                </div>
+                                <div class="touch-option-check"><i class="fas fa-check"></i></div>
+                            </div>
+                            <div class="touch-option" data-value="appartement" data-savings="100">
+                                <div class="touch-option-icon"><i class="fas fa-city"></i></div>
+                                <div class="touch-option-text">
+                                    <div class="touch-option-title">Appartement</div>
+                                    <div class="touch-option-subtitle">Dernier étage</div>
+                                </div>
+                                <div class="touch-option-check"><i class="fas fa-check"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 - Slider -->
+                <div class="swiper-slide">
+                    <div class="step-content">
+                        <div class="step-emoji">💡</div>
+                        <h2 class="step-title">Votre facture</h2>
+                        <p class="step-desc">Glissez pour ajuster</p>
+                        <div class="touch-slider">
+                            <div class="slider-display">
+                                <span class="slider-value-big" id="billValue">100</span>
+                                <span class="slider-unit">€/mois</span>
+                            </div>
+                            <div class="slider-track">
+                                <input type="range" class="slider-input" id="billSlider" min="50" max="400" value="100" step="10">
+                            </div>
+                            <div class="slider-marks">
+                                <span>50€</span>
+                                <span>200€</span>
+                                <span>400€</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 - Code postal -->
+                <div class="swiper-slide">
+                    <div class="step-content">
+                        <div class="step-emoji">📍</div>
+                        <h2 class="step-title">Votre ville</h2>
+                        <p class="step-desc">Pour calculer l'ensoleillement</p>
+                        <div class="touch-input-group">
+                            <label class="touch-input-label">Code postal</label>
+                            <input type="text" class="touch-input" id="postalCode" placeholder="Ex: 75001" maxlength="5" inputmode="numeric" autocomplete="postal-code">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 - Contact -->
+                <div class="swiper-slide">
+                    <div class="step-content">
+                        <div class="step-emoji">📱</div>
+                        <h2 class="step-title">Vos coordonnées</h2>
+                        <p class="step-desc">Pour recevoir votre devis</p>
+                        <div class="touch-input-group">
+                            <label class="touch-input-label">Prénom</label>
+                            <input type="text" class="touch-input" id="firstName" placeholder="Jean" autocomplete="given-name">
+                        </div>
+                        <div class="touch-input-group">
+                            <label class="touch-input-label">Téléphone</label>
+                            <input type="tel" class="touch-input" id="phone" placeholder="06 12 34 56 78" maxlength="14" autocomplete="tel">
+                        </div>
+                        <div class="touch-input-group">
+                            <label class="touch-input-label">Email</label>
+                            <input type="email" class="touch-input" id="email" placeholder="jean@mail.fr" autocomplete="email">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success -->
+                <div class="swiper-slide">
+                    <div class="success-screen">
+                        <div class="success-icon"><i class="fas fa-check"></i></div>
+                        <h2 class="success-title">C'est envoyé !</h2>
+                        <p class="success-subtitle">On vous rappelle très vite</p>
+                        <div class="success-savings-card">
+                            <div class="success-savings-label">Économies estimées</div>
+                            <div class="success-savings-value" id="finalSavings">0 €</div>
+                            <div class="success-savings-period">par an</div>
+                        </div>
+                        <div class="success-info">
+                            Un expert solaire vous contactera sous <strong>24h</strong> pour votre étude gratuite.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom nav -->
+        <div class="bottom-nav" id="bottomNav">
+            <button class="nav-btn nav-btn-back" id="backBtn" style="display: none;">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <button class="nav-btn nav-btn-next" id="nextBtn" disabled>
+                Continuer <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let currentStep = 0;
+        const totalSteps = 5;
+        let totalSavings = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // Elements
+        const swiperWrapper = document.getElementById('swiperWrapper');
+        const progressDots = document.querySelectorAll('.dot');
+        const backBtn = document.getElementById('backBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const savingsDisplay = document.getElementById('savingsDisplay');
+        const bottomNav = document.getElementById('bottomNav');
+
+        // Update UI
+        function updateUI() {
+            // Swiper position
+            swiperWrapper.style.transform = `translateX(-${currentStep * 100}%)`;
+
+            // Progress dots
+            progressDots.forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index < currentStep) {
+                    dot.classList.add('completed');
+                } else if (index === currentStep) {
+                    dot.classList.add('active');
+                }
+            });
+
+            // Back button
+            backBtn.style.display = currentStep > 0 && currentStep <= totalSteps ? 'flex' : 'none';
+
+            // Next button text
+            if (currentStep === totalSteps - 1) {
+                nextBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer';
+            } else if (currentStep < totalSteps) {
+                nextBtn.innerHTML = 'Continuer <i class="fas fa-arrow-right"></i>';
+            }
+
+            // Hide nav on success
+            bottomNav.style.display = currentStep > totalSteps ? 'none' : 'flex';
+
+            // Validate current step
+            validateStep();
+        }
+
+        // Validate step
+        function validateStep() {
+            let valid = false;
+
+            switch (currentStep) {
+                case 0:
+                case 1:
+                    const slides = document.querySelectorAll('.swiper-slide');
+                    const currentSlide = slides[currentStep];
+                    valid = currentSlide.querySelector('.touch-option.selected') !== null;
+                    break;
+                case 2:
+                    valid = true; // Slider always valid
+                    break;
+                case 3:
+                    valid = /^\d{5}$/.test(document.getElementById('postalCode').value);
+                    break;
+                case 4:
+                    const firstName = document.getElementById('firstName').value.trim().length >= 2;
+                    const phone = /^0[1-9]\d{8}$/.test(document.getElementById('phone').value.replace(/\D/g, ''));
+                    const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value);
+                    valid = firstName && phone && email;
+                    break;
+            }
+
+            nextBtn.disabled = !valid;
+        }
+
+        // Update savings
+        function updateSavings(amount) {
+            totalSavings += amount;
+            animateSavings();
+        }
+
+        function animateSavings() {
+            const target = totalSavings;
+            const current = parseInt(savingsDisplay.textContent.replace(/\D/g, '')) || 0;
+            const diff = target - current;
+            const duration = 400;
+            const start = performance.now();
+
+            function animate(time) {
+                const elapsed = time - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const value = Math.round(current + diff * eased);
+                savingsDisplay.textContent = value.toLocaleString('fr-FR') + ' €';
+                if (progress < 1) requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+
+            // Haptic effect
+            document.getElementById('headerSavings').classList.add('haptic');
+            setTimeout(() => document.getElementById('headerSavings').classList.remove('haptic'), 100);
+        }
+
+        // Navigate
+        function goNext() {
+            const slides = document.querySelectorAll('.swiper-slide');
+            const currentSlide = slides[currentStep];
+
+            // Collect data
+            const selected = currentSlide.querySelector('.touch-option.selected');
+            if (selected) {
+                updateSavings(parseInt(selected.dataset.savings) || 0);
+            }
+
+            if (currentStep === 2) {
+                const bill = parseInt(document.getElementById('billSlider').value);
+                updateSavings(Math.round(bill * 0.38 * 12));
+            }
+
+            if (currentStep === 3) {
+                const cp = document.getElementById('postalCode').value;
+                const southDepts = ['06', '13', '83', '34', '30', '84', '66', '11', '33', '40', '64', '31'];
+                if (southDepts.some(d => cp.startsWith(d))) {
+                    updateSavings(120);
+                }
+            }
+
+            if (currentStep === 4) {
+                document.getElementById('finalSavings').textContent = totalSavings.toLocaleString('fr-FR') + ' €';
+            }
+
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateUI();
+            }
+        }
+
+        function goBack() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateUI();
+            }
+        }
+
+        // Event listeners
+        nextBtn.addEventListener('click', goNext);
+        backBtn.addEventListener('click', goBack);
+
+        // Touch options
+        document.querySelectorAll('.touch-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const parent = option.closest('.swiper-slide');
+                parent.querySelectorAll('.touch-option').forEach(o => o.classList.remove('selected'));
+                option.classList.add('selected');
+                option.classList.add('haptic');
+                setTimeout(() => option.classList.remove('haptic'), 100);
+                validateStep();
+            });
+        });
+
+        // Slider
+        const billSlider = document.getElementById('billSlider');
+        const billValue = document.getElementById('billValue');
+
+        billSlider.addEventListener('input', function() {
+            billValue.textContent = this.value;
+            const percent = ((this.value - 50) / (400 - 50)) * 100;
+            this.style.background = `linear-gradient(to right, var(--primary) ${percent}%, #e5e7eb ${percent}%)`;
+        });
+
+        // Postal code
+        document.getElementById('postalCode').addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '');
+            validateStep();
+        });
+
+        // Phone formatting
+        document.getElementById('phone').addEventListener('input', function() {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            this.value = value.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            validateStep();
+        });
+
+        // Other inputs
+        document.getElementById('firstName').addEventListener('input', validateStep);
+        document.getElementById('email').addEventListener('input', validateStep);
+
+        // Swipe gestures
+        const swiperContainer = document.querySelector('.swiper-container');
+
+        swiperContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        swiperContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const diff = touchStartX - touchEndX;
+            const threshold = 50;
+
+            if (diff > threshold && !nextBtn.disabled) {
+                goNext();
+            } else if (diff < -threshold && currentStep > 0) {
+                goBack();
+            }
+        }
+
+        // Init
+        updateUI();
+    </script>
+</body>
+</html>
