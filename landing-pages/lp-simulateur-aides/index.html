@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur Aides 2025 - MaPrimeRénov + CEE | Jusqu'à 63 000€ d'Aides</title>
+    <meta name="description" content="Simulez vos aides rénovation énergétique en 2 minutes. MaPrimeRénov 2025 + CEE + Éco-PTZ. Jusqu'à 90% financé par l'État. Résultat instantané et gratuit.">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animations -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --primary-light: #a78bfa;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --dark: #111827;
+            --gray: #6b7280;
+            --light: #f3f4f6;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Urgency Bar */
+        .urgency-bar {
+            background: linear-gradient(90deg, #7c3aed, #8b5cf6, #a78bfa);
+            color: white;
+            padding: 14px 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .urgency-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            to { left: 100%; }
+        }
+
+        .urgency-bar i { margin-right: 8px; }
+
+        /* Live Counter */
+        .live-counter {
+            background: var(--dark);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+            box-shadow: 0 0 10px #22c55e;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .counter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent);
+            top: -200px;
+            right: -200px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.2), transparent);
+            bottom: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+        }
+
+        .hero-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content { color: white; }
+
+        .badge-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(10px);
+        }
+
+        .badge-official {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(5, 150, 105, 0.3));
+            border: 1px solid rgba(16, 185, 129, 0.5);
+        }
+
+        .badge-2025 {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(217, 119, 6, 0.3));
+            border: 1px solid rgba(245, 158, 11, 0.5);
+        }
+
+        .badge-free {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(124, 58, 237, 0.3));
+            border: 1px solid rgba(139, 92, 246, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h1 .highlight-green {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 35px;
+            line-height: 1.7;
+        }
+
+        /* Mega Savings Display */
+        .mega-savings {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.25));
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 35px;
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mega-savings::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #10b981, #22c55e, #4ade80);
+        }
+
+        .mega-savings-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .mega-item {
+            padding: 15px;
+        }
+
+        .mega-item-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+            margin-bottom: 8px;
+        }
+
+        .mega-item-value {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #4ade80;
+        }
+
+        .mega-item-value.gold {
+            color: #fbbf24;
+        }
+
+        .mega-item-value.purple {
+            color: #a78bfa;
+        }
+
+        .mega-item-sub {
+            font-size: 0.75rem;
+            opacity: 0.6;
+            margin-top: 5px;
+        }
+
+        /* Aides breakdown mini */
+        .aides-mini {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .aide-mini-item {
+            background: rgba(255,255,255,0.1);
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .aide-mini-item i {
+            color: #4ade80;
+        }
+
+        /* Simulator Card */
+        .simulator-card {
+            background: white;
+            border-radius: 28px;
+            padding: 0;
+            box-shadow: 0 30px 100px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .simulator-header {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            padding: 25px 35px;
+            color: white;
+            text-align: center;
+        }
+
+        .simulator-header h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .simulator-header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .simulator-body {
+            padding: 35px;
+        }
+
+        /* Progress Steps */
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #e5e7eb;
+            z-index: 0;
+        }
+
+        .progress-steps::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8b5cf6, #10b981);
+            z-index: 1;
+            width: var(--progress, 0%);
+            transition: width 0.5s ease;
+        }
+
+        .step-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--gray);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .step-dot.active {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .step-dot.completed {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        /* Form Steps */
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .step-question {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 22px;
+            color: var(--dark);
+        }
+
+        .step-question i {
+            color: var(--primary);
+            margin-right: 10px;
+        }
+
+        /* Options Grid */
+        .options-grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        .options-grid.cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .option-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 20px;
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary-light);
+            background: #faf5ff;
+            transform: translateY(-2px);
+        }
+
+        .option-btn.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15);
+        }
+
+        .option-icon {
+            width: 52px;
+            height: 52px;
+            background: white;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+
+        .option-btn.selected .option-icon {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+        }
+
+        .option-text strong {
+            display: block;
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .option-text small {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        .option-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: auto;
+        }
+
+        /* Revenue Slider */
+        .revenue-selector {
+            background: #f9fafb;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .revenue-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .revenue-label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .revenue-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .revenue-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e5e7eb;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .revenue-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .revenue-categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .revenue-cat {
+            text-align: center;
+            padding: 12px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .revenue-cat.blue { background: #dbeafe; color: #1e40af; border: 2px solid transparent; }
+        .revenue-cat.yellow { background: #fef3c7; color: #92400e; border: 2px solid transparent; }
+        .revenue-cat.violet { background: #ede9fe; color: #6d28d9; border: 2px solid transparent; }
+        .revenue-cat.rose { background: #fce7f3; color: #be185d; border: 2px solid transparent; }
+
+        .revenue-cat.active {
+            border-color: currentColor;
+            transform: scale(1.05);
+        }
+
+        /* Persons selector */
+        .persons-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .person-btn {
+            padding: 16px 10px;
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .person-btn:hover {
+            border-color: var(--primary-light);
+        }
+
+        .person-btn.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+        }
+
+        .person-btn .number {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .person-btn .label {
+            font-size: 0.7rem;
+            color: var(--gray);
+        }
+
+        /* Input groups */
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px 18px;
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+        }
+
+        /* Buttons */
+        .btn-next {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            border: none;
+            border-radius: 14px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+            margin-top: 20px;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-next.green {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            padding: 10px 0;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .btn-back:hover {
+            color: var(--primary);
+        }
+
+        /* Results Display */
+        .results-container {
+            display: none;
+        }
+
+        .results-container.show {
+            display: block;
+            animation: popIn 0.6s ease;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .results-header .check-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        .results-header h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .results-header p {
+            color: var(--gray);
+        }
+
+        .total-aides-box {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 3px solid #86efac;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .total-aides-box .label {
+            font-size: 0.9rem;
+            color: #166534;
+            margin-bottom: 8px;
+        }
+
+        .total-aides-box .amount {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #15803d;
+            line-height: 1;
+        }
+
+        .total-aides-box .sub {
+            font-size: 0.85rem;
+            color: #166534;
+            margin-top: 10px;
+        }
+
+        .aides-breakdown {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .aide-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: #f9fafb;
+            border-radius: 12px;
+        }
+
+        .aide-line-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .aide-line-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .aide-line-icon.blue { background: #dbeafe; }
+        .aide-line-icon.orange { background: #fef3c7; }
+        .aide-line-icon.green { background: #dcfce7; }
+        .aide-line-icon.purple { background: #ede9fe; }
+
+        .aide-line-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .aide-line-amount {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #15803d;
+        }
+
+        .simulator-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .simulator-footer i {
+            color: var(--secondary);
+        }
+
+        /* Aides Section */
+        .aides-section {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #f5f3ff 0%, #ffffff 100%);
+        }
+
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.15rem;
+            margin-bottom: 60px;
+        }
+
+        .aides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .aide-card {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            border: 1px solid #e5e7eb;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .aide-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .aide-card.blue::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .aide-card.orange::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .aide-card.green::before { background: linear-gradient(90deg, #10b981, #34d399); }
+        .aide-card.purple::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+
+        .aide-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+        }
+
+        .aide-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin: 0 auto 25px;
+        }
+
+        .aide-card.blue .aide-icon { background: #dbeafe; }
+        .aide-card.orange .aide-icon { background: #fef3c7; }
+        .aide-card.green .aide-icon { background: #dcfce7; }
+        .aide-card.purple .aide-icon { background: #ede9fe; }
+
+        .aide-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .aide-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .aide-card.blue .aide-amount { color: #2563eb; }
+        .aide-card.orange .aide-amount { color: #d97706; }
+        .aide-card.green .aide-amount { color: #059669; }
+        .aide-card.purple .aide-amount { color: #7c3aed; }
+
+        .aide-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            padding: 100px 20px;
+            background: var(--dark);
+            color: white;
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .comparison-table th {
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .comparison-table th:first-child {
+            text-align: left;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .color-header {
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .color-header.blue { background: #3b82f6; }
+        .color-header.yellow { background: #eab308; color: #000; }
+        .color-header.violet { background: #8b5cf6; }
+        .color-header.rose { background: #ec4899; }
+
+        .amount-cell {
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        .amount-cell.blue { color: #60a5fa; }
+        .amount-cell.yellow { color: #fde047; }
+        .amount-cell.violet { color: #a78bfa; }
+        .amount-cell.rose { color: #f472b6; }
+
+        /* Stats */
+        .stats-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+            top: -200px;
+            left: -200px;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 24px 60px;
+            background: white;
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            font-weight: 800;
+            border-radius: 60px;
+            text-decoration: none;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .footer-badges {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .footer-badge i {
+            font-size: 1.8rem;
+            color: #4ade80;
+        }
+
+        .footer-legal {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .mega-savings-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .simulator-body {
+                padding: 25px;
+            }
+
+            .options-grid.cols-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .revenue-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .persons-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .total-aides-box .amount {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Urgency Bar -->
+    <div class="urgency-bar">
+        <i class="fas fa-bolt"></i>
+        <span>MaPrimeRénov' 2025 : Les aides baissent en 2026 ! <strong>Profitez des montants maximum MAINTENANT</strong></span>
+    </div>
+
+    <!-- Live Counter -->
+    <div class="live-counter">
+        <div class="counter-item">
+            <div class="live-dot"></div>
+            <span><strong id="viewersCount">89</strong> simulations en cours</span>
+        </div>
+        <span>|</span>
+        <div class="counter-item">
+            <i class="fas fa-chart-line" style="color: #4ade80;"></i>
+            <span><strong id="todaySimulations">2 847</strong> simulations aujourd'hui</span>
+        </div>
+        <span>|</span>
+        <div class="counter-item">
+            <i class="fas fa-euro-sign" style="color: #fbbf24;"></i>
+            <span><strong>3.2 milliards €</strong> d'aides versées en 2024</span>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-right">
+                <div class="badge-container">
+                    <span class="badge badge-official"><i class="fas fa-landmark"></i> Service officiel</span>
+                    <span class="badge badge-2025"><i class="fas fa-calendar"></i> Barème 2025</span>
+                    <span class="badge badge-free"><i class="fas fa-gift"></i> 100% Gratuit</span>
+                </div>
+
+                <h1>Simulez vos <span class="highlight">Aides Rénovation</span> en <span class="highlight-green">2 minutes</span></h1>
+
+                <p class="hero-subtitle">
+                    Découvrez le montant exact de <strong>MaPrimeRénov'</strong>, des <strong>primes CEE</strong>,
+                    de l'<strong>Éco-PTZ</strong> et de toutes les aides cumulables pour votre projet.
+                    <strong>Jusqu'à 90% de financement possible !</strong>
+                </p>
+
+                <!-- Mega Savings Display -->
+                <div class="mega-savings" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mega-savings-grid">
+                        <div class="mega-item">
+                            <div class="mega-item-label">Aides MaPrimeRénov'</div>
+                            <div class="mega-item-value" id="megaMPR">0€</div>
+                            <div class="mega-item-sub">Selon revenus</div>
+                        </div>
+                        <div class="mega-item">
+                            <div class="mega-item-label">Prime CEE</div>
+                            <div class="mega-item-value gold" id="megaCEE">0€</div>
+                            <div class="mega-item-sub">Certificats d'énergie</div>
+                        </div>
+                        <div class="mega-item">
+                            <div class="mega-item-label">Éco-PTZ</div>
+                            <div class="mega-item-value purple" id="megaPTZ">0€</div>
+                            <div class="mega-item-sub">Prêt à taux 0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aides-mini">
+                    <div class="aide-mini-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Cumul des aides possible</span>
+                    </div>
+                    <div class="aide-mini-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>TVA réduite 5.5%</span>
+                    </div>
+                    <div class="aide-mini-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>670 000+ foyers aidés</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulator Card -->
+            <div class="simulator-card" data-aos="fade-left">
+                <div class="simulator-header">
+                    <h2><i class="fas fa-calculator"></i> Simulateur d'Aides 2025</h2>
+                    <p>Résultat instantané et personnalisé</p>
+                </div>
+
+                <div class="simulator-body">
+                    <!-- Progress Steps -->
+                    <div class="progress-steps" id="progressSteps">
+                        <div class="step-dot active">1</div>
+                        <div class="step-dot">2</div>
+                        <div class="step-dot">3</div>
+                        <div class="step-dot">4</div>
+                        <div class="step-dot">5</div>
+                    </div>
+
+                    <form id="simulatorForm">
+                        <!-- Step 1: Type de travaux -->
+                        <div class="form-step active" data-step="1">
+                            <div class="step-question">
+                                <i class="fas fa-tools"></i>
+                                Quel type de travaux souhaitez-vous réaliser ?
+                            </div>
+                            <div class="options-grid">
+                                <div class="option-btn" data-value="pac" data-mpr="5000" data-cee="4000">
+                                    <div class="option-icon">🔥</div>
+                                    <div class="option-text">
+                                        <strong>Pompe à chaleur</strong>
+                                        <small>Air/eau ou géothermique</small>
+                                    </div>
+                                    <span class="option-badge">Jusqu'à 11 000€</span>
+                                </div>
+                                <div class="option-btn" data-value="solaire" data-mpr="4000" data-cee="2500">
+                                    <div class="option-icon">☀️</div>
+                                    <div class="option-text">
+                                        <strong>Panneaux solaires</strong>
+                                        <small>Photovoltaïque ou thermique</small>
+                                    </div>
+                                    <span class="option-badge">Jusqu'à 10 000€</span>
+                                </div>
+                                <div class="option-btn" data-value="isolation" data-mpr="6000" data-cee="3000">
+                                    <div class="option-icon">🏠</div>
+                                    <div class="option-text">
+                                        <strong>Isolation</strong>
+                                        <small>Murs, combles, toiture</small>
+                                    </div>
+                                    <span class="option-badge">75€/m²</span>
+                                </div>
+                                <div class="option-btn" data-value="renovation" data-mpr="15000" data-cee="8000">
+                                    <div class="option-icon">🏗️</div>
+                                    <div class="option-text">
+                                        <strong>Rénovation globale</strong>
+                                        <small>Plusieurs travaux combinés</small>
+                                    </div>
+                                    <span class="option-badge">Jusqu'à 63 000€</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Type logement -->
+                        <div class="form-step" data-step="2">
+                            <button type="button" class="btn-back" onclick="prevStep()">
+                                <i class="fas fa-arrow-left"></i> Retour
+                            </button>
+                            <div class="step-question">
+                                <i class="fas fa-home"></i>
+                                Quel est votre type de logement ?
+                            </div>
+                            <div class="options-grid cols-2">
+                                <div class="option-btn" data-value="maison" data-bonus="1.2">
+                                    <div class="option-icon">🏡</div>
+                                    <div class="option-text">
+                                        <strong>Maison individuelle</strong>
+                                        <small>Propriétaire</small>
+                                    </div>
+                                </div>
+                                <div class="option-btn" data-value="appartement" data-bonus="1.0">
+                                    <div class="option-icon">🏢</div>
+                                    <div class="option-text">
+                                        <strong>Appartement</strong>
+                                        <small>Copropriété</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-question" style="margin-top: 25px;">
+                                <i class="fas fa-calendar-alt"></i>
+                                Âge du logement ?
+                            </div>
+                            <div class="options-grid cols-2">
+                                <div class="option-btn" data-field="age" data-value="plus15" data-eligible="true">
+                                    <div class="option-icon">✅</div>
+                                    <div class="option-text">
+                                        <strong>Plus de 15 ans</strong>
+                                        <small>Éligible à toutes les aides</small>
+                                    </div>
+                                </div>
+                                <div class="option-btn" data-field="age" data-value="moins15" data-eligible="false">
+                                    <div class="option-icon">⚠️</div>
+                                    <div class="option-text">
+                                        <strong>Moins de 15 ans</strong>
+                                        <small>Éligibilité réduite</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn-next" onclick="nextStep()">
+                                Continuer <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                        <!-- Step 3: Revenus -->
+                        <div class="form-step" data-step="3">
+                            <button type="button" class="btn-back" onclick="prevStep()">
+                                <i class="fas fa-arrow-left"></i> Retour
+                            </button>
+                            <div class="step-question">
+                                <i class="fas fa-users"></i>
+                                Combien de personnes dans votre foyer ?
+                            </div>
+                            <div class="persons-grid">
+                                <div class="person-btn" data-value="1">
+                                    <div class="number">1</div>
+                                    <div class="label">personne</div>
+                                </div>
+                                <div class="person-btn" data-value="2">
+                                    <div class="number">2</div>
+                                    <div class="label">personnes</div>
+                                </div>
+                                <div class="person-btn selected" data-value="3">
+                                    <div class="number">3</div>
+                                    <div class="label">personnes</div>
+                                </div>
+                                <div class="person-btn" data-value="4">
+                                    <div class="number">4</div>
+                                    <div class="label">personnes</div>
+                                </div>
+                                <div class="person-btn" data-value="5+">
+                                    <div class="number">5+</div>
+                                    <div class="label">personnes</div>
+                                </div>
+                            </div>
+
+                            <div class="revenue-selector">
+                                <div class="revenue-header">
+                                    <span class="revenue-label">Revenu fiscal de référence</span>
+                                    <span class="revenue-value" id="revenueDisplay">35 000€</span>
+                                </div>
+                                <input type="range" class="revenue-slider" id="revenueSlider"
+                                       min="10000" max="100000" value="35000" step="1000">
+                                <div class="revenue-categories" id="revenueCategories">
+                                    <div class="revenue-cat blue" data-cat="blue">
+                                        <div>🔵 Bleu</div>
+                                        <div>Très modeste</div>
+                                    </div>
+                                    <div class="revenue-cat yellow active" data-cat="yellow">
+                                        <div>🟡 Jaune</div>
+                                        <div>Modeste</div>
+                                    </div>
+                                    <div class="revenue-cat violet" data-cat="violet">
+                                        <div>🟣 Violet</div>
+                                        <div>Intermédiaire</div>
+                                    </div>
+                                    <div class="revenue-cat rose" data-cat="rose">
+                                        <div>🩷 Rose</div>
+                                        <div>Supérieur</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn-next" onclick="nextStep()">
+                                Continuer <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                        <!-- Step 4: Code postal -->
+                        <div class="form-step" data-step="4">
+                            <button type="button" class="btn-back" onclick="prevStep()">
+                                <i class="fas fa-arrow-left"></i> Retour
+                            </button>
+                            <div class="step-question">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Où se situe votre logement ?
+                            </div>
+                            <div class="input-group">
+                                <label>Code postal</label>
+                                <input type="text" id="codePostal" placeholder="Ex: 75001" maxlength="5" inputmode="numeric">
+                            </div>
+                            <button type="button" class="btn-next" id="btnStep4" disabled onclick="nextStep()">
+                                Voir mes aides <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                        <!-- Step 5: Contact -->
+                        <div class="form-step" data-step="5">
+                            <button type="button" class="btn-back" onclick="prevStep()">
+                                <i class="fas fa-arrow-left"></i> Retour
+                            </button>
+                            <div class="step-question">
+                                <i class="fas fa-user"></i>
+                                Vos coordonnées pour recevoir le détail
+                            </div>
+                            <div class="input-group">
+                                <label>Prénom et nom</label>
+                                <input type="text" id="fullName" placeholder="Jean Dupont">
+                            </div>
+                            <div class="input-group">
+                                <label>Téléphone</label>
+                                <input type="tel" id="phone" placeholder="06 12 34 56 78">
+                            </div>
+                            <div class="input-group">
+                                <label>Email</label>
+                                <input type="email" id="email" placeholder="jean@exemple.fr">
+                            </div>
+                            <button type="button" class="btn-next green" id="btnSubmit" disabled onclick="showResults()">
+                                <i class="fas fa-calculator"></i> Calculer mes aides
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Results Container -->
+                    <div class="results-container" id="resultsContainer">
+                        <div class="results-header">
+                            <div class="check-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <h3>Votre simulation est prête !</h3>
+                            <p>Voici le détail de vos aides éligibles</p>
+                        </div>
+
+                        <div class="total-aides-box">
+                            <div class="label">Total de vos aides cumulées</div>
+                            <div class="amount" id="totalAides">0€</div>
+                            <div class="sub">Un conseiller vous contactera sous 24h</div>
+                        </div>
+
+                        <div class="aides-breakdown">
+                            <div class="aide-line">
+                                <div class="aide-line-left">
+                                    <div class="aide-line-icon blue">🏛️</div>
+                                    <span class="aide-line-name">MaPrimeRénov'</span>
+                                </div>
+                                <span class="aide-line-amount" id="resultMPR">0€</span>
+                            </div>
+                            <div class="aide-line">
+                                <div class="aide-line-left">
+                                    <div class="aide-line-icon orange">📜</div>
+                                    <span class="aide-line-name">Prime CEE</span>
+                                </div>
+                                <span class="aide-line-amount" id="resultCEE">0€</span>
+                            </div>
+                            <div class="aide-line">
+                                <div class="aide-line-left">
+                                    <div class="aide-line-icon green">💰</div>
+                                    <span class="aide-line-name">TVA réduite 5.5%</span>
+                                </div>
+                                <span class="aide-line-amount" id="resultTVA">0€</span>
+                            </div>
+                            <div class="aide-line">
+                                <div class="aide-line-left">
+                                    <div class="aide-line-icon purple">🏦</div>
+                                    <span class="aide-line-name">Éco-PTZ disponible</span>
+                                </div>
+                                <span class="aide-line-amount" id="resultPTZ">0€</span>
+                            </div>
+                        </div>
+
+                        <button class="btn-next" onclick="scrollToForm()">
+                            <i class="fas fa-phone"></i> Être rappelé gratuitement
+                        </button>
+                    </div>
+
+                    <div class="simulator-footer">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Simulation gratuite et sans engagement • Données sécurisées</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aides Section -->
+    <section class="aides-section" id="aides">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Les Aides Disponibles en 2025</h2>
+            <p class="section-subtitle" data-aos="fade-up">Cumulez jusqu'à 90% du coût de vos travaux grâce aux aides de l'État</p>
+
+            <div class="aides-grid">
+                <div class="aide-card blue" data-aos="fade-up" data-aos-delay="0">
+                    <div class="aide-icon">🏛️</div>
+                    <h3>MaPrimeRénov'</h3>
+                    <div class="aide-amount">Jusqu'à 11 000€</div>
+                    <p>Aide principale de l'État versée par l'ANAH. Montant selon vos revenus et le type de travaux.</p>
+                </div>
+
+                <div class="aide-card orange" data-aos="fade-up" data-aos-delay="100">
+                    <div class="aide-icon">📜</div>
+                    <h3>Prime CEE</h3>
+                    <div class="aide-amount">Jusqu'à 5 000€</div>
+                    <p>Certificats d'Économies d'Énergie. Prime versée par les fournisseurs d'énergie.</p>
+                </div>
+
+                <div class="aide-card green" data-aos="fade-up" data-aos-delay="200">
+                    <div class="aide-icon">🏦</div>
+                    <h3>Éco-PTZ</h3>
+                    <div class="aide-amount">Jusqu'à 50 000€</div>
+                    <p>Prêt à taux zéro sur 20 ans. Empruntez sans intérêts pour financer vos travaux.</p>
+                </div>
+
+                <div class="aide-card purple" data-aos="fade-up" data-aos-delay="300">
+                    <div class="aide-icon">🎯</div>
+                    <h3>Rénovation d'ampleur</h3>
+                    <div class="aide-amount">Jusqu'à 63 000€</div>
+                    <p>Bonus pour les rénovations globales avec gain d'au moins 2 classes DPE.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison-section">
+        <div class="section-container">
+            <h2 class="section-title" style="color: white;" data-aos="fade-up">Barème MaPrimeRénov' 2025</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.7);" data-aos="fade-up">Montants selon votre catégorie de revenus</p>
+
+            <div class="comparison-table" data-aos="fade-up">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type de travaux</th>
+                            <th><span class="color-header blue">🔵 Bleu</span></th>
+                            <th><span class="color-header yellow">🟡 Jaune</span></th>
+                            <th><span class="color-header violet">🟣 Violet</span></th>
+                            <th><span class="color-header rose">🩷 Rose</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PAC géothermique</td>
+                            <td class="amount-cell blue">11 000€</td>
+                            <td class="amount-cell yellow">9 000€</td>
+                            <td class="amount-cell violet">6 000€</td>
+                            <td class="amount-cell rose">-</td>
+                        </tr>
+                        <tr>
+                            <td>PAC air/eau</td>
+                            <td class="amount-cell blue">5 000€</td>
+                            <td class="amount-cell yellow">4 000€</td>
+                            <td class="amount-cell violet">3 000€</td>
+                            <td class="amount-cell rose">-</td>
+                        </tr>
+                        <tr>
+                            <td>Chauffe-eau solaire</td>
+                            <td class="amount-cell blue">4 000€</td>
+                            <td class="amount-cell yellow">3 000€</td>
+                            <td class="amount-cell violet">2 000€</td>
+                            <td class="amount-cell rose">-</td>
+                        </tr>
+                        <tr>
+                            <td>Isolation murs ext.</td>
+                            <td class="amount-cell blue">75€/m²</td>
+                            <td class="amount-cell yellow">60€/m²</td>
+                            <td class="amount-cell violet">40€/m²</td>
+                            <td class="amount-cell rose">-</td>
+                        </tr>
+                        <tr>
+                            <td>Rénovation globale (90%)</td>
+                            <td class="amount-cell blue">63 000€</td>
+                            <td class="amount-cell yellow">56 000€</td>
+                            <td class="amount-cell violet">42 000€</td>
+                            <td class="amount-cell rose">28 000€</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item" data-aos="fade-up">
+                <div class="stat-number" id="statFoyers">0</div>
+                <div class="stat-label">Foyers aidés depuis 2020</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-number" id="statMiliiards">0</div>
+                <div class="stat-label">Milliards € versés</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-number" id="statEconomies">0</div>
+                <div class="stat-label">Économies moyennes/an</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-number" id="statSatisfaction">0</div>
+                <div class="stat-label">Satisfaction client</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="section-container" data-aos="zoom-in">
+            <h2>Les aides diminuent en 2026 !</h2>
+            <p>Profitez des montants maximum disponibles en 2025 avant qu'il ne soit trop tard.</p>
+            <a href="#" class="cta-btn" onclick="scrollToForm(); return false;">
+                <i class="fas fa-calculator"></i>
+                Simuler mes aides maintenant
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-badges">
+            <div class="footer-badge">
+                <i class="fas fa-landmark"></i>
+                <span>Partenaire France Rénov'</span>
+            </div>
+            <div class="footer-badge">
+                <i class="fas fa-certificate"></i>
+                <span>Artisans RGE</span>
+            </div>
+            <div class="footer-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>Données sécurisées</span>
+            </div>
+            <div class="footer-badge">
+                <i class="fas fa-headset"></i>
+                <span>Accompagnement gratuit</span>
+            </div>
+        </div>
+        <p class="footer-legal">
+            * Simulation indicative basée sur les barèmes MaPrimeRénov' 2025 en vigueur. Les montants réels dépendent
+            de votre situation personnelle, de vos revenus et du type de travaux réalisés. Un conseiller certifié
+            vous accompagnera pour établir votre dossier définitif. Service gratuit et sans engagement.
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // Init AOS
+        AOS.init({ duration: 800, once: true });
+
+        // Variables
+        let currentStep = 1;
+        const totalSteps = 5;
+        let formData = {
+            travaux: null,
+            logement: null,
+            age: null,
+            personnes: 3,
+            revenus: 35000,
+            categorie: 'yellow',
+            codePostal: null,
+            mpr: 0,
+            cee: 0
+        };
+
+        // DOM Elements
+        const progressSteps = document.getElementById('progressSteps');
+
+        // Animate counters on load
+        function animateCounter(element, target, suffix = '', decimal = false) {
+            const duration = 2000;
+            const start = performance.now();
+
+            function animate(time) {
+                const elapsed = time - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                let value = target * eased;
+
+                if (decimal) {
+                    value = value.toFixed(1);
+                } else {
+                    value = Math.round(value).toLocaleString('fr-FR');
+                }
+
+                element.textContent = value + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // Update mega display
+        function updateMegaDisplay() {
+            const multipliers = {
+                blue: 1.0,
+                yellow: 0.8,
+                violet: 0.6,
+                rose: 0.3
+            };
+
+            const mult = multipliers[formData.categorie] || 0.8;
+            const mpr = Math.round(formData.mpr * mult);
+            const cee = Math.round(formData.cee * mult);
+            const ptz = formData.travaux ? 30000 : 0;
+
+            document.getElementById('megaMPR').textContent = mpr.toLocaleString('fr-FR') + '€';
+            document.getElementById('megaCEE').textContent = cee.toLocaleString('fr-FR') + '€';
+            document.getElementById('megaPTZ').textContent = ptz.toLocaleString('fr-FR') + '€';
+        }
+
+        // Update progress
+        function updateProgress() {
+            const percent = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            progressSteps.style.setProperty('--progress', percent + '%');
+
+            document.querySelectorAll('.step-dot').forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index + 1 === currentStep) {
+                    dot.classList.add('active');
+                } else if (index + 1 < currentStep) {
+                    dot.classList.add('completed');
+                    dot.innerHTML = '<i class="fas fa-check"></i>';
+                } else {
+                    dot.textContent = index + 1;
+                }
+            });
+        }
+
+        // Show step
+        function showStep(step) {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            const stepEl = document.querySelector(`.form-step[data-step="${step}"]`);
+            if (stepEl) stepEl.classList.add('active');
+            updateProgress();
+        }
+
+        // Next step
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        // Previous step
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        // Option click handlers - Step 1 (Travaux)
+        document.querySelectorAll('.form-step[data-step="1"] .option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.form-step[data-step="1"] .option-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+
+                formData.travaux = this.dataset.value;
+                formData.mpr = parseInt(this.dataset.mpr) || 0;
+                formData.cee = parseInt(this.dataset.cee) || 0;
+
+                updateMegaDisplay();
+
+                setTimeout(() => nextStep(), 300);
+            });
+        });
+
+        // Step 2 options
+        document.querySelectorAll('.form-step[data-step="2"] .option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const field = this.dataset.field || 'logement';
+                const container = this.closest('.options-grid');
+                container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+
+                if (field === 'age') {
+                    formData.age = this.dataset.value;
+                } else {
+                    formData.logement = this.dataset.value;
+                }
+            });
+        });
+
+        // Persons selection
+        document.querySelectorAll('.person-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.person-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                formData.personnes = this.dataset.value;
+                updateRevenueCategory();
+            });
+        });
+
+        // Revenue slider
+        const revenueSlider = document.getElementById('revenueSlider');
+        const revenueDisplay = document.getElementById('revenueDisplay');
+
+        revenueSlider.addEventListener('input', function() {
+            formData.revenus = parseInt(this.value);
+            revenueDisplay.textContent = formData.revenus.toLocaleString('fr-FR') + '€';
+            updateRevenueCategory();
+        });
+
+        function updateRevenueCategory() {
+            // Simplified thresholds for 3 persons in Île-de-France
+            const thresholds = {
+                blue: 30000,
+                yellow: 45000,
+                violet: 60000,
+                rose: 100000
+            };
+
+            let category = 'rose';
+            if (formData.revenus <= thresholds.blue) category = 'blue';
+            else if (formData.revenus <= thresholds.yellow) category = 'yellow';
+            else if (formData.revenus <= thresholds.violet) category = 'violet';
+
+            formData.categorie = category;
+
+            document.querySelectorAll('.revenue-cat').forEach(cat => {
+                cat.classList.remove('active');
+                if (cat.dataset.cat === category) {
+                    cat.classList.add('active');
+                }
+            });
+
+            updateMegaDisplay();
+        }
+
+        // Revenue category click
+        document.querySelectorAll('.revenue-cat').forEach(cat => {
+            cat.addEventListener('click', function() {
+                document.querySelectorAll('.revenue-cat').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                formData.categorie = this.dataset.cat;
+                updateMegaDisplay();
+            });
+        });
+
+        // Code postal validation
+        const codePostalInput = document.getElementById('codePostal');
+        const btnStep4 = document.getElementById('btnStep4');
+
+        codePostalInput.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '');
+            formData.codePostal = this.value;
+            btnStep4.disabled = this.value.length !== 5;
+        });
+
+        // Contact form validation
+        const fullName = document.getElementById('fullName');
+        const phone = document.getElementById('phone');
+        const email = document.getElementById('email');
+        const btnSubmit = document.getElementById('btnSubmit');
+
+        function validateContact() {
+            const nameValid = fullName.value.trim().length >= 2;
+            const phoneClean = phone.value.replace(/\D/g, '');
+            const phoneValid = phoneClean.length === 10 && phoneClean.startsWith('0');
+            const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
+            btnSubmit.disabled = !(nameValid && phoneValid && emailValid);
+        }
+
+        fullName.addEventListener('input', validateContact);
+        email.addEventListener('input', validateContact);
+        phone.addEventListener('input', function() {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            this.value = value.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            validateContact();
+        });
+
+        // Show results
+        function showResults() {
+            const multipliers = {
+                blue: 1.0,
+                yellow: 0.8,
+                violet: 0.6,
+                rose: 0.3
+            };
+
+            const mult = multipliers[formData.categorie] || 0.8;
+            const mpr = Math.round(formData.mpr * mult);
+            const cee = Math.round(formData.cee * mult);
+            const tva = Math.round((formData.mpr + formData.cee) * 0.15); // Simulation TVA savings
+            const ptz = 30000;
+            const total = mpr + cee + tva;
+
+            // Hide form, show results
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('progressSteps').style.display = 'none';
+            document.getElementById('resultsContainer').classList.add('show');
+
+            // Animate results
+            setTimeout(() => {
+                animateCounter(document.getElementById('totalAides'), total, '€');
+                animateCounter(document.getElementById('resultMPR'), mpr, '€');
+                animateCounter(document.getElementById('resultCEE'), cee, '€');
+                animateCounter(document.getElementById('resultTVA'), tva, '€');
+                document.getElementById('resultPTZ').textContent = ptz.toLocaleString('fr-FR') + '€';
+            }, 300);
+
+            // Confetti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#8b5cf6', '#10b981', '#f59e0b']
+            });
+
+            setTimeout(() => {
+                confetti({
+                    particleCount: 100,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 }
+                });
+                confetti({
+                    particleCount: 100,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 }
+                });
+            }, 250);
+        }
+
+        // Scroll to form
+        function scrollToForm() {
+            document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Live counters
+        function updateLiveCounters() {
+            const viewers = document.getElementById('viewersCount');
+            const simulations = document.getElementById('todaySimulations');
+
+            setInterval(() => {
+                const current = parseInt(viewers.textContent);
+                const change = Math.random() > 0.5 ? 1 : -1;
+                viewers.textContent = Math.max(70, Math.min(120, current + change));
+            }, 3000);
+
+            setInterval(() => {
+                const current = parseInt(simulations.textContent.replace(/\s/g, ''));
+                simulations.textContent = (current + 1).toLocaleString('fr-FR');
+            }, 8000);
+        }
+
+        // Stats animation
+        function animateStats() {
+            animateCounter(document.getElementById('statFoyers'), 670000, '+');
+            animateCounter(document.getElementById('statMiliiards'), 3.2, ' Mds€', true);
+            animateCounter(document.getElementById('statEconomies'), 1847, '€');
+            animateCounter(document.getElementById('statSatisfaction'), 94, '%');
+        }
+
+        // Init on load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            updateMegaDisplay();
+            updateLiveCounters();
+
+            // Animate stats when in view
+            const statsSection = document.querySelector('.stats-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            observer.observe(statsSection);
+        });
+    </script>
+</body>
+</html>
