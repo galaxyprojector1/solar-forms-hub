@@ -2,123 +2,125 @@
 
 ## FAIT (Session 1er décembre 2025)
 
-- [x] Créer les nouveaux dossiers (formulaires/, success-screens/, landing-pages/, versions-completes/)
+- [x] Créer structure dossiers (formulaires/, landing-pages/, versions-completes/)
 - [x] Déplacer v1 à v10 dans `/versions-completes/`
-- [x] Mettre à jour le hub avec catégories (PRO, Ultra Conversion, Animations, Classiques)
-- [x] V11 - Clean Conversion (ultra épuré, style Apple)
-- [x] V12 - Trust Builder (avis clients rotatifs, badges RGE, garanties)
-- [x] V13 - Urgency (compteur temps réel, places limitées, FOMO)
-- [x] V14 - Mobile Ultra (swipe navigation, 100% tactile)
+- [x] Hub mis à jour avec catégories
+- [x] V11 - Clean Conversion
+- [x] V12 - Trust Builder
+- [x] V13 - Urgency
+- [x] V14 - Mobile Ultra
 
 ---
 
 ## PROCHAINES TÂCHES
 
-### 1. MODULES FORMULAIRES (dossier `/formulaires/`)
-
-Extraire des formulaires SEULS (sans écran success) réutilisables :
-
-- [ ] **f1-minimal** - Formulaire ultra simple (5 étapes, fond blanc)
-- [ ] **f2-dark** - Formulaire dark mode élégant
-- [ ] **f3-cards** - Formulaire avec sélection par cartes visuelles
-
-> Ces formulaires doivent pouvoir rediriger vers N'IMPORTE QUEL success screen
+### CIBLE : Propriétaires de maison en France
 
 ---
 
-### 2. MODULES SUCCESS SCREENS (dossier `/success-screens/`)
+### 1. LANDING PAGES COMPLÈTES (dossier `/landing-pages/`)
 
-Extraire des écrans de fin SEULS réutilisables :
+Chaque landing page = Hero + Argumentaire + Formulaire intégré + Footer
 
-- [ ] **s1-simulation** - Compteur économies animé (style V10)
-- [ ] **s2-confetti** - Explosion de confetti célébration
-- [ ] **s3-gamification** - XP, badges, niveau atteint (style V8)
-- [ ] **s4-simple** - Juste un check vert + message de confirmation
+- [ ] **lp-panneaux-solaires** - Landing dédiée panneaux solaires PV
+- [ ] **lp-pompe-a-chaleur** - Landing dédiée PAC (pompe à chaleur)
+- [ ] **lp-isolation-exterieure** - Landing dédiée ITE (isolation thermique extérieure)
+- [ ] **lp-multi-travaux** - Landing avec les 3 activités (solaire + PAC + isolation)
+- [ ] **lp-simulateur-aides** - Simulateur d'aides financières (MaPrimeRénov, CEE, etc.)
 
-> Ces screens reçoivent les données du formulaire en paramètres URL
-
----
-
-### 3. LANDING PAGES COMPLÈTES (dossier `/landing-pages/`)
-
-Pages complètes prêtes à déployer :
-
-- [ ] **lp1-hero-form** - Hero section + formulaire intégré + footer
-- [ ] **lp2-testimonials** - Landing avec avis clients + formulaire
-- [ ] **lp3-benefits** - Liste avantages solaire + formulaire
+> Quand on clique sur "Landing Pages" dans le hub, ça affiche la page de présentation avec toutes les landing pages (comme pour les formulaires)
 
 ---
 
-### 4. AMÉLIORATIONS VERSIONS EXISTANTES
+### 2. NOUVEAUX FORMULAIRES (dossier `/formulaires/`)
 
-- [ ] Ajouter compteur économies DÈS LE DÉBUT sur toutes les versions (comme V10)
-- [ ] Tester toutes les versions sur mobile réel
-- [ ] Optimiser le poids des fichiers (< 150KB chacun)
+Formulaires spécialisés par activité :
 
----
+- [ ] **f-panneaux-solaires** - Formulaire spécialisé solaire
+- [ ] **f-pompe-a-chaleur** - Formulaire spécialisé PAC
+- [ ] **f-isolation** - Formulaire spécialisé isolation
+- [ ] **f-multi-travaux** - Formulaire multi-activités (choix du type de travaux)
+- [ ] **f-simulateur-aides** - Simulateur aides financières (revenus, situation, etc.)
 
-### 5. NOUVELLES VERSIONS PRO (si demandé)
-
-- [ ] V15 - Quiz interactif (questions fun avant le formulaire)
-- [ ] V16 - Chatbot (formulaire style conversation)
-- [ ] V17 - Video background (hero vidéo solaire)
+> Quand on clique sur "Formulaires" dans le hub, ça affiche la page de présentation avec tous les formulaires
 
 ---
 
-## STRUCTURE ACTUELLE
+### 3. METTRE À JOUR LE HUB
+
+- [ ] Page de présentation pour `/landing-pages/` (comme index.html principal)
+- [ ] Page de présentation pour `/formulaires/`
+- [ ] Les liens du hub principal pointent vers ces pages de présentation
+
+---
+
+## STRUCTURE CIBLE
 
 ```
 solar-forms-hub/
-├── index.html                    ← Hub principal (MIS À JOUR)
-├── formulaires/                  ← VIDE (à remplir)
-├── success-screens/              ← VIDE (à remplir)
-├── landing-pages/                ← VIDE (à remplir)
-└── versions-completes/
-    ├── v1-neon/
-    ├── v2-nature/
-    ├── v3-glass/
-    ├── v4-minimal/
-    ├── v5-particles/
-    ├── v6-morphing/
-    ├── v7-3d/
-    ├── v8-gamification/
-    ├── v9-story/
-    ├── v10-simulation/
-    ├── v11-clean/                ← NEW
-    ├── v12-trust/                ← NEW
-    ├── v13-urgency/              ← NEW
-    └── v14-mobile/               ← NEW
+├── index.html                    ← Hub principal
+│
+├── formulaires/
+│   ├── index.html                ← Page présentation formulaires
+│   ├── f-panneaux-solaires/
+│   ├── f-pompe-a-chaleur/
+│   ├── f-isolation/
+│   ├── f-multi-travaux/
+│   └── f-simulateur-aides/
+│
+├── landing-pages/
+│   ├── index.html                ← Page présentation landing pages
+│   ├── lp-panneaux-solaires/
+│   ├── lp-pompe-a-chaleur/
+│   ├── lp-isolation-exterieure/
+│   ├── lp-multi-travaux/
+│   └── lp-simulateur-aides/
+│
+└── versions-completes/           ← V1 à V14 (déjà fait)
+    └── ...
 ```
 
 ---
 
-## CONTRAINTES TECHNIQUES (RAPPEL)
+## ÉLÉMENTS CLÉS POUR CHAQUE LANDING PAGE
 
 ```
-✅ Fichier unique HTML (pas de dépendances locales)
-✅ CDN uniquement pour les librairies
-✅ Mobile first (priorité)
-✅ Compatible desktop
-✅ Léger < 200KB
+✅ Hero accrocheur (titre + sous-titre + CTA)
+✅ Avantages / Bénéfices (économies, écologie, confort)
+✅ Aides financières mentionnées (MaPrimeRénov, CEE, TVA réduite)
+✅ Formulaire intégré
+✅ Témoignages / Avis clients
+✅ Badges confiance (RGE, garanties)
+✅ Footer avec mentions légales
+```
+
+---
+
+## CONTRAINTES TECHNIQUES
+
+```
+✅ Fichier unique HTML
+✅ CDN uniquement
+✅ Mobile first
+✅ < 200KB
 ✅ Fonctionne en iframe
 ✅ Touch-friendly
-✅ Compteur économies visible DÈS LE DÉBUT
+✅ Cible : propriétaires maison France
 ```
 
 ---
 
-## RÈGLE IMPORTANTE POUR L'AGENT
-
-**TOUJOURS** après création/modification de fichiers :
+## RÈGLE POUR L'AGENT
 
 ```bash
+# TOUJOURS après modification :
 git add .
 git commit -m "description"
 git push
-vercel --prod --yes   # si le déploiement auto ne marche pas
-```
+vercel --prod --yes
 
-**NE JAMAIS** dire "c'est terminé" sans avoir vérifié que c'est VISIBLE sur Vercel !
+# VÉRIFIER que c'est visible sur Vercel AVANT de dire "terminé"
+```
 
 ---
 
