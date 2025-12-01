@@ -20,11 +20,18 @@
 - [x] **lp-isolation-exterieure/index.html** - Landing ITE (vert, 75€/m², avantages DPE)
 - [x] **lp-multi-travaux/index.html** - Landing multi-projets (violet, choix solaire/PAC/isolation)
 
+## FAIT (Session 1er décembre 2025 - Agent 4)
+
+- [x] **lp-simulateur-aides/index.html** - Simulateur MaPrimeRénov 2025 (violet/rose, calcul temps réel, 4 catégories revenus, barème complet)
+- [x] **landing-pages/index.html** - Hub de présentation des 5 landing pages avec preview cards
+
 **URLs LIVE (vérifiées sur Vercel) :**
 - https://solar-forms-hub.vercel.app/landing-pages/lp-panneaux-solaires/
 - https://solar-forms-hub.vercel.app/landing-pages/lp-pompe-a-chaleur/
 - https://solar-forms-hub.vercel.app/landing-pages/lp-isolation-exterieure/
 - https://solar-forms-hub.vercel.app/landing-pages/lp-multi-travaux/
+- https://solar-forms-hub.vercel.app/landing-pages/lp-simulateur-aides/
+- https://solar-forms-hub.vercel.app/landing-pages/
 
 ### DONNÉES RÉCUPÉRÉES (Perplexity - à utiliser) :
 
@@ -64,8 +71,10 @@ Swiper - https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js
 
 ### 1. LANDING PAGES RESTANTES (dossier `/landing-pages/`)
 
-- [ ] **lp-simulateur-aides/index.html** - Simulateur MaPrimeRénov / CEE / aides ← PROCHAIN
-- [ ] **`/landing-pages/index.html`** - Hub de présentation de toutes les landing pages
+- [x] **lp-simulateur-aides/index.html** - Simulateur MaPrimeRénov / CEE / aides ✅ FAIT
+- [x] **`/landing-pages/index.html`** - Hub de présentation de toutes les landing pages ✅ FAIT
+
+**TOUTES LES LANDING PAGES SONT TERMINÉES !**
 
 ---
 
@@ -102,12 +111,13 @@ solar-forms-hub/
 │   ├── f-multi-travaux/
 │   └── f-simulateur-aides/
 │
-├── landing-pages/                ← 4 PAGES CRÉÉES ✅
+├── landing-pages/                ← 5 PAGES CRÉÉES ✅ + HUB
+│   ├── index.html                ✅ FAIT - Hub des landing pages
 │   ├── lp-panneaux-solaires/     ✅ FAIT - Orange, solaire PV
 │   ├── lp-pompe-a-chaleur/       ✅ FAIT - Bleu, PAC air/eau
 │   ├── lp-isolation-exterieure/  ✅ FAIT - Vert, ITE
 │   ├── lp-multi-travaux/         ✅ FAIT - Violet, 3 projets
-│   └── lp-simulateur-aides/      ← À FAIRE
+│   └── lp-simulateur-aides/      ✅ FAIT - Rose, simulateur aides 2025
 │
 └── versions-completes/           ← V1 à V14 (FAIT)
     ├── v1-neon/
@@ -176,9 +186,10 @@ npx vercel --prod --yes
 Lis le fichier TODO-NEXT.md dans le projet solar-forms-hub et continue les tâches.
 
 CONTEXTE :
-- 4 landing pages sont TERMINÉES et LIVE (solaire, PAC, isolation, multi-travaux)
-- URLs : voir section "FAIT (Agent 3)" dans le TODO
-- Prochaine tâche : créer lp-simulateur-aides/index.html
+- 5 landing pages sont TERMINÉES et LIVE (solaire, PAC, isolation, multi-travaux, simulateur)
+- Hub des landing pages créé également
+- URLs : voir section "FAIT (Agent 4)" dans le TODO
+- Prochaine tâche : créer les FORMULAIRES (dossier /formulaires/)
 
 IMPORTANT :
 - Utilise les données Perplexity déjà récupérées dans ce fichier
@@ -193,4 +204,4 @@ IMPORTANT :
 
 ---
 
-*Mis à jour le 1er décembre 2025 - Agent 3*
+*Mis à jour le 1er décembre 2025 - Agent 4*
