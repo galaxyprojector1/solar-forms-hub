@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Solaire | Version Néon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-green: #00ff88;
+            --neon-cyan: #00d4ff;
+            --neon-purple: #a855f7;
+            --dark-bg: #0a0a0f;
+            --dark-card: #12121a;
+            --dark-border: #1f1f2e;
+            --text-primary: #ffffff;
+            --text-secondary: #8888aa;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark-bg);
+            min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Animated background grid */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        /* Glowing orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--neon-green);
+            top: -100px;
+            right: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--neon-cyan);
+            bottom: -50px;
+            left: -50px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            margin-bottom: 40px;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--dark-border);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));
+            width: 12.5%;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+
+        .step-indicators {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--dark-border);
+            border: 2px solid var(--dark-border);
+            transition: all 0.3s ease;
+        }
+
+        .step-dot.active {
+            background: var(--neon-green);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+
+        .step-dot.completed {
+            background: var(--neon-cyan);
+            border-color: var(--neon-cyan);
+        }
+
+        /* Form card */
+        .form-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-green), var(--neon-cyan), transparent);
+        }
+
+        /* Step container */
+        .step {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            color: var(--neon-green);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        /* Options */
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .option:hover {
+            border-color: var(--neon-green);
+            background: rgba(0, 255, 136, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .option.selected {
+            border-color: var(--neon-green);
+            background: rgba(0, 255, 136, 0.1);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .option-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .option-text {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        /* Input fields */
+        .input-group {
+            margin-bottom: 30px;
+        }
+
+        .input-field {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .input-field::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .input-hint {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .error-msg {
+            color: #ff4444;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            display: none;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 16px 30px;
+            border-radius: 12px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-back {
+            background: transparent;
+            border: 1px solid var(--dark-border);
+            color: var(--text-secondary);
+        }
+
+        .btn-back:hover {
+            border-color: var(--text-secondary);
+            color: var(--text-primary);
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            border: none;
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-next:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Success screen */
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 3rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.5); }
+            50% { box-shadow: 0 0 60px rgba(0, 255, 136, 0.8); }
+        }
+
+        .success-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .success-text {
+            text-align: center;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .options {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .question {
+                font-size: 1.2rem;
+            }
+            
+            .form-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">SOLAIRE</h1>
+            <p class="tagline">Énergie du futur</p>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="step-indicators">
+                <div class="step-dot active" data-step="1"></div>
+                <div class="step-dot" data-step="2"></div>
+                <div class="step-dot" data-step="3"></div>
+                <div class="step-dot" data-step="4"></div>
+                <div class="step-dot" data-step="5"></div>
+                <div class="step-dot" data-step="6"></div>
+                <div class="step-dot" data-step="7"></div>
+                <div class="step-dot" data-step="8"></div>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <!-- Step 1 -->
+            <div class="step active" id="step1">
+                <div class="step-number">ÉTAPE 01/08</div>
+                <h2 class="question">Vous êtes ?</h2>
+                <div class="options">
+                    <div class="option" data-value="propriétaire">
+                        <span class="option-icon">🔑</span>
+                        <span class="option-text">Propriétaire</span>
+                    </div>
+                    <div class="option" data-value="locataire">
+                        <span class="option-icon">📝</span>
+                        <span class="option-text">Locataire</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step" id="step2">
+                <div class="step-number">ÉTAPE 02/08</div>
+                <h2 class="question">Type de logement ?</h2>
+                <div class="options">
+                    <div class="option" data-value="maison">
+                        <span class="option-icon">🏠</span>
+                        <span class="option-text">Maison</span>
+                    </div>
+                    <div class="option" data-value="appartement">
+                        <span class="option-icon">🏢</span>
+                        <span class="option-text">Appartement</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step" id="step3">
+                <div class="step-number">ÉTAPE 03/08</div>
+                <h2 class="question">Mode de chauffage ?</h2>
+                <div class="options">
+                    <div class="option" data-value="électrique">
+                        <span class="option-icon">⚡</span>
+                        <span class="option-text">Électrique</span>
+                    </div>
+                    <div class="option" data-value="gaz">
+                        <span class="option-icon">🔥</span>
+                        <span class="option-text">Gaz</span>
+                    </div>
+                    <div class="option" data-value="bois">
+                        <span class="option-icon">🪵</span>
+                        <span class="option-text">Bois</span>
+                    </div>
+                    <div class="option" data-value="pompe_chaleur">
+                        <span class="option-icon">♻️</span>
+                        <span class="option-text">Pompe à chaleur</span>
+                    </div>
+                    <div class="option" data-value="fioul">
+                        <span class="option-icon">🛢️</span>
+                        <span class="option-text">Fioul</span>
+                    </div>
+                    <div class="option" data-value="autre">
+                        <span class="option-icon">❓</span>
+                        <span class="option-text">Autre</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step" id="step4">
+                <div class="step-number">ÉTAPE 04/08</div>
+                <h2 class="question">Surface de toiture ?</h2>
+                <div class="options">
+                    <div class="option" data-value="moins_30">
+                        <span class="option-icon">📐</span>
+                        <span class="option-text">Moins de 30m²</span>
+                    </div>
+                    <div class="option" data-value="30_60">
+                        <span class="option-icon">📏</span>
+                        <span class="option-text">30 à 60m²</span>
+                    </div>
+                    <div class="option" data-value="plus_60">
+                        <span class="option-icon">🏗️</span>
+                        <span class="option-text">Plus de 60m²</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step" id="step5">
+                <div class="step-number">ÉTAPE 05/08</div>
+                <h2 class="question">Code postal du projet ?</h2>
+                <div class="input-group">
+                    <input type="text" class="input-field" id="codePostal" placeholder="75001" maxlength="5">
+                    <p class="input-hint">Entrez les 5 chiffres de votre code postal</p>
+                    <p class="error-msg" id="errorPostal">❌ Code postal invalide</p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="step" id="step6">
+                <div class="step-number">ÉTAPE 06/08</div>
+                <h2 class="question">Votre nom complet ?</h2>
+                <div class="input-group">
+                    <input type="text" class="input-field" id="nomComplet" placeholder="Jean Dupont">
+                    <p class="input-hint">Prénom et nom de famille</p>
+                    <p class="error-msg" id="errorNom">❌ Nom trop court</p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+
+            <!-- Step 7 -->
+            <div class="step" id="step7">
+                <div class="step-number">ÉTAPE 07/08</div>
+                <h2 class="question">Votre email ?</h2>
+                <div class="input-group">
+                    <input type="email" class="input-field" id="email" placeholder="jean@exemple.fr">
+                    <p class="input-hint">Nous vous enverrons votre devis par email</p>
+                    <p class="error-msg" id="errorEmail">❌ Email invalide</p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+
+            <!-- Step 8 -->
+            <div class="step" id="step8">
+                <div class="step-number">ÉTAPE 08/08</div>
+                <h2 class="question">Votre téléphone ?</h2>
+                <div class="input-group">
+                    <input type="tel" class="input-field" id="telephone" placeholder="06 12 34 56 78" maxlength="14">
+                    <p class="input-hint">Pour être contacté par nos experts</p>
+                    <p class="error-msg" id="errorPhone">❌ Numéro invalide</p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Envoyer</button>
+                </div>
+            </div>
+
+            <!-- Success -->
+            <div class="step" id="success">
+                <div class="success-icon">✓</div>
+                <h2 class="success-title">Demande envoyée !</h2>
+                <p class="success-text">Votre projet solaire a été enregistré.<br>Un expert vous contactera sous 24h.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const formData = {};
+        let currentStep = 1;
+        const totalSteps = 8;
+
+        // Update progress
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            document.querySelectorAll('.step-dot').forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index + 1 < currentStep) dot.classList.add('completed');
+                if (index + 1 === currentStep) dot.classList.add('active');
+            });
+        }
+
+        // Show step
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + step)?.classList.add('active');
+            if (step === 'success') document.getElementById('success').classList.add('active');
+            updateProgress();
+        }
+
+        // Option selection
+        document.querySelectorAll('.options').forEach(optionsContainer => {
+            optionsContainer.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', () => {
+                    optionsContainer.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+                    const step = option.closest('.step');
+                    step.querySelector('.btn-next').disabled = false;
+                });
+            });
+        });
+
+        // Input validation
+        document.getElementById('codePostal').addEventListener('input', function() {
+            const valid = /^\d{5}$/.test(this.value);
+            document.getElementById('step5').querySelector('.btn-next').disabled = !valid;
+            document.getElementById('errorPostal').style.display = this.value.length === 5 && !valid ? 'block' : 'none';
+        });
+
+        document.getElementById('nomComplet').addEventListener('input', function() {
+            const valid = this.value.trim().length >= 2;
+            document.getElementById('step6').querySelector('.btn-next').disabled = !valid;
+        });
+
+        document.getElementById('email').addEventListener('input', function() {
+            const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+            document.getElementById('step7').querySelector('.btn-next').disabled = !valid;
+            document.getElementById('errorEmail').style.display = this.value.length > 3 && !valid ? 'block' : 'none';
+        });
+
+        document.getElementById('telephone').addEventListener('input', function() {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            this.value = value.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            const valid = /^0[1-9]\d{8}$/.test(value);
+            document.getElementById('step8').querySelector('.btn-next').disabled = !valid;
+            document.getElementById('errorPhone').style.display = value.length === 10 && !valid ? 'block' : 'none';
+        });
+
+        // Navigation
+        document.querySelectorAll('.btn-next').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const step = btn.closest('.step');
+                const selected = step.querySelector('.option.selected');
+                const input = step.querySelector('.input-field');
+                
+                if (selected) formData['step' + currentStep] = selected.dataset.value;
+                if (input) formData[input.id] = input.value;
+
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    showStep(currentStep);
+                } else {
+                    console.log('Form data:', formData);
+                    showStep('success');
+                }
+            });
+        });
+
+        document.querySelectorAll('.btn-back').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            });
+        });
+
+        updateProgress();
+    </script>
+</body>
+</html>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Énergie Solaire | Version Nature</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --earth-green: #2d5a3d;
+            --leaf-green: #5a8f5c;
+            --sage: #9cb99c;
+            --sand: #f5f0e8;
+            --warm-white: #fdfbf7;
+            --terracotta: #c4785a;
+            --bark: #3d2e1f;
+            --moss: #6b8e6b;
+        }
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--sand);
+            min-height: 100vh;
+            color: var(--bark);
+        }
+        .bg-shapes {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .leaf {
+            position: absolute;
+            opacity: 0.08;
+        }
+        .leaf-1 {
+            width: 300px; height: 300px;
+            background: var(--leaf-green);
+            border-radius: 70% 30% 50% 50%;
+            top: -50px; right: -50px;
+            transform: rotate(45deg);
+        }
+        .leaf-2 {
+            width: 250px; height: 250px;
+            background: var(--earth-green);
+            border-radius: 60% 40% 70% 30%;
+            bottom: -30px; left: -30px;
+            transform: rotate(-20deg);
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 550px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-top: 20px;
+        }
+        .sun-icon {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, #f4a942, #e88a1a);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            position: relative;
+            box-shadow: 0 0 40px rgba(244, 169, 66, 0.4);
+        }
+        .sun-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px; height: 50px;
+            background: #ffd700;
+            border-radius: 50%;
+        }
+        .brand {
+            font-family: 'Fraunces', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--earth-green);
+            margin-bottom: 8px;
+        }
+        .tagline {
+            font-size: 1rem;
+            color: var(--moss);
+        }
+        .progress-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 35px;
+        }
+        .progress-leaf {
+            width: 12px; height: 12px;
+            background: var(--sage);
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(45deg);
+            transition: all 0.4s ease;
+        }
+        .progress-leaf.active {
+            background: var(--leaf-green);
+            transform: rotate(45deg) scale(1.2);
+        }
+        .progress-leaf.completed {
+            background: var(--earth-green);
+        }
+        .form-card {
+            background: var(--warm-white);
+            border-radius: 30px;
+            padding: 40px 35px;
+            box-shadow: 0 20px 60px rgba(45, 90, 61, 0.08);
+            position: relative;
+        }
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--earth-green), var(--leaf-green), var(--sage));
+            border-radius: 30px 30px 0 0;
+        }
+        .step { display: none; animation: growIn 0.5s ease; }
+        .step.active { display: block; }
+        @keyframes growIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .step-badge {
+            display: inline-block;
+            background: var(--sage);
+            color: var(--earth-green);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .question {
+            font-family: 'Fraunces', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 20px;
+            background: var(--sand);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .option:hover {
+            background: rgba(90, 143, 92, 0.1);
+            border-color: var(--sage);
+        }
+        .option.selected {
+            background: rgba(45, 90, 61, 0.08);
+            border-color: var(--earth-green);
+        }
+        .option-icon {
+            width: 45px; height: 45px;
+            background: var(--warm-white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+        .option.selected .option-icon {
+            background: var(--earth-green);
+        }
+        .option-text {
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: var(--bark);
+        }
+        .option-check {
+            margin-left: auto;
+            width: 24px; height: 24px;
+            border: 2px solid var(--sage);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .option.selected .option-check {
+            background: var(--earth-green);
+            border-color: var(--earth-green);
+            color: white;
+        }
+        .input-wrapper { margin-bottom: 25px; }
+        .input-label {
+            display: block;
+            font-weight: 600;
+            color: var(--earth-green);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        .input-field {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--sand);
+            border: 2px solid transparent;
+            border-radius: 14px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 1.1rem;
+            color: var(--bark);
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--leaf-green);
+            background: var(--warm-white);
+        }
+        .input-field::placeholder { color: var(--sage); }
+        .input-hint {
+            font-size: 0.85rem;
+            color: var(--moss);
+            margin-top: 8px;
+        }
+        .error-text {
+            color: var(--terracotta);
+            font-size: 0.85rem;
+            margin-top: 8px;
+            display: none;
+        }
+        .btn-container {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .btn {
+            flex: 1;
+            padding: 16px 25px;
+            border-radius: 14px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-back {
+            background: var(--sand);
+            border: none;
+            color: var(--moss);
+        }
+        .btn-back:hover {
+            background: var(--sage);
+            color: var(--earth-green);
+        }
+        .btn-next {
+            background: var(--earth-green);
+            border: none;
+            color: white;
+        }
+        .btn-next:hover:not(:disabled) {
+            background: var(--leaf-green);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 90, 61, 0.25);
+        }
+        .btn-next:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .success-wrapper {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .success-circle {
+            width: 120px; height: 120px;
+            background: linear-gradient(135deg, var(--leaf-green), var(--earth-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin: 0 auto 25px;
+            animation: bounce 0.6s ease;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .success-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.8rem;
+            color: var(--earth-green);
+            margin-bottom: 12px;
+        }
+        .success-msg {
+            color: var(--moss);
+            line-height: 1.6;
+        }
+        @media (max-width: 500px) {
+            .form-card { padding: 30px 25px; }
+            .question { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="leaf leaf-1"></div>
+        <div class="leaf leaf-2"></div>
+    </div>
+    <div class="container">
+        <header class="header">
+            <div class="sun-icon"></div>
+            <h1 class="brand">Énergie Verte</h1>
+            <p class="tagline">Passez au solaire naturellement</p>
+        </header>
+        <div class="progress-wrapper">
+            <div class="progress-leaf active"></div>
+            <div class="progress-leaf"></div>
+            <div class="progress-leaf"></div>
+            <div class="progress-leaf"></div>
+            <div class="progress-leaf"></div>
+            <div class="progress-leaf"></div>
+            <div class="progress-leaf"></div>
+            <div class="progress-leaf"></div>
+        </div>
+        <div class="form-card">
+            <div class="step active" id="step1">
+                <span class="step-badge">Étape 1 sur 8</span>
+                <h2 class="question">Êtes-vous propriétaire ?</h2>
+                <div class="options">
+                    <div class="option" data-value="propriétaire">
+                        <div class="option-icon">🏡</div>
+                        <span class="option-text">Oui, propriétaire</span>
+                        <div class="option-check">✓</div>
+                    </div>
+                    <div class="option" data-value="locataire">
+                        <div class="option-icon">📋</div>
+                        <span class="option-text">Non, locataire</span>
+                        <div class="option-check">✓</div>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step2">
+                <span class="step-badge">Étape 2 sur 8</span>
+                <h2 class="question">Type de logement ?</h2>
+                <div class="options">
+                    <div class="option" data-value="maison">
+                        <div class="option-icon">🏠</div>
+                        <span class="option-text">Maison</span>
+                        <div class="option-check">✓</div>
+                    </div>
+                    <div class="option" data-value="appartement">
+                        <div class="option-icon">🏢</div>
+                        <span class="option-text">Appartement</span>
+                        <div class="option-check">✓</div>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step3">
+                <span class="step-badge">Étape 3 sur 8</span>
+                <h2 class="question">Mode de chauffage ?</h2>
+                <div class="options">
+                    <div class="option" data-value="électrique"><div class="option-icon">⚡</div><span class="option-text">Électrique</span><div class="option-check">✓</div></div>
+                    <div class="option" data-value="gaz"><div class="option-icon">🔥</div><span class="option-text">Gaz</span><div class="option-check">✓</div></div>
+                    <div class="option" data-value="bois"><div class="option-icon">🪵</div><span class="option-text">Bois</span><div class="option-check">✓</div></div>
+                    <div class="option" data-value="pompe_chaleur"><div class="option-icon">🌿</div><span class="option-text">Pompe à chaleur</span><div class="option-check">✓</div></div>
+                    <div class="option" data-value="fioul"><div class="option-icon">🛢️</div><span class="option-text">Fioul</span><div class="option-check">✓</div></div>
+                    <div class="option" data-value="autre"><div class="option-icon">❓</div><span class="option-text">Autre</span><div class="option-check">✓</div></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step4">
+                <span class="step-badge">Étape 4 sur 8</span>
+                <h2 class="question">Surface de toiture ?</h2>
+                <div class="options">
+                    <div class="option" data-value="moins_30"><div class="option-icon">📐</div><span class="option-text">Moins de 30m²</span><div class="option-check">✓</div></div>
+                    <div class="option" data-value="30_60"><div class="option-icon">📏</div><span class="option-text">30 à 60m²</span><div class="option-check">✓</div></div>
+                    <div class="option" data-value="plus_60"><div class="option-icon">🏗️</div><span class="option-text">Plus de 60m²</span><div class="option-check">✓</div></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step5">
+                <span class="step-badge">Étape 5 sur 8</span>
+                <h2 class="question">Code postal ?</h2>
+                <div class="input-wrapper">
+                    <label class="input-label">Code postal</label>
+                    <input type="text" class="input-field" id="codePostal" placeholder="75001" maxlength="5">
+                    <p class="input-hint">5 chiffres</p>
+                    <p class="error-text" id="errorPostal">Code invalide</p>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step6">
+                <span class="step-badge">Étape 6 sur 8</span>
+                <h2 class="question">Votre nom ?</h2>
+                <div class="input-wrapper">
+                    <label class="input-label">Nom complet</label>
+                    <input type="text" class="input-field" id="nomComplet" placeholder="Jean Dupont">
+                    <p class="error-text" id="errorNom">Nom requis</p>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step7">
+                <span class="step-badge">Étape 7 sur 8</span>
+                <h2 class="question">Votre email ?</h2>
+                <div class="input-wrapper">
+                    <label class="input-label">Email</label>
+                    <input type="email" class="input-field" id="email" placeholder="vous@exemple.fr">
+                    <p class="error-text" id="errorEmail">Email invalide</p>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step8">
+                <span class="step-badge">Étape 8 sur 8</span>
+                <h2 class="question">Votre téléphone ?</h2>
+                <div class="input-wrapper">
+                    <label class="input-label">Téléphone</label>
+                    <input type="tel" class="input-field" id="telephone" placeholder="06 12 34 56 78" maxlength="14">
+                    <p class="error-text" id="errorPhone">Numéro invalide</p>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-back">Retour</button>
+                    <button class="btn btn-next" disabled>Envoyer</button>
+                </div>
+            </div>
+            <div class="step" id="success">
+                <div class="success-wrapper">
+                    <div class="success-circle">🌱</div>
+                    <h2 class="success-title">Merci !</h2>
+                    <p class="success-msg">Un expert vous contactera sous 24h.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const formData = {};
+        let currentStep = 1;
+        const totalSteps = 8;
+        function updateProgress() {
+            document.querySelectorAll('.progress-leaf').forEach((leaf, i) => {
+                leaf.classList.remove('active', 'completed');
+                if (i + 1 < currentStep) leaf.classList.add('completed');
+                if (i + 1 === currentStep) leaf.classList.add('active');
+            });
+        }
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            (document.getElementById('step' + step) || document.getElementById(step))?.classList.add('active');
+            updateProgress();
+        }
+        document.querySelectorAll('.options').forEach(c => {
+            c.querySelectorAll('.option').forEach(o => {
+                o.addEventListener('click', () => {
+                    c.querySelectorAll('.option').forEach(x => x.classList.remove('selected'));
+                    o.classList.add('selected');
+                    o.closest('.step').querySelector('.btn-next').disabled = false;
+                });
+            });
+        });
+        document.getElementById('codePostal').addEventListener('input', function() {
+            const valid = /^\d{5}$/.test(this.value);
+            document.getElementById('step5').querySelector('.btn-next').disabled = !valid;
+        });
+        document.getElementById('nomComplet').addEventListener('input', function() {
+            document.getElementById('step6').querySelector('.btn-next').disabled = this.value.trim().length < 2;
+        });
+        document.getElementById('email').addEventListener('input', function() {
+            document.getElementById('step7').querySelector('.btn-next').disabled = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+        });
+        document.getElementById('telephone').addEventListener('input', function() {
+            let v = this.value.replace(/\D/g, '').slice(0, 10);
+            this.value = v.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            document.getElementById('step8').querySelector('.btn-next').disabled = !/^0[1-9]\d{8}$/.test(v);
+        });
+        document.querySelectorAll('.btn-next').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const step = btn.closest('.step');
+                const sel = step.querySelector('.option.selected');
+                const inp = step.querySelector('.input-field');
+                if (sel) formData['step' + currentStep] = sel.dataset.value;
+                if (inp) formData[inp.id] = inp.value;
+                if (currentStep < totalSteps) { currentStep++; showStep(currentStep); }
+                else { console.log(formData); showStep('success'); }
+            });
+        });
+        document.querySelectorAll('.btn-back').forEach(btn => {
+            btn.addEventListener('click', () => { if (currentStep > 1) { currentStep--; showStep(currentStep); } });
+        });
+        updateProgress();
+    </script>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solaire Pro | Version Glass</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --text-white: #ffffff;
+            --text-light: rgba(255, 255, 255, 0.8);
+            --accent: #ffd93d;
+        }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #f5576c 100%);
+            background-attachment: fixed;
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+        .animated-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.5;
+            animation: float 15s ease-in-out infinite;
+        }
+        .blob-1 {
+            width: 400px; height: 400px;
+            background: rgba(255, 217, 61, 0.4);
+            top: -100px; left: -100px;
+        }
+        .blob-2 {
+            width: 300px; height: 300px;
+            background: rgba(102, 126, 234, 0.5);
+            bottom: -50px; right: -50px;
+            animation-delay: -5s;
+        }
+        .blob-3 {
+            width: 250px; height: 250px;
+            background: rgba(240, 147, 251, 0.4);
+            top: 50%; left: 50%;
+            animation-delay: -10s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo-icon {
+            width: 70px; height: 70px;
+            background: var(--accent);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 15px;
+            box-shadow: 0 10px 40px rgba(255, 217, 61, 0.4);
+        }
+        .brand-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .brand-sub {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+        .progress-pills {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 25px;
+        }
+        .pill {
+            width: 35px; height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            transition: all 0.4s ease;
+        }
+        .pill.active {
+            background: var(--accent);
+            width: 50px;
+        }
+        .pill.completed {
+            background: rgba(255, 255, 255, 0.6);
+        }
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 35px 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        .step { display: none; animation: slideIn 0.4s ease; }
+        .step.active { display: block; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .step-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .question {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .options-grid.single-col {
+            grid-template-columns: 1fr;
+        }
+        .opt {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 20px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .opt:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        .opt.selected {
+            background: rgba(255, 217, 61, 0.2);
+            border-color: var(--accent);
+            box-shadow: 0 0 25px rgba(255, 217, 61, 0.3);
+        }
+        .opt-emoji {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .opt-label {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .field-group { margin-bottom: 25px; }
+        .field-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+        .field-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 14px;
+            padding: 16px 18px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-white);
+            transition: all 0.3s ease;
+        }
+        .field-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(255, 217, 61, 0.2);
+        }
+        .field-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .field-hint {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 6px;
+        }
+        .field-error {
+            font-size: 0.8rem;
+            color: #ff6b6b;
+            margin-top: 6px;
+            display: none;
+        }
+        .btns {
+            display: flex;
+            gap: 12px;
+        }
+        .btn {
+            flex: 1;
+            padding: 15px 20px;
+            border-radius: 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-prev {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-white);
+        }
+        .btn-prev:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .btn-next {
+            background: var(--accent);
+            border: none;
+            color: #1a1a2e;
+        }
+        .btn-next:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 217, 61, 0.4);
+        }
+        .btn-next:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .success-view {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .success-badge {
+            width: 100px; height: 100px;
+            background: linear-gradient(135deg, var(--accent), #ffab00);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 25px;
+            animation: pop 0.5s ease;
+        }
+        @keyframes pop {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .success-heading {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .success-text {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        @media (max-width: 480px) {
+            .options-grid { grid-template-columns: 1fr; }
+            .glass-card { padding: 28px 22px; }
+            .question { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <div class="container">
+        <header class="header">
+            <div class="logo-icon">☀️</div>
+            <h1 class="brand-name">Solaire Pro</h1>
+            <p class="brand-sub">Votre devis en 2 minutes</p>
+        </header>
+        <div class="progress-pills">
+            <div class="pill active"></div>
+            <div class="pill"></div>
+            <div class="pill"></div>
+            <div class="pill"></div>
+            <div class="pill"></div>
+            <div class="pill"></div>
+            <div class="pill"></div>
+            <div class="pill"></div>
+        </div>
+        <div class="glass-card">
+            <div class="step active" id="step1">
+                <div class="step-label">Étape 1/8</div>
+                <h2 class="question">Vous êtes ?</h2>
+                <div class="options-grid">
+                    <div class="opt" data-value="propriétaire">
+                        <span class="opt-emoji">🔑</span>
+                        <span class="opt-label">Propriétaire</span>
+                    </div>
+                    <div class="opt" data-value="locataire">
+                        <span class="opt-emoji">📄</span>
+                        <span class="opt-label">Locataire</span>
+                    </div>
+                </div>
+                <div class="btns">
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step2">
+                <div class="step-label">Étape 2/8</div>
+                <h2 class="question">Type de logement ?</h2>
+                <div class="options-grid">
+                    <div class="opt" data-value="maison">
+                        <span class="opt-emoji">🏠</span>
+                        <span class="opt-label">Maison</span>
+                    </div>
+                    <div class="opt" data-value="appartement">
+                        <span class="opt-emoji">🏢</span>
+                        <span class="opt-label">Appartement</span>
+                    </div>
+                </div>
+                <div class="btns">
+                    <button class="btn btn-prev">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step3">
+                <div class="step-label">Étape 3/8</div>
+                <h2 class="question">Mode de chauffage ?</h2>
+                <div class="options-grid">
+                    <div class="opt" data-value="électrique"><span class="opt-emoji">⚡</span><span class="opt-label">Électrique</span></div>
+                    <div class="opt" data-value="gaz"><span class="opt-emoji">🔥</span><span class="opt-label">Gaz</span></div>
+                    <div class="opt" data-value="bois"><span class="opt-emoji">🪵</span><span class="opt-label">Bois</span></div>
+                    <div class="opt" data-value="pac"><span class="opt-emoji">♻️</span><span class="opt-label">Pompe chaleur</span></div>
+                    <div class="opt" data-value="fioul"><span class="opt-emoji">🛢️</span><span class="opt-label">Fioul</span></div>
+                    <div class="opt" data-value="autre"><span class="opt-emoji">❓</span><span class="opt-label">Autre</span></div>
+                </div>
+                <div class="btns">
+                    <button class="btn btn-prev">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step4">
+                <div class="step-label">Étape 4/8</div>
+                <h2 class="question">Surface toiture ?</h2>
+                <div class="options-grid single-col">
+                    <div class="opt" data-value="moins_30"><span class="opt-emoji">📐</span><span class="opt-label">Moins de 30 m²</span></div>
+                    <div class="opt" data-value="30_60"><span class="opt-emoji">📏</span><span class="opt-label">30 à 60 m²</span></div>
+                    <div class="opt" data-value="plus_60"><span class="opt-emoji">🏗️</span><span class="opt-label">Plus de 60 m²</span></div>
+                </div>
+                <div class="btns">
+                    <button class="btn btn-prev">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step5">
+                <div class="step-label">Étape 5/8</div>
+                <h2 class="question">Code postal ?</h2>
+                <div class="field-group">
+                    <label class="field-label">Votre code postal</label>
+                    <input type="text" class="field-input" id="codePostal" placeholder="75001" maxlength="5">
+                    <p class="field-hint">5 chiffres</p>
+                    <p class="field-error" id="errCP">Code invalide</p>
+                </div>
+                <div class="btns">
+                    <button class="btn btn-prev">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step6">
+                <div class="step-label">Étape 6/8</div>
+                <h2 class="question">Votre nom ?</h2>
+                <div class="field-group">
+                    <label class="field-label">Nom complet</label>
+                    <input type="text" class="field-input" id="nomComplet" placeholder="Jean Dupont">
+                </div>
+                <div class="btns">
+                    <button class="btn btn-prev">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step7">
+                <div class="step-label">Étape 7/8</div>
+                <h2 class="question">Votre email ?</h2>
+                <div class="field-group">
+                    <label class="field-label">Adresse email</label>
+                    <input type="email" class="field-input" id="email" placeholder="vous@exemple.fr">
+                    <p class="field-error" id="errEmail">Email invalide</p>
+                </div>
+                <div class="btns">
+                    <button class="btn btn-prev">Retour</button>
+                    <button class="btn btn-next" disabled>Continuer</button>
+                </div>
+            </div>
+            <div class="step" id="step8">
+                <div class="step-label">Étape 8/8</div>
+                <h2 class="question">Votre téléphone ?</h2>
+                <div class="field-group">
+                    <label class="field-label">Numéro</label>
+                    <input type="tel" class="field-input" id="telephone" placeholder="06 12 34 56 78" maxlength="14">
+                    <p class="field-error" id="errTel">Numéro invalide</p>
+                </div>
+                <div class="btns">
+                    <button class="btn btn-prev">Retour</button>
+                    <button class="btn btn-next" disabled>Envoyer</button>
+                </div>
+            </div>
+            <div class="step" id="success">
+                <div class="success-view">
+                    <div class="success-badge">✓</div>
+                    <h2 class="success-heading">Parfait !</h2>
+                    <p class="success-text">Votre demande est enregistrée.<br>Un conseiller vous contacte sous 24h.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const data = {};
+        let step = 1;
+        const total = 8;
+        function updatePills() {
+            document.querySelectorAll('.pill').forEach((p, i) => {
+                p.classList.remove('active', 'completed');
+                if (i + 1 < step) p.classList.add('completed');
+                if (i + 1 === step) p.classList.add('active');
+            });
+        }
+        function showStep(s) {
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            (document.getElementById('step' + s) || document.getElementById(s))?.classList.add('active');
+            updatePills();
+        }
+        document.querySelectorAll('.options-grid').forEach(grid => {
+            grid.querySelectorAll('.opt').forEach(o => {
+                o.addEventListener('click', () => {
+                    grid.querySelectorAll('.opt').forEach(x => x.classList.remove('selected'));
+                    o.classList.add('selected');
+                    o.closest('.step').querySelector('.btn-next').disabled = false;
+                });
+            });
+        });
+        document.getElementById('codePostal').addEventListener('input', function() {
+            document.getElementById('step5').querySelector('.btn-next').disabled = !/^\d{5}$/.test(this.value);
+        });
+        document.getElementById('nomComplet').addEventListener('input', function() {
+            document.getElementById('step6').querySelector('.btn-next').disabled = this.value.trim().length < 2;
+        });
+        document.getElementById('email').addEventListener('input', function() {
+            document.getElementById('step7').querySelector('.btn-next').disabled = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+        });
+        document.getElementById('telephone').addEventListener('input', function() {
+            let v = this.value.replace(/\D/g, '').slice(0, 10);
+            this.value = v.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            document.getElementById('step8').querySelector('.btn-next').disabled = !/^0[1-9]\d{8}$/.test(v);
+        });
+        document.querySelectorAll('.btn-next').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const s = btn.closest('.step');
+                const sel = s.querySelector('.opt.selected');
+                const inp = s.querySelector('.field-input');
+                if (sel) data['step' + step] = sel.dataset.value;
+                if (inp) data[inp.id] = inp.value;
+                if (step < total) { step++; showStep(step); }
+                else { console.log(data); showStep('success'); }
+            });
+        });
+        document.querySelectorAll('.btn-prev').forEach(btn => {
+            btn.addEventListener('click', () => { if (step > 1) { step--; showStep(step); } });
+        });
+        updatePills();
+    </script>
+</body>
+</html>
