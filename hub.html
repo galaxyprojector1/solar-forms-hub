@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaires Solaires - Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f0f0f;
+            min-height: 100vh;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffd93d, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header p {
+            color: #888;
+            font-size: 1.1rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #444;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .card-desc {
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: #2a2a2a;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #aaa;
+        }
+        .card-neon { border-left: 3px solid #00ff88; }
+        .card-nature { border-left: 3px solid #5a8f5c; }
+        .card-glass { border-left: 3px solid #a855f7; }
+        .card-minimal { border-left: 3px solid #c9a227; }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #555;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Formulaires Solaires</h1>
+            <p>4 versions de design pour vos campagnes de lead generation</p>
+        </header>
+
+        <div class="grid">
+            <a href="./v1-neon/" class="card card-neon">
+                <div class="card-icon">&#127756;</div>
+                <h2 class="card-title">V1 - Neon Futuriste</h2>
+                <p class="card-desc">Design dark mode cyberpunk avec accents neon vert et cyan. Grille 3D animee et effets glow.</p>
+                <div class="card-tags">
+                    <span class="tag">Dark Mode</span>
+                    <span class="tag">Neon</span>
+                    <span class="tag">Tech</span>
+                </div>
+            </a>
+
+            <a href="./v2-nature/" class="card card-nature">
+                <div class="card-icon">&#127807;</div>
+                <h2 class="card-title">V2 - Nature Organique</h2>
+                <p class="card-desc">Tons terreux et verts naturels. Ambiance eco-responsable avec formes organiques.</p>
+                <div class="card-tags">
+                    <span class="tag">Eco</span>
+                    <span class="tag">Naturel</span>
+                    <span class="tag">Chaleureux</span>
+                </div>
+            </a>
+
+            <a href="./v3-glass/" class="card card-glass">
+                <div class="card-icon">&#128142;</div>
+                <h2 class="card-title">V3 - Glassmorphism</h2>
+                <p class="card-desc">Effet verre depoli sur fond degrade vivant. Blobs animes et design premium.</p>
+                <div class="card-tags">
+                    <span class="tag">Glass</span>
+                    <span class="tag">Degrade</span>
+                    <span class="tag">Premium</span>
+                </div>
+            </a>
+
+            <a href="./v4-minimal/" class="card card-minimal">
+                <div class="card-icon">&#10024;</div>
+                <h2 class="card-title">V4 - Minimaliste</h2>
+                <p class="card-desc">Design scandinave ultra-epure. Beaucoup d'espace blanc, typographie elegante.</p>
+                <div class="card-tags">
+                    <span class="tag">Minimal</span>
+                    <span class="tag">Luxe</span>
+                    <span class="tag">Epure</span>
+                </div>
+            </a>
+        </div>
+
+        <footer class="footer">
+            <p>Cree pour tests A/B - Leads Solaires PV</p>
+        </footer>
+    </div>
+</body>
+</html>

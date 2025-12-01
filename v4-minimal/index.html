@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soleil | Version Minimaliste</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg: #faf9f7; --card: #fff; --text: #1a1a1a; --soft: #6b6b6b; --accent: #c9a227; --border: #e8e6e3; --hover: #f5f4f2; }
+        body { font-family: 'Karla', sans-serif; background: var(--bg); min-height: 100vh; color: var(--text); }
+        .container { max-width: 480px; margin: 0 auto; padding: 60px 24px; min-height: 100vh; }
+        .header { text-align: center; margin-bottom: 50px; }
+        .logo { width: 50px; height: 50px; border: 2px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.2rem; }
+        .brand { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+        .tagline { font-size: 0.85rem; color: var(--soft); letter-spacing: 0.1em; }
+        .progress { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: all 0.3s; }
+        .dot.active { background: var(--accent); transform: scale(1.3); }
+        .dot.done { background: var(--text); }
+        .card { background: var(--card); border: 1px solid var(--border); padding: 45px 40px; }
+        .step { display: none; animation: fadeUp 0.5s ease; }
+        .step.active { display: block; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .step-num { font-size: 0.7rem; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 15px; }
+        .question { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 500; margin-bottom: 35px; line-height: 1.3; }
+        .choices { display: flex; flex-direction: column; gap: 10px; margin-bottom: 35px; }
+        .choice { display: flex; align-items: center; gap: 15px; padding: 18px 20px; border: 1px solid var(--border); cursor: pointer; transition: all 0.25s; }
+        .choice:hover { background: var(--hover); border-color: var(--soft); }
+        .choice.picked { border-color: var(--text); background: var(--hover); }
+        .choice-icon { font-size: 1.3rem; width: 30px; text-align: center; }
+        .choice-text { font-weight: 400; font-size: 0.95rem; }
+        .choice-check { margin-left: auto; width: 20px; height: 20px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+        .choice.picked .choice-check { background: var(--text); border-color: var(--text); color: white; }
+        .input-wrap { margin-bottom: 35px; }
+        .input-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--soft); margin-bottom: 10px; display: block; }
+        .input-box { width: 100%; border: none; border-bottom: 1px solid var(--border); padding: 12px 0; font-family: 'Karla', sans-serif; font-size: 1.1rem; background: transparent; }
+        .input-box:focus { outline: none; border-color: var(--text); }
+        .input-box::placeholder { color: #c0c0c0; }
+        .btns { display: flex; gap: 15px; padding-top: 10px; }
+        .btn { flex: 1; padding: 15px; font-family: 'Karla', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: all 0.25s; }
+        .btn-back { background: transparent; border: 1px solid var(--border); color: var(--soft); }
+        .btn-back:hover { border-color: var(--text); color: var(--text); }
+        .btn-fwd { background: var(--text); border: 1px solid var(--text); color: white; }
+        .btn-fwd:hover:not(:disabled) { background: #333; }
+        .btn-fwd:disabled { opacity: 0.2; cursor: not-allowed; }
+        .done-view { text-align: center; padding: 30px 0; }
+        .done-icon { width: 70px; height: 70px; border: 2px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 1.5rem; color: var(--accent); }
+        .done-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 500; margin-bottom: 12px; }
+        .done-text { color: var(--soft); font-size: 0.95rem; }
+        @media (max-width: 480px) { .card { padding: 35px 25px; } .question { font-size: 1.4rem; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">&#9728;</div>
+            <h1 class="brand">Soleil</h1>
+            <p class="tagline">Energie solaire simplifiee</p>
+        </header>
+        <div class="progress">
+            <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="card">
+            <div class="step active" id="step1">
+                <div class="step-num">Question 1 sur 8</div>
+                <h2 class="question">Etes-vous proprietaire ?</h2>
+                <div class="choices">
+                    <div class="choice" data-value="proprietaire"><span class="choice-icon">&#128273;</span><span class="choice-text">Oui, proprietaire</span><span class="choice-check">&#10003;</span></div>
+                    <div class="choice" data-value="locataire"><span class="choice-icon">&#128203;</span><span class="choice-text">Non, locataire</span><span class="choice-check">&#10003;</span></div>
+                </div>
+                <div class="btns"><button class="btn btn-fwd" disabled>Suivant</button></div>
+            </div>
+            <div class="step" id="step2">
+                <div class="step-num">Question 2 sur 8</div>
+                <h2 class="question">Type de logement ?</h2>
+                <div class="choices">
+                    <div class="choice" data-value="maison"><span class="choice-icon">&#127968;</span><span class="choice-text">Maison</span><span class="choice-check">&#10003;</span></div>
+                    <div class="choice" data-value="appartement"><span class="choice-icon">&#127970;</span><span class="choice-text">Appartement</span><span class="choice-check">&#10003;</span></div>
+                </div>
+                <div class="btns"><button class="btn btn-back">Retour</button><button class="btn btn-fwd" disabled>Suivant</button></div>
+            </div>
+            <div class="step" id="step3">
+                <div class="step-num">Question 3 sur 8</div>
+                <h2 class="question">Mode de chauffage ?</h2>
+                <div class="choices">
+                    <div class="choice" data-value="electrique"><span class="choice-icon">&#9889;</span><span class="choice-text">Electrique</span><span class="choice-check">&#10003;</span></div>
+                    <div class="choice" data-value="gaz"><span class="choice-icon">&#128293;</span><span class="choice-text">Gaz</span><span class="choice-check">&#10003;</span></div>
+                    <div class="choice" data-value="bois"><span class="choice-icon">&#129717;</span><span class="choice-text">Bois</span><span class="choice-check">&#10003;</span></div>
+                    <div class="choice" data-value="pac"><span class="choice-icon">&#9851;</span><span class="choice-text">Pompe a chaleur</span><span class="choice-check">&#10003;</span></div>
+                    <div class="choice" data-value="fioul"><span class="choice-icon">&#128738;</span><span class="choice-text">Fioul</span><span class="choice-check">&#10003;</span></div>
+                    <div class="choice" data-value="autre"><span class="choice-icon">&#10067;</span><span class="choice-text">Autre</span><span class="choice-check">&#10003;</span></div>
+                </div>
+                <div class="btns"><button class="btn btn-back">Retour</button><button class="btn btn-fwd" disabled>Suivant</button></div>
+            </div>
+            <div class="step" id="step4">
+                <div class="step-num">Question 4 sur 8</div>
+                <h2 class="question">Surface de toiture ?</h2>
+                <div class="choices">
+                    <div class="choice" data-value="moins_30"><span class="choice-icon">&#128208;</span><span class="choice-text">Moins de 30 m2</span><span class="choice-check">&#10003;</span></div>
+                    <div class="choice" data-value="30_60"><span class="choice-icon">&#128207;</span><span class="choice-text">30 a 60 m2</span><span class="choice-check">&#10003;</span></div>
+                    <div class="choice" data-value="plus_60"><span class="choice-icon">&#127959;</span><span class="choice-text">Plus de 60 m2</span><span class="choice-check">&#10003;</span></div>
+                </div>
+                <div class="btns"><button class="btn btn-back">Retour</button><button class="btn btn-fwd" disabled>Suivant</button></div>
+            </div>
+            <div class="step" id="step5">
+                <div class="step-num">Question 5 sur 8</div>
+                <h2 class="question">Code postal ?</h2>
+                <div class="input-wrap">
+                    <label class="input-label">Code postal</label>
+                    <input type="text" class="input-box" id="codePostal" placeholder="75001" maxlength="5">
+                </div>
+                <div class="btns"><button class="btn btn-back">Retour</button><button class="btn btn-fwd" disabled>Suivant</button></div>
+            </div>
+            <div class="step" id="step6">
+                <div class="step-num">Question 6 sur 8</div>
+                <h2 class="question">Votre nom ?</h2>
+                <div class="input-wrap">
+                    <label class="input-label">Nom complet</label>
+                    <input type="text" class="input-box" id="nomComplet" placeholder="Jean Dupont">
+                </div>
+                <div class="btns"><button class="btn btn-back">Retour</button><button class="btn btn-fwd" disabled>Suivant</button></div>
+            </div>
+            <div class="step" id="step7">
+                <div class="step-num">Question 7 sur 8</div>
+                <h2 class="question">Votre email ?</h2>
+                <div class="input-wrap">
+                    <label class="input-label">Email</label>
+                    <input type="email" class="input-box" id="email" placeholder="vous@exemple.fr">
+                </div>
+                <div class="btns"><button class="btn btn-back">Retour</button><button class="btn btn-fwd" disabled>Suivant</button></div>
+            </div>
+            <div class="step" id="step8">
+                <div class="step-num">Question 8 sur 8</div>
+                <h2 class="question">Votre telephone ?</h2>
+                <div class="input-wrap">
+                    <label class="input-label">Telephone</label>
+                    <input type="tel" class="input-box" id="telephone" placeholder="06 12 34 56 78" maxlength="14">
+                </div>
+                <div class="btns"><button class="btn btn-back">Retour</button><button class="btn btn-fwd" disabled>Envoyer</button></div>
+            </div>
+            <div class="step" id="success">
+                <div class="done-view">
+                    <div class="done-icon">&#10003;</div>
+                    <h2 class="done-title">Merci</h2>
+                    <p class="done-text">Nous vous recontactons sous 24h.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const data = {};
+        let step = 1;
+        const total = 8;
+        function updateDots() {
+            document.querySelectorAll('.dot').forEach((d, i) => {
+                d.classList.remove('active', 'done');
+                if (i + 1 < step) d.classList.add('done');
+                if (i + 1 === step) d.classList.add('active');
+            });
+        }
+        function show(s) {
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            (document.getElementById('step' + s) || document.getElementById(s))?.classList.add('active');
+            updateDots();
+        }
+        document.querySelectorAll('.choices').forEach(c => {
+            c.querySelectorAll('.choice').forEach(ch => {
+                ch.addEventListener('click', () => {
+                    c.querySelectorAll('.choice').forEach(x => x.classList.remove('picked'));
+                    ch.classList.add('picked');
+                    ch.closest('.step').querySelector('.btn-fwd').disabled = false;
+                });
+            });
+        });
+        document.getElementById('codePostal').addEventListener('input', function() {
+            document.getElementById('step5').querySelector('.btn-fwd').disabled = !/^\d{5}$/.test(this.value);
+        });
+        document.getElementById('nomComplet').addEventListener('input', function() {
+            document.getElementById('step6').querySelector('.btn-fwd').disabled = this.value.trim().length < 2;
+        });
+        document.getElementById('email').addEventListener('input', function() {
+            document.getElementById('step7').querySelector('.btn-fwd').disabled = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+        });
+        document.getElementById('telephone').addEventListener('input', function() {
+            let v = this.value.replace(/\D/g, '').slice(0, 10);
+            this.value = v.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            document.getElementById('step8').querySelector('.btn-fwd').disabled = !/^0[1-9]\d{8}$/.test(v);
+        });
+        document.querySelectorAll('.btn-fwd').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const s = btn.closest('.step');
+                const sel = s.querySelector('.choice.picked');
+                const inp = s.querySelector('.input-box');
+                if (sel) data['step' + step] = sel.dataset.value;
+                if (inp) data[inp.id] = inp.value;
+                if (step < total) { step++; show(step); }
+                else { console.log(data); show('success'); }
+            });
+        });
+        document.querySelectorAll('.btn-back').forEach(btn => {
+            btn.addEventListener('click', () => { if (step > 1) { step--; show(step); } });
+        });
+        updateDots();
+    </script>
+</body>
+</html>
