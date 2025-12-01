@@ -2,55 +2,75 @@
 
 ## FAIT (Session 1er décembre 2025)
 
-- [x] Créer structure dossiers (formulaires/, landing-pages/, versions-completes/)
-- [x] Déplacer v1 à v10 dans `/versions-completes/`
-- [x] Hub mis à jour avec catégories
-- [x] V11 - Clean Conversion
-- [x] V12 - Trust Builder
-- [x] V13 - Urgency
-- [x] V14 - Mobile Ultra
+- [x] Structure dossiers créée
+- [x] V1 à V10 déplacées dans `/versions-completes/`
+- [x] V11 Clean, V12 Trust, V13 Urgency, V14 Mobile créées
+- [x] Hub principal mis à jour
 
 ---
 
 ## PROCHAINES TÂCHES
 
 ### CIBLE : Propriétaires de maison en France
+### OBJECTIF : MAXIMUM DE LEADS / CONVERSION (exagération autorisée !)
 
 ---
 
 ### 1. LANDING PAGES COMPLÈTES (dossier `/landing-pages/`)
 
-Chaque landing page = Hero + Argumentaire + Formulaire intégré + Footer
+Chaque landing page = Page complète ultra-persuasive
 
-- [ ] **lp-panneaux-solaires** - Landing dédiée panneaux solaires PV
-- [ ] **lp-pompe-a-chaleur** - Landing dédiée PAC (pompe à chaleur)
-- [ ] **lp-isolation-exterieure** - Landing dédiée ITE (isolation thermique extérieure)
-- [ ] **lp-multi-travaux** - Landing avec les 3 activités (solaire + PAC + isolation)
-- [ ] **lp-simulateur-aides** - Simulateur d'aides financières (MaPrimeRénov, CEE, etc.)
+**À CRÉER :**
+- [ ] **lp-panneaux-solaires** - Landing complète panneaux solaires PV
+- [ ] **lp-pompe-a-chaleur** - Landing complète PAC
+- [ ] **lp-isolation-exterieure** - Landing complète ITE
+- [ ] **lp-multi-travaux** - Landing avec les 3 activités au choix
+- [ ] **lp-simulateur-aides** - Simulateur MaPrimeRénov / CEE / aides
 
-> Quand on clique sur "Landing Pages" dans le hub, ça affiche la page de présentation avec toutes les landing pages (comme pour les formulaires)
+- [ ] **`/landing-pages/index.html`** - Page de présentation de toutes les landing pages
+
+**UTILISER PERPLEXITY POUR :**
+- Rechercher les meilleurs sites concurrents (Effy, HelloWatt, Sonergia, etc.)
+- S'inspirer de leurs arguments de vente
+- Trouver les chiffres clés (économies, aides, etc.)
+- Copier les meilleures pratiques de conversion
 
 ---
 
-### 2. NOUVEAUX FORMULAIRES (dossier `/formulaires/`)
+### 2. FORMULAIRES (dossier `/formulaires/`)
 
-Formulaires spécialisés par activité :
-
+**À CRÉER :**
 - [ ] **f-panneaux-solaires** - Formulaire spécialisé solaire
 - [ ] **f-pompe-a-chaleur** - Formulaire spécialisé PAC
 - [ ] **f-isolation** - Formulaire spécialisé isolation
-- [ ] **f-multi-travaux** - Formulaire multi-activités (choix du type de travaux)
-- [ ] **f-simulateur-aides** - Simulateur aides financières (revenus, situation, etc.)
+- [ ] **f-multi-travaux** - Formulaire multi-activités
+- [ ] **f-simulateur-aides** - Simulateur aides (revenus, situation)
 
-> Quand on clique sur "Formulaires" dans le hub, ça affiche la page de présentation avec tous les formulaires
+- [ ] **`/formulaires/index.html`** - Page de présentation de tous les formulaires
 
 ---
 
-### 3. METTRE À JOUR LE HUB
+### 3. METTRE À JOUR LE HUB PRINCIPAL
 
-- [ ] Page de présentation pour `/landing-pages/` (comme index.html principal)
-- [ ] Page de présentation pour `/formulaires/`
-- [ ] Les liens du hub principal pointent vers ces pages de présentation
+- [ ] Lien "Landing Pages" → `/landing-pages/index.html`
+- [ ] Lien "Formulaires" → `/formulaires/index.html`
+
+---
+
+## ÉLÉMENTS CLÉS LANDING PAGE (EXAGÉRATION MAX)
+
+```
+✅ Hero CHOC (chiffres impressionnants, urgence)
+✅ Compteur économies animé DÈS LE DÉBUT
+✅ "Jusqu'à 70% d'économies" / "Jusqu'à 90% financé par l'État"
+✅ Aides : MaPrimeRénov, CEE, TVA 5.5%, Éco-PTZ
+✅ Témoignages clients (avec photos, villes)
+✅ Badges : RGE, Garantie 10-25 ans, 15000+ clients
+✅ Urgence : "Offre limitée", "X places restantes"
+✅ FOMO : "32 personnes regardent cette page"
+✅ Formulaire intégré avec progression visible
+✅ Footer confiance (mentions, certifications)
+```
 
 ---
 
@@ -61,7 +81,7 @@ solar-forms-hub/
 ├── index.html                    ← Hub principal
 │
 ├── formulaires/
-│   ├── index.html                ← Page présentation formulaires
+│   ├── index.html                ← PAGE PRÉSENTATION FORMULAIRES
 │   ├── f-panneaux-solaires/
 │   ├── f-pompe-a-chaleur/
 │   ├── f-isolation/
@@ -69,30 +89,32 @@ solar-forms-hub/
 │   └── f-simulateur-aides/
 │
 ├── landing-pages/
-│   ├── index.html                ← Page présentation landing pages
+│   ├── index.html                ← PAGE PRÉSENTATION LANDING PAGES
 │   ├── lp-panneaux-solaires/
 │   ├── lp-pompe-a-chaleur/
 │   ├── lp-isolation-exterieure/
 │   ├── lp-multi-travaux/
 │   └── lp-simulateur-aides/
 │
-└── versions-completes/           ← V1 à V14 (déjà fait)
-    └── ...
+└── versions-completes/           ← V1 à V14 (FAIT)
 ```
 
 ---
 
-## ÉLÉMENTS CLÉS POUR CHAQUE LANDING PAGE
+## RECHERCHE PERPLEXITY À FAIRE
+
+Avant de créer chaque landing page, rechercher :
 
 ```
-✅ Hero accrocheur (titre + sous-titre + CTA)
-✅ Avantages / Bénéfices (économies, écologie, confort)
-✅ Aides financières mentionnées (MaPrimeRénov, CEE, TVA réduite)
-✅ Formulaire intégré
-✅ Témoignages / Avis clients
-✅ Badges confiance (RGE, garanties)
-✅ Footer avec mentions légales
+1. "meilleur site devis panneaux solaires France"
+2. "landing page pompe à chaleur conversion"
+3. "simulateur aides rénovation énergétique"
+4. "arguments vente isolation extérieure"
+5. "chiffres économies PAC France 2024"
+6. "MaPrimeRénov montants 2024 2025"
 ```
+
+S'inspirer de : Effy, HelloWatt, Sonergia, Engie, TotalEnergies, QuelleEnergie
 
 ---
 
@@ -103,8 +125,8 @@ solar-forms-hub/
 ✅ CDN uniquement
 ✅ Mobile first
 ✅ < 200KB
-✅ Fonctionne en iframe
 ✅ Touch-friendly
+✅ EXAGÉRATION pour conversion max
 ✅ Cible : propriétaires maison France
 ```
 
@@ -119,7 +141,7 @@ git commit -m "description"
 git push
 vercel --prod --yes
 
-# VÉRIFIER que c'est visible sur Vercel AVANT de dire "terminé"
+# VÉRIFIER sur Vercel AVANT de dire "terminé" !
 ```
 
 ---
