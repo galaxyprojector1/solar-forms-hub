@@ -3,66 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaires Solaires - Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Solar Forms Hub - Templates Rénovation Énergétique 2025</title>
+    <meta name="description" content="Collection complète de landing pages et formulaires haute conversion pour la rénovation énergétique. Solaire, PAC, isolation, simulateur aides.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #8b5cf6;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f1f5f9;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: #0a0a0f;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--dark);
+            color: white;
             min-height: 100vh;
-            color: #fff;
-            padding: 40px 20px;
+            overflow-x: hidden;
         }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 40%);
+            animation: bgMove 20s ease-in-out infinite;
+        }
+
+        @keyframes bgMove {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, 5%) rotate(5deg); }
+        }
+
         .container {
-            max-width: 1200px;
+            position: relative;
+            z-index: 1;
+            max-width: 1300px;
             margin: 0 auto;
+            padding: 0 20px;
         }
-        .header {
+
+        /* Header */
+        header {
+            padding: 60px 0;
             text-align: center;
-            margin-bottom: 60px;
         }
-        .header h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #6366f1, #ec4899, #06b6d4);
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.3);
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #cbd5e1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .header p {
-            color: #888;
-            font-size: 1.1rem;
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
         }
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #666;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+
+        header h1 .gradient {
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
+        header p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 80px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        /* Sections */
         .section {
-            margin-bottom: 50px;
+            margin-bottom: 100px;
         }
-        .grid {
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .section-title.landing i {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.1));
+            color: #a78bfa;
+        }
+
+        .section-title.forms i {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
+            color: #34d399;
+        }
+
+        .section-title.versions i {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));
+            color: #fbbf24;
+        }
+
+        .view-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .view-all:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
         }
+
         .card {
-            background: #12121a;
-            border: 1px solid #1f1f2e;
-            border-radius: 20px;
-            padding: 30px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
             text-decoration: none;
             color: inherit;
             display: block;
             position: relative;
-            overflow: hidden;
         }
+
         .card::before {
             content: '';
             position: absolute;
@@ -70,382 +249,507 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
         }
-        .card:hover::before {
-            transform: scaleX(1);
-        }
+
+        .card.orange::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .card.blue::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .card.green::before { background: linear-gradient(90deg, #10b981, #34d399); }
+        .card.purple::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+        .card.pink::before { background: linear-gradient(90deg, #ec4899, #f472b6); }
+
         .card:hover {
             transform: translateY(-8px);
-            border-color: #2a2a3e;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
         }
+
+        .card-visual {
+            height: 160px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-emoji {
+            font-size: 4rem;
+            opacity: 0.8;
+        }
+
         .card-badge {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: var(--accent);
-            color: #000;
-            padding: 4px 10px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.7rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
         }
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-alt, var(--accent)));
+
+        .badge-live {
+            background: linear-gradient(135deg, #10b981, #059669);
         }
+
+        .badge-new {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+        }
+
+        .badge-soon {
+            background: rgba(255,255,255,0.1);
+            color: var(--gray);
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
         .card-title {
-            font-size: 1.4rem;
-            font-weight: 600;
+            font-size: 1.25rem;
+            font-weight: 700;
             margin-bottom: 10px;
         }
+
         .card-desc {
-            color: #888;
+            color: var(--gray);
             font-size: 0.9rem;
             line-height: 1.6;
             margin-bottom: 20px;
         }
-        .card-tags {
+
+        .card-meta {
             display: flex;
-            gap: 8px;
+            gap: 15px;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-meta i.green { color: #10b981; }
+        .card-meta i.orange { color: #f59e0b; }
+        .card-meta i.blue { color: #3b82f6; }
+
+        /* Mini Cards */
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .mini-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .mini-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-3px);
+        }
+
+        .mini-card .emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .mini-card .title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .mini-card .desc {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(16, 185, 129, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
             flex-wrap: wrap;
         }
-        .tag {
-            background: #1a1a2e;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: #aaa;
-            border: 1px solid #2a2a3e;
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        /* Original versions */
-        .card-neon { --accent: #00ff88; --accent-alt: #00d4ff; }
-        .card-nature { --accent: #22c55e; --accent-alt: #84cc16; }
-        .card-glass { --accent: #a855f7; --accent-alt: #ec4899; }
-        .card-minimal { --accent: #f59e0b; --accent-alt: #eab308; }
+        .cta-btn.primary {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
+        }
 
-        /* New versions */
-        .card-particles { --accent: #6366f1; --accent-alt: #ec4899; }
-        .card-morphing { --accent: #ff6b6b; --accent-alt: #feca57; }
-        .card-3d { --accent: #00d9ff; --accent-alt: #7c3aed; }
+        .cta-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(139, 92, 246, 0.4);
+        }
 
-        /* Ultra versions */
-        .card-gamification { --accent: #8b5cf6; --accent-alt: #f59e0b; }
-        .card-story { --accent: #14b8a6; --accent-alt: #f97316; }
-        .card-simulation { --accent: #22c55e; --accent-alt: #3b82f6; }
+        .cta-btn.secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
 
-        /* PRO versions */
-        .card-clean { --accent: #2563eb; --accent-alt: #3b82f6; }
-        .card-trust { --accent: #0f766e; --accent-alt: #14b8a6; }
-        .card-urgency { --accent: #dc2626; --accent-alt: #f59e0b; }
-        .card-mobile { --accent: #6366f1; --accent-alt: #8b5cf6; }
+        .cta-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
 
-        .footer {
+        /* Footer */
+        footer {
+            padding: 40px 0;
             text-align: center;
-            margin-top: 60px;
-            color: #444;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer p {
+            color: var(--gray);
             font-size: 0.85rem;
         }
-        .footer a {
-            color: #6366f1;
+
+        footer a {
+            color: #a78bfa;
             text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            .stats-bar {
+                gap: 30px;
+            }
+
+            .stat-value {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .cta-section {
+                padding: 40px 25px;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="bg-animation"></div>
+
     <div class="container">
-        <header class="header">
-            <h1><i class="fas fa-bolt"></i> Formulaires Solaires</h1>
-            <p>Bibliothèque modulaire : Formulaires, Success Screens, Landing Pages</p>
+        <!-- Header -->
+        <header data-aos="fade-down">
+            <div class="logo">
+                <div class="logo-icon">☀️</div>
+                <span class="logo-text">Solar Forms Hub</span>
+            </div>
+            <h1>Templates <span class="gradient">Haute Conversion</span><br>Rénovation Énergétique 2025</h1>
+            <p>Collection complète de landing pages et formulaires optimisés pour la génération de leads. Solaire, PAC, isolation, simulateur d'aides.</p>
+
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Landing Pages</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">14</div>
+                    <div class="stat-label">Versions Formulaires</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">90%</div>
+                    <div class="stat-label">Taux Conversion</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2025</div>
+                    <div class="stat-label">Barèmes Aides</div>
+                </div>
+            </div>
         </header>
 
-        <!-- Navigation rapide -->
-        <nav style="display: flex; gap: 15px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap;">
-            <a href="#versions-completes" style="background: linear-gradient(135deg, #6366f1, #ec4899); padding: 12px 24px; border-radius: 30px; text-decoration: none; color: white; font-weight: 600; transition: transform 0.2s;">
-                <i class="fas fa-box"></i> Versions Complètes
-            </a>
-            <a href="#formulaires" style="background: #22c55e; padding: 12px 24px; border-radius: 30px; text-decoration: none; color: white; font-weight: 600; transition: transform 0.2s;">
-                <i class="fas fa-clipboard-list"></i> Formulaires
-            </a>
-            <a href="#success-screens" style="background: #f59e0b; padding: 12px 24px; border-radius: 30px; text-decoration: none; color: white; font-weight: 600; transition: transform 0.2s;">
-                <i class="fas fa-trophy"></i> Success Screens
-            </a>
-            <a href="#landing-pages" style="background: #06b6d4; padding: 12px 24px; border-radius: 30px; text-decoration: none; color: white; font-weight: 600; transition: transform 0.2s;">
-                <i class="fas fa-rocket"></i> Landing Pages
-            </a>
-        </nav>
+        <!-- Landing Pages Section -->
+        <section class="section" data-aos="fade-up">
+            <div class="section-header">
+                <h2 class="section-title landing">
+                    <i class="fas fa-rocket"></i>
+                    Landing Pages
+                </h2>
+                <a href="landing-pages/" class="view-all">
+                    Voir tout <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
 
-        <!-- ===== VERSIONS COMPLÈTES ===== -->
-        <section class="section" id="versions-completes">
-            <h2 class="section-title"><i class="fas fa-box"></i> Versions Complètes (Formulaire + Success)</h2>
-        </section>
-
-        <section class="section">
-            <h3 style="color: #2563eb; font-size: 1rem; margin-bottom: 20px;"><i class="fas fa-crown"></i> VERSIONS PRO - NOUVELLES</h3>
-            <div class="grid">
-                <a href="./versions-completes/v11-clean/" class="card card-clean">
-                    <span class="card-badge">NEW</span>
-                    <div class="card-icon">
-                        <i class="fas fa-sparkles"></i>
+            <div class="cards-grid">
+                <a href="landing-pages/lp-panneaux-solaires/" class="card orange" data-aos="fade-up" data-aos-delay="0">
+                    <div class="card-visual">
+                        <span class="card-emoji">☀️</span>
+                        <span class="card-badge badge-live">LIVE</span>
                     </div>
-                    <h2 class="card-title">V11 - Clean Conversion</h2>
-                    <p class="card-desc">Ultra épuré, focus maximum sur la conversion. Design Apple-like, zéro distraction.</p>
-                    <div class="card-tags">
-                        <span class="tag">Minimaliste</span>
-                        <span class="tag">Apple-like</span>
-                        <span class="tag">Pro</span>
+                    <div class="card-body">
+                        <h3 class="card-title">Panneaux Solaires</h3>
+                        <p class="card-desc">Landing PV avec compteur économies animé, formulaire multi-étapes et confetti.</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-bolt orange"></i> 1 847€/an</span>
+                            <span><i class="fas fa-percent green"></i> 70% économies</span>
+                        </div>
                     </div>
                 </a>
 
-                <a href="./versions-completes/v12-trust/" class="card card-trust">
-                    <span class="card-badge">NEW</span>
-                    <div class="card-icon">
-                        <i class="fas fa-shield-alt"></i>
+                <a href="landing-pages/lp-pompe-a-chaleur/" class="card blue" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-visual">
+                        <span class="card-emoji">🔥</span>
+                        <span class="card-badge badge-live">LIVE</span>
                     </div>
-                    <h2 class="card-title">V12 - Trust Builder</h2>
-                    <p class="card-desc">Avis clients, badges RGE, garanties 25 ans. Maximum confiance pour les sceptiques.</p>
-                    <div class="card-tags">
-                        <span class="tag">Avis clients</span>
-                        <span class="tag">Badges</span>
-                        <span class="tag">Confiance</span>
-                    </div>
-                </a>
-
-                <a href="./versions-completes/v13-urgency/" class="card card-urgency">
-                    <span class="card-badge">NEW</span>
-                    <div class="card-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h2 class="card-title">V13 - Urgency</h2>
-                    <p class="card-desc">Compteur temps réel, places limitées, bonus exclusif. FOMO maximum pour convertir vite.</p>
-                    <div class="card-tags">
-                        <span class="tag">Timer</span>
-                        <span class="tag">FOMO</span>
-                        <span class="tag">Scarcity</span>
+                    <div class="card-body">
+                        <h3 class="card-title">Pompe à Chaleur</h3>
+                        <p class="card-desc">Landing PAC air/eau avec comparatif chauffages et aides MaPrimeRénov 2025.</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-euro-sign green"></i> 11 000€ aides</span>
+                            <span><i class="fas fa-chart-line blue"></i> COP 5.0</span>
+                        </div>
                     </div>
                 </a>
 
-                <a href="./versions-completes/v14-mobile/" class="card card-mobile">
-                    <span class="card-badge">NEW</span>
-                    <div class="card-icon">
-                        <i class="fas fa-mobile-screen"></i>
+                <a href="landing-pages/lp-isolation-exterieure/" class="card green" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-visual">
+                        <span class="card-emoji">🏠</span>
+                        <span class="card-badge badge-live">LIVE</span>
                     </div>
-                    <h2 class="card-title">V14 - Mobile Ultra</h2>
-                    <p class="card-desc">100% tactile, swipe navigation, gros boutons. Expérience app native sur mobile.</p>
-                    <div class="card-tags">
-                        <span class="tag">Swipe</span>
-                        <span class="tag">Touch</span>
-                        <span class="tag">App-like</span>
+                    <div class="card-body">
+                        <h3 class="card-title">Isolation Extérieure</h3>
+                        <p class="card-desc">Landing ITE avec focus économies chauffage et amélioration DPE.</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-ruler green"></i> 75€/m²</span>
+                            <span><i class="fas fa-arrow-up blue"></i> +2 classes DPE</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="landing-pages/lp-multi-travaux/" class="card purple" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-visual">
+                        <span class="card-emoji">🏗️</span>
+                        <span class="card-badge badge-live">LIVE</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Multi-Travaux</h3>
+                        <p class="card-desc">Landing avec choix projet (solaire/PAC/isolation). Idéal trafic large.</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-layer-group orange"></i> 3 projets</span>
+                            <span><i class="fas fa-coins green"></i> 63 000€</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="landing-pages/lp-simulateur-aides/" class="card pink" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-visual">
+                        <span class="card-emoji">🧮</span>
+                        <span class="card-badge badge-new">NOUVEAU</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Simulateur Aides 2025</h3>
+                        <p class="card-desc">Calculateur MaPrimeRénov + CEE + Éco-PTZ en temps réel selon revenus.</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-calculator orange"></i> 4 catégories</span>
+                            <span><i class="fas fa-clock blue"></i> 2 min</span>
+                        </div>
                     </div>
                 </a>
             </div>
         </section>
 
-        <section class="section">
-            <h3 style="color: #ff6b6b; font-size: 1rem; margin-bottom: 20px;"><i class="fas fa-fire"></i> ULTRA CONVERSION</h3>
-            <div class="grid">
-                <a href="./versions-completes/v8-gamification/" class="card card-gamification">
-                    <span class="card-badge">HOT</span>
-                    <div class="card-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h2 class="card-title">V8 - Gamification</h2>
-                    <p class="card-desc">Points XP, badges, confetti ! Transforme le formulaire en jeu addictif. Impossible de partir sans finir.</p>
-                    <div class="card-tags">
-                        <span class="tag">XP System</span>
-                        <span class="tag">Confetti</span>
-                        <span class="tag">Addictif</span>
-                    </div>
-                </a>
-
-                <a href="./versions-completes/v9-story/" class="card card-story">
-                    <span class="card-badge">HOT</span>
-                    <div class="card-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h2 class="card-title">V9 - Story Mode</h2>
-                    <p class="card-desc">Narratif immersif avec personnage guide. L'utilisateur vit une aventure, pas un formulaire.</p>
-                    <div class="card-tags">
-                        <span class="tag">Narratif</span>
-                        <span class="tag">Émotionnel</span>
-                        <span class="tag">Chapitres</span>
-                    </div>
-                </a>
-
-                <a href="./versions-completes/v10-simulation/" class="card card-simulation">
-                    <span class="card-badge">HOT</span>
-                    <div class="card-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <h2 class="card-title">V10 - Simulation Live</h2>
-                    <p class="card-desc">Calcul des économies en temps réel ! Compteurs animés, ROI instantané, impact CO2.</p>
-                    <div class="card-tags">
-                        <span class="tag">Live Data</span>
-                        <span class="tag">€€€</span>
-                        <span class="tag">Persuasif</span>
-                    </div>
-                </a>
+        <!-- Formulaires Section -->
+        <section class="section" data-aos="fade-up">
+            <div class="section-header">
+                <h2 class="section-title forms">
+                    <i class="fas fa-file-alt"></i>
+                    Formulaires
+                </h2>
+                <span class="view-all" style="opacity: 0.5; cursor: default;">
+                    Bientôt disponible
+                </span>
             </div>
-        </section>
 
-        <section class="section">
-            <h3 style="color: #a855f7; font-size: 1rem; margin-bottom: 20px;"><i class="fas fa-star"></i> ANIMATIONS AVANCÉES</h3>
-            <div class="grid">
-                <a href="./versions-completes/v5-particles/" class="card card-particles">
-                    <div class="card-icon">
-                        <i class="fas fa-sparkles"></i>
+            <div class="cards-grid">
+                <div class="card orange" style="opacity: 0.5;">
+                    <div class="card-visual">
+                        <span class="card-emoji">☀️</span>
+                        <span class="card-badge badge-soon">SOON</span>
                     </div>
-                    <h2 class="card-title">V5 - Particles</h2>
-                    <p class="card-desc">Particules interactives flottantes avec tsParticles + GSAP. Effet immersif et moderne.</p>
-                    <div class="card-tags">
-                        <span class="tag">tsParticles</span>
-                        <span class="tag">GSAP</span>
-                        <span class="tag">Interactif</span>
+                    <div class="card-body">
+                        <h3 class="card-title">Formulaire Solaire</h3>
+                        <p class="card-desc">Formulaire spécialisé panneaux photovoltaïques avec calcul économies.</p>
                     </div>
-                </a>
+                </div>
 
-                <a href="./versions-completes/v6-morphing/" class="card card-morphing">
-                    <div class="card-icon">
-                        <i class="fas fa-shapes"></i>
+                <div class="card blue" style="opacity: 0.5;">
+                    <div class="card-visual">
+                        <span class="card-emoji">🔥</span>
+                        <span class="card-badge badge-soon">SOON</span>
                     </div>
-                    <h2 class="card-title">V6 - Morphing</h2>
-                    <p class="card-desc">Blobs fluides qui se transforment avec Anime.js. Couleurs vives et transitions douces.</p>
-                    <div class="card-tags">
-                        <span class="tag">Anime.js</span>
-                        <span class="tag">Blobs</span>
-                        <span class="tag">Coloré</span>
+                    <div class="card-body">
+                        <h3 class="card-title">Formulaire PAC</h3>
+                        <p class="card-desc">Formulaire spécialisé pompe à chaleur air/eau et géothermique.</p>
                     </div>
-                </a>
+                </div>
 
-                <a href="./versions-completes/v7-3d/" class="card card-3d">
-                    <div class="card-icon">
-                        <i class="fas fa-cube"></i>
+                <div class="card green" style="opacity: 0.5;">
+                    <div class="card-visual">
+                        <span class="card-emoji">🏠</span>
+                        <span class="card-badge badge-soon">SOON</span>
                     </div>
-                    <h2 class="card-title">V7 - 3D Experience</h2>
-                    <p class="card-desc">Environnement 3D immersif avec Three.js. Formes géométriques flottantes et particules.</p>
-                    <div class="card-tags">
-                        <span class="tag">Three.js</span>
-                        <span class="tag">3D</span>
-                        <span class="tag">WebGL</span>
+                    <div class="card-body">
+                        <h3 class="card-title">Formulaire Isolation</h3>
+                        <p class="card-desc">Formulaire spécialisé isolation murs, combles et toiture.</p>
                     </div>
-                </a>
-            </div>
-        </section>
-
-        <section class="section">
-            <h3 style="color: #22c55e; font-size: 1rem; margin-bottom: 20px;"><i class="fas fa-palette"></i> CLASSIQUES</h3>
-            <div class="grid">
-                <a href="./versions-completes/v1-neon/" class="card card-neon">
-                    <div class="card-icon">
-                        <i class="fas fa-bolt-lightning"></i>
-                    </div>
-                    <h2 class="card-title">V1 - Néon Futuriste</h2>
-                    <p class="card-desc">Design dark mode cyberpunk avec accents néon vert et cyan. Grille 3D animée et effets glow.</p>
-                    <div class="card-tags">
-                        <span class="tag">Dark Mode</span>
-                        <span class="tag">Néon</span>
-                        <span class="tag">Tech</span>
-                    </div>
-                </a>
-
-                <a href="./versions-completes/v2-nature/" class="card card-nature">
-                    <div class="card-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h2 class="card-title">V2 - Nature Organique</h2>
-                    <p class="card-desc">Tons terreux et verts naturels. Ambiance éco-responsable avec formes organiques.</p>
-                    <div class="card-tags">
-                        <span class="tag">Éco</span>
-                        <span class="tag">Naturel</span>
-                        <span class="tag">Chaleureux</span>
-                    </div>
-                </a>
-
-                <a href="./versions-completes/v3-glass/" class="card card-glass">
-                    <div class="card-icon">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <h2 class="card-title">V3 - Glassmorphism</h2>
-                    <p class="card-desc">Effet verre dépoli sur fond dégradé vivant. Blobs animés et design premium.</p>
-                    <div class="card-tags">
-                        <span class="tag">Glass</span>
-                        <span class="tag">Dégradé</span>
-                        <span class="tag">Premium</span>
-                    </div>
-                </a>
-
-                <a href="./versions-completes/v4-minimal/" class="card card-minimal">
-                    <div class="card-icon">
-                        <i class="fas fa-feather"></i>
-                    </div>
-                    <h2 class="card-title">V4 - Minimaliste</h2>
-                    <p class="card-desc">Design scandinave ultra-épuré. Beaucoup d'espace blanc, typographie élégante.</p>
-                    <div class="card-tags">
-                        <span class="tag">Minimal</span>
-                        <span class="tag">Luxe</span>
-                        <span class="tag">Épuré</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- ===== FORMULAIRES SEULS ===== -->
-        <section class="section" id="formulaires">
-            <h2 class="section-title" style="color: #22c55e;"><i class="fas fa-clipboard-list"></i> Formulaires Seuls (Modules)</h2>
-            <div class="grid">
-                <div class="card" style="border: 2px dashed #333; opacity: 0.6; cursor: default;">
-                    <div class="card-icon" style="background: #333;">
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <h2 class="card-title">À venir...</h2>
-                    <p class="card-desc">Formulaires extraits sans écran final, prêts à être connectés à n'importe quel Success Screen.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ===== SUCCESS SCREENS ===== -->
-        <section class="section" id="success-screens">
-            <h2 class="section-title" style="color: #f59e0b;"><i class="fas fa-trophy"></i> Success Screens (Modules)</h2>
-            <div class="grid">
-                <div class="card" style="border: 2px dashed #333; opacity: 0.6; cursor: default;">
-                    <div class="card-icon" style="background: #333;">
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <h2 class="card-title">À venir...</h2>
-                    <p class="card-desc">Écrans de fin spectaculaires : confetti, simulation économies, gamification, etc.</p>
-                </div>
+        <!-- Versions Completes Section -->
+        <section class="section" data-aos="fade-up">
+            <div class="section-header">
+                <h2 class="section-title versions">
+                    <i class="fas fa-palette"></i>
+                    Versions Formulaires (V1-V14)
+                </h2>
+                <a href="versions-completes/" class="view-all">
+                    Voir les 14 versions <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="mini-grid">
+                <a href="versions-completes/v1-neon/" class="mini-card">
+                    <div class="emoji">🌌</div>
+                    <div class="title">V1 Neon</div>
+                    <div class="desc">Cyberpunk</div>
+                </a>
+                <a href="versions-completes/v2-nature/" class="mini-card">
+                    <div class="emoji">🌿</div>
+                    <div class="title">V2 Nature</div>
+                    <div class="desc">Organique</div>
+                </a>
+                <a href="versions-completes/v3-glass/" class="mini-card">
+                    <div class="emoji">💎</div>
+                    <div class="title">V3 Glass</div>
+                    <div class="desc">Premium</div>
+                </a>
+                <a href="versions-completes/v4-minimal/" class="mini-card">
+                    <div class="emoji">✨</div>
+                    <div class="title">V4 Minimal</div>
+                    <div class="desc">Épuré</div>
+                </a>
+                <a href="versions-completes/v5-dark/" class="mini-card">
+                    <div class="emoji">🌙</div>
+                    <div class="title">V5 Dark</div>
+                    <div class="desc">Sombre</div>
+                </a>
+                <a href="versions-completes/v6-sunset/" class="mini-card">
+                    <div class="emoji">🌅</div>
+                    <div class="title">V6 Sunset</div>
+                    <div class="desc">Chaleureux</div>
+                </a>
+                <a href="versions-completes/v11-clean/" class="mini-card">
+                    <div class="emoji">🧼</div>
+                    <div class="title">V11 Clean</div>
+                    <div class="desc">Moderne</div>
+                </a>
+                <a href="versions-completes/v12-trust/" class="mini-card">
+                    <div class="emoji">🛡️</div>
+                    <div class="title">V12 Trust</div>
+                    <div class="desc">Confiance</div>
+                </a>
+                <a href="versions-completes/v13-urgency/" class="mini-card">
+                    <div class="emoji">⚡</div>
+                    <div class="title">V13 Urgency</div>
+                    <div class="desc">FOMO</div>
+                </a>
+                <a href="versions-completes/v14-mobile/" class="mini-card">
+                    <div class="emoji">📱</div>
+                    <div class="title">V14 Mobile</div>
+                    <div class="desc">Touch</div>
+                </a>
             </div>
         </section>
 
-        <!-- ===== LANDING PAGES ===== -->
-        <section class="section" id="landing-pages">
-            <h2 class="section-title" style="color: #06b6d4;"><i class="fas fa-rocket"></i> Landing Pages Complètes</h2>
-            <div class="grid">
-                <div class="card" style="border: 2px dashed #333; opacity: 0.6; cursor: default;">
-                    <div class="card-icon" style="background: #333;">
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <h2 class="card-title">À venir...</h2>
-                    <p class="card-desc">Pages complètes : Hero + Formulaire intégré + Footer. Prêtes à déployer.</p>
-                </div>
+        <!-- CTA Section -->
+        <section class="cta-section" data-aos="zoom-in">
+            <h2>Prêt à générer des leads ?</h2>
+            <p>Utilisez nos templates optimisés pour maximiser vos conversions en rénovation énergétique.</p>
+            <div class="cta-buttons">
+                <a href="landing-pages/lp-simulateur-aides/" class="cta-btn primary">
+                    <i class="fas fa-calculator"></i> Simulateur Aides
+                </a>
+                <a href="landing-pages/" class="cta-btn secondary">
+                    <i class="fas fa-rocket"></i> Toutes les Landing Pages
+                </a>
             </div>
         </section>
 
-        <footer class="footer">
-            <p>Créé pour tests A/B • Leads Solaires PV • <a href="https://github.com/galaxyprojector1/solar-forms-hub" target="_blank"><i class="fab fa-github"></i> GitHub</a></p>
+        <!-- Footer -->
+        <footer>
+            <p>Solar Forms Hub - Templates Rénovation Énergétique 2025</p>
+            <p style="margin-top: 10px;">
+                <a href="https://github.com/galaxyprojector1/solar-forms-hub" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </p>
         </footer>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
+        });
+    </script>
 </body>
 </html>
