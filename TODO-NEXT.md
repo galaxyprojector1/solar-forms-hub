@@ -57,6 +57,31 @@ Chaque landing page = Page complète ultra-persuasive
 
 ---
 
+## BIBLIOTHÈQUES CDN À UTILISER
+
+Rechercher et utiliser les meilleures bibliothèques pour :
+
+```
+✅ GSAP - Animations fluides
+✅ Anime.js - Animations légères
+✅ CountUp.js - Compteurs animés
+✅ Canvas Confetti - Explosions confetti
+✅ tsParticles - Particules de fond
+✅ Three.js - Effets 3D (si besoin)
+✅ Lottie - Animations vectorielles
+✅ SweetAlert2 - Popups stylés
+✅ Swiper - Carrousels touch
+✅ AOS - Animations au scroll
+```
+
+**CHERCHER SUR PERPLEXITY** les nouvelles bibliothèques tendance pour :
+- Animations de formulaires
+- Effets visuels conversion
+- Progress bars créatives
+- Micro-interactions
+
+---
+
 ## ÉLÉMENTS CLÉS LANDING PAGE (EXAGÉRATION MAX)
 
 ```
@@ -112,6 +137,8 @@ Avant de créer chaque landing page, rechercher :
 4. "arguments vente isolation extérieure"
 5. "chiffres économies PAC France 2024"
 6. "MaPrimeRénov montants 2024 2025"
+7. "meilleures bibliothèques JS animation formulaire"
+8. "bibliothèques JavaScript landing page conversion"
 ```
 
 S'inspirer de : Effy, HelloWatt, Sonergia, Engie, TotalEnergies, QuelleEnergie
@@ -122,9 +149,9 @@ S'inspirer de : Effy, HelloWatt, Sonergia, Engie, TotalEnergies, QuelleEnergie
 
 ```
 ✅ Fichier unique HTML
-✅ CDN uniquement
+✅ CDN uniquement (pas de fichiers locaux)
 ✅ Mobile first
-✅ < 200KB
+✅ < 200KB par fichier
 ✅ Touch-friendly
 ✅ EXAGÉRATION pour conversion max
 ✅ Cible : propriétaires maison France
@@ -142,6 +169,22 @@ git push
 vercel --prod --yes
 
 # VÉRIFIER sur Vercel AVANT de dire "terminé" !
+```
+
+---
+
+## PROMPT POUR LE PROCHAIN AGENT
+
+```
+Lis le fichier TODO-NEXT.md dans le projet solar-forms-hub et continue les tâches.
+
+IMPORTANT :
+- Utilise Perplexity pour rechercher les concurrents et les meilleures pratiques
+- Cherche les bibliothèques JS/CSS qui vont améliorer les animations et conversions
+- EXAGÈRE les chiffres et l'urgence pour maximiser les leads
+- Cible = propriétaires de maison en France
+- Après chaque création : git add, commit, push ET vérifier sur Vercel
+- Ne dis JAMAIS "c'est terminé" sans avoir vérifié que c'est visible en ligne
 ```
 
 ---
