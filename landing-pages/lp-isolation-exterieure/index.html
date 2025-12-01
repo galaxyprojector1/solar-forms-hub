@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isolation Extérieure 2025 - Jusqu'à 75€/m² d'Aides | Devis Gratuit ITE</title>
+    <meta name="description" content="Isolation thermique par l'extérieur : économisez jusqu'à 30% sur vos factures. MaPrimeRénov 2025 jusqu'à 75€/m². Devis gratuit sans engagement.">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animations -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #16a34a;
+            --primary-dark: #15803d;
+            --secondary: #84cc16;
+            --accent: #eab308;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f0fdf4;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Urgency bar */
+        .urgency-bar {
+            background: linear-gradient(90deg, #dc2626, #ef4444);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .urgency-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            to { left: 100%; }
+        }
+
+        .urgency-bar i { margin-right: 8px; }
+
+        /* Live counter */
+        .live-counter {
+            background: var(--dark);
+            color: white;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #14532d 0%, #0f172a 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(22, 163, 74, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content { color: white; }
+
+        .badge-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .badge-hot {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border: none;
+        }
+
+        .badge-eco {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            border: none;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Savings box */
+        .savings-hero {
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.2), rgba(132, 204, 22, 0.2));
+            border: 2px solid rgba(22, 163, 74, 0.4);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .savings-item {
+            text-align: center;
+        }
+
+        .savings-item-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .savings-item-value {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #4ade80;
+        }
+
+        .savings-item-value.gold { color: #fbbf24; }
+
+        /* Trust badges */
+        .trust-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .trust-item i { color: #4ade80; }
+
+        /* Form card */
+        .hero-form-card {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-header-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            padding: 8px 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 0 24px 0 16px;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            color: var(--gray);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        /* Progress */
+        .progress-container { margin-bottom: 25px; }
+
+        .progress-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #84cc16);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Form steps */
+        .form-step { display: none; }
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-question {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .options-grid { display: grid; gap: 12px; }
+
+        .option-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 20px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary);
+            background: #f0fdf4;
+        }
+
+        .option-btn.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #dcfce7, #d9f99d);
+        }
+
+        .option-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .option-btn.selected .option-icon {
+            background: var(--primary);
+            color: white;
+        }
+
+        .option-text strong {
+            display: block;
+            font-size: 1rem;
+            color: var(--dark);
+        }
+
+        .option-text small {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* Inputs */
+        .input-group { margin-bottom: 18px; }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Buttons */
+        .btn-next {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary), #15803d);
+            border: none;
+            border-radius: 14px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(22, 163, 74, 0.4);
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(22, 163, 74, 0.5);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            padding: 10px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .form-footer i { color: var(--primary); }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 80px 20px;
+            background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+        }
+
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #dcfce7, #d9f99d);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 20px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .benefit-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .benefit-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-top: 15px;
+        }
+
+        /* Aides Section */
+        .aides-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .aides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .aide-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .aide-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), #84cc16);
+        }
+
+        .aide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .aide-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .aide-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .aide-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .aide-conditions {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.85rem;
+            list-style: none;
+        }
+
+        .aide-conditions li {
+            margin-bottom: 5px;
+            color: var(--gray);
+        }
+
+        .aide-conditions li i {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 80px 20px;
+            background: var(--dark);
+            color: white;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .process-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), #84cc16);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin: 0 auto 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .process-step p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* Stats */
+        .stats-section {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #14532d, #0f172a);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item { text-align: center; }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #4ade80;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 80px 20px;
+            background: #f0fdf4;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), #84cc16);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .testimonial-info h4 {
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--dark);
+        }
+
+        .testimonial-info span {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .testimonial-stars {
+            color: #fbbf24;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--dark);
+        }
+
+        .testimonial-result {
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f0fdf4, #ecfccb);
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .testimonial-result span {
+            font-size: 0.9rem;
+            color: #166534;
+        }
+
+        .testimonial-result strong {
+            font-size: 1.3rem;
+            color: #15803d;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #dcfce7 0%, #d9f99d 100%);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 22px 50px;
+            background: linear-gradient(135deg, var(--primary), #15803d);
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 60px;
+            text-decoration: none;
+            box-shadow: 0 10px 40px rgba(22, 163, 74, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(22, 163, 74, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .footer-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .footer-badge i {
+            font-size: 1.5rem;
+            color: #4ade80;
+        }
+
+        .footer-legal {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Success Modal */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .success-modal.show { display: flex; }
+
+        .success-content {
+            background: white;
+            border-radius: 24px;
+            padding: 50px;
+            text-align: center;
+            max-width: 500px;
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin: 0 auto 25px;
+        }
+
+        .success-content h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .success-content p {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+
+        .success-savings-box {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+            border-radius: 16px;
+            padding: 25px;
+        }
+
+        .success-savings-box span {
+            display: block;
+            font-size: 0.9rem;
+            color: #166534;
+            margin-bottom: 5px;
+        }
+
+        .success-savings-box strong {
+            font-size: 2.5rem;
+            color: #15803d;
+            font-weight: 900;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding-top: 40px;
+            }
+
+            .hero h1 { font-size: 2.2rem; }
+
+            .savings-hero { grid-template-columns: 1fr; }
+
+            .process-grid,
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-step::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .section-title { font-size: 1.8rem; }
+            .cta-section h2 { font-size: 1.8rem; }
+            .savings-item-value { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Urgency Bar -->
+    <div class="urgency-bar">
+        <i class="fas fa-fire-alt"></i>
+        <span>FIN D'ANNÉE 2025 : Isolation à <strong>1€ du reste à charge</strong> pour les ménages modestes - Plus que <strong id="spotsLeft">8</strong> créneaux !</span>
+    </div>
+
+    <!-- Live Counter -->
+    <div class="live-counter">
+        <div class="live-dot"></div>
+        <span><strong id="viewersCount">42</strong> personnes consultent cette offre</span>
+        <span>|</span>
+        <span><strong id="todayLeads">127</strong> demandes aujourd'hui</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-right">
+                <div class="badge-container">
+                    <span class="badge badge-hot"><i class="fas fa-fire"></i> Offre Limitée</span>
+                    <span class="badge badge-eco"><i class="fas fa-leaf"></i> RGE Qualibat</span>
+                    <span class="badge"><i class="fas fa-award"></i> Garantie 10 ans</span>
+                </div>
+
+                <h1>Isolation Extérieure : <span class="highlight">-30% sur vos factures</span></h1>
+
+                <p class="hero-subtitle">
+                    Votre maison perd <strong>jusqu'à 25% de chaleur</strong> par les murs.<br>
+                    L'ITE vous fait économiser <strong>jusqu'à 600€/an</strong> tout en embellissant votre façade.
+                </p>
+
+                <!-- Savings boxes -->
+                <div class="savings-hero">
+                    <div class="savings-item">
+                        <div class="savings-item-label">Aides disponibles</div>
+                        <div class="savings-item-value" id="heroAides">0€</div>
+                    </div>
+                    <div class="savings-item">
+                        <div class="savings-item-label">Économies annuelles</div>
+                        <div class="savings-item-value gold" id="heroEconomies">0€</div>
+                    </div>
+                </div>
+
+                <div class="trust-row">
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>8 500+ façades isolées</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Garantie décennale</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Financement 0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Card -->
+            <div class="hero-form-card" data-aos="fade-left">
+                <div class="form-header-badge">
+                    <i class="fas fa-bolt"></i> Réponse en 2min
+                </div>
+
+                <h2 class="form-title">Calculez vos aides ITE</h2>
+                <p class="form-subtitle">Simulation gratuite et sans engagement</p>
+
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="stepIndicator">Étape 1/5</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                </div>
+
+                <form id="iteForm">
+                    <!-- Step 1 -->
+                    <div class="form-step active" data-step="1">
+                        <div class="step-question">Êtes-vous propriétaire ?</div>
+                        <div class="options-grid">
+                            <div class="option-btn" data-value="proprietaire" data-savings="600" data-aides="5000">
+                                <div class="option-icon"><i class="fas fa-home"></i></div>
+                                <div class="option-text">
+                                    <strong>Oui, propriétaire</strong>
+                                    <small>Résidence principale ou secondaire</small>
+                                </div>
+                            </div>
+                            <div class="option-btn" data-value="locataire" data-savings="0" data-aides="0">
+                                <div class="option-icon"><i class="fas fa-key"></i></div>
+                                <div class="option-text">
+                                    <strong>Non, locataire</strong>
+                                    <small>Contactez votre propriétaire</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="form-step" data-step="2">
+                        <button type="button" class="btn-back" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Retour</button>
+                        <div class="step-question">Quel est le type de votre logement ?</div>
+                        <div class="options-grid">
+                            <div class="option-btn" data-value="maison" data-savings="200" data-aides="3000">
+                                <div class="option-icon"><i class="fas fa-house-chimney"></i></div>
+                                <div class="option-text">
+                                    <strong>Maison individuelle</strong>
+                                    <small>4 façades à isoler</small>
+                                </div>
+                            </div>
+                            <div class="option-btn" data-value="mitoyenne" data-savings="150" data-aides="2000">
+                                <div class="option-icon"><i class="fas fa-home"></i></div>
+                                <div class="option-text">
+                                    <strong>Maison mitoyenne</strong>
+                                    <small>2-3 façades à isoler</small>
+                                </div>
+                            </div>
+                            <div class="option-btn" data-value="appartement" data-savings="100" data-aides="1000">
+                                <div class="option-icon"><i class="fas fa-building"></i></div>
+                                <div class="option-text">
+                                    <strong>Appartement</strong>
+                                    <small>Copropriété</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="form-step" data-step="3">
+                        <button type="button" class="btn-back" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Retour</button>
+                        <div class="step-question">Surface des murs à isoler ?</div>
+                        <div class="options-grid">
+                            <div class="option-btn" data-value="moins100" data-savings="100" data-aides="2000">
+                                <div class="option-icon"><i class="fas fa-ruler-combined"></i></div>
+                                <div class="option-text">
+                                    <strong>Moins de 100 m²</strong>
+                                    <small>Petite maison / Appartement</small>
+                                </div>
+                            </div>
+                            <div class="option-btn" data-value="100-150" data-savings="200" data-aides="4000">
+                                <div class="option-icon"><i class="fas fa-expand"></i></div>
+                                <div class="option-text">
+                                    <strong>100 à 150 m²</strong>
+                                    <small>Maison standard</small>
+                                </div>
+                            </div>
+                            <div class="option-btn" data-value="plus150" data-savings="350" data-aides="6000">
+                                <div class="option-icon"><i class="fas fa-maximize"></i></div>
+                                <div class="option-text">
+                                    <strong>Plus de 150 m²</strong>
+                                    <small>Grande maison</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="form-step" data-step="4">
+                        <button type="button" class="btn-back" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Retour</button>
+                        <div class="step-question">Quel est votre code postal ?</div>
+                        <div class="input-group">
+                            <label>Code postal</label>
+                            <input type="text" id="codePostal" placeholder="Ex: 75001" maxlength="5" inputmode="numeric">
+                        </div>
+                        <button type="button" class="btn-next" id="btnStep4" disabled onclick="nextStep()">
+                            Continuer <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="form-step" data-step="5">
+                        <button type="button" class="btn-back" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Retour</button>
+                        <div class="step-question">Vos coordonnées pour le devis</div>
+                        <div class="input-group">
+                            <label>Prénom et nom</label>
+                            <input type="text" id="fullName" placeholder="Jean Dupont">
+                        </div>
+                        <div class="input-group">
+                            <label>Téléphone</label>
+                            <input type="tel" id="phone" placeholder="06 12 34 56 78" maxlength="14">
+                        </div>
+                        <div class="input-group">
+                            <label>Email</label>
+                            <input type="email" id="email" placeholder="jean@exemple.fr">
+                        </div>
+                        <button type="button" class="btn-next" id="btnSubmit" disabled onclick="submitForm()">
+                            <i class="fas fa-paper-plane"></i> Recevoir mon devis gratuit
+                        </button>
+                    </div>
+                </form>
+
+                <div class="form-footer">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Données sécurisées - Sans engagement</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section" id="avantages">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Pourquoi isoler par l'extérieur ?</h2>
+            <p class="section-subtitle" data-aos="fade-up">L'ITE est LA solution pour rénover votre maison efficacement</p>
+
+            <div class="benefits-grid">
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="benefit-icon">🔥</div>
+                    <h3>Confort thermique</h3>
+                    <p>Fini les murs froids en hiver et la chaleur étouffante en été</p>
+                    <div class="benefit-value">+4°C l'hiver</div>
+                </div>
+
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Économies d'énergie</h3>
+                    <p>Réduisez drastiquement vos factures de chauffage</p>
+                    <div class="benefit-value">-30%</div>
+                </div>
+
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="benefit-icon">🏠</div>
+                    <h3>Plus-value immobilière</h3>
+                    <p>Votre maison gagne en valeur et passe en DPE C ou B</p>
+                    <div class="benefit-value">+15%</div>
+                </div>
+
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="benefit-icon">🎨</div>
+                    <h3>Façade rénovée</h3>
+                    <p>Choix de finitions et couleurs pour un nouveau look</p>
+                    <div class="benefit-value">100+ coloris</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aides Section -->
+    <section class="aides-section" id="aides">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Les aides pour votre ITE en 2025</h2>
+            <p class="section-subtitle" data-aos="fade-up">Cumulables pour réduire votre investissement jusqu'à 90%</p>
+
+            <div class="aides-grid">
+                <div class="aide-card" data-aos="fade-up" data-aos-delay="0">
+                    <h3>MaPrimeRénov' ITE</h3>
+                    <div class="aide-amount">75€/m²</div>
+                    <p>Prime de l'État selon vos revenus</p>
+                    <ul class="aide-conditions">
+                        <li><i class="fas fa-check"></i> Ménages très modestes (bleu)</li>
+                        <li><i class="fas fa-check"></i> Logement de + de 15 ans</li>
+                        <li><i class="fas fa-check"></i> Installateur RGE obligatoire</li>
+                    </ul>
+                </div>
+
+                <div class="aide-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Prime CEE</h3>
+                    <div class="aide-amount">12€/m²</div>
+                    <p>Certificats d'économies d'énergie</p>
+                    <ul class="aide-conditions">
+                        <li><i class="fas fa-check"></i> Tous revenus éligibles</li>
+                        <li><i class="fas fa-check"></i> Cumulable MaPrimeRénov</li>
+                        <li><i class="fas fa-check"></i> Déduit directement du devis</li>
+                    </ul>
+                </div>
+
+                <div class="aide-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>TVA Réduite + Éco-PTZ</h3>
+                    <div class="aide-amount">5,5%</div>
+                    <p>TVA réduite + prêt à taux zéro</p>
+                    <ul class="aide-conditions">
+                        <li><i class="fas fa-check"></i> TVA 5,5% au lieu de 20%</li>
+                        <li><i class="fas fa-check"></i> Éco-PTZ jusqu'à 50 000€</li>
+                        <li><i class="fas fa-check"></i> Sans conditions de revenus</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="section-container">
+            <h2 class="section-title" style="color: white;" data-aos="fade-up">Comment ça marche ?</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.7);" data-aos="fade-up">Un processus simple et accompagné de A à Z</p>
+
+            <div class="process-grid">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="0">
+                    <div class="process-number">1</div>
+                    <h4>Demande de devis</h4>
+                    <p>Remplissez le formulaire en 30 secondes</p>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-number">2</div>
+                    <h4>Visite technique</h4>
+                    <p>Un expert analyse votre façade</p>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-number">3</div>
+                    <h4>Dossier aides</h4>
+                    <p>Nous gérons vos demandes d'aides</p>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="process-number">4</div>
+                    <h4>Installation</h4>
+                    <p>Chantier propre en 2-3 semaines</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item" data-aos="fade-up">
+                <div class="stat-number" id="statClients">0</div>
+                <div class="stat-label">Façades isolées</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-number" id="statEconomies">0€</div>
+                <div class="stat-label">Économies moyennes/an</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-number" id="statNote">0</div>
+                <div class="stat-label">Note clients</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-number" id="statGarantie">0</div>
+                <div class="stat-label">Ans de garantie</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="section-container">
+            <h2 class="section-title" data-aos="fade-up">Ils ont isolé leur maison</h2>
+            <p class="section-subtitle" data-aos="fade-up">Découvrez leurs témoignages</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">JL</div>
+                        <div class="testimonial-info">
+                            <h4>Jean-Luc M.</h4>
+                            <span>Lyon (69)</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Notre maison des années 70 était une passoire énergétique. Après l'ITE,
+                        on a gagné 3 lettres sur le DPE et divisé nos factures par 2 !"
+                    </p>
+                    <div class="testimonial-result">
+                        <span>Économies réalisées</span>
+                        <strong>780€/an</strong>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">NB</div>
+                        <div class="testimonial-info">
+                            <h4>Nathalie B.</h4>
+                            <span>Bordeaux (33)</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "En plus des économies, ma maison a pris un sacré coup de jeune !
+                        Les voisins me demandent tous le contact de l'entreprise."
+                    </p>
+                    <div class="testimonial-result">
+                        <span>Économies réalisées</span>
+                        <strong>620€/an</strong>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">PD</div>
+                        <div class="testimonial-info">
+                            <h4>Pierre D.</h4>
+                            <span>Lille (59)</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Avec les aides, j'ai payé seulement 3 800€ pour 120m² de façade.
+                        L'investissement est rentabilisé en 5 ans !"
+                    </p>
+                    <div class="testimonial-result">
+                        <span>Économies réalisées</span>
+                        <strong>540€/an</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="section-container" data-aos="zoom-in">
+            <h2>Prêt à isoler votre maison ?</h2>
+            <p>Obtenez votre estimation personnalisée en 30 secondes</p>
+            <a href="#" class="cta-btn" onclick="scrollToForm(); return false;">
+                <i class="fas fa-calculator"></i>
+                Calculer mes aides gratuitement
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-badges">
+            <div class="footer-badge">
+                <i class="fas fa-certificate"></i>
+                <span>RGE Qualibat</span>
+            </div>
+            <div class="footer-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>Garantie décennale</span>
+            </div>
+            <div class="footer-badge">
+                <i class="fas fa-file-contract"></i>
+                <span>Assurance travaux</span>
+            </div>
+            <div class="footer-badge">
+                <i class="fas fa-euro-sign"></i>
+                <span>Financement 0%</span>
+            </div>
+        </div>
+        <p class="footer-legal">
+            * Économies estimées sur la base d'une consommation moyenne et d'une isolation de qualité.
+            Les aides varient selon les revenus du foyer et la zone géographique.
+            Simulation non contractuelle. Un conseiller vous contactera pour un devis personnalisé.
+        </p>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2>Demande envoyée !</h2>
+            <p>Un expert isolation vous contactera sous 24h.</p>
+            <div class="success-savings-box">
+                <span>Vos aides estimées</span>
+                <strong id="finalAidesDisplay">0€</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        let currentStep = 1;
+        const totalSteps = 5;
+        let totalSavings = 0;
+        let totalAides = 0;
+        const formData = {};
+
+        const progressFill = document.getElementById('progressFill');
+        const stepIndicator = document.getElementById('stepIndicator');
+        const progressPercent = document.getElementById('progressPercent');
+
+        // Animate hero counters on load
+        function animateHeroCounters() {
+            animateCounter('heroAides', 12500, '€', 2000);
+            animateCounter('heroEconomies', 640, '€', 2000);
+        }
+
+        function animateCounter(id, target, suffix, duration) {
+            const element = document.getElementById(id);
+            const start = performance.now();
+
+            function animate(time) {
+                const elapsed = time - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 4);
+                const value = Math.round(target * eased);
+                element.textContent = value.toLocaleString('fr-FR') + suffix;
+
+                if (progress < 1) requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // Stats animation
+        function animateStats() {
+            const stats = [
+                { id: 'statClients', target: 8547, suffix: '+' },
+                { id: 'statEconomies', target: 580, suffix: '€' },
+                { id: 'statNote', target: 4.9, suffix: '/5', decimal: true },
+                { id: 'statGarantie', target: 10, suffix: '' }
+            ];
+
+            stats.forEach(stat => {
+                const element = document.getElementById(stat.id);
+                const duration = 2000;
+                const start = performance.now();
+
+                function animate(time) {
+                    const elapsed = time - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    let value = stat.target * eased;
+
+                    if (stat.decimal) {
+                        value = value.toFixed(1);
+                    } else {
+                        value = Math.round(value).toLocaleString('fr-FR');
+                    }
+
+                    element.textContent = value + stat.suffix;
+                    if (progress < 1) requestAnimationFrame(animate);
+                }
+                requestAnimationFrame(animate);
+            });
+        }
+
+        // Live counters
+        function updateLiveCounters() {
+            const viewers = document.getElementById('viewersCount');
+            const leads = document.getElementById('todayLeads');
+
+            setInterval(() => {
+                const current = parseInt(viewers.textContent);
+                const change = Math.random() > 0.5 ? 1 : -1;
+                viewers.textContent = Math.max(30, Math.min(60, current + change));
+            }, 4000);
+
+            setInterval(() => {
+                leads.textContent = parseInt(leads.textContent) + 1;
+            }, 25000);
+        }
+
+        function updateProgress() {
+            const percent = ((currentStep - 1) / totalSteps) * 100;
+            progressFill.style.width = percent + '%';
+            stepIndicator.textContent = `Étape ${currentStep}/${totalSteps}`;
+            progressPercent.textContent = Math.round(percent) + '%';
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
+            updateProgress();
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        // Options
+        document.querySelectorAll('.options-grid').forEach(container => {
+            container.querySelectorAll('.option-btn').forEach(option => {
+                option.addEventListener('click', function() {
+                    container.querySelectorAll('.option-btn').forEach(o => o.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    totalSavings += parseInt(this.dataset.savings) || 0;
+                    totalAides += parseInt(this.dataset.aides) || 0;
+
+                    setTimeout(() => nextStep(), 300);
+                });
+            });
+        });
+
+        // Code postal
+        const codePostalInput = document.getElementById('codePostal');
+        const btnStep4 = document.getElementById('btnStep4');
+
+        codePostalInput.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '');
+            btnStep4.disabled = this.value.length !== 5;
+        });
+
+        // Contact validation
+        const fullName = document.getElementById('fullName');
+        const phone = document.getElementById('phone');
+        const email = document.getElementById('email');
+        const btnSubmit = document.getElementById('btnSubmit');
+
+        function validateContact() {
+            const nameValid = fullName.value.trim().length >= 2;
+            const phoneClean = phone.value.replace(/\D/g, '');
+            const phoneValid = phoneClean.length === 10 && phoneClean.startsWith('0');
+            const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
+            btnSubmit.disabled = !(nameValid && phoneValid && emailValid);
+        }
+
+        fullName.addEventListener('input', validateContact);
+        email.addEventListener('input', validateContact);
+        phone.addEventListener('input', function() {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            this.value = value.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            validateContact();
+        });
+
+        function submitForm() {
+            document.getElementById('finalAidesDisplay').textContent = totalAides.toLocaleString('fr-FR') + '€';
+            document.getElementById('successModal').classList.add('show');
+
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#16a34a', '#84cc16', '#eab308']
+            });
+        }
+
+        function scrollToForm() {
+            document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            animateHeroCounters();
+            updateLiveCounters();
+
+            const statsSection = document.querySelector('.stats-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            observer.observe(statsSection);
+        });
+    </script>
+</body>
+</html>
