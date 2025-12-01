@@ -3,753 +3,490 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Forms Hub - Templates Rénovation Énergétique 2025</title>
-    <meta name="description" content="Collection complète de landing pages et formulaires haute conversion pour la rénovation énergétique. Solaire, PAC, isolation, simulateur aides.">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-
+    <title>Solar Forms Hub - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        :root {
-            --primary: #8b5cf6;
-            --secondary: #10b981;
-            --accent: #f59e0b;
-            --dark: #0f172a;
-            --gray: #64748b;
-            --light: #f1f5f9;
-        }
-
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--dark);
-            color: white;
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f5;
             min-height: 100vh;
-            overflow-x: hidden;
+            color: #333;
         }
 
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .bg-animation::before {
-            content: '';
-            position: absolute;
-            width: 150%;
-            height: 150%;
-            top: -25%;
-            left: -25%;
-            background: radial-gradient(ellipse at 30% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-                        radial-gradient(ellipse at 70% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 40%);
-            animation: bgMove 20s ease-in-out infinite;
-        }
-
-        @keyframes bgMove {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(-5%, 5%) rotate(5deg); }
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #f59e0b, #fbbf24);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.3);
-        }
-
-        .logo-text {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff, #cbd5e1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        header h1 .gradient {
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa, #10b981);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        header p {
-            font-size: 1.3rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
-        }
-
-        /* Stats Bar */
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            margin-bottom: 80px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin-top: 5px;
-        }
-
-        /* Sections */
-        .section {
-            margin-bottom: 100px;
-        }
-
-        .section-header {
+        .header {
+            background: #1a1a2e;
+            color: white;
+            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-            gap: 20px;
         }
 
-        .section-title {
-            font-size: 2rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .section-title i {
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-        }
-
-        .section-title.landing i {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.1));
-            color: #a78bfa;
-        }
-
-        .section-title.forms i {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
-            color: #34d399;
-        }
-
-        .section-title.versions i {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));
-            color: #fbbf24;
-        }
-
-        .view-all {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            color: white;
-            text-decoration: none;
+        .header h1 {
+            font-size: 1.4rem;
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
         }
 
-        .view-all:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
-        }
-
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            position: relative;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-        }
-
-        .card.orange::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-        .card.blue::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
-        .card.green::before { background: linear-gradient(90deg, #10b981, #34d399); }
-        .card.purple::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
-        .card.pink::before { background: linear-gradient(90deg, #ec4899, #f472b6); }
-
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .card-visual {
-            height: 160px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.05));
+        .header-stats {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .card-emoji {
-            font-size: 4rem;
-            opacity: 0.8;
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .badge-live {
-            background: linear-gradient(135deg, #10b981, #059669);
-        }
-
-        .badge-new {
-            background: linear-gradient(135deg, #ec4899, #be185d);
-        }
-
-        .badge-soon {
-            background: rgba(255,255,255,0.1);
-            color: var(--gray);
-        }
-
-        .card-body {
-            padding: 25px;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .card-desc {
-            color: var(--gray);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .card-meta {
-            display: flex;
-            gap: 15px;
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-
-        .card-meta span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .card-meta i.green { color: #10b981; }
-        .card-meta i.orange { color: #f59e0b; }
-        .card-meta i.blue { color: #3b82f6; }
-
-        /* Mini Cards */
-        .mini-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-        }
-
-        .mini-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
-            padding: 20px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .mini-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            transform: translateY(-3px);
-        }
-
-        .mini-card .emoji {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .mini-card .title {
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
-
-        .mini-card .desc {
-            font-size: 0.75rem;
-            color: var(--gray);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(16, 185, 129, 0.1));
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            padding: 60px 40px;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        .cta-section p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 18px 35px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .cta-btn.primary {
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-            color: white;
-            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
-        }
-
-        .cta-btn.primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(139, 92, 246, 0.4);
-        }
-
-        .cta-btn.secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        .cta-btn.secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Footer */
-        footer {
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        footer p {
-            color: var(--gray);
+            gap: 30px;
             font-size: 0.85rem;
         }
 
-        footer a {
-            color: #a78bfa;
+        .header-stats span {
+            opacity: 0.7;
+        }
+
+        .header-stats strong {
+            color: #4ade80;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .section-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .section-title .icon.purple { background: #ede9fe; }
+        .section-title .icon.orange { background: #fef3c7; }
+        .section-title .icon.green { background: #dcfce7; }
+
+        .section-count {
+            background: #f3f4f6;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px 25px;
+        }
+
+        .card {
+            display: block;
+            padding: 16px;
+            background: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            border-color: #3b82f6;
+            background: #f0f9ff;
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+        }
+
+        .card-status {
+            font-size: 0.65rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-live {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-wip {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-todo {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .card-desc {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Versions spécifiques */
+        .versions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            padding: 20px 25px;
+        }
+
+        .version-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+
+        .version-card:hover {
+            border-color: #f59e0b;
+            background: #fffbeb;
+        }
+
+        .version-num {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #f59e0b;
+            min-width: 30px;
+        }
+
+        .version-name {
+            font-size: 0.85rem;
+            color: #333;
+        }
+
+        /* Quick links */
+        .quick-links {
+            display: flex;
+            gap: 15px;
+            padding: 20px 25px;
+            flex-wrap: wrap;
+        }
+
+        .quick-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: #1a1a2e;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .quick-link:hover {
+            background: #2d2d44;
+        }
+
+        .quick-link.secondary {
+            background: white;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .quick-link.secondary:hover {
+            border-color: #999;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        .footer a {
+            color: #3b82f6;
             text-decoration: none;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.2rem;
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
 
-            .stats-bar {
-                gap: 30px;
+            .header-stats {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
             }
 
-            .stat-value {
-                font-size: 1.8rem;
+            .grid {
+                grid-template-columns: 1fr;
             }
 
-            .section-title {
-                font-size: 1.5rem;
-            }
-
-            .cta-section {
-                padding: 40px 25px;
-            }
-
-            .cta-section h2 {
-                font-size: 1.8rem;
+            .versions-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-
-    <div class="container">
-        <!-- Header -->
-        <header data-aos="fade-down">
-            <div class="logo">
-                <div class="logo-icon">☀️</div>
-                <span class="logo-text">Solar Forms Hub</span>
-            </div>
-            <h1>Templates <span class="gradient">Haute Conversion</span><br>Rénovation Énergétique 2025</h1>
-            <p>Collection complète de landing pages et formulaires optimisés pour la génération de leads. Solaire, PAC, isolation, simulateur d'aides.</p>
-
-            <div class="stats-bar">
-                <div class="stat-item">
-                    <div class="stat-value">5</div>
-                    <div class="stat-label">Landing Pages</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">14</div>
-                    <div class="stat-label">Versions Formulaires</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">90%</div>
-                    <div class="stat-label">Taux Conversion</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">2025</div>
-                    <div class="stat-label">Barèmes Aides</div>
-                </div>
-            </div>
-        </header>
-
-        <!-- Landing Pages Section -->
-        <section class="section" data-aos="fade-up">
-            <div class="section-header">
-                <h2 class="section-title landing">
-                    <i class="fas fa-rocket"></i>
-                    Landing Pages
-                </h2>
-                <a href="landing-pages/" class="view-all">
-                    Voir tout <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="cards-grid">
-                <a href="landing-pages/lp-panneaux-solaires/" class="card orange" data-aos="fade-up" data-aos-delay="0">
-                    <div class="card-visual">
-                        <span class="card-emoji">☀️</span>
-                        <span class="card-badge badge-live">LIVE</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Panneaux Solaires</h3>
-                        <p class="card-desc">Landing PV avec compteur économies animé, formulaire multi-étapes et confetti.</p>
-                        <div class="card-meta">
-                            <span><i class="fas fa-bolt orange"></i> 1 847€/an</span>
-                            <span><i class="fas fa-percent green"></i> 70% économies</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="landing-pages/lp-pompe-a-chaleur/" class="card blue" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-visual">
-                        <span class="card-emoji">🔥</span>
-                        <span class="card-badge badge-live">LIVE</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Pompe à Chaleur</h3>
-                        <p class="card-desc">Landing PAC air/eau avec comparatif chauffages et aides MaPrimeRénov 2025.</p>
-                        <div class="card-meta">
-                            <span><i class="fas fa-euro-sign green"></i> 11 000€ aides</span>
-                            <span><i class="fas fa-chart-line blue"></i> COP 5.0</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="landing-pages/lp-isolation-exterieure/" class="card green" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-visual">
-                        <span class="card-emoji">🏠</span>
-                        <span class="card-badge badge-live">LIVE</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Isolation Extérieure</h3>
-                        <p class="card-desc">Landing ITE avec focus économies chauffage et amélioration DPE.</p>
-                        <div class="card-meta">
-                            <span><i class="fas fa-ruler green"></i> 75€/m²</span>
-                            <span><i class="fas fa-arrow-up blue"></i> +2 classes DPE</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="landing-pages/lp-multi-travaux/" class="card purple" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card-visual">
-                        <span class="card-emoji">🏗️</span>
-                        <span class="card-badge badge-live">LIVE</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Multi-Travaux</h3>
-                        <p class="card-desc">Landing avec choix projet (solaire/PAC/isolation). Idéal trafic large.</p>
-                        <div class="card-meta">
-                            <span><i class="fas fa-layer-group orange"></i> 3 projets</span>
-                            <span><i class="fas fa-coins green"></i> 63 000€</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="landing-pages/lp-simulateur-aides/" class="card pink" data-aos="fade-up" data-aos-delay="400">
-                    <div class="card-visual">
-                        <span class="card-emoji">🧮</span>
-                        <span class="card-badge badge-new">NOUVEAU</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Simulateur Aides 2025</h3>
-                        <p class="card-desc">Calculateur MaPrimeRénov + CEE + Éco-PTZ en temps réel selon revenus.</p>
-                        <div class="card-meta">
-                            <span><i class="fas fa-calculator orange"></i> 4 catégories</span>
-                            <span><i class="fas fa-clock blue"></i> 2 min</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- Formulaires Section -->
-        <section class="section" data-aos="fade-up">
-            <div class="section-header">
-                <h2 class="section-title forms">
-                    <i class="fas fa-file-alt"></i>
-                    Formulaires
-                </h2>
-                <span class="view-all" style="opacity: 0.5; cursor: default;">
-                    Bientôt disponible
-                </span>
-            </div>
-
-            <div class="cards-grid">
-                <div class="card orange" style="opacity: 0.5;">
-                    <div class="card-visual">
-                        <span class="card-emoji">☀️</span>
-                        <span class="card-badge badge-soon">SOON</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Formulaire Solaire</h3>
-                        <p class="card-desc">Formulaire spécialisé panneaux photovoltaïques avec calcul économies.</p>
-                    </div>
-                </div>
-
-                <div class="card blue" style="opacity: 0.5;">
-                    <div class="card-visual">
-                        <span class="card-emoji">🔥</span>
-                        <span class="card-badge badge-soon">SOON</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Formulaire PAC</h3>
-                        <p class="card-desc">Formulaire spécialisé pompe à chaleur air/eau et géothermique.</p>
-                    </div>
-                </div>
-
-                <div class="card green" style="opacity: 0.5;">
-                    <div class="card-visual">
-                        <span class="card-emoji">🏠</span>
-                        <span class="card-badge badge-soon">SOON</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Formulaire Isolation</h3>
-                        <p class="card-desc">Formulaire spécialisé isolation murs, combles et toiture.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Versions Completes Section -->
-        <section class="section" data-aos="fade-up">
-            <div class="section-header">
-                <h2 class="section-title versions">
-                    <i class="fas fa-palette"></i>
-                    Versions Formulaires (V1-V14)
-                </h2>
-                <a href="versions-completes/" class="view-all">
-                    Voir les 14 versions <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="mini-grid">
-                <a href="versions-completes/v1-neon/" class="mini-card">
-                    <div class="emoji">🌌</div>
-                    <div class="title">V1 Neon</div>
-                    <div class="desc">Cyberpunk</div>
-                </a>
-                <a href="versions-completes/v2-nature/" class="mini-card">
-                    <div class="emoji">🌿</div>
-                    <div class="title">V2 Nature</div>
-                    <div class="desc">Organique</div>
-                </a>
-                <a href="versions-completes/v3-glass/" class="mini-card">
-                    <div class="emoji">💎</div>
-                    <div class="title">V3 Glass</div>
-                    <div class="desc">Premium</div>
-                </a>
-                <a href="versions-completes/v4-minimal/" class="mini-card">
-                    <div class="emoji">✨</div>
-                    <div class="title">V4 Minimal</div>
-                    <div class="desc">Épuré</div>
-                </a>
-                <a href="versions-completes/v5-dark/" class="mini-card">
-                    <div class="emoji">🌙</div>
-                    <div class="title">V5 Dark</div>
-                    <div class="desc">Sombre</div>
-                </a>
-                <a href="versions-completes/v6-sunset/" class="mini-card">
-                    <div class="emoji">🌅</div>
-                    <div class="title">V6 Sunset</div>
-                    <div class="desc">Chaleureux</div>
-                </a>
-                <a href="versions-completes/v11-clean/" class="mini-card">
-                    <div class="emoji">🧼</div>
-                    <div class="title">V11 Clean</div>
-                    <div class="desc">Moderne</div>
-                </a>
-                <a href="versions-completes/v12-trust/" class="mini-card">
-                    <div class="emoji">🛡️</div>
-                    <div class="title">V12 Trust</div>
-                    <div class="desc">Confiance</div>
-                </a>
-                <a href="versions-completes/v13-urgency/" class="mini-card">
-                    <div class="emoji">⚡</div>
-                    <div class="title">V13 Urgency</div>
-                    <div class="desc">FOMO</div>
-                </a>
-                <a href="versions-completes/v14-mobile/" class="mini-card">
-                    <div class="emoji">📱</div>
-                    <div class="title">V14 Mobile</div>
-                    <div class="desc">Touch</div>
-                </a>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta-section" data-aos="zoom-in">
-            <h2>Prêt à générer des leads ?</h2>
-            <p>Utilisez nos templates optimisés pour maximiser vos conversions en rénovation énergétique.</p>
-            <div class="cta-buttons">
-                <a href="landing-pages/lp-simulateur-aides/" class="cta-btn primary">
-                    <i class="fas fa-calculator"></i> Simulateur Aides
-                </a>
-                <a href="landing-pages/" class="cta-btn secondary">
-                    <i class="fas fa-rocket"></i> Toutes les Landing Pages
-                </a>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>Solar Forms Hub - Templates Rénovation Énergétique 2025</p>
-            <p style="margin-top: 10px;">
-                <a href="https://github.com/galaxyprojector1/solar-forms-hub" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-            </p>
-        </footer>
+    <div class="header">
+        <h1>Solar Forms Hub</h1>
+        <div class="header-stats">
+            <span>Landing Pages: <strong>5</strong></span>
+            <span>Formulaires: <strong>14</strong></span>
+            <span>Dernière MAJ: <strong>01/12/2025</strong></span>
+        </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 50
-        });
-    </script>
+    <div class="container">
+        <!-- Accès rapides -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">
+                    <span class="icon green">⚡</span>
+                    Accès rapides
+                </div>
+            </div>
+            <div class="quick-links">
+                <a href="TODO-NEXT.md" class="quick-link" target="_blank">📋 TODO Liste</a>
+                <a href="landing-pages/" class="quick-link">🚀 Toutes les Landing Pages</a>
+                <a href="versions-completes/" class="quick-link secondary">📁 Dossier Versions</a>
+                <a href="formulaires/" class="quick-link secondary">📝 Dossier Formulaires</a>
+            </div>
+        </div>
+
+        <!-- Landing Pages -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">
+                    <span class="icon purple">🚀</span>
+                    Landing Pages
+                </div>
+                <span class="section-count">5 pages</span>
+            </div>
+            <div class="grid">
+                <a href="landing-pages/lp-panneaux-solaires/" class="card">
+                    <div class="card-header">
+                        <span class="card-icon">☀️</span>
+                        <span class="card-status status-live">Live</span>
+                    </div>
+                    <div class="card-title">Panneaux Solaires</div>
+                    <div class="card-desc">Orange - 1847€/an économies</div>
+                </a>
+
+                <a href="landing-pages/lp-pompe-a-chaleur/" class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🔥</span>
+                        <span class="card-status status-live">Live</span>
+                    </div>
+                    <div class="card-title">Pompe à Chaleur</div>
+                    <div class="card-desc">Bleu - 11000€ aides</div>
+                </a>
+
+                <a href="landing-pages/lp-isolation-exterieure/" class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🏠</span>
+                        <span class="card-status status-live">Live</span>
+                    </div>
+                    <div class="card-title">Isolation Extérieure</div>
+                    <div class="card-desc">Vert - 75€/m²</div>
+                </a>
+
+                <a href="landing-pages/lp-multi-travaux/" class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🏗️</span>
+                        <span class="card-status status-live">Live</span>
+                    </div>
+                    <div class="card-title">Multi-Travaux</div>
+                    <div class="card-desc">Violet - Choix projet</div>
+                </a>
+
+                <a href="landing-pages/lp-simulateur-aides/" class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🧮</span>
+                        <span class="card-status status-live">Live</span>
+                    </div>
+                    <div class="card-title">Simulateur Aides</div>
+                    <div class="card-desc">Rose - Calcul MaPrimeRénov</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Formulaires -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">
+                    <span class="icon green">📝</span>
+                    Formulaires Spécialisés
+                </div>
+                <span class="section-count">0/5 à faire</span>
+            </div>
+            <div class="grid">
+                <div class="card" style="opacity: 0.5; pointer-events: none;">
+                    <div class="card-header">
+                        <span class="card-icon">☀️</span>
+                        <span class="card-status status-todo">À faire</span>
+                    </div>
+                    <div class="card-title">F. Solaire</div>
+                    <div class="card-desc">formulaires/f-panneaux-solaires/</div>
+                </div>
+
+                <div class="card" style="opacity: 0.5; pointer-events: none;">
+                    <div class="card-header">
+                        <span class="card-icon">🔥</span>
+                        <span class="card-status status-todo">À faire</span>
+                    </div>
+                    <div class="card-title">F. PAC</div>
+                    <div class="card-desc">formulaires/f-pompe-a-chaleur/</div>
+                </div>
+
+                <div class="card" style="opacity: 0.5; pointer-events: none;">
+                    <div class="card-header">
+                        <span class="card-icon">🏠</span>
+                        <span class="card-status status-todo">À faire</span>
+                    </div>
+                    <div class="card-title">F. Isolation</div>
+                    <div class="card-desc">formulaires/f-isolation/</div>
+                </div>
+
+                <div class="card" style="opacity: 0.5; pointer-events: none;">
+                    <div class="card-header">
+                        <span class="card-icon">🏗️</span>
+                        <span class="card-status status-todo">À faire</span>
+                    </div>
+                    <div class="card-title">F. Multi-Travaux</div>
+                    <div class="card-desc">formulaires/f-multi-travaux/</div>
+                </div>
+
+                <div class="card" style="opacity: 0.5; pointer-events: none;">
+                    <div class="card-header">
+                        <span class="card-icon">🧮</span>
+                        <span class="card-status status-todo">À faire</span>
+                    </div>
+                    <div class="card-title">F. Simulateur</div>
+                    <div class="card-desc">formulaires/f-simulateur-aides/</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Versions Formulaires -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">
+                    <span class="icon orange">🎨</span>
+                    Versions Formulaires (V1-V14)
+                </div>
+                <span class="section-count">14 versions</span>
+            </div>
+            <div class="versions-grid">
+                <a href="versions-completes/v1-neon/" class="version-card">
+                    <span class="version-num">V1</span>
+                    <span class="version-name">Neon Futuriste</span>
+                </a>
+                <a href="versions-completes/v2-nature/" class="version-card">
+                    <span class="version-num">V2</span>
+                    <span class="version-name">Nature</span>
+                </a>
+                <a href="versions-completes/v3-glass/" class="version-card">
+                    <span class="version-num">V3</span>
+                    <span class="version-name">Glassmorphism</span>
+                </a>
+                <a href="versions-completes/v4-minimal/" class="version-card">
+                    <span class="version-num">V4</span>
+                    <span class="version-name">Minimal</span>
+                </a>
+                <a href="versions-completes/v5-particles/" class="version-card">
+                    <span class="version-num">V5</span>
+                    <span class="version-name">Particles</span>
+                </a>
+                <a href="versions-completes/v6-morphing/" class="version-card">
+                    <span class="version-num">V6</span>
+                    <span class="version-name">Morphing</span>
+                </a>
+                <a href="versions-completes/v7-3d/" class="version-card">
+                    <span class="version-num">V7</span>
+                    <span class="version-name">3D</span>
+                </a>
+                <a href="versions-completes/v8-gamification/" class="version-card">
+                    <span class="version-num">V8</span>
+                    <span class="version-name">Gamification</span>
+                </a>
+                <a href="versions-completes/v9-story/" class="version-card">
+                    <span class="version-num">V9</span>
+                    <span class="version-name">Story</span>
+                </a>
+                <a href="versions-completes/v10-simulation/" class="version-card">
+                    <span class="version-num">V10</span>
+                    <span class="version-name">Simulation</span>
+                </a>
+                <a href="versions-completes/v11-clean/" class="version-card">
+                    <span class="version-num">V11</span>
+                    <span class="version-name">Clean</span>
+                </a>
+                <a href="versions-completes/v12-trust/" class="version-card">
+                    <span class="version-num">V12</span>
+                    <span class="version-name">Trust</span>
+                </a>
+                <a href="versions-completes/v13-urgency/" class="version-card">
+                    <span class="version-num">V13</span>
+                    <span class="version-name">Urgency</span>
+                </a>
+                <a href="versions-completes/v14-mobile/" class="version-card">
+                    <span class="version-num">V14</span>
+                    <span class="version-name">Mobile</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Solar Forms Hub - Outil interne | <a href="https://github.com/galaxyprojector1/solar-forms-hub" target="_blank">GitHub</a></p>
+    </div>
 </body>
 </html>
