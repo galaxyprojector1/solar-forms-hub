@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rénovation Énergétique 2025 | MaPrimeRénov' | Panneaux Solaires | Pompes à Chaleur</title>
+    <meta name="description" content="Découvrez toutes les aides pour votre rénovation énergétique en 2025. MaPrimeRénov', CEE, Éco-PTZ. Panneaux solaires, pompes à chaleur, isolation, bornes de recharge.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10B981;
+            --primary-dark: #059669;
+            --secondary: #3B82F6;
+            --accent: #F59E0B;
+            --dark: #1F2937;
+            --light: #F9FAFB;
+            --gradient-green: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            --gradient-blue: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+            --gradient-orange: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            --gradient-purple: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.5rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-green);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-green);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gradient-green);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 2rem 80px;
+            background: linear-gradient(135deg, #ECFDF5 0%, #F0F9FF 50%, #FEF3C7 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 span {
+            background: var(--gradient-green);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: #6B7280;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #6B7280;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-green);
+            color: white;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--dark);
+            border: 2px solid #E5E7EB;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 550px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-xl);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 2rem;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #6B7280;
+            font-size: 1.125rem;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #E5E7EB;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--card-gradient);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .service-card.solar { --card-gradient: var(--gradient-orange); }
+        .service-card.pump { --card-gradient: var(--gradient-blue); }
+        .service-card.insulation { --card-gradient: var(--gradient-purple); }
+        .service-card.ev { --card-gradient: var(--gradient-green); }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .service-card.solar .service-icon { background: rgba(245, 158, 11, 0.1); }
+        .service-card.pump .service-icon { background: rgba(59, 130, 246, 0.1); }
+        .service-card.insulation .service-icon { background: rgba(139, 92, 246, 0.1); }
+        .service-card.ev .service-icon { background: rgba(16, 185, 129, 0.1); }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: #6B7280;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .service-aid {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .service-aid-label {
+            font-size: 0.75rem;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .service-aid-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        /* Aides Section */
+        .aides {
+            padding: 100px 2rem;
+            background: linear-gradient(180deg, #F9FAFB 0%, white 100%);
+        }
+
+        .aides-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .aides-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .aide-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid #E5E7EB;
+            transition: all 0.3s;
+        }
+
+        .aide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .aide-card.featured {
+            background: var(--gradient-green);
+            color: white;
+            grid-row: span 2;
+        }
+
+        .aide-card.featured .aide-title,
+        .aide-card.featured .aide-amount {
+            color: white;
+        }
+
+        .aide-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: rgba(16, 185, 129, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .aide-card.featured .aide-icon {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .aide-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .aide-amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .aide-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        .aide-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .aide-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .aide-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Simulateur */
+        .simulator {
+            padding: 100px 2rem;
+            background: var(--dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .simulator::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(16,185,129,0.1)" stroke-width="0.5"/></svg>');
+            background-size: 100px 100px;
+        }
+
+        .simulator-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .simulator-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .simulator-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .simulator-header h2 span {
+            color: var(--primary);
+        }
+
+        .simulator-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group.full {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .form-group select,
+        .form-group input {
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group select option {
+            background: var(--dark);
+            color: white;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .checkbox-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .checkbox-item.selected {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--primary);
+        }
+
+        .checkbox-item input {
+            display: none;
+        }
+
+        .checkbox-box {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .checkbox-item.selected .checkbox-box {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .checkbox-box::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .checkbox-item.selected .checkbox-box::after {
+            opacity: 1;
+        }
+
+        .simulator-result {
+            background: var(--gradient-green);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .simulator-result.visible {
+            display: block;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-amount {
+            font-size: 3.5rem;
+            font-weight: 800;
+        }
+
+        .result-details {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .result-detail {
+            text-align: center;
+        }
+
+        .result-detail-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .result-detail-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        /* Témoignages */
+        .testimonials {
+            padding: 100px 2rem;
+            background: white;
+        }
+
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--light);
+            border-radius: 24px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.2;
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #4B5563;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .testimonial-info h4 {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-info p {
+            font-size: 0.875rem;
+            color: #6B7280;
+        }
+
+        .testimonial-stars {
+            color: #F59E0B;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 2rem;
+            background: var(--gradient-green);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .cta .btn {
+            background: white;
+            color: var(--primary);
+            font-size: 1.125rem;
+            padding: 1.25rem 2.5rem;
+        }
+
+        .cta .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 2rem 30px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-green);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-brand p {
+            color: #9CA3AF;
+            line-height: 1.7;
+        }
+
+        .footer-links h4 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #6B7280;
+            font-size: 0.875rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .aides-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .aide-card.featured {
+                grid-row: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">ÉcoRénov'</a>
+            <ul class="nav-links">
+                <li><a href="#services">Nos Services</a></li>
+                <li><a href="#aides">Les Aides</a></li>
+                <li><a href="#simulator">Simulateur</a></li>
+                <li><a href="#temoignages">Témoignages</a></li>
+            </ul>
+            <a href="#simulator" class="nav-cta">Simuler mes aides</a>
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Rénovation Énergétique<br><span>Jusqu'à 90% d'aides</span> en 2025</h1>
+                <p>Panneaux solaires, pompes à chaleur, isolation, bornes de recharge... Profitez de MaPrimeRénov', CEE et Éco-PTZ pour rénover votre habitat à moindre coût.</p>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-value">90%</div>
+                        <div class="stat-label">d'aides cumulables</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">50 000€</div>
+                        <div class="stat-label">Éco-PTZ max</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">5.5%</div>
+                        <div class="stat-label">TVA réduite</div>
+                    </div>
+                </div>
+
+                <div class="hero-buttons">
+                    <a href="#simulator" class="btn btn-primary">
+                        Calculer mes aides
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#services" class="btn btn-secondary">Découvrir nos services</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero-ecosystem.png" alt="Écosystème de rénovation énergétique">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <span class="section-badge">Nos Expertises</span>
+            <h2>Solutions de Rénovation Énergétique</h2>
+            <p>Découvrez nos 4 domaines d'expertise pour transformer votre habitat et réduire vos factures d'énergie.</p>
+        </div>
+
+        <div class="services-grid">
+            <!-- Panneaux Solaires -->
+            <div class="service-card solar">
+                <img src="images/savings-solar.png" alt="Panneaux solaires">
+                <div class="service-icon">☀️</div>
+                <h3>Panneaux Solaires</h3>
+                <p>Produisez votre propre électricité et réduisez vos factures jusqu'à 70%. Autoconsommation ou revente à EDF.</p>
+                <div class="service-aid">
+                    <div class="service-aid-label">Aide MaPrimeRénov'</div>
+                    <div class="service-aid-value">Jusqu'à 4 000€</div>
+                </div>
+                <a href="#simulator" class="btn btn-primary" style="width: 100%; justify-content: center;">Simuler</a>
+            </div>
+
+            <!-- Pompes à Chaleur -->
+            <div class="service-card pump">
+                <img src="images/heat-pump.png" alt="Pompe à chaleur">
+                <div class="service-icon">❄️</div>
+                <h3>Pompes à Chaleur</h3>
+                <p>Chauffage et climatisation écologique. Divisez par 3 votre consommation énergétique.</p>
+                <div class="service-aid">
+                    <div class="service-aid-label">Aide MaPrimeRénov'</div>
+                    <div class="service-aid-value">Jusqu'à 11 000€</div>
+                </div>
+                <a href="#simulator" class="btn btn-primary" style="width: 100%; justify-content: center;">Simuler</a>
+            </div>
+
+            <!-- Isolation -->
+            <div class="service-card insulation">
+                <img src="images/insulation.png" alt="Isolation thermique">
+                <div class="service-icon">🏠</div>
+                <h3>Isolation Thermique</h3>
+                <p>Murs, toiture, combles... Gardez la chaleur en hiver et la fraîcheur en été.</p>
+                <div class="service-aid">
+                    <div class="service-aid-label">Aide MaPrimeRénov'</div>
+                    <div class="service-aid-value">Jusqu'à 75€/m²</div>
+                </div>
+                <a href="#simulator" class="btn btn-primary" style="width: 100%; justify-content: center;">Simuler</a>
+            </div>
+
+            <!-- Bornes de Recharge -->
+            <div class="service-card ev">
+                <img src="images/ev-charging.png" alt="Borne de recharge">
+                <div class="service-icon">⚡</div>
+                <h3>Bornes de Recharge</h3>
+                <p>Rechargez votre véhicule électrique à domicile. Installation rapide et sécurisée.</p>
+                <div class="service-aid">
+                    <div class="service-aid-label">Crédit d'impôt</div>
+                    <div class="service-aid-value">75% (max 500€)</div>
+                </div>
+                <a href="#simulator" class="btn btn-primary" style="width: 100%; justify-content: center;">Simuler</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aides Section -->
+    <section class="aides" id="aides">
+        <div class="aides-container">
+            <div class="section-header">
+                <span class="section-badge">Financements 2025</span>
+                <h2>Toutes les Aides Disponibles</h2>
+                <p>Cumulez jusqu'à 90% d'aides grâce aux dispositifs nationaux et locaux.</p>
+            </div>
+
+            <div class="aides-grid">
+                <!-- MaPrimeRénov' Featured -->
+                <div class="aide-card featured">
+                    <div class="aide-icon">🏛️</div>
+                    <h3 class="aide-title">MaPrimeRénov' 2025</h3>
+                    <div class="aide-amount">Jusqu'à 90%</div>
+                    <p class="aide-description">L'aide principale de l'État pour la rénovation énergétique. Montants selon vos revenus :</p>
+                    <ul class="aide-list">
+                        <li>
+                            <span>🔵 Très modestes</span>
+                            <span>90% max</span>
+                        </li>
+                        <li>
+                            <span>🟡 Modestes</span>
+                            <span>75% max</span>
+                        </li>
+                        <li>
+                            <span>🟣 Intermédiaires</span>
+                            <span>60% max</span>
+                        </li>
+                        <li>
+                            <span>🔴 Supérieurs</span>
+                            <span>40% max</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CEE -->
+                <div class="aide-card">
+                    <div class="aide-icon">📜</div>
+                    <h3 class="aide-title">Primes CEE</h3>
+                    <div class="aide-amount">+5 000€</div>
+                    <p class="aide-description">Certificats d'Économie d'Énergie financés par les fournisseurs d'énergie. Cumulable avec MaPrimeRénov'.</p>
+                </div>
+
+                <!-- Éco-PTZ -->
+                <div class="aide-card">
+                    <div class="aide-icon">🏦</div>
+                    <h3 class="aide-title">Éco-PTZ</h3>
+                    <div class="aide-amount">50 000€</div>
+                    <p class="aide-description">Prêt à taux zéro sur 20 ans maximum. Sans conditions de revenus. Financement du reste à charge.</p>
+                </div>
+
+                <!-- TVA Réduite -->
+                <div class="aide-card">
+                    <div class="aide-icon">📉</div>
+                    <h3 class="aide-title">TVA Réduite</h3>
+                    <div class="aide-amount">5.5%</div>
+                    <p class="aide-description">TVA à 5.5% au lieu de 20% sur les travaux et matériaux de rénovation énergétique. Automatique.</p>
+                </div>
+
+                <!-- Aides Locales -->
+                <div class="aide-card">
+                    <div class="aide-icon">📍</div>
+                    <h3 class="aide-title">Aides Locales</h3>
+                    <div class="aide-amount">Variable</div>
+                    <p class="aide-description">Régions, départements et communes proposent des aides complémentaires. Consultez votre mairie.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulateur Section -->
+    <section class="simulator" id="simulator">
+        <div class="simulator-container">
+            <div class="simulator-header">
+                <span class="section-badge" style="background: rgba(16, 185, 129, 0.3);">Outil Gratuit</span>
+                <h2>Simulez vos <span>Aides</span> en 2 minutes</h2>
+                <p style="color: #9CA3AF;">Estimez le montant total des aides auxquelles vous avez droit pour votre projet de rénovation.</p>
+            </div>
+
+            <form class="simulator-form" id="simulatorForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Revenus du foyer</label>
+                        <select id="revenus" required>
+                            <option value="">Sélectionnez...</option>
+                            <option value="bleu">Très modestes (< 17 173€)</option>
+                            <option value="jaune">Modestes (< 22 015€)</option>
+                            <option value="violet">Intermédiaires (< 30 844€)</option>
+                            <option value="rose">Supérieurs (> 30 844€)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Type de logement</label>
+                        <select id="logement" required>
+                            <option value="">Sélectionnez...</option>
+                            <option value="maison">Maison individuelle</option>
+                            <option value="appartement">Appartement</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Année de construction</label>
+                        <select id="annee" required>
+                            <option value="">Sélectionnez...</option>
+                            <option value="avant1975">Avant 1975</option>
+                            <option value="1975-1990">1975 - 1990</option>
+                            <option value="1990-2005">1990 - 2005</option>
+                            <option value="apres2005">Après 2005</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Surface habitable (m²)</label>
+                        <input type="number" id="surface" placeholder="Ex: 120" required>
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Travaux envisagés</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="travaux" value="pac">
+                                <span class="checkbox-box"></span>
+                                <span>Pompe à chaleur</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="travaux" value="solaire">
+                                <span class="checkbox-box"></span>
+                                <span>Panneaux solaires</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="travaux" value="isolation">
+                                <span class="checkbox-box"></span>
+                                <span>Isolation thermique</span>
+                            </label>
+                            <label class="checkbox-item" onclick="toggleCheckbox(this)">
+                                <input type="checkbox" name="travaux" value="borne">
+                                <span class="checkbox-box"></span>
+                                <span>Borne de recharge</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 1.125rem;">
+                    Calculer mes aides
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+
+                <div class="simulator-result" id="result">
+                    <div class="result-label">Estimation de vos aides totales</div>
+                    <div class="result-amount" id="totalAides">0 €</div>
+                    <div class="result-details">
+                        <div class="result-detail">
+                            <div class="result-detail-value" id="mprAmount">0 €</div>
+                            <div class="result-detail-label">MaPrimeRénov'</div>
+                        </div>
+                        <div class="result-detail">
+                            <div class="result-detail-value" id="ceeAmount">0 €</div>
+                            <div class="result-detail-label">Prime CEE</div>
+                        </div>
+                        <div class="result-detail">
+                            <div class="result-detail-value" id="ecoAmount">50 000 €</div>
+                            <div class="result-detail-label">Éco-PTZ disponible</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="testimonials" id="temoignages">
+        <div class="section-header">
+            <span class="section-badge">Ils nous font confiance</span>
+            <h2>Témoignages Clients</h2>
+            <p>Découvrez les retours de nos clients qui ont rénové leur habitat.</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <div class="testimonial-content">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">Grâce à ÉcoRénov', j'ai pu installer une pompe à chaleur avec 11 000€ d'aides. Ma facture de chauffage a été divisée par 3 !</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">ML</div>
+                        <div class="testimonial-info">
+                            <h4>Marie L.</h4>
+                            <p>Toulouse • PAC Air/Eau</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <div class="testimonial-content">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">Installation de panneaux solaires + borne de recharge. Je produis ma propre électricité et je roule gratuitement !</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">PD</div>
+                        <div class="testimonial-info">
+                            <h4>Pierre D.</h4>
+                            <p>Lyon • Solaire + Borne EV</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <div class="testimonial-content">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">Rénovation complète avec 85% d'aides. L'accompagnement était top, tout a été géré du devis aux aides administratives.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SF</div>
+                        <div class="testimonial-info">
+                            <h4>Sophie F.</h4>
+                            <p>Bordeaux • Rénovation globale</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container">
+            <h2>Prêt à Rénover ?</h2>
+            <p>Obtenez un devis gratuit et personnalisé sous 48h. Nos experts vous accompagnent de A à Z.</p>
+            <a href="#simulator" class="btn">
+                Demander un devis gratuit
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>ÉcoRénov'</h3>
+                    <p>Expert en rénovation énergétique depuis 2015. Nous accompagnons les particuliers dans leurs projets de transition énergétique avec les meilleures solutions du marché.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Panneaux Solaires</a></li>
+                        <li><a href="#">Pompes à Chaleur</a></li>
+                        <li><a href="#">Isolation</a></li>
+                        <li><a href="#">Bornes de Recharge</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Aides</h4>
+                    <ul>
+                        <li><a href="#">MaPrimeRénov'</a></li>
+                        <li><a href="#">Primes CEE</a></li>
+                        <li><a href="#">Éco-PTZ</a></li>
+                        <li><a href="#">Aides Locales</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="#">01 23 45 67 89</a></li>
+                        <li><a href="#">contact@ecorenov.fr</a></li>
+                        <li><a href="#">Devis gratuit</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 ÉcoRénov'. Tous droits réservés.</p>
+                <p>RGE • Qualibat • QualiPAC • QualiPV</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Checkbox toggle
+        function toggleCheckbox(element) {
+            element.classList.toggle('selected');
+        }
+
+        // Simulateur
+        document.getElementById('simulatorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const revenus = document.getElementById('revenus').value;
+            const surface = parseInt(document.getElementById('surface').value) || 100;
+            const travaux = document.querySelectorAll('.checkbox-item.selected input');
+
+            let mpr = 0;
+            let cee = 0;
+
+            // Barèmes MaPrimeRénov' 2025
+            const baremes = {
+                bleu: { pac: 5000, pacGeo: 11000, solaire: 4000, isolation: 75, borne: 0 },
+                jaune: { pac: 4000, pacGeo: 9000, solaire: 3000, isolation: 60, borne: 0 },
+                violet: { pac: 3000, pacGeo: 6000, solaire: 2000, isolation: 40, borne: 0 },
+                rose: { pac: 0, pacGeo: 0, solaire: 0, isolation: 0, borne: 0 }
+            };
+
+            const ceeBaremes = {
+                bleu: { pac: 4000, solaire: 1000, isolation: 15 },
+                jaune: { pac: 4000, solaire: 1000, isolation: 15 },
+                violet: { pac: 2500, solaire: 500, isolation: 10 },
+                rose: { pac: 2500, solaire: 500, isolation: 10 }
+            };
+
+            if (revenus && baremes[revenus]) {
+                travaux.forEach(t => {
+                    switch(t.value) {
+                        case 'pac':
+                            mpr += baremes[revenus].pac;
+                            cee += ceeBaremes[revenus].pac;
+                            break;
+                        case 'solaire':
+                            mpr += baremes[revenus].solaire;
+                            cee += ceeBaremes[revenus].solaire;
+                            break;
+                        case 'isolation':
+                            mpr += baremes[revenus].isolation * Math.min(surface, 100);
+                            cee += ceeBaremes[revenus].isolation * Math.min(surface, 100);
+                            break;
+                        case 'borne':
+                            mpr += 375; // 75% de 500€
+                            break;
+                    }
+                });
+            }
+
+            const total = mpr + cee;
+
+            // Afficher résultats
+            document.getElementById('totalAides').textContent = total.toLocaleString('fr-FR') + ' €';
+            document.getElementById('mprAmount').textContent = mpr.toLocaleString('fr-FR') + ' €';
+            document.getElementById('ceeAmount').textContent = cee.toLocaleString('fr-FR') + ' €';
+
+            document.getElementById('result').classList.add('visible');
+
+            // Scroll to result
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .aide-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
