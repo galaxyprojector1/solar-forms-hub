@@ -8,7 +8,16 @@
       "Bash(git pull:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(git push:*)",
+      "mcp__vercel__list_teams",
+      "mcp__vercel__list_projects",
+      "mcp__vercel__get_project",
+      "mcp__vercel__list_deployments",
+      "mcp__vercel__deploy_to_vercel",
+      "Bash(vercel --version:*)",
+      "Bash(vercel deploy:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []
