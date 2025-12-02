@@ -1,5 +1,104 @@
 # Instructions Claude - Solar Forms Hub
 
+## MISSION PRINCIPALE (Prochaine session)
+
+### Objectif
+Refaire TOUTES les pages du site en version ULTRA PREMIUM avec :
+- 20-30 images IA generees avec Fal.ai (modele: fal-ai/flux/dev)
+- Design moderne, animations fluides, conversion maximale
+- Mobile-first, dark mode elegant
+
+### TODO Liste
+1. [ ] Generer 20+ images IA (hero, services, temoignages, backgrounds)
+2. [ ] Refaire renovation-energie-2025.html (page principale)
+3. [ ] Refaire LP Panneaux Solaires V2 premium
+4. [ ] Refaire LP Pompe a Chaleur premium
+5. [ ] Refaire LP Isolation premium
+6. [ ] Refaire LP Multi-Travaux premium
+7. [ ] Refaire LP Simulateur premium
+8. [ ] Mettre a jour dashboard index.html
+9. [ ] Deployer sur Vercel
+
+### Images a generer avec Fal.ai
+
+**IMPORTANT**: Utiliser `mcp__fal-ai__run_model` (pas generate_image)
+```
+model_id: "fal-ai/flux/dev"
+input: {"prompt": "...", "num_images": 1, "image_size": "landscape_16_9"}
+```
+Puis telecharger: `curl -o "public/images/nom.jpg" "URL"`
+
+**Liste des images a generer:**
+
+HERO IMAGES (1920x1080):
+1. hero-main.jpg - "Modern French house with solar panels on roof, heat pump unit, green garden, sunny day, photorealistic, architectural photography, 4k"
+2. hero-solar.jpg - "Close-up of premium black solar panels on terracotta roof tiles, French countryside background, golden hour light, professional photography"
+3. hero-pac.jpg - "Modern white heat pump unit installed outside beautiful French stone house, clean design, professional installation, daylight"
+4. hero-isolation.jpg - "Workers installing exterior wall insulation on French house, professional team, safety equipment, bright day"
+5. hero-ev.jpg - "Electric car charging at home wallbox charger, modern French house garage, Tesla-style, evening ambient lighting"
+
+SERVICES CARDS (800x600):
+6. service-solar.jpg - "Aerial view of house with solar panel installation, French suburban neighborhood, drone photography style"
+7. service-pac.jpg - "Split image showing heat pump exterior unit and cozy warm interior living room, modern home"
+8. service-isolation.jpg - "Cross-section view showing wall insulation layers, technical illustration style but photorealistic"
+9. service-ev.jpg - "Sleek EV charging station with illuminated logo, night shot, premium quality"
+
+TESTIMONIALS (400x400):
+10. client-1.jpg - "Professional headshot of French woman 40s, friendly smile, natural lighting, neutral background"
+11. client-2.jpg - "Professional headshot of French man 50s, confident, business casual, warm lighting"
+12. client-3.jpg - "Professional headshot of young French couple 30s, happy, outdoor background blur"
+
+BACKGROUNDS (1920x1080):
+13. bg-gradient.jpg - "Abstract gradient background dark blue to emerald green, subtle geometric patterns, modern"
+14. bg-tech.jpg - "Futuristic energy grid visualization, green and blue glowing lines, dark background"
+15. bg-nature.jpg - "Aerial view of French countryside with wind turbines and solar farms, sustainable energy"
+
+ICONS/DETAILS (600x600):
+16. detail-savings.jpg - "Stack of euro bills with green energy symbols, savings concept, clean white background"
+17. detail-certificate.jpg - "RGE certification badge with French flag colors, official looking, 3D render"
+18. detail-guarantee.jpg - "25 year warranty badge, gold and green, premium quality seal"
+19. detail-eco.jpg - "Green leaf transforming into house shape, eco-friendly concept, minimalist"
+20. detail-france.jpg - "Map of France with glowing energy network, data visualization style"
+
+### Design Guidelines
+
+**Palette de couleurs:**
+- Primary: #10B981 (emerald green)
+- Secondary: #3B82F6 (blue)
+- Accent: #F59E0B (orange/solar)
+- Dark: #0F172A, #1E293B
+- Light: #F8FAFC, #E2E8F0
+
+**Typographie:**
+- Font: Inter (Google Fonts)
+- Titres: 700, grandes tailles
+- Corps: 400/500, lisible
+
+**Animations:**
+- AOS (Animate On Scroll) pour les sections
+- Hover effects sur les cartes
+- Smooth scroll
+- Confetti sur conversion
+
+**Structure de chaque LP:**
+1. Hero section (image plein ecran + titre + CTA)
+2. Stats bar (chiffres cles animes)
+3. Avantages (3-4 cartes avec icones)
+4. Comment ca marche (timeline)
+5. Aides disponibles (tableau comparatif)
+6. Temoignages (carousel)
+7. FAQ (accordion)
+8. CTA final (formulaire ou bouton)
+9. Footer
+
+### Criteres de qualite
+- Lighthouse score > 90
+- Mobile responsive parfait
+- Temps de chargement < 3s
+- Images optimisees (webp si possible)
+- SEO meta tags complets
+- Schema.org markup
+
 ## Projet
 Site de generation de leads renovation energetique (solaire, PAC, isolation).
 Cible : proprietaires de maison en France.
