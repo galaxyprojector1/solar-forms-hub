@@ -293,8 +293,62 @@ Ajouter sur CHAQUE page :
 
 1. Tester les 9 pages enrichies
 2. Verifier chargement images
-3. Screenshots avant/apres
-4. Commit + Push + Deploy
+3. Verifier liens internes (maillage)
+4. Screenshots
+5. Commit + Push + Deploy
+
+---
+
+### Agent 6 : Chef de Projet - Review & Cleanup (DERNIER)
+**MCP** : Aucun ou Perplexity si besoin recherche
+**Outils** : Read, Write, Edit, Glob
+
+**Mission** : Revue finale + optimisation conversion + nettoyage
+
+#### 1. Revue des textes (conversion)
+Pour chaque page, verifier et ameliorer :
+- **Headlines** : Sont-ils accrocheurs ? Montants visibles ?
+- **CTA** : Textes persuasifs ? ("Je calcule mes aides" > "Envoyer")
+- **Urgence** : Mentions "2025", "avant reduction", "places limitees"
+- **Social proof** : Temoignages, chiffres, badges confiance
+- **Benefices** : Clairs et chiffres (pas de jargon technique)
+
+#### 2. Revue des sections
+- Supprimer sections inutiles/redondantes
+- Reordonner si necessaire (hero → avantages → aides → CTA)
+- Verifier coherence entre pages
+- S'assurer que chaque page a un objectif clair
+
+#### 3. Revue du maillage
+- Verifier que tous les liens fonctionnent
+- S'assurer du parcours logique vers formulaire
+- Ajouter liens manquants si necessaire
+
+#### 4. Nettoyage fichiers
+```
+Supprimer :
+- Fichiers .md obsoletes (garder seulement DONNEES-2025.md)
+- Images non utilisees
+- Code commente inutile
+
+Organiser :
+- Verifier nommage coherent des images
+- S'assurer que la structure est propre
+```
+
+#### 5. Preparation prochaine session
+Creer/mettre a jour `PROMPT-V6-NEXT.md` avec :
+- Ce qui a ete fait en V5
+- Ce qui reste a ameliorer
+- Idees pour V6
+- Etat actuel du projet
+
+#### 6. Rapport final
+Ecrire un bref rapport avec :
+- Pages modifiees
+- Ameliorations apportees
+- Metriques (nb images, nb liens, taille fichiers)
+- Recommandations
 
 ---
 
@@ -310,6 +364,9 @@ Ajouter sur CHAQUE page :
 
 ### Phase 3
 - Agent 5 : Tests + Deploy
+
+### Phase 4 (FINAL)
+- Agent 6 : Review textes + Cleanup + Prep V6
 
 ---
 
@@ -387,6 +444,16 @@ Le fichier `DONNEES-2025.md` contient :
 - [ ] Vercel deploy
 - [ ] Site live verifie
 
+### Phase 4 - Review & Cleanup (Agent 6)
+- [ ] Textes optimises conversion (headlines, CTA, urgence)
+- [ ] Sections revues et reordonnees si besoin
+- [ ] Maillage verifie et complete
+- [ ] Fichiers obsoletes supprimes
+- [ ] Images non utilisees supprimees
+- [ ] PROMPT-V6-NEXT.md cree
+- [ ] Rapport final ecrit
+- [ ] Commit final + deploy
+
 ---
 
 ## COMMANDE POUR LANCER
@@ -405,10 +472,28 @@ Phase 2 (parallele, apres Phase 1) :
 Phase 3 :
 - Agent 5 : Tests Playwright + Deploy Vercel
 
+Phase 4 (FINAL) :
+- Agent 6 : Review textes/conversion + Cleanup fichiers + Prep V6
+
 Objectif : Toutes les pages doivent pousser vers le formulaire.
+A la fin, le projet doit etre PROPRE et pret pour la prochaine session.
 ```
 
 ---
 
+## RESUME AGENTS
+
+| Agent | Mission | MCP | Phase |
+|-------|---------|-----|-------|
+| 1 | Recherche idees images | Perplexity | 1 |
+| 2 | Generation images IA | Fal.ai | 1 |
+| 3 | Integration images | Aucun | 2 |
+| 4 | Maillage interne | Aucun | 2 |
+| 5 | Tests + Deploy | Playwright, Vercel | 3 |
+| **6** | **Review + Cleanup + Prep V6** | Aucun | **4** |
+
+---
+
 *Prompt V5 - Cree le 02/12/2025*
-*Objectif : Enrichissement visuel + maillage pour conversion maximale*
+*Objectif : Enrichissement visuel + maillage + conversion maximale*
+*L'Agent 6 assure la qualite finale et prepare la transition*
