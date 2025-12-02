@@ -96,7 +96,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 15px;
             padding: 20px 25px;
         }
@@ -142,14 +142,14 @@
             color: #166534;
         }
 
-        .status-wip {
-            background: #fef3c7;
-            color: #92400e;
+        .status-new {
+            background: #dbeafe;
+            color: #1e40af;
         }
 
-        .status-todo {
-            background: #f3f4f6;
-            color: #6b7280;
+        .status-premium {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #92400e;
         }
 
         .card-title {
@@ -201,42 +201,6 @@
             color: #333;
         }
 
-        /* Quick links */
-        .quick-links {
-            display: flex;
-            gap: 15px;
-            padding: 20px 25px;
-            flex-wrap: wrap;
-        }
-
-        .quick-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            background: #1a1a2e;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-
-        .quick-link:hover {
-            background: #2d2d44;
-        }
-
-        .quick-link.secondary {
-            background: white;
-            color: #333;
-            border: 1px solid #ddd;
-        }
-
-        .quick-link.secondary:hover {
-            border-color: #999;
-        }
-
         /* Footer */
         .footer {
             text-align: center;
@@ -285,63 +249,6 @@
     </div>
 
     <div class="container">
-        <!-- Accès rapides -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-title">
-                    <span class="icon green">⚡</span>
-                    Accès rapides
-                </div>
-            </div>
-            <div class="quick-links">
-                <a href="renovation-energie-2025.html" class="quick-link" style="background: linear-gradient(135deg, #10B981, #059669);">🌟 Site Multi-Activites 2025</a>
-                <a href="landing-pages/" class="quick-link">🚀 Landing Pages</a>
-                <a href="versions-completes/" class="quick-link secondary">📁 Versions</a>
-            </div>
-        </div>
-
-        <!-- Site Multi-Activités Premium -->
-        <div class="section" style="border: 2px solid #10B981; background: linear-gradient(135deg, #ECFDF5, #F0F9FF);">
-            <div class="section-header">
-                <div class="section-title">
-                    <span class="icon" style="background: #10B981; color: white;">🌟</span>
-                    Site Multi-Activités Premium 2025
-                </div>
-                <span class="section-count" style="background: #10B981; color: white;">NOUVEAU</span>
-            </div>
-            <div class="grid">
-                <a href="renovation-energie-2025.html" class="card" style="border-color: #10B981;">
-                    <div class="card-header">
-                        <span class="card-icon">🏠</span>
-                        <span class="card-status status-live">Live</span>
-                    </div>
-                    <div class="card-title">Rénovation Énergétique 2025</div>
-                    <div class="card-desc">Site complet multi-activités avec simulateur</div>
-                </a>
-                <div class="card" style="background: white;">
-                    <div class="card-header">
-                        <span class="card-icon">📊</span>
-                    </div>
-                    <div class="card-title">Fonctionnalités</div>
-                    <div class="card-desc" style="font-size: 0.75rem;">
-                        ✅ 4 services (Solaire, PAC, Isolation, Bornes)<br>
-                        ✅ Simulateur MaPrimeRénov' interactif<br>
-                        ✅ Images IA (Nano Banana Pro)<br>
-                        ✅ Vidéo promotionnelle<br>
-                        ✅ Données aides 2025 vérifiées
-                    </div>
-                </div>
-                <a href="images/promo-video.mp4" class="card" target="_blank">
-                    <div class="card-header">
-                        <span class="card-icon">🎬</span>
-                        <span class="card-status status-live">5s</span>
-                    </div>
-                    <div class="card-title">Vidéo Promo</div>
-                    <div class="card-desc">Générée avec Kling AI</div>
-                </a>
-            </div>
-        </div>
-
         <!-- Landing Pages -->
         <div class="section">
             <div class="section-header">
@@ -349,22 +256,31 @@
                     <span class="icon purple">🚀</span>
                     Landing Pages
                 </div>
-                <span class="section-count">7 pages</span>
+                <span class="section-count">8 pages</span>
             </div>
             <div class="grid">
                 <a href="landing-pages/lp-prime-renovation/" class="card" style="border-color: #4d65ff; background: linear-gradient(135deg, #eef2ff, #e0e7ff);">
                     <div class="card-header">
                         <span class="card-icon">🏛️</span>
-                        <span class="card-status status-live">NEW</span>
+                        <span class="card-status status-new">NEW</span>
                     </div>
                     <div class="card-title">Prime Rénovation</div>
-                    <div class="card-desc">Style pro - MaPrimeRénov'</div>
+                    <div class="card-desc">Style primerenovation-en-ligne.com</div>
+                </a>
+
+                <a href="renovation-energie-2025.html" class="card" style="border-color: #10B981; background: linear-gradient(135deg, #ecfdf5, #d1fae5);">
+                    <div class="card-header">
+                        <span class="card-icon">🌟</span>
+                        <span class="card-status status-premium">PREMIUM</span>
+                    </div>
+                    <div class="card-title">Rénovation Énergie 2025</div>
+                    <div class="card-desc">Multi-activités + simulateur</div>
                 </a>
 
                 <a href="landing-pages/lp-panneaux-solaires-v2/" class="card" style="border-color: #f59e0b;">
                     <div class="card-header">
                         <span class="card-icon">☀️</span>
-                        <span class="card-status status-wip">V2</span>
+                        <span class="card-status status-premium">V2</span>
                     </div>
                     <div class="card-title">Panneaux Solaires V2</div>
                     <div class="card-desc">Premium avec images IA</div>
@@ -376,7 +292,7 @@
                         <span class="card-status status-live">Live</span>
                     </div>
                     <div class="card-title">Panneaux Solaires V1</div>
-                    <div class="card-desc">Orange - 1847/an economies</div>
+                    <div class="card-desc">Orange - 1847€/an économies</div>
                 </a>
 
                 <a href="landing-pages/lp-pompe-a-chaleur/" class="card">
@@ -385,7 +301,7 @@
                         <span class="card-status status-live">Live</span>
                     </div>
                     <div class="card-title">Pompe à Chaleur</div>
-                    <div class="card-desc">Bleu - 11000€ aides</div>
+                    <div class="card-desc">Bleu - 11 000€ aides</div>
                 </a>
 
                 <a href="landing-pages/lp-isolation-exterieure/" class="card">
@@ -412,7 +328,7 @@
                         <span class="card-status status-live">Live</span>
                     </div>
                     <div class="card-title">Simulateur Aides</div>
-                    <div class="card-desc">Rose - Calcul MaPrimeRénov</div>
+                    <div class="card-desc">Rose - Calcul MaPrimeRénov'</div>
                 </a>
             </div>
         </div>
