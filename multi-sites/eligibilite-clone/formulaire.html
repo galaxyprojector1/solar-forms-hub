@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'Éligibilité - Calculez vos aides en 2 minutes</title>
+    <meta name="description" content="Découvrez vos aides MaPrimeRénov', Prime CEE et Éco-PTZ en 2 minutes chrono.">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --blue-dark: #1E3A8A;
+            --blue-primary: #2563EB;
+            --orange: #F97316;
+            --orange-dark: #EA580C;
+            --text-dark: #1F2937;
+            --text-gray: #6B7280;
+            --gray-light: #F3F4F6;
+            --green: #10B981;
+            --red: #EF4444;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #EBF4FF 0%, #F0F9FF 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--blue-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .header-phone {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .header-phone i {
+            color: var(--green);
+            font-size: 1.1rem;
+        }
+
+        .header-phone strong {
+            color: var(--blue-dark);
+            font-weight: 700;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gray-light);
+            z-index: 1;
+        }
+
+        .progress-line-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue-primary), var(--orange));
+            width: 0%;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-step {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 3px solid var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active .step-circle {
+            background: var(--blue-primary);
+            border-color: var(--blue-primary);
+            color: var(--white);
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .progress-step.completed .step-circle {
+            background: var(--green);
+            border-color: var(--green);
+            color: var(--white);
+        }
+
+        .step-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-gray);
+            text-align: center;
+            max-width: 80px;
+        }
+
+        .progress-step.active .step-label {
+            color: var(--blue-primary);
+        }
+
+        /* Form Container */
+        .form-container {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badges-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--gray-light);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .badge i {
+            color: var(--green);
+        }
+
+        /* Form Steps */
+        .form-step {
+            display: none;
+            animation: slideIn 0.4s ease;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .step-header {
+            margin-bottom: 2rem;
+        }
+
+        .step-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--blue-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-subtitle {
+            font-size: 1rem;
+            color: var(--text-gray);
+        }
+
+        .step-remaining {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        /* Options Cards */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .option-card {
+            background: var(--white);
+            border: 2px solid var(--gray-light);
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .option-card:hover {
+            border-color: var(--blue-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+        }
+
+        .option-card.selected {
+            border-color: var(--blue-primary);
+            background: linear-gradient(135deg, #EBF4FF, #DBEAFE);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .option-card.selected::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 24px;
+            height: 24px;
+            background: var(--green);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+
+        .option-icon {
+            font-size: 2.5rem;
+            color: var(--blue-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .option-card.selected .option-icon {
+            color: var(--orange);
+        }
+
+        .option-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        /* Buttons */
+        .buttons-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-option {
+            flex: 1;
+            padding: 1.25rem;
+            border: 2px solid var(--gray-light);
+            background: var(--white);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-option:hover {
+            border-color: var(--blue-primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-option.selected {
+            border-color: var(--blue-primary);
+            background: var(--blue-primary);
+            color: var(--white);
+        }
+
+        /* Form Fields */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-label .required {
+            color: var(--red);
+        }
+
+        .form-label .optional {
+            color: var(--text-gray);
+            font-weight: 400;
+            font-size: 0.85rem;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--blue-primary);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-input.valid {
+            border-color: var(--green);
+        }
+
+        .form-input.invalid {
+            border-color: var(--red);
+        }
+
+        .input-suffix {
+            position: relative;
+        }
+
+        .input-suffix .form-input {
+            padding-right: 3rem;
+        }
+
+        .input-suffix::after {
+            content: attr(data-suffix);
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+            font-weight: 600;
+        }
+
+        .info-message {
+            background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+            border-left: 4px solid var(--orange);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+        }
+
+        .info-message i {
+            color: var(--orange);
+            font-size: 1.2rem;
+            margin-top: 0.1rem;
+        }
+
+        .info-message-text {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+
+        /* Checkboxes */
+        .checkbox-group {
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 0.1rem;
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+
+        .checkbox-label a {
+            color: var(--blue-primary);
+            text-decoration: underline;
+        }
+
+        /* Navigation Buttons */
+        .form-navigation {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-nav {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-prev {
+            background: var(--gray-light);
+            color: var(--text-dark);
+        }
+
+        .btn-prev:hover {
+            background: #E5E7EB;
+        }
+
+        .btn-next,
+        .btn-submit {
+            flex: 1;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn-next:hover,
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
+        }
+
+        .btn-next:disabled,
+        .btn-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Estimation Panel */
+        .estimation-panel {
+            background: linear-gradient(135deg, var(--blue-dark), var(--blue-primary));
+            padding: 2rem;
+            border-radius: 16px;
+            color: var(--white);
+            position: sticky;
+            top: 100px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .estimation-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .estimation-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .estimation-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .estimation-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .estimation-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .estimation-amount {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #FDE68A;
+        }
+
+        .estimation-total {
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .estimation-total-label {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .estimation-total-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .estimation-note {
+            text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+            line-height: 1.4;
+        }
+
+        /* Testimonials */
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+
+        .testimonial-text {
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .testimonial-author {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .testimonial-stars {
+            color: #FDE68A;
+            margin-top: 0.5rem;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: var(--white);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .btn-submit.loading .loading-spinner {
+            display: inline-block;
+        }
+
+        .btn-submit.loading .btn-text {
+            display: none;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .estimation-panel {
+                position: static;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-phone span {
+                display: none;
+            }
+
+            .progress-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .step-circle {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+
+            .step-label {
+                font-size: 0.65rem;
+                max-width: 60px;
+            }
+
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .step-title {
+                font-size: 1.5rem;
+            }
+
+            .options-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .option-card {
+                padding: 1.25rem 0.75rem;
+            }
+
+            .option-icon {
+                font-size: 2rem;
+            }
+
+            .option-label {
+                font-size: 0.85rem;
+            }
+
+            .buttons-row {
+                flex-direction: column;
+            }
+
+            .estimation-panel {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .main-container {
+                padding: 0 1rem;
+                margin: 1rem auto;
+            }
+
+            .form-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .step-title {
+                font-size: 1.3rem;
+            }
+
+            .btn-nav {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">ELIGIBILITE</a>
+            <div class="header-phone">
+                <i class="fas fa-phone-volume"></i>
+                <span>Besoin d'aide ? <strong>01 89 20 03 80</strong></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Column: Form -->
+        <div>
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-steps">
+                    <div class="progress-line">
+                        <div class="progress-line-fill" id="progressLineFill"></div>
+                    </div>
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-circle">1</div>
+                        <div class="step-label">Projet</div>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-circle">2</div>
+                        <div class="step-label">Logement</div>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-circle">3</div>
+                        <div class="step-label">Chauffage</div>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-circle">4</div>
+                        <div class="step-label">Revenus</div>
+                    </div>
+                    <div class="progress-step" data-step="5">
+                        <div class="step-circle">5</div>
+                        <div class="step-label">Contact</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Container -->
+            <div class="form-container">
+                <div class="badges-row">
+                    <div class="badge">
+                        <i class="fas fa-check-circle"></i>
+                        Gratuit et sans engagement
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-lock"></i>
+                        Données sécurisées
+                    </div>
+                </div>
+
+                <form id="eligibilityForm">
+                    <!-- STEP 1: Projet -->
+                    <div class="form-step active" data-step="1">
+                        <div class="step-header">
+                            <h2 class="step-title">Quel type de travaux souhaitez-vous réaliser ?</h2>
+                            <p class="step-subtitle">Sélectionnez un ou plusieurs projets</p>
+                            <div class="step-remaining">
+                                <i class="fas fa-clock"></i>
+                                Plus que 4 étapes
+                            </div>
+                        </div>
+
+                        <div class="options-grid">
+                            <div class="option-card" data-value="pac">
+                                <div class="option-icon"><i class="fas fa-fan"></i></div>
+                                <div class="option-label">Pompe à chaleur</div>
+                            </div>
+                            <div class="option-card" data-value="isolation">
+                                <div class="option-icon"><i class="fas fa-home"></i></div>
+                                <div class="option-label">Isolation</div>
+                            </div>
+                            <div class="option-card" data-value="solaire">
+                                <div class="option-icon"><i class="fas fa-solar-panel"></i></div>
+                                <div class="option-label">Panneaux solaires</div>
+                            </div>
+                            <div class="option-card" data-value="chaudiere">
+                                <div class="option-icon"><i class="fas fa-fire"></i></div>
+                                <div class="option-label">Chaudière gaz</div>
+                            </div>
+                            <div class="option-card" data-value="vmc">
+                                <div class="option-icon"><i class="fas fa-wind"></i></div>
+                                <div class="option-label">VMC</div>
+                            </div>
+                            <div class="option-card" data-value="fenetres">
+                                <div class="option-icon"><i class="fas fa-door-open"></i></div>
+                                <div class="option-label">Fenêtres/Portes</div>
+                            </div>
+                            <div class="option-card" data-value="plusieurs">
+                                <div class="option-icon"><i class="fas fa-layer-group"></i></div>
+                                <div class="option-label">Plusieurs travaux</div>
+                            </div>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" class="btn-nav btn-next" id="btnStep1Next">
+                                Continuer <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Logement -->
+                    <div class="form-step" data-step="2">
+                        <div class="step-header">
+                            <h2 class="step-title">Parlez-nous de votre logement</h2>
+                            <p class="step-subtitle">Ces informations nous aident à calculer vos aides</p>
+                            <div class="step-remaining">
+                                <i class="fas fa-clock"></i>
+                                Plus que 3 étapes
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Type de bien <span class="required">*</span></label>
+                            <div class="buttons-row">
+                                <button type="button" class="btn-option" data-value="maison">
+                                    <i class="fas fa-home"></i> Maison
+                                </button>
+                                <button type="button" class="btn-option" data-value="appartement">
+                                    <i class="fas fa-building"></i> Appartement
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Vous êtes <span class="required">*</span></label>
+                            <div class="buttons-row">
+                                <button type="button" class="btn-option" data-value="proprietaire">
+                                    <i class="fas fa-key"></i> Propriétaire
+                                </button>
+                                <button type="button" class="btn-option" data-value="locataire">
+                                    <i class="fas fa-user"></i> Locataire
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="anneeConstruction">Année de construction <span class="required">*</span></label>
+                            <select id="anneeConstruction" class="form-select" required>
+                                <option value="">Sélectionnez une période</option>
+                                <option value="avant1975">Avant 1975</option>
+                                <option value="1975-1990">1975 - 1990</option>
+                                <option value="1991-2005">1991 - 2005</option>
+                                <option value="2006-2012">2006 - 2012</option>
+                                <option value="apres2012">Après 2012</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="surface">Surface habitable <span class="required">*</span></label>
+                            <div class="input-suffix" data-suffix="m²">
+                                <input type="number" id="surface" class="form-input" min="20" max="500" placeholder="100" required>
+                            </div>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" class="btn-nav btn-prev">
+                                <i class="fas fa-arrow-left"></i> Retour
+                            </button>
+                            <button type="button" class="btn-nav btn-next" id="btnStep2Next">
+                                Continuer <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: Chauffage -->
+                    <div class="form-step" data-step="3">
+                        <div class="step-header">
+                            <h2 class="step-title">Votre système de chauffage actuel</h2>
+                            <p class="step-subtitle">Ces informations déterminent votre potentiel d'économies</p>
+                            <div class="step-remaining">
+                                <i class="fas fa-clock"></i>
+                                Plus que 2 étapes
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Type de chauffage <span class="required">*</span></label>
+                            <div class="buttons-row">
+                                <button type="button" class="btn-option" data-value="electrique">
+                                    <i class="fas fa-bolt"></i> Électrique
+                                </button>
+                                <button type="button" class="btn-option" data-value="gaz">
+                                    <i class="fas fa-fire"></i> Gaz
+                                </button>
+                            </div>
+                            <div class="buttons-row">
+                                <button type="button" class="btn-option" data-value="fioul">
+                                    <i class="fas fa-oil-can"></i> Fioul
+                                </button>
+                                <button type="button" class="btn-option" data-value="bois">
+                                    <i class="fas fa-tree"></i> Bois
+                                </button>
+                                <button type="button" class="btn-option" data-value="autre">
+                                    <i class="fas fa-question"></i> Autre
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="factureEnergie">Facture énergétique annuelle <span class="required">*</span></label>
+                            <select id="factureEnergie" class="form-select" required>
+                                <option value="">Sélectionnez un montant</option>
+                                <option value="moins1000">Moins de 1 000 €</option>
+                                <option value="1000-1500">1 000 € - 1 500 €</option>
+                                <option value="1500-2000">1 500 € - 2 000 €</option>
+                                <option value="2000-2500">2 000 € - 2 500 €</option>
+                                <option value="plus2500">Plus de 2 500 €</option>
+                            </select>
+                        </div>
+
+                        <div class="info-message">
+                            <i class="fas fa-lightbulb"></i>
+                            <div class="info-message-text">
+                                <strong>Bon à savoir :</strong> Plus votre facture est élevée, plus vous économiserez avec une pompe à chaleur ou une meilleure isolation !
+                            </div>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" class="btn-nav btn-prev">
+                                <i class="fas fa-arrow-left"></i> Retour
+                            </button>
+                            <button type="button" class="btn-nav btn-next" id="btnStep3Next">
+                                Continuer <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: Revenus -->
+                    <div class="form-step" data-step="4">
+                        <div class="step-header">
+                            <h2 class="step-title">Vos revenus du foyer</h2>
+                            <p class="step-subtitle">Pour calculer précisément vos aides MaPrimeRénov'</p>
+                            <div class="step-remaining">
+                                <i class="fas fa-clock"></i>
+                                Dernière étape !
+                            </div>
+                        </div>
+
+                        <div class="info-message">
+                            <i class="fas fa-shield-alt"></i>
+                            <div class="info-message-text">
+                                <strong>Confidentialité garantie :</strong> Ces informations sont strictement confidentielles et nécessaires pour calculer vos aides.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="nbPersonnes">Nombre de personnes dans le foyer <span class="required">*</span></label>
+                            <select id="nbPersonnes" class="form-select" required>
+                                <option value="">Sélectionnez</option>
+                                <option value="1">1 personne</option>
+                                <option value="2">2 personnes</option>
+                                <option value="3">3 personnes</option>
+                                <option value="4">4 personnes</option>
+                                <option value="5">5 personnes</option>
+                                <option value="6+">6 personnes ou plus</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="revenuFiscal">Revenu fiscal de référence <span class="required">*</span></label>
+                            <select id="revenuFiscal" class="form-select" required>
+                                <option value="">Sélectionnez une tranche</option>
+                                <option value="moins15000">Moins de 15 000 €</option>
+                                <option value="15000-20000">15 000 € - 20 000 €</option>
+                                <option value="20000-25000">20 000 € - 25 000 €</option>
+                                <option value="25000-30000">25 000 € - 30 000 €</option>
+                                <option value="30000-35000">30 000 € - 35 000 €</option>
+                                <option value="35000-45000">35 000 € - 45 000 €</option>
+                                <option value="45000-60000">45 000 € - 60 000 €</option>
+                                <option value="plus60000">Plus de 60 000 €</option>
+                            </select>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" class="btn-nav btn-prev">
+                                <i class="fas fa-arrow-left"></i> Retour
+                            </button>
+                            <button type="button" class="btn-nav btn-next" id="btnStep4Next">
+                                Continuer <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 5: Contact -->
+                    <div class="form-step" data-step="5">
+                        <div class="step-header">
+                            <h2 class="step-title">Dernière étape : vos coordonnées</h2>
+                            <p class="step-subtitle">Pour recevoir votre estimation personnalisée</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Civilité <span class="required">*</span></label>
+                            <div class="buttons-row">
+                                <button type="button" class="btn-option" data-value="m">
+                                    <i class="fas fa-male"></i> M.
+                                </button>
+                                <button type="button" class="btn-option" data-value="mme">
+                                    <i class="fas fa-female"></i> Mme
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="prenom">Prénom <span class="required">*</span></label>
+                            <input type="text" id="prenom" class="form-input" placeholder="Jean" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="nom">Nom <span class="required">*</span></label>
+                            <input type="text" id="nom" class="form-input" placeholder="Dupont" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email <span class="required">*</span></label>
+                            <input type="email" id="email" class="form-input" placeholder="jean.dupont@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="telephone">
+                                Téléphone <span class="optional">(optionnel mais recommandé)</span>
+                            </label>
+                            <input type="tel" id="telephone" class="form-input" placeholder="06 12 34 56 78">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="codePostal">Code postal <span class="required">*</span></label>
+                            <input type="text" id="codePostal" class="form-input" placeholder="75001" maxlength="5" pattern="[0-9]{5}" required>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="consentementRGPD" required>
+                            <label class="checkbox-label" for="consentementRGPD">
+                                J'accepte d'être recontacté par téléphone et/ou email pour recevoir mon estimation personnalisée. <a href="#">Politique de confidentialité</a> <span class="required">*</span>
+                            </label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="consentementMarketing">
+                            <label class="checkbox-label" for="consentementMarketing">
+                                J'accepte de recevoir des offres partenaires par email (facultatif)
+                            </label>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" class="btn-nav btn-prev">
+                                <i class="fas fa-arrow-left"></i> Retour
+                            </button>
+                            <button type="submit" class="btn-nav btn-submit">
+                                <span class="btn-text">
+                                    <i class="fas fa-calculator"></i> DÉCOUVRIR MES AIDES DISPONIBLES
+                                </span>
+                                <div class="loading-spinner"></div>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right Column: Estimation Panel -->
+        <div class="estimation-panel">
+            <div class="estimation-header">
+                <h3 class="estimation-title">Vos aides estimées</h3>
+                <p class="estimation-subtitle">Montant indicatif selon vos réponses</p>
+            </div>
+
+            <div class="estimation-item">
+                <div class="estimation-label">MaPrimeRénov'</div>
+                <div class="estimation-amount" id="aideMPR">5 000 €</div>
+            </div>
+
+            <div class="estimation-item">
+                <div class="estimation-label">Prime CEE</div>
+                <div class="estimation-amount" id="aideCEE">3 500 €</div>
+            </div>
+
+            <div class="estimation-item">
+                <div class="estimation-label">Éco-PTZ</div>
+                <div class="estimation-amount">50 000 €</div>
+            </div>
+
+            <div class="estimation-item">
+                <div class="estimation-label">TVA réduite</div>
+                <div class="estimation-amount">5,5 %</div>
+            </div>
+
+            <div class="estimation-total">
+                <div class="estimation-total-label">TOTAL ESTIMÉ</div>
+                <div class="estimation-total-amount" id="totalEstime">8 500 €</div>
+            </div>
+
+            <div class="estimation-note">
+                * Montant indicatif sous réserve d'éligibilité. Estimation finale après étude complète de votre dossier.
+            </div>
+
+            <div class="testimonial" id="testimonialRotate">
+                <div class="testimonial-text">
+                    "J'ai économisé 12 500€ sur l'installation de ma pompe à chaleur grâce à cette simulation !"
+                </div>
+                <div class="testimonial-author">— Marie L., Nantes</div>
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form Data Storage
+        const formData = {
+            projets: [],
+            typeBien: '',
+            statut: '',
+            anneeConstruction: '',
+            surface: '',
+            typeChauffage: '',
+            factureEnergie: '',
+            nbPersonnes: '',
+            revenuFiscal: '',
+            civilite: '',
+            prenom: '',
+            nom: '',
+            email: '',
+            telephone: '',
+            codePostal: '',
+            consentementRGPD: false,
+            consentementMarketing: false
+        };
+
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFromLocalStorage();
+            setupEventListeners();
+            updateProgressBar();
+            updateEstimation();
+            startTestimonialRotation();
+        });
+
+        // Save to localStorage
+        function saveToLocalStorage() {
+            localStorage.setItem('eligibilityFormData', JSON.stringify(formData));
+        }
+
+        // Load from localStorage
+        function loadFromLocalStorage() {
+            const saved = localStorage.getItem('eligibilityFormData');
+            if (saved) {
+                Object.assign(formData, JSON.parse(saved));
+                restoreFormState();
+            }
+        }
+
+        // Restore form state from saved data
+        function restoreFormState() {
+            // Restore projets
+            formData.projets.forEach(projet => {
+                const card = document.querySelector(`.option-card[data-value="${projet}"]`);
+                if (card) card.classList.add('selected');
+            });
+
+            // Restore buttons
+            document.querySelectorAll('.btn-option').forEach(btn => {
+                const value = btn.dataset.value;
+                if (Object.values(formData).includes(value)) {
+                    btn.classList.add('selected');
+                }
+            });
+
+            // Restore inputs
+            Object.keys(formData).forEach(key => {
+                const input = document.getElementById(key);
+                if (input) input.value = formData[key];
+            });
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Step 1: Project cards
+            document.querySelectorAll('[data-step="1"] .option-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const value = card.dataset.value;
+
+                    if (value === 'plusieurs') {
+                        // Deselect all and select only "plusieurs"
+                        document.querySelectorAll('[data-step="1"] .option-card').forEach(c => c.classList.remove('selected'));
+                        card.classList.add('selected');
+                        formData.projets = ['plusieurs'];
+                    } else {
+                        // Remove "plusieurs" if selected
+                        const plusieursCard = document.querySelector('[data-step="1"] .option-card[data-value="plusieurs"]');
+                        if (plusieursCard) plusieursCard.classList.remove('selected');
+
+                        // Toggle selection
+                        card.classList.toggle('selected');
+
+                        const index = formData.projets.indexOf(value);
+                        if (index > -1) {
+                            formData.projets.splice(index, 1);
+                        } else {
+                            formData.projets.push(value);
+                        }
+                    }
+
+                    saveToLocalStorage();
+                    updateEstimation();
+                });
+            });
+
+            // Button options (generic)
+            document.querySelectorAll('.btn-option').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const group = this.parentElement;
+                    group.querySelectorAll('.btn-option').forEach(b => b.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    // Save to formData based on step
+                    const step = this.closest('.form-step');
+                    const stepNum = parseInt(step.dataset.step);
+
+                    if (stepNum === 2) {
+                        if (group.previousElementSibling?.textContent.includes('Type de bien')) {
+                            formData.typeBien = this.dataset.value;
+                        } else if (group.previousElementSibling?.textContent.includes('Vous êtes')) {
+                            formData.statut = this.dataset.value;
+                        }
+                    } else if (stepNum === 3) {
+                        formData.typeChauffage = this.dataset.value;
+                    } else if (stepNum === 5) {
+                        formData.civilite = this.dataset.value;
+                    }
+
+                    saveToLocalStorage();
+                    updateEstimation();
+                });
+            });
+
+            // Form inputs
+            document.querySelectorAll('input, select').forEach(input => {
+                input.addEventListener('change', function() {
+                    formData[this.id] = this.type === 'checkbox' ? this.checked : this.value;
+                    saveToLocalStorage();
+                    updateEstimation();
+
+                    // Validation
+                    if (this.type !== 'checkbox') {
+                        validateField(this);
+                    }
+                });
+
+                input.addEventListener('blur', function() {
+                    if (this.type !== 'checkbox') {
+                        validateField(this);
+                    }
+                });
+            });
+
+            // Navigation buttons
+            document.querySelectorAll('.btn-next').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (validateStep(currentStep)) {
+                        nextStep();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.btn-prev').forEach(btn => {
+                btn.addEventListener('click', prevStep);
+            });
+
+            // Form submission
+            document.getElementById('eligibilityForm').addEventListener('submit', handleSubmit);
+        }
+
+        // Validate field
+        function validateField(field) {
+            if (field.required && !field.value) {
+                field.classList.add('invalid');
+                field.classList.remove('valid');
+                return false;
+            }
+
+            if (field.type === 'email' && field.value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(field.value)) {
+                    field.classList.add('invalid');
+                    field.classList.remove('valid');
+                    return false;
+                }
+            }
+
+            if (field.id === 'codePostal' && field.value) {
+                const cpRegex = /^[0-9]{5}$/;
+                if (!cpRegex.test(field.value)) {
+                    field.classList.add('invalid');
+                    field.classList.remove('valid');
+                    return false;
+                }
+            }
+
+            field.classList.remove('invalid');
+            field.classList.add('valid');
+            return true;
+        }
+
+        // Validate step
+        function validateStep(step) {
+            if (step === 1) {
+                return formData.projets.length > 0;
+            }
+
+            if (step === 2) {
+                return formData.typeBien && formData.statut &&
+                       document.getElementById('anneeConstruction').value &&
+                       document.getElementById('surface').value;
+            }
+
+            if (step === 3) {
+                return formData.typeChauffage && document.getElementById('factureEnergie').value;
+            }
+
+            if (step === 4) {
+                return document.getElementById('nbPersonnes').value &&
+                       document.getElementById('revenuFiscal').value;
+            }
+
+            if (step === 5) {
+                const prenom = document.getElementById('prenom');
+                const nom = document.getElementById('nom');
+                const email = document.getElementById('email');
+                const codePostal = document.getElementById('codePostal');
+                const rgpd = document.getElementById('consentementRGPD');
+
+                return validateField(prenom) && validateField(nom) &&
+                       validateField(email) && validateField(codePostal) && rgpd.checked;
+            }
+
+            return true;
+        }
+
+        // Next step
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('active');
+                currentStep++;
+                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+                updateProgressBar();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Previous step
+        function prevStep() {
+            if (currentStep > 1) {
+                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('active');
+                currentStep--;
+                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+                updateProgressBar();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progressPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            document.getElementById('progressLineFill').style.width = progressPercent + '%';
+
+            document.querySelectorAll('.progress-step').forEach(step => {
+                const stepNum = parseInt(step.dataset.step);
+                step.classList.remove('active', 'completed');
+
+                if (stepNum === currentStep) {
+                    step.classList.add('active');
+                } else if (stepNum < currentStep) {
+                    step.classList.add('completed');
+                }
+            });
+        }
+
+        // Update estimation
+        function updateEstimation() {
+            let mpr = 5000;
+            let cee = 3500;
+
+            // Adjust based on project type
+            if (formData.projets.includes('pac')) {
+                mpr = 7000;
+                cee = 4500;
+            } else if (formData.projets.includes('isolation')) {
+                mpr = 6000;
+                cee = 4000;
+            } else if (formData.projets.includes('plusieurs')) {
+                mpr = 10000;
+                cee = 6000;
+            }
+
+            // Adjust based on revenue
+            if (formData.revenuFiscal === 'moins15000' || formData.revenuFiscal === '15000-20000') {
+                mpr = Math.round(mpr * 1.5);
+                cee = Math.round(cee * 1.3);
+            } else if (formData.revenuFiscal === '20000-25000' || formData.revenuFiscal === '25000-30000') {
+                mpr = Math.round(mpr * 1.2);
+                cee = Math.round(cee * 1.1);
+            }
+
+            // Adjust based on heating type
+            if (formData.typeChauffage === 'fioul') {
+                mpr = Math.round(mpr * 1.3);
+                cee = Math.round(cee * 1.2);
+            }
+
+            // Adjust based on energy bill
+            if (formData.factureEnergie === 'plus2500') {
+                cee = Math.round(cee * 1.2);
+            } else if (formData.factureEnergie === '2000-2500') {
+                cee = Math.round(cee * 1.1);
+            }
+
+            const total = mpr + cee;
+
+            document.getElementById('aideMPR').textContent = mpr.toLocaleString('fr-FR') + ' €';
+            document.getElementById('aideCEE').textContent = cee.toLocaleString('fr-FR') + ' €';
+            document.getElementById('totalEstime').textContent = total.toLocaleString('fr-FR') + ' €';
+        }
+
+        // Testimonial rotation
+        function startTestimonialRotation() {
+            const testimonials = [
+                {
+                    text: "J'ai économisé 12 500€ sur l'installation de ma pompe à chaleur grâce à cette simulation !",
+                    author: "Marie L., Nantes"
+                },
+                {
+                    text: "Service rapide et efficace. J'ai reçu mon devis en moins de 24h et les travaux sont terminés !",
+                    author: "Pierre D., Lyon"
+                },
+                {
+                    text: "Excellent accompagnement. L'équipe m'a guidé à chaque étape, de la simulation au paiement des aides.",
+                    author: "Sophie M., Toulouse"
+                },
+                {
+                    text: "Isolation complète de ma maison pour 3 000€ après déduction des aides. Incroyable !",
+                    author: "Jean-Paul R., Bordeaux"
+                }
+            ];
+
+            let currentIndex = 0;
+
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % testimonials.length;
+                const testimonial = testimonials[currentIndex];
+
+                const container = document.getElementById('testimonialRotate');
+                container.style.opacity = '0';
+
+                setTimeout(() => {
+                    container.querySelector('.testimonial-text').textContent = `"${testimonial.text}"`;
+                    container.querySelector('.testimonial-author').textContent = `— ${testimonial.author}`;
+                    container.style.opacity = '1';
+                }, 300);
+            }, 8000);
+        }
+
+        // Handle form submission
+        function handleSubmit(e) {
+            e.preventDefault();
+
+            if (!validateStep(5)) {
+                alert('Veuillez remplir tous les champs obligatoires.');
+                return;
+            }
+
+            const submitBtn = document.querySelector('.btn-submit');
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                console.log('Form submitted:', formData);
+                localStorage.removeItem('eligibilityFormData');
+                window.location.href = 'merci.html?montant=' + document.getElementById('totalEstime').textContent;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

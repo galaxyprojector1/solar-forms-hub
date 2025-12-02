@@ -20,7 +20,7 @@ solar-forms-hub/
 │   ├── lp-multi-travaux/        # LP Multi-projets (violet)
 │   └── lp-simulateur-aides/     # LP Simulateur (rose)
 ├── multi-sites/                  # Clones de sites concurrents
-│   ├── eligibilite-clone/       # V2 - Formulaire multi-etapes + animations
+│   ├── eligibilite-clone/       # V3 - Architecture multi-pages (landing + formulaire + merci)
 │   └── prime-energie-pro/       # Clone eligibilite.com ameliore
 ├── versions-completes/          # 14 versions formulaires (V1-V14)
 ├── public/images/               # Images IA generees
@@ -39,7 +39,9 @@ solar-forms-hub/
 | Page | URL | Description |
 |------|-----|-------------|
 | Dashboard | / | Page d'accueil avec toutes les LP |
-| **Eligibilite Clone V2** | /multi-sites/eligibilite-clone/ | **STAR** - Formulaire 5 etapes + animations |
+| **Eligibilite Clone V3** | /multi-sites/eligibilite-clone/ | **STAR** - Landing page optimisee |
+| Eligibilite Formulaire | /multi-sites/eligibilite-clone/formulaire.html | Formulaire 5 etapes + estimation aides |
+| Eligibilite Merci | /multi-sites/eligibilite-clone/merci.html | Page de confirmation |
 | Prime Energie Pro | /multi-sites/prime-energie-pro/ | Clone ameliore |
 | Prime Renovation | /landing-pages/lp-prime-renovation/ | Style pro bleu |
 | Renovation 2025 | /renovation-energie-2025.html | Multi-activites + simulateur |
@@ -50,9 +52,9 @@ solar-forms-hub/
 | Multi-Travaux | /landing-pages/lp-multi-travaux/ | Theme violet |
 | Simulateur | /landing-pages/lp-simulateur-aides/ | Theme rose |
 
-## Eligibilite Clone V2 - Features
+## Eligibilite Clone V3 - Features (Architecture Multi-pages)
 
-La page star du projet avec toutes les features avancees :
+La page star du projet avec toutes les features avancees - Restructuration en 3 pages :
 
 ### Animations
 - Hero : texte mot par mot (typewriter effect)
@@ -62,6 +64,11 @@ La page star du projet avec toutes les features avancees :
 - Pulse/glow sur boutons CTA
 - Confetti a la soumission
 - Cards 3D hover effects
+
+### Architecture
+1. **index.html** : Landing page hero + avantages + CTA (formulaire supprime)
+2. **formulaire.html** : Formulaire 5 etapes plein ecran avec estimation aides
+3. **merci.html** : Page de confirmation avec animations succes
 
 ### Formulaire Multi-Etapes (5 steps)
 1. **Projet** : PAC, isolation, solaire, chaudiere, VMC, fenetres, multi
@@ -130,7 +137,10 @@ npx vercel --prod --yes
 - context7 : documentation libs
 
 ## Screenshots disponibles (.playwright-mcp/)
-- eligibilite-v2-desktop-hero.png
-- eligibilite-v2-formulaire-desktop.png
-- eligibilite-v2-mobile-hero.png
-- eligibilite-v2-mobile-formulaire.png
+- eligibilite-v3-index-desktop.png
+- eligibilite-v3-index-mobile.png
+- eligibilite-v3-formulaire-step1-desktop.png
+- eligibilite-v3-formulaire-step2-desktop.png
+- eligibilite-v3-formulaire-mobile.png
+- eligibilite-v3-merci-desktop.png
+- eligibilite-v3-merci-mobile.png
