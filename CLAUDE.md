@@ -9,129 +9,76 @@ URL : https://solar-forms-hub.vercel.app/
 
 ```
 solar-forms-hub/
-├── index.html                    # Dashboard principal (TOUJOURS METTRE A JOUR)
-├── renovation-energie-2025.html  # LP Premium multi-activites
-├── landing-pages/
-│   ├── lp-prime-renovation/     # Style primerenovation-en-ligne.com
-│   ├── lp-panneaux-solaires/    # LP Solaire V1 (orange)
-│   ├── lp-panneaux-solaires-v2/ # LP Solaire V2 premium (images IA)
-│   ├── lp-pompe-a-chaleur/      # LP PAC (bleu)
-│   ├── lp-isolation-exterieure/ # LP Isolation (vert)
-│   ├── lp-multi-travaux/        # LP Multi-projets (violet)
-│   └── lp-simulateur-aides/     # LP Simulateur (rose)
-├── multi-sites/                  # Clones de sites concurrents
-│   ├── eligibilite-clone/       # V3 - Architecture multi-pages (landing + formulaire + merci)
-│   └── prime-energie-pro/       # Clone eligibilite.com ameliore
-├── versions-completes/          # 14 versions formulaires (V1-V14)
-├── public/images/               # Images IA generees
-└── .playwright-mcp/             # Screenshots Playwright
+├── index.html                    # Dashboard principal
+├── multi-sites/
+│   └── eligibilite-clone/        # SITE STAR - 9 pages V4
+└── .playwright-mcp/              # Screenshots Playwright
 ```
 
-## REGLE IMPORTANTE - Dashboard
+## Eligibilite Clone V4 - Site Complet (9 pages)
 
-**TOUJOURS mettre a jour index.html (dashboard) quand on ajoute une nouvelle page !**
-- Ajouter la carte dans la section appropriee (Landing Pages ou Multi-Sites)
-- Mettre a jour les compteurs dans le header
-- Commit + push + deploy pour que ce soit visible sur https://solar-forms-hub.vercel.app/
+**URL** : https://solar-forms-hub.vercel.app/multi-sites/eligibilite-clone/
 
-## Pages actives
-
-| Page | URL | Description |
-|------|-----|-------------|
-| Dashboard | / | Page d'accueil avec toutes les LP |
-| **Eligibilite Clone V3** | /multi-sites/eligibilite-clone/ | **STAR** - Landing page optimisee |
-| Eligibilite Formulaire | /multi-sites/eligibilite-clone/formulaire.html | Formulaire 5 etapes + estimation aides |
-| Eligibilite Merci | /multi-sites/eligibilite-clone/merci.html | Page de confirmation |
-| Prime Energie Pro | /multi-sites/prime-energie-pro/ | Clone ameliore |
-| Prime Renovation | /landing-pages/lp-prime-renovation/ | Style pro bleu |
-| Renovation 2025 | /renovation-energie-2025.html | Multi-activites + simulateur |
-| Solaire V2 | /landing-pages/lp-panneaux-solaires-v2/ | Premium avec images IA |
-| Solaire V1 | /landing-pages/lp-panneaux-solaires/ | Theme orange |
-| PAC | /landing-pages/lp-pompe-a-chaleur/ | Theme bleu, 11000€ aides |
-| Isolation | /landing-pages/lp-isolation-exterieure/ | Theme vert, 75€/m2 |
-| Multi-Travaux | /landing-pages/lp-multi-travaux/ | Theme violet |
-| Simulateur | /landing-pages/lp-simulateur-aides/ | Theme rose |
-
-## Eligibilite Clone V4 - Site Complet Multi-Pages
-
-La page star du projet - Site complet avec 9 pages :
-
-### Architecture V4 (A CREER)
+### Architecture
 ```
 eligibilite-clone/
-├── index.html              # Landing page principale
+├── index.html              # Landing principale
 ├── formulaire.html         # Formulaire 5 etapes
 ├── merci.html              # Page confirmation
-├── panneaux-solaires.html  # Page dispositif solaire (A CREER)
-├── isolation.html          # Page dispositif isolation (A CREER)
-├── pompe-a-chaleur.html    # Page dispositif PAC (A CREER)
-├── maprimerenov.html       # Page aide MPR (A CREER)
-├── prime-cee.html          # Page aide CEE (A CREER)
-├── anah.html               # Page aide Anah (A CREER)
-└── PROMPT-V4-NOUVELLES-PAGES.md  # Instructions creation
+├── panneaux-solaires.html  # Page dispositif solaire
+├── isolation.html          # Page dispositif isolation
+├── pompe-a-chaleur.html    # Page dispositif PAC
+├── maprimerenov.html       # Page aide MPR
+├── prime-cee.html          # Page aide CEE
+├── anah.html               # Page aide Anah
+├── images/                 # 21 images (hero, cards, icones)
+├── DONNEES-2025.md         # Baremes officiels 2025
+└── PROMPT-V5-ENRICHISSEMENT.md  # Prochaine etape
 ```
 
-### Navigation Dropdown (A IMPLEMENTER)
+### Navigation Dropdown (implementee)
 - Menu "Les dispositifs" : Solaire, Isolation, PAC
 - Menu "Les aides" : MaPrimeRenov, Prime CEE, Anah
+- FAQ + CTA "Je teste mon eligibilite"
 
-### Animations
-- Hero : texte mot par mot (typewriter effect)
-- Gradient anime en background
-- Trust badge floating
-- Compteur anime des avis (0 → 126)
-- Pulse/glow sur boutons CTA
-- Confetti a la soumission
-- Cards 3D hover effects
+### Images existantes (21)
+```
+images/
+├── hero-*.jpg (6)     # Heroes pages
+├── card-*.jpg (3)     # Cards dispositifs
+├── icon-*.jpg (3)     # Icones aides
+├── famille-*.jpg (4)  # Familles/couples
+├── step*.jpg (3)      # Etapes processus
+└── autres (2)         # Artisan, maison
+```
 
-### Pages Existantes
-1. **index.html** : Landing page hero + avantages + CTA
-2. **formulaire.html** : Formulaire 5 etapes plein ecran avec estimation aides
-3. **merci.html** : Page de confirmation avec animations succes
+## Prochaine etape : V5 - Enrichissement Visuel
 
-### Formulaire Multi-Etapes (5 steps)
-1. **Projet** : PAC, isolation, solaire, chaudiere, VMC, fenetres, multi
-2. **Logement** : type, proprietaire/locataire, annee construction, surface
-3. **Chauffage** : type actuel, facture annuelle energie
-4. **Revenus** : nombre personnes foyer, revenu fiscal reference
-5. **Contact** : nom, prenom, email, telephone, code postal, consentement
-
-### UX/UI
-- Progress bar animee avec etapes
-- Estimation dynamique des aides (calcul en temps reel)
-- Validation temps reel des champs
-- Recapitulatif avant envoi
-- Animation succes spectaculaire
-
-### Mobile (375px+)
-- Menu hamburger fullscreen
-- Sticky CTA en bas
-- Touch swipe entre etapes
-- Options 2 colonnes puis 1 colonne
-- Boutons 48px minimum (touch-friendly)
-
-### Performance
-- Header dark mode au scroll (backdrop-filter blur)
-- Lazy loading images natif
-- GPU accelerated animations
-- Preload Google Fonts
+Lire `PROMPT-V5-ENRICHISSEMENT.md` pour :
+- Generer 15+ nouvelles images IA (humains, demonstrations)
+- Integrer sur les 9 pages
+- Objectif : conversion maximale
 
 ## Regles techniques
-- HTML/CSS/JS vanilla uniquement (pas de framework)
-- Tout dans un seul fichier HTML par page
-- CDN uniquement (AOS, FontAwesome, Google Fonts)
-- Mobile-first obligatoire
-- < 200KB par fichier HTML
-- Images dans le dossier images/ de chaque page ou public/images/
+- HTML/CSS/JS vanilla (pas de framework)
+- Un fichier HTML par page
+- CDN : AOS, FontAwesome, Google Fonts
+- Mobile-first (375px+)
+- < 100KB par page
 
-## Generation d'images IA (Fal.ai)
+## Generation images IA (Fal.ai)
 
-IMPORTANT: Utiliser `mcp__fal-ai__run_model` (PAS generate_image qui bug)
+```javascript
+mcp__fal-ai__run_model({
+    model_id: "fal-ai/flux/dev",
+    input: {
+        prompt: "...",
+        num_images: 1,
+        image_size: "landscape_16_9"
+    }
+})
+// Puis : curl -o "images/nom.jpg" "URL"
 ```
-model_id: "fal-ai/flux/dev"
-input: {"prompt": "...", "num_images": 1, "image_size": "landscape_16_9"}
-```
-Puis telecharger: `curl -o "chemin/images/nom.jpg" "URL_RETOURNEE"`
 
 ## Deploiement
 ```bash
@@ -140,26 +87,14 @@ git push
 npx vercel --prod --yes
 ```
 
-## Style marketing
-- Exagerer les economies et aides pour maximiser les leads
-- Urgence : "Offre limitee", "Aides en baisse en 2026"
-- Social proof : temoignages, nombre de clients
-- Confiance : certifications RGE, garanties
-- Animations : AOS pour les scroll effects
-
 ## MCP utiles
-- vercel : deploiement
-- github : commits
-- playwright : tests visuels
-- perplexity : recherche web
 - fal-ai : generation images
-- context7 : documentation libs
+- playwright : tests visuels
+- vercel : deploiement
+- perplexity : recherche web
+- github : commits
 
-## Screenshots disponibles (.playwright-mcp/)
-- eligibilite-v3-index-desktop.png
-- eligibilite-v3-index-mobile.png
-- eligibilite-v3-formulaire-step1-desktop.png
-- eligibilite-v3-formulaire-step2-desktop.png
-- eligibilite-v3-formulaire-mobile.png
-- eligibilite-v3-merci-desktop.png
-- eligibilite-v3-merci-mobile.png
+## Screenshots V4 (.playwright-mcp/)
+- v4-index-desktop.png
+- v4-solaire-desktop.png
+- v4-mpr-desktop.png
