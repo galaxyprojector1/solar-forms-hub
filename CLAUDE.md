@@ -1,103 +1,120 @@
 # Instructions Claude - Solar Forms Hub
 
-## MISSION PRINCIPALE (Prochaine session)
+## MISSION PRINCIPALE - CREER UN SITE 10X MIEUX
 
-### Objectif
-Refaire TOUTES les pages du site en version ULTRA PREMIUM avec :
-- 20-30 images IA generees avec Fal.ai (modele: fal-ai/flux/dev)
-- Design moderne, animations fluides, conversion maximale
-- Mobile-first, dark mode elegant
+### Contexte
+Tu dois CREER une NOUVELLE landing page ULTRA PREMIUM pour la renovation energetique.
+Le site actuel est visible sur : https://solar-forms-hub.vercel.app/
+Tu dois faire 10X MIEUX que ce qui existe.
 
-### TODO Liste
-1. [ ] Generer 20+ images IA (hero, services, temoignages, backgrounds)
-2. [ ] Refaire renovation-energie-2025.html (page principale)
-3. [ ] Refaire LP Panneaux Solaires V2 premium
-4. [ ] Refaire LP Pompe a Chaleur premium
-5. [ ] Refaire LP Isolation premium
-6. [ ] Refaire LP Multi-Travaux premium
-7. [ ] Refaire LP Simulateur premium
-8. [ ] Mettre a jour dashboard index.html
-9. [ ] Deployer sur Vercel
+### ETAPE 1 : RECHERCHE (OBLIGATOIRE)
 
-### Images a generer avec Fal.ai
+**Avant de coder, tu DOIS :**
 
-**IMPORTANT**: Utiliser `mcp__fal-ai__run_model` (pas generate_image)
+1. **Analyser le site actuel avec Playwright**
+   - Aller sur https://solar-forms-hub.vercel.app/
+   - Visiter TOUTES les pages existantes (renovation-energie-2025.html, landing-pages/*)
+   - Prendre des screenshots pour comprendre le design actuel
+   - Noter ce qui marche et ce qui peut etre ameliore
+
+2. **Chercher l'inspiration avec Perplexity/WebSearch**
+   - Rechercher "best solar panel landing page design 2025"
+   - Rechercher "meilleurs sites renovation energetique France"
+   - Rechercher "high converting energy landing page examples"
+   - Rechercher "MaPrimeRenov 2025 montants aides officiels"
+   - S'inspirer des meilleurs sites du secteur
+
+3. **Verifier les donnees officielles**
+   - Montants MaPrimeRenov 2025 a jour
+   - Plafonds CEE actuels
+   - Montants Eco-PTZ
+   - TVA reduite conditions
+
+### ETAPE 2 : GENERATION D'IMAGES IA
+
+**Utiliser Fal.ai pour generer 20-30 images premium**
+
+IMPORTANT: Utiliser `mcp__fal-ai__run_model` (PAS generate_image qui bug)
 ```
 model_id: "fal-ai/flux/dev"
 input: {"prompt": "...", "num_images": 1, "image_size": "landscape_16_9"}
 ```
-Puis telecharger: `curl -o "public/images/nom.jpg" "URL"`
+Puis telecharger: `curl -o "public/images/nom.jpg" "URL_RETOURNEE"`
 
-**Liste des images a generer:**
+**Images a generer (adapte selon ton inspiration) :**
+- Hero images spectaculaires (maisons avec panneaux solaires, PAC, etc)
+- Photos de services (installations, equipements)
+- Portraits clients pour temoignages
+- Backgrounds abstraits/tech
+- Icones et badges (garantie, certifications)
 
-HERO IMAGES (1920x1080):
-1. hero-main.jpg - "Modern French house with solar panels on roof, heat pump unit, green garden, sunny day, photorealistic, architectural photography, 4k"
-2. hero-solar.jpg - "Close-up of premium black solar panels on terracotta roof tiles, French countryside background, golden hour light, professional photography"
-3. hero-pac.jpg - "Modern white heat pump unit installed outside beautiful French stone house, clean design, professional installation, daylight"
-4. hero-isolation.jpg - "Workers installing exterior wall insulation on French house, professional team, safety equipment, bright day"
-5. hero-ev.jpg - "Electric car charging at home wallbox charger, modern French house garage, Tesla-style, evening ambient lighting"
+Ne pas hesiter sur le nombre d'images - budget illimite !
 
-SERVICES CARDS (800x600):
-6. service-solar.jpg - "Aerial view of house with solar panel installation, French suburban neighborhood, drone photography style"
-7. service-pac.jpg - "Split image showing heat pump exterior unit and cozy warm interior living room, modern home"
-8. service-isolation.jpg - "Cross-section view showing wall insulation layers, technical illustration style but photorealistic"
-9. service-ev.jpg - "Sleek EV charging station with illuminated logo, night shot, premium quality"
+### ETAPE 3 : CREER LA NOUVELLE PAGE
 
-TESTIMONIALS (400x400):
-10. client-1.jpg - "Professional headshot of French woman 40s, friendly smile, natural lighting, neutral background"
-11. client-2.jpg - "Professional headshot of French man 50s, confident, business casual, warm lighting"
-12. client-3.jpg - "Professional headshot of young French couple 30s, happy, outdoor background blur"
+**Creer : `landing-pages/lp-premium-2025/index.html`**
 
-BACKGROUNDS (1920x1080):
-13. bg-gradient.jpg - "Abstract gradient background dark blue to emerald green, subtle geometric patterns, modern"
-14. bg-tech.jpg - "Futuristic energy grid visualization, green and blue glowing lines, dark background"
-15. bg-nature.jpg - "Aerial view of French countryside with wind turbines and solar farms, sustainable energy"
+La page doit etre :
+- SPECTACULAIRE visuellement
+- Mobile-first parfait
+- Animations fluides (AOS)
+- Conversion maximale
+- Chargement rapide
 
-ICONS/DETAILS (600x600):
-16. detail-savings.jpg - "Stack of euro bills with green energy symbols, savings concept, clean white background"
-17. detail-certificate.jpg - "RGE certification badge with French flag colors, official looking, 3D render"
-18. detail-guarantee.jpg - "25 year warranty badge, gold and green, premium quality seal"
-19. detail-eco.jpg - "Green leaf transforming into house shape, eco-friendly concept, minimalist"
-20. detail-france.jpg - "Map of France with glowing energy network, data visualization style"
+**Structure recommandee :**
+1. Hero plein ecran avec video/image + titre impactant + CTA
+2. Barre de stats animees (90% aides, 50000€ eco-ptz, etc)
+3. Section services avec belles images IA
+4. Section aides financieres detaillees
+5. Simulateur interactif
+6. Temoignages clients avec photos
+7. FAQ accordion
+8. CTA final puissant
+9. Footer complet
 
-### Design Guidelines
+### ETAPE 4 : METTRE A JOUR LE DASHBOARD
 
-**Palette de couleurs:**
-- Primary: #10B981 (emerald green)
-- Secondary: #3B82F6 (blue)
-- Accent: #F59E0B (orange/solar)
-- Dark: #0F172A, #1E293B
-- Light: #F8FAFC, #E2E8F0
+**Modifier index.html pour afficher la nouvelle page**
+- Ajouter la nouvelle LP en position premium
+- Mettre a jour les compteurs
+- S'assurer que tous les liens fonctionnent
 
-**Typographie:**
-- Font: Inter (Google Fonts)
-- Titres: 700, grandes tailles
-- Corps: 400/500, lisible
+### ETAPE 5 : DEPLOYER
 
-**Animations:**
-- AOS (Animate On Scroll) pour les sections
-- Hover effects sur les cartes
-- Smooth scroll
-- Confetti sur conversion
+```bash
+git add .
+git commit -m "Nouvelle LP Premium 2025 avec images IA"
+git push
+npx vercel --prod --yes
+```
 
-**Structure de chaque LP:**
-1. Hero section (image plein ecran + titre + CTA)
-2. Stats bar (chiffres cles animes)
-3. Avantages (3-4 cartes avec icones)
-4. Comment ca marche (timeline)
-5. Aides disponibles (tableau comparatif)
-6. Temoignages (carousel)
-7. FAQ (accordion)
-8. CTA final (formulaire ou bouton)
-9. Footer
+Puis verifier avec Playwright que tout fonctionne.
 
-### Criteres de qualite
-- Lighthouse score > 90
-- Mobile responsive parfait
-- Temps de chargement < 3s
-- Images optimisees (webp si possible)
-- SEO meta tags complets
-- Schema.org markup
+### TODO Liste
+1. [ ] Recherche : analyser site actuel avec Playwright
+2. [ ] Recherche : chercher inspiration meilleurs sites energie
+3. [ ] Recherche : verifier donnees aides 2025 officielles
+4. [ ] Generer 20-30 images IA avec Fal.ai
+5. [ ] Creer landing-pages/lp-premium-2025/index.html
+6. [ ] Mettre a jour dashboard index.html
+7. [ ] Deployer sur Vercel
+8. [ ] Verifier le resultat final avec Playwright
+
+### Regles techniques
+- HTML/CSS/JS vanilla uniquement
+- Tout dans un seul fichier HTML
+- CDN uniquement (pas de fichiers locaux sauf images)
+- Mobile-first obligatoire
+- < 200KB par fichier HTML
+- Images dans public/images/
+
+### Style marketing
+- Exagerer les economies et aides pour maximiser les leads
+- Urgence : "Offre limitee", "Aides en baisse en 2026"
+- Social proof : temoignages, nombre de clients
+- Confiance : certifications RGE, garanties
+
+---
 
 ## Projet
 Site de generation de leads renovation energetique (solaire, PAC, isolation).
