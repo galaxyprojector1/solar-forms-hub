@@ -9,28 +9,38 @@ URL : https://solar-forms-hub.vercel.app/
 
 ```
 solar-forms-hub/
-├── index.html                    # Dashboard principal
+├── index.html                    # Dashboard principal (TOUJOURS METTRE A JOUR)
 ├── renovation-energie-2025.html  # LP Premium multi-activites
 ├── landing-pages/
-│   ├── lp-prime-renovation/     # NEW - Style primerenovation-en-ligne.com
+│   ├── lp-prime-renovation/     # Style primerenovation-en-ligne.com
 │   ├── lp-panneaux-solaires/    # LP Solaire V1 (orange)
 │   ├── lp-panneaux-solaires-v2/ # LP Solaire V2 premium (images IA)
 │   ├── lp-pompe-a-chaleur/      # LP PAC (bleu)
 │   ├── lp-isolation-exterieure/ # LP Isolation (vert)
 │   ├── lp-multi-travaux/        # LP Multi-projets (violet)
 │   └── lp-simulateur-aides/     # LP Simulateur (rose)
+├── multi-sites/                  # Clones de sites concurrents
+│   ├── eligibilite-clone/       # NEW - Copie fidele eligibilite.com
+│   └── prime-energie-pro/       # Clone eligibilite.com ameliore
 ├── versions-completes/          # 14 versions formulaires (V1-V14)
-├── public/images/               # Images IA generees
-│   └── prime-reno/              # 12 images pour LP Prime Renovation
-└── TODO.md                      # Fichier TODO a jour
+└── public/images/               # Images IA generees
 ```
 
-## Pages actives (8 total)
+## REGLE IMPORTANTE - Dashboard
+
+**TOUJOURS mettre a jour index.html (dashboard) quand on ajoute une nouvelle page !**
+- Ajouter la carte dans la section appropriee (Landing Pages ou Multi-Sites)
+- Mettre a jour les compteurs dans le header
+- Commit + push + deploy pour que ce soit visible sur https://solar-forms-hub.vercel.app/
+
+## Pages actives
 
 | Page | URL | Description |
 |------|-----|-------------|
 | Dashboard | / | Page d'accueil avec toutes les LP |
-| Prime Renovation | /landing-pages/lp-prime-renovation/ | NEW - Style pro bleu |
+| Eligibilite Clone | /multi-sites/eligibilite-clone/ | NEW - Copie fidele |
+| Prime Energie Pro | /multi-sites/prime-energie-pro/ | Clone ameliore |
+| Prime Renovation | /landing-pages/lp-prime-renovation/ | Style pro bleu |
 | Renovation 2025 | /renovation-energie-2025.html | Multi-activites + simulateur |
 | Solaire V2 | /landing-pages/lp-panneaux-solaires-v2/ | Premium avec images IA |
 | Solaire V1 | /landing-pages/lp-panneaux-solaires/ | Theme orange |
@@ -45,7 +55,7 @@ solar-forms-hub/
 - CDN uniquement (AOS, FontAwesome, Google Fonts)
 - Mobile-first obligatoire
 - < 200KB par fichier HTML
-- Images dans public/images/
+- Images dans le dossier images/ de chaque page ou public/images/
 
 ## Generation d'images IA (Fal.ai)
 
@@ -54,7 +64,7 @@ IMPORTANT: Utiliser `mcp__fal-ai__run_model` (PAS generate_image qui bug)
 model_id: "fal-ai/flux/dev"
 input: {"prompt": "...", "num_images": 1, "image_size": "landscape_16_9"}
 ```
-Puis telecharger: `curl -o "public/images/nom.jpg" "URL_RETOURNEE"`
+Puis telecharger: `curl -o "chemin/images/nom.jpg" "URL_RETOURNEE"`
 
 ## Deploiement
 ```bash
