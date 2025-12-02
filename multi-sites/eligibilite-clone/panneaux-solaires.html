@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panneaux Solaires : Produisez votre propre électricité - Éligibilité</title>
+    <meta name="description" content="Installation de panneaux solaires photovoltaïques. Économisez jusqu'à 70% sur vos factures d'électricité. Prime jusqu'à 2 340€ + autoconsommation gratuite.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --blue-dark: #1E3A8A;
+            --blue-primary: #2563EB;
+            --orange: #F97316;
+            --orange-light: #FB923C;
+            --orange-dark: #EA580C;
+            --text-dark: #1F2937;
+            --text-gray: #6B7280;
+            --gray-light: #F3F4F6;
+            --gray-border: #E5E7EB;
+            --white: #FFFFFF;
+            --gradient-hero: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 48px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 15px 0;
+            transition: all 0.4s;
+        }
+
+        .header.scrolled {
+            background: rgba(30, 58, 138, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+        }
+
+        .header.scrolled .logo { color: var(--white); }
+        .header.scrolled .nav-menu a { color: rgba(255,255,255,0.9); }
+        .header.scrolled .nav-menu a:hover { color: var(--orange); }
+        .header.scrolled .mobile-menu-btn { color: var(--white); }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--blue-dark);
+            letter-spacing: -0.5px;
+            transition: color 0.3s;
+        }
+
+        .logo span { color: var(--orange); }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover { color: var(--blue-primary); }
+
+        .btn-header {
+            background: var(--blue-dark);
+            color: var(--white);
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-header:hover {
+            background: var(--blue-primary);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--blue-dark);
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        /* HERO */
+        .hero-page {
+            padding: 140px 0 80px;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(249,115,22,0.1)"/></svg>');
+            background-size: 40px 40px;
+            opacity: 0.5;
+        }
+
+        .hero-content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text-content h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            color: var(--blue-dark);
+        }
+
+        .hero-text-content h1 .highlight {
+            color: var(--orange);
+            display: block;
+        }
+
+        .hero-text-content .subtitle {
+            font-size: 1.3rem;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .hero-text-content p {
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .hero-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .hero-feature i {
+            color: var(--orange);
+            font-size: 1.2rem;
+        }
+
+        .btn-orange {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+            padding: 18px 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-orange:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.4);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image-wrapper img {
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            width: 100%;
+        }
+
+        /* AVANTAGES */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-bg { background: var(--gray-light); }
+        .section-white { background: var(--white); }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-subtitle {
+            color: var(--orange);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .card-icon i {
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .card-price {
+            background: var(--orange-light);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 30px;
+            position: relative;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 80px;
+            bottom: -40px;
+            width: 2px;
+            background: var(--gray-border);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--white);
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* FAQ */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--gray-light);
+        }
+
+        .faq-question h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .faq-question i {
+            color: var(--orange);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 25px 20px;
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* CTA FINAL */
+        .cta-final {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            padding: 80px 0;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta-final h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta-final p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .btn-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--white);
+            color: var(--orange);
+            padding: 18px 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            transition: all 0.3s;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,255,255,0.3);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--blue-dark);
+            padding: 60px 0 30px;
+            color: var(--white);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul a {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 25px;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero-content-wrapper {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .mobile-menu-btn { display: block; }
+            .btn-header { display: none; }
+
+            .hero-page {
+                padding: 120px 0 60px;
+            }
+
+            .hero-text-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text-content h1 {
+                font-size: 1.7rem;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .timeline-item::after {
+                display: none;
+            }
+
+            .timeline-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">ÉLIGIBILIT<span>É</span></a>
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html#travaux">Les dispositifs</a></li>
+                    <li><a href="index.html#aides">Les aides</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                </ul>
+                <a href="formulaire.html?type=solaire" class="btn-header">
+                    Vérifiez votre éligibilité
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-page">
+        <div class="container">
+            <div class="hero-content-wrapper">
+                <div class="hero-text-content" data-aos="fade-right">
+                    <h1>
+                        Panneaux Solaires
+                        <span class="highlight">Produisez votre propre électricité</span>
+                    </h1>
+                    <p class="subtitle">Jusqu'à 2 340€ de prime + autoconsommation gratuite</p>
+                    <p>
+                        Installez des panneaux solaires photovoltaïques et réduisez votre facture d'électricité de <strong>40 à 70%</strong>.
+                        Profitez de la prime à l'autoconsommation et revendez votre surplus de production à EDF OA.
+                    </p>
+                    <div class="hero-features">
+                        <div class="hero-feature">
+                            <i class="fas fa-bolt"></i>
+                            <span>Économies 40-70%</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="fas fa-euro-sign"></i>
+                            <span>Revenus EDF OA</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="fas fa-leaf"></i>
+                            <span>100% écologique</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="fas fa-home"></i>
+                            <span>Plus-value immobilière</span>
+                        </div>
+                    </div>
+                    <a href="formulaire.html?type=solaire" class="btn-orange">
+                        Estimer mes économies
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="hero-image-wrapper" data-aos="fade-left">
+                    <img src="images/hero-solaire.jpg" alt="Panneaux solaires sur toiture" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AVANTAGES -->
+    <section class="section section-white">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <p class="section-subtitle">Les avantages</p>
+                <h2 class="section-title">Pourquoi installer des panneaux solaires ?</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Économies importantes</h3>
+                    <p>Réduisez votre facture d'électricité de 40 à 70% grâce à l'autoconsommation. Économisez jusqu'à 1 000€ par an selon votre installation.</p>
+                    <span class="card-price">70% d'économie</span>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="card-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Revenus complémentaires</h3>
+                    <p>Revendez votre surplus de production à EDF Obligation d'Achat à 0,13€/kWh. Contrat garanti sur 20 ans.</p>
+                    <span class="card-price">0,13€/kWh</span>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Énergie verte</h3>
+                    <p>Produisez votre propre électricité 100% renouvelable et propre. Réduisez votre empreinte carbone de plusieurs tonnes de CO₂ par an.</p>
+                    <span class="card-price">0 émission</span>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="card-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <h3>Plus-value immobilière</h3>
+                    <p>Augmentez la valeur de votre bien immobilier de 15 à 20%. Les maisons équipées de panneaux solaires se revendent plus facilement.</p>
+                    <span class="card-price">+15-20%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AIDES DISPONIBLES -->
+    <section class="section section-bg">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <p class="section-subtitle">Aides disponibles</p>
+                <h2 class="section-title">Financez votre installation solaire</h2>
+            </div>
+            <div class="cards-grid">
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Prime à l'autoconsommation</h3>
+                    <p>Prime versée par l'État pour encourager l'autoconsommation photovoltaïque. Montant selon la puissance installée.</p>
+                    <p style="margin-top: 15px;"><strong>Barème 2025:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px; color: var(--text-gray);">
+                        <li>≤ 3 kWc: <strong>80 €/kWc</strong> (240 €)</li>
+                        <li>≤ 9 kWc: <strong>80 €/kWc</strong> (720 €)</li>
+                        <li>≤ 36 kWc: <strong>180 €/kWc</strong> (6 480 €)</li>
+                    </ul>
+                    <span class="card-price">Jusqu'à 2 340€</span>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="card-icon">
+                        <i class="fas fa-percent"></i>
+                    </div>
+                    <h3>TVA réduite</h3>
+                    <p>Profitez d'une TVA à taux réduit sur votre installation photovoltaïque pour réduire le coût global.</p>
+                    <p style="margin-top: 15px;"><strong>Taux 2025:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px; color: var(--text-gray);">
+                        <li>Jusqu'au 30/09/2025: TVA 10% (≤ 3 kWc)</li>
+                        <li>Dès le 01/10/2025: TVA 5,5% (≤ 9 kWc)</li>
+                    </ul>
+                    <span class="card-price">TVA 5,5%</span>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>Éco-prêt à taux zéro</h3>
+                    <p>Financez votre installation sans payer d'intérêts. Prêt jusqu'à 50 000€ sur 15-20 ans pour votre projet de rénovation énergétique.</p>
+                    <span class="card-price">0% d'intérêt</span>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="card-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Aides locales</h3>
+                    <p>De nombreuses régions, départements et communes proposent des aides complémentaires pour l'installation de panneaux solaires.</p>
+                    <span class="card-price">Variable</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMENT ÇA MARCHE -->
+    <section class="section section-white">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <p class="section-subtitle">Processus d'installation</p>
+                <h2 class="section-title">Comment ça marche ?</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h3>Étude de faisabilité</h3>
+                        <p>Un expert analyse votre toiture, son orientation, son inclinaison et votre consommation électrique. Il dimensionne l'installation optimale pour votre profil (3 kWc, 6 kWc ou 9 kWc).</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="150">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h3>Installation par un professionnel RGE</h3>
+                        <p>L'artisan certifié RGE QualiPV installe vos panneaux solaires en 1 à 2 jours. Il pose les modules, l'onduleur, le compteur et effectue le raccordement électrique.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <h3>Mise en service et production</h3>
+                        <p>Après la Consuel et le raccordement Enedis, vos panneaux produisent immédiatement. Vous autoconsommez votre électricité et revendez le surplus à EDF OA. La prime est versée après 1 an.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section-bg">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <p class="section-subtitle">Questions fréquentes</p>
+                <h2 class="section-title">Tout savoir sur les panneaux solaires</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-question">
+                        <h4>Quelle puissance choisir pour mon installation ?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La puissance dépend de votre consommation électrique annuelle. En moyenne : 3 kWc pour 3 000 kWh/an, 6 kWc pour 6 000 kWh/an, 9 kWc pour 9 000 kWh/an. Un expert dimensionne l'installation selon votre profil.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="150">
+                    <div class="faq-question">
+                        <h4>Combien coûte une installation de panneaux solaires ?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Prix moyens 2025 : 3 kWc = 7 000-9 000€, 6 kWc = 11 000-14 000€, 9 kWc = 14 000-18 000€. Après déduction de la prime à l'autoconsommation et de la TVA réduite, le coût net diminue significativement.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-question">
+                        <h4>Quelle est la durée de vie des panneaux solaires ?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Les panneaux solaires ont une durée de vie de 25 à 30 ans minimum. La garantie constructeur est généralement de 25 ans avec un rendement garanti à 80-85%. L'onduleur doit être remplacé après 10-15 ans.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="250">
+                    <div class="faq-question">
+                        <h4>Est-ce rentable même dans une région peu ensoleillée ?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oui ! Même dans le Nord de la France, une installation solaire est rentable grâce à l'autoconsommation et la revente du surplus. Le retour sur investissement est de 8 à 12 ans selon votre région et votre installation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+        <div class="container" data-aos="zoom-in">
+            <h2>Prêt à passer à l'énergie solaire ?</h2>
+            <p>Vérifiez votre éligibilité aux aides et obtenez votre devis personnalisé gratuit</p>
+            <a href="formulaire.html?type=solaire" class="btn-white">
+                <i class="fas fa-calculator"></i>
+                Estimer mes aides maintenant
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">ÉLIGIBILIT<span>É</span></a>
+                    <p>Votre partenaire pour vos travaux d'économies d'énergie. Nous vous informons sur les aides que l'état met à votre disposition pour financer vos travaux d'économies d'énergies.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Générale</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Les dispositifs</h4>
+                    <ul>
+                        <li><a href="panneaux-solaires.html">Panneaux Solaires</a></li>
+                        <li><a href="isolation.html">Isolation Thermique</a></li>
+                        <li><a href="pompe-a-chaleur.html">Pompe à Chaleur</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Les aides</h4>
+                    <ul>
+                        <li><a href="index.html#aides">Ma Prime Rénov</a></li>
+                        <li><a href="index.html#aides">Prime CEE</a></li>
+                        <li><a href="index.html#aides">TVA réduite</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Éligibilité - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out',
+            once: true
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile menu
+        document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
+            window.location.href = 'formulaire.html?type=solaire';
+        });
+    </script>
+</body>
+</html>

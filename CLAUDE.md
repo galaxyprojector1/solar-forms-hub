@@ -52,9 +52,28 @@ solar-forms-hub/
 | Multi-Travaux | /landing-pages/lp-multi-travaux/ | Theme violet |
 | Simulateur | /landing-pages/lp-simulateur-aides/ | Theme rose |
 
-## Eligibilite Clone V3 - Features (Architecture Multi-pages)
+## Eligibilite Clone V4 - Site Complet Multi-Pages
 
-La page star du projet avec toutes les features avancees - Restructuration en 3 pages :
+La page star du projet - Site complet avec 9 pages :
+
+### Architecture V4 (A CREER)
+```
+eligibilite-clone/
+├── index.html              # Landing page principale
+├── formulaire.html         # Formulaire 5 etapes
+├── merci.html              # Page confirmation
+├── panneaux-solaires.html  # Page dispositif solaire (A CREER)
+├── isolation.html          # Page dispositif isolation (A CREER)
+├── pompe-a-chaleur.html    # Page dispositif PAC (A CREER)
+├── maprimerenov.html       # Page aide MPR (A CREER)
+├── prime-cee.html          # Page aide CEE (A CREER)
+├── anah.html               # Page aide Anah (A CREER)
+└── PROMPT-V4-NOUVELLES-PAGES.md  # Instructions creation
+```
+
+### Navigation Dropdown (A IMPLEMENTER)
+- Menu "Les dispositifs" : Solaire, Isolation, PAC
+- Menu "Les aides" : MaPrimeRenov, Prime CEE, Anah
 
 ### Animations
 - Hero : texte mot par mot (typewriter effect)
@@ -65,8 +84,8 @@ La page star du projet avec toutes les features avancees - Restructuration en 3 
 - Confetti a la soumission
 - Cards 3D hover effects
 
-### Architecture
-1. **index.html** : Landing page hero + avantages + CTA (formulaire supprime)
+### Pages Existantes
+1. **index.html** : Landing page hero + avantages + CTA
 2. **formulaire.html** : Formulaire 5 etapes plein ecran avec estimation aides
 3. **merci.html** : Page de confirmation avec animations succes
 

@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime CEE 2025 : L'Aide des Fournisseurs d'Énergie - Éligibilité</title>
+    <meta name="description" content="Découvrez la Prime CEE 2025 : montants, conditions, fournisseurs et cumul avec MaPrimeRénov'. Certificats d'Économies d'Énergie pour financer vos travaux.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark: #047857;
+            --green-primary: #059669;
+            --green-light: #10B981;
+            --blue-dark: #1E3A8A;
+            --blue-primary: #2563EB;
+            --orange: #F97316;
+            --text-dark: #1F2937;
+            --text-gray: #6B7280;
+            --gray-light: #F3F4F6;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 15px 0;
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--blue-dark);
+        }
+
+        .logo span { color: var(--orange); }
+
+        .btn-header {
+            background: var(--blue-dark);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-header:hover {
+            background: var(--blue-primary);
+            transform: translateY(-2px);
+        }
+
+        /* HERO AIDE */
+        .hero-aide {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+            text-align: center;
+        }
+
+        .aide-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: var(--white);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(5, 150, 105, 0.15);
+        }
+
+        .aide-logo i {
+            font-size: 4rem;
+            color: var(--green-primary);
+        }
+
+        .hero-aide h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .hero-aide .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* PRINCIPE SECTION */
+        .principe-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .principe-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--gray-light);
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 6px solid var(--green-primary);
+        }
+
+        .principe-content p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .principe-content strong {
+            color: var(--green-primary);
+        }
+
+        /* MONTANTS SECTION */
+        .montants-section {
+            padding: 80px 0;
+            background: var(--gray-light);
+        }
+
+        .montants-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .montant-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-top: 4px solid var(--green-primary);
+        }
+
+        .montant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        .montant-card i {
+            font-size: 3rem;
+            color: var(--green-primary);
+            margin-bottom: 20px;
+        }
+
+        .montant-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .montant-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--green-primary);
+            margin-bottom: 10px;
+        }
+
+        .montant-detail {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--green-light);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        /* FOURNISSEURS SECTION */
+        .fournisseurs-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .fournisseurs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .fournisseur-card {
+            background: var(--gray-light);
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .fournisseur-card:hover {
+            background: var(--white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .fournisseur-card i {
+            font-size: 2.5rem;
+            color: var(--green-primary);
+            margin-bottom: 15px;
+        }
+
+        .fournisseur-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* CUMUL SECTION */
+        .cumul-section {
+            padding: 80px 0;
+            background: var(--gray-light);
+        }
+
+        .cumul-schema {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .cumul-item {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: var(--gray-light);
+            border-radius: 12px;
+        }
+
+        .cumul-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--green-primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .cumul-content h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .cumul-content p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .cumul-plus {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--green-primary);
+            font-weight: 800;
+            margin: 20px 0;
+        }
+
+        .cumul-total {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-dark) 100%);
+            color: var(--white);
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .cumul-total h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .cumul-total .total-value {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+
+        /* CONDITIONS SECTION */
+        .conditions-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .conditions-list {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .condition-item {
+            display: flex;
+            align-items: start;
+            gap: 20px;
+            background: var(--gray-light);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--green-primary);
+        }
+
+        .condition-item i {
+            font-size: 1.8rem;
+            color: var(--green-primary);
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .condition-item h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .condition-item p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* OBTENIR SECTION */
+        .obtenir-section {
+            padding: 80px 0;
+            background: var(--gray-light);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .step-card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--green-primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .step-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-dark) 100%);
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-orange {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--orange);
+            color: var(--white);
+            padding: 18px 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-orange:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.4);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--blue-dark);
+            padding: 40px 0 20px;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: var(--orange);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-aide h1 { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .montants-grid { grid-template-columns: 1fr; }
+            .fournisseurs-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-grid { grid-template-columns: 1fr; }
+            .cumul-item { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-aide { padding: 120px 0 60px; }
+            .btn-header { font-size: 0.8rem; padding: 10px 16px; }
+            .fournisseurs-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">ÉLIGIBILIT<span>É</span></a>
+            <a href="formulaire.html" class="btn-header">
+                <i class="fas fa-calculator"></i> Vérifier mon éligibilité
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO AIDE -->
+    <section class="hero-aide">
+        <div class="container">
+            <div class="aide-logo">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <h1>Prime CEE 2025</h1>
+            <p class="subtitle">Les Certificats d'Économies d'Énergie : l'aide versée par les fournisseurs d'énergie. Cumulable avec MaPrimeRénov'. Jusqu'à 5 000 € d'aides.</p>
+        </div>
+    </section>
+
+    <!-- PRINCIPE -->
+    <section class="principe-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Qu'est-ce que la Prime CEE ?</h2>
+            <div class="principe-content" data-aos="fade-up">
+                <p>
+                    <strong>La Prime CEE (Certificats d'Économies d'Énergie)</strong> est une aide financière versée par les fournisseurs d'énergie (appelés "obligés") : EDF, Engie, TotalEnergies, etc.
+                </p>
+                <p>
+                    Dans le cadre de la politique énergétique française, ces fournisseurs ont l'obligation d'inciter les consommateurs à réaliser des économies d'énergie. S'ils ne remplissent pas leurs objectifs, ils doivent payer de lourdes pénalités à l'État.
+                </p>
+                <p>
+                    <strong>Pour vous, c'est une aide accessible à tous, sans conditions de ressources, et cumulable avec MaPrimeRénov'.</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MONTANTS -->
+    <section class="montants-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Montants de la Prime CEE par Travaux</h2>
+            <div class="montants-grid">
+                <div class="montant-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-fire"></i>
+                    <h3>Pompe à Chaleur Air-Eau</h3>
+                    <div class="montant-value">2 500 - 5 000 €</div>
+                    <p class="montant-detail">
+                        <strong>Coup de Pouce Chauffage :</strong><br>
+                        • Ménages modestes : 4 000 €<br>
+                        • Autres ménages : 2 500 €<br>
+                        <em>(Remplacement chaudière fossile)</em>
+                    </p>
+                    <span class="badge">Sans conditions de ressources</span>
+                </div>
+
+                <div class="montant-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-home"></i>
+                    <h3>Isolation Combles</h3>
+                    <div class="montant-value">10 - 25 €/m²</div>
+                    <p class="montant-detail">
+                        Le montant varie selon :<br>
+                        • La zone climatique (H1, H2, H3)<br>
+                        • La surface isolée<br>
+                        • Le type d'isolant<br>
+                        <em>Exemple : 100 m² = 1 000 - 2 500 €</em>
+                    </p>
+                    <span class="badge">Cumulable avec MPR</span>
+                </div>
+
+                <div class="montant-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-window-maximize"></i>
+                    <h3>Fenêtres Double Vitrage</h3>
+                    <div class="montant-value">50 - 100 €</div>
+                    <p class="montant-detail">
+                        Par fenêtre remplacée.<br>
+                        • Vitrage performant (Uw ≤ 1,3)<br>
+                        • Pose par artisan RGE<br>
+                        <em>10 fenêtres = 500 - 1 000 €</em>
+                    </p>
+                    <span class="badge">Aide rapide</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px; padding: 25px; background: #FEF3C7; border-left: 4px solid #F59E0B; border-radius: 8px;" data-aos="fade-up">
+                <p style="margin: 0; font-size: 1rem; color: var(--text-dark);">
+                    <strong><i class="fas fa-star"></i> Nouveauté Octobre 2025 :</strong> Bonification CEE PAC x5 sur certains forfaits.
+                    La prime peut atteindre jusqu'à <strong>10 800 €</strong> dans les cas les plus favorables (PAC haute performance, grande surface, zone H1).
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOURNISSEURS -->
+    <section class="fournisseurs-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Qui Peut Verser la Prime CEE ?</h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 20px; font-size: 1.1rem;" data-aos="fade-up">
+                Les principaux fournisseurs d'énergie "obligés" qui versent la prime :
+            </p>
+            <div class="fournisseurs-grid">
+                <div class="fournisseur-card" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-bolt"></i>
+                    <h4>EDF</h4>
+                </div>
+                <div class="fournisseur-card" data-aos="zoom-in" data-aos-delay="150">
+                    <i class="fas fa-fire"></i>
+                    <h4>Engie</h4>
+                </div>
+                <div class="fournisseur-card" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-gas-pump"></i>
+                    <h4>TotalEnergies</h4>
+                </div>
+                <div class="fournisseur-card" data-aos="zoom-in" data-aos-delay="250">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Effy</h4>
+                </div>
+                <div class="fournisseur-card" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-plug"></i>
+                    <h4>Leclerc Énergies</h4>
+                </div>
+                <div class="fournisseur-card" data-aos="zoom-in" data-aos-delay="350">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h4>Carrefour</h4>
+                </div>
+                <div class="fournisseur-card" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fas fa-store"></i>
+                    <h4>Auchan</h4>
+                </div>
+                <div class="fournisseur-card" data-aos="zoom-in" data-aos-delay="450">
+                    <i class="fas fa-building"></i>
+                    <h4>+ 30 autres</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CUMUL -->
+    <section class="cumul-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Cumul des Aides : CEE + MaPrimeRénov'</h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 50px; font-size: 1.1rem;" data-aos="fade-up">
+                Exemple concret pour une Pompe à Chaleur air-eau (ménage modeste) :
+            </p>
+            <div class="cumul-schema">
+                <div class="cumul-item" data-aos="fade-right" data-aos-delay="100">
+                    <div class="cumul-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="cumul-content">
+                        <h4>MaPrimeRénov' (Jaune)</h4>
+                        <p>Aide de l'État pour ménages modestes</p>
+                        <strong style="font-size: 1.5rem; color: var(--green-primary);">4 000 €</strong>
+                    </div>
+                </div>
+
+                <div class="cumul-plus">+</div>
+
+                <div class="cumul-item" data-aos="fade-right" data-aos-delay="200">
+                    <div class="cumul-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="cumul-content">
+                        <h4>Prime CEE (Coup de Pouce)</h4>
+                        <p>Prime du fournisseur d'énergie</p>
+                        <strong style="font-size: 1.5rem; color: var(--green-primary);">4 000 €</strong>
+                    </div>
+                </div>
+
+                <div class="cumul-plus">+</div>
+
+                <div class="cumul-item" data-aos="fade-right" data-aos-delay="300">
+                    <div class="cumul-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="cumul-content">
+                        <h4>TVA Réduite 5,5%</h4>
+                        <p>Appliquée directement sur la facture</p>
+                        <strong style="font-size: 1.5rem; color: var(--green-primary);">~800 €</strong>
+                    </div>
+                </div>
+
+                <div class="cumul-total" data-aos="zoom-in" data-aos-delay="400">
+                    <h3>Total des aides cumulées</h3>
+                    <div class="total-value">8 800 €</div>
+                    <p style="margin-top: 10px; opacity: 0.9;">Pour une PAC à 12 000 € → Reste à charge : 3 200 €</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONDITIONS -->
+    <section class="conditions-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Conditions d'Éligibilité à la Prime CEE</h2>
+            <div class="conditions-list">
+                <div class="condition-item" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <h4>Logement de + 2 ans</h4>
+                        <p>Votre logement (maison ou appartement) doit être achevé depuis plus de 2 ans. Résidence principale ou secondaire acceptée (jusqu'au 30/09/2025, puis principale uniquement).</p>
+                    </div>
+                </div>
+                <div class="condition-item" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-certificate"></i>
+                    <div>
+                        <h4>Artisan Certifié RGE</h4>
+                        <p>Les travaux doivent être réalisés par un professionnel certifié RGE (Reconnu Garant de l'Environnement) dans le domaine des travaux concernés.</p>
+                    </div>
+                </div>
+                <div class="condition-item" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-file-contract"></i>
+                    <div>
+                        <h4>Signer AVANT les Travaux</h4>
+                        <p><strong>Important :</strong> Vous devez choisir votre fournisseur de prime CEE et signer avec lui AVANT de signer le devis de travaux. Sinon, vous perdez vos droits à la prime.</p>
+                    </div>
+                </div>
+                <div class="condition-item" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <h4>Accessible à Tous</h4>
+                        <p>Contrairement à MaPrimeRénov', la Prime CEE est accessible sans conditions de ressources. Propriétaires, locataires, bailleurs : tous peuvent en bénéficier.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OBTENIR -->
+    <section class="obtenir-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Comment Obtenir la Prime CEE ?</h2>
+            <div class="steps-grid">
+                <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <h3>Choisir un Fournisseur</h3>
+                    <p>Comparez les offres des différents fournisseurs (EDF, Engie, TotalEnergies, Effy...). Inscrivez-vous sur leur site <strong>AVANT</strong> de signer votre devis.</p>
+                </div>
+                <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <h3>Réaliser les Travaux</h3>
+                    <p>Faites réaliser vos travaux par un artisan RGE. Conservez tous les documents : devis signé, facture détaillée, attestation sur l'honneur.</p>
+                </div>
+                <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <h3>Recevoir la Prime</h3>
+                    <p>Envoyez vos documents au fournisseur dans les 6 mois après la fin des travaux. La prime est versée sous 4 à 6 semaines (virement ou chèque).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 data-aos="fade-up">Cumulez Prime CEE + MaPrimeRénov'</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Simulation gratuite pour connaître le montant total de vos aides en moins de 3 minutes.</p>
+            <a href="formulaire.html" class="btn-orange" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-calculator"></i> Calculer mes aides maintenant
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                <a href="index.html">Accueil</a>
+                <a href="formulaire.html">Simuler</a>
+                <a href="maprimerenov.html">MaPrimeRénov'</a>
+                <a href="anah.html">Anah</a>
+            </p>
+            <p style="margin-top: 15px; opacity: 0.7; font-size: 0.85rem;">&copy; 2025 Éligibilité - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+    </script>
+</body>
+</html>

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaPrimeRénov' 2025 : Le Guide Complet - Éligibilité</title>
+    <meta name="description" content="Découvrez MaPrimeRénov' 2025 : barèmes, montants, conditions d'éligibilité et démarches pour financer vos travaux de rénovation énergétique.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --blue-dark: #1E3A8A;
+            --blue-primary: #2563EB;
+            --blue-light: #3B82F6;
+            --blue-govt: #1E40AF;
+            --orange: #F97316;
+            --text-dark: #1F2937;
+            --text-gray: #6B7280;
+            --gray-light: #F3F4F6;
+            --white: #FFFFFF;
+            --yellow: #FCD34D;
+            --violet: #8B5CF6;
+            --rose: #F472B6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 15px 0;
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--blue-dark);
+        }
+
+        .logo span { color: var(--orange); }
+
+        .btn-header {
+            background: var(--blue-dark);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-header:hover {
+            background: var(--blue-primary);
+            transform: translateY(-2px);
+        }
+
+        /* HERO AIDE */
+        .hero-aide {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+            text-align: center;
+        }
+
+        .aide-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: var(--white);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(30, 64, 175, 0.15);
+        }
+
+        .aide-logo i {
+            font-size: 4rem;
+            color: var(--blue-govt);
+        }
+
+        .hero-aide h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--blue-dark);
+            margin-bottom: 20px;
+        }
+
+        .hero-aide .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* BAREMES TABLE */
+        .baremes-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .baremes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .bareme-card {
+            background: var(--white);
+            border: 2px solid var(--gray-light);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .bareme-card.bleu { border-color: #3B82F6; }
+        .bareme-card.jaune { border-color: #FCD34D; }
+        .bareme-card.violet { border-color: #8B5CF6; }
+        .bareme-card.rose { border-color: #F472B6; }
+
+        .bareme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .bareme-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .bareme-card.bleu .bareme-label { color: #3B82F6; }
+        .bareme-card.jaune .bareme-label { color: #F59E0B; }
+        .bareme-card.violet .bareme-label { color: #8B5CF6; }
+        .bareme-card.rose .bareme-label { color: #EC4899; }
+
+        .bareme-revenus {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .bareme-montant {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .bareme-detail {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        /* TRAVAUX TABLE */
+        .travaux-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .travaux-table thead {
+            background: var(--blue-govt);
+            color: var(--white);
+        }
+
+        .travaux-table th,
+        .travaux-table td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .travaux-table th {
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .travaux-table tbody tr {
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .travaux-table tbody tr:hover {
+            background: #F9FAFB;
+        }
+
+        .montant-cell {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .bleu-col { color: #3B82F6; }
+        .jaune-col { color: #F59E0B; }
+        .violet-col { color: #8B5CF6; }
+        .rose-col { color: #DC2626; }
+
+        /* CONDITIONS SECTION */
+        .conditions-section {
+            padding: 80px 0;
+            background: var(--gray-light);
+        }
+
+        .conditions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .condition-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .condition-card i {
+            font-size: 2.5rem;
+            color: var(--blue-govt);
+            margin-bottom: 20px;
+        }
+
+        .condition-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .condition-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* TIMELINE DEMARCHES */
+        .demarches-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--blue-primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-number {
+            position: absolute;
+            left: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--blue-govt);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .timeline-item p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 80px 0;
+            background: var(--gray-light);
+        }
+
+        .faq-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-question h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .faq-question i {
+            color: var(--blue-primary);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 25px 20px;
+            max-height: 500px;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--blue-govt) 0%, var(--blue-primary) 100%);
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-orange {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--orange);
+            color: var(--white);
+            padding: 18px 32px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-orange:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.4);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--blue-dark);
+            padding: 40px 0 20px;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: var(--orange);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-aide h1 { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .baremes-grid { grid-template-columns: 1fr 1fr; }
+            .conditions-grid { grid-template-columns: 1fr; }
+            .travaux-table { font-size: 0.85rem; }
+            .travaux-table th, .travaux-table td { padding: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .baremes-grid { grid-template-columns: 1fr; }
+            .hero-aide { padding: 120px 0 60px; }
+            .btn-header { font-size: 0.8rem; padding: 10px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">ÉLIGIBILIT<span>É</span></a>
+            <a href="formulaire.html" class="btn-header">
+                <i class="fas fa-calculator"></i> Vérifier mon éligibilité
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO AIDE -->
+    <section class="hero-aide">
+        <div class="container">
+            <div class="aide-logo">
+                <i class="fas fa-home"></i>
+            </div>
+            <h1>MaPrimeRénov' 2025</h1>
+            <p class="subtitle">L'aide principale de l'État pour financer vos travaux de rénovation énergétique. Jusqu'à 11 000 € d'aides selon vos ressources.</p>
+        </div>
+    </section>
+
+    <!-- BAREMES SECTION -->
+    <section class="baremes-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Les Barèmes 2025 par Profil</h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 50px; font-size: 1.1rem;">
+                Le montant de votre aide dépend de vos revenus. Vérifiez votre profil ci-dessous (revenus annuels pour 1 personne hors Île-de-France) :
+            </p>
+
+            <div class="baremes-grid">
+                <div class="bareme-card bleu" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bareme-label">Bleu - Très Modeste</div>
+                    <div class="bareme-revenus">≤ 17 173 €/an</div>
+                    <div class="bareme-montant">5 000 €</div>
+                    <div class="bareme-detail">PAC air-eau</div>
+                    <div class="bareme-montant" style="font-size: 1.5rem; margin-top: 20px;">75 €/m²</div>
+                    <div class="bareme-detail">Isolation extérieure</div>
+                </div>
+
+                <div class="bareme-card jaune" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bareme-label">Jaune - Modeste</div>
+                    <div class="bareme-revenus">≤ 22 015 €/an</div>
+                    <div class="bareme-montant">4 000 €</div>
+                    <div class="bareme-detail">PAC air-eau</div>
+                    <div class="bareme-montant" style="font-size: 1.5rem; margin-top: 20px;">60 €/m²</div>
+                    <div class="bareme-detail">Isolation extérieure</div>
+                </div>
+
+                <div class="bareme-card violet" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bareme-label">Violet - Intermédiaire</div>
+                    <div class="bareme-revenus">≤ 30 844 €/an</div>
+                    <div class="bareme-montant">3 000 €</div>
+                    <div class="bareme-detail">PAC air-eau</div>
+                    <div class="bareme-montant" style="font-size: 1.5rem; margin-top: 20px;">40 €/m²</div>
+                    <div class="bareme-detail">Isolation extérieure</div>
+                </div>
+
+                <div class="bareme-card rose" data-aos="fade-up" data-aos-delay="400">
+                    <div class="bareme-label">Rose - Aisé</div>
+                    <div class="bareme-revenus">> 30 844 €/an</div>
+                    <div class="bareme-montant">0 €</div>
+                    <div class="bareme-detail">Non éligible</div>
+                    <div class="bareme-montant" style="font-size: 1.5rem; margin-top: 20px;">0 €</div>
+                    <div class="bareme-detail">Parcours Accompagné uniquement</div>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; font-size: 2rem; margin: 60px 0 30px;" data-aos="fade-up">Montants par Type de Travaux</h3>
+
+            <div style="overflow-x: auto;" data-aos="fade-up">
+                <table class="travaux-table">
+                    <thead>
+                        <tr>
+                            <th>Type de Travaux</th>
+                            <th>Bleu</th>
+                            <th>Jaune</th>
+                            <th>Violet</th>
+                            <th>Rose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Pompe à chaleur air-eau</strong></td>
+                            <td class="montant-cell bleu-col">5 000 €</td>
+                            <td class="montant-cell jaune-col">4 000 €</td>
+                            <td class="montant-cell violet-col">3 000 €</td>
+                            <td class="montant-cell rose-col">0 €</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PAC géothermique/solarothermique</strong></td>
+                            <td class="montant-cell bleu-col">11 000 €</td>
+                            <td class="montant-cell jaune-col">9 000 €</td>
+                            <td class="montant-cell violet-col">6 000 €</td>
+                            <td class="montant-cell rose-col">0 €</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Isolation Thermique Extérieure</strong></td>
+                            <td class="montant-cell bleu-col">75 €/m²</td>
+                            <td class="montant-cell jaune-col">60 €/m²</td>
+                            <td class="montant-cell violet-col">40 €/m²</td>
+                            <td class="montant-cell rose-col">0 €</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chauffe-eau solaire</strong></td>
+                            <td class="montant-cell bleu-col">4 000 €</td>
+                            <td class="montant-cell jaune-col">3 000 €</td>
+                            <td class="montant-cell violet-col">2 000 €</td>
+                            <td class="montant-cell rose-col">0 €</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chauffage solaire combiné</strong></td>
+                            <td class="montant-cell bleu-col">10 000 €</td>
+                            <td class="montant-cell jaune-col">8 000 €</td>
+                            <td class="montant-cell violet-col">4 000 €</td>
+                            <td class="montant-cell rose-col">0 €</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 30px; padding: 20px; background: #FEF3C7; border-left: 4px solid #F59E0B; border-radius: 8px;" data-aos="fade-up">
+                <p style="margin: 0; font-size: 0.95rem; color: var(--text-dark);">
+                    <strong><i class="fas fa-info-circle"></i> Important :</strong> Plafond de 20 000 € par logement sur 5 ans.
+                    Les aides MaPrimeRénov' sont cumulables avec les primes CEE (Certificats d'Économies d'Énergie).
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONDITIONS -->
+    <section class="conditions-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Conditions d'Éligibilité</h2>
+            <div class="conditions-grid">
+                <div class="condition-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-key"></i>
+                    <h3>Être Propriétaire</h3>
+                    <p>Propriétaire occupant ou bailleur de votre logement. Les travaux doivent concerner votre résidence principale (occupant) ou un bien loué pendant 5 ans minimum (bailleur).</p>
+                </div>
+                <div class="condition-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-building"></i>
+                    <h3>Logement de + 15 ans</h3>
+                    <p>Votre logement doit être construit depuis plus de 15 ans à la date de début des travaux. Exception : 2 ans minimum pour le remplacement d'une chaudière fioul.</p>
+                </div>
+                <div class="condition-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Artisan RGE</h3>
+                    <p>Les travaux doivent être réalisés par un artisan certifié RGE (Reconnu Garant de l'Environnement) dans le domaine des travaux concernés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEMARCHES -->
+    <section class="demarches-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Les 5 Étapes pour Obtenir MaPrimeRénov'</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+                    <div class="timeline-number">1</div>
+                    <h3>Créez votre compte</h3>
+                    <p>Rendez-vous sur <strong>maprimerenov.gouv.fr</strong> et créez votre compte avec vos informations fiscales (avis d'imposition).</p>
+                </div>
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+                    <div class="timeline-number">2</div>
+                    <h3>Obtenez vos devis</h3>
+                    <p>Faites établir des devis par des artisans RGE. <strong>N'engagez pas les travaux avant la confirmation de votre dossier.</strong></p>
+                </div>
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+                    <div class="timeline-number">3</div>
+                    <h3>Déposez votre demande</h3>
+                    <p>Complétez votre dossier en ligne avec les devis, justificatifs de revenus et coordonnées bancaires (RIB).</p>
+                </div>
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
+                    <div class="timeline-number">4</div>
+                    <h3>Réalisez les travaux</h3>
+                    <p>Une fois votre dossier validé, vous recevez une confirmation. Vous pouvez lancer les travaux. Délai d'instruction : 15 jours en moyenne.</p>
+                </div>
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="500">
+                    <div class="timeline-number">5</div>
+                    <h3>Recevez votre prime</h3>
+                    <p>Après la fin des travaux, déposez la facture en ligne. La prime est versée par virement bancaire sous 15 jours (avance possible pour les ménages très modestes).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Questions Fréquentes sur MaPrimeRénov'</h2>
+            <div class="faq-list">
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h4>Puis-je cumuler MaPrimeRénov' avec d'autres aides ?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oui ! MaPrimeRénov' est cumulable avec les primes CEE, l'éco-prêt à taux zéro, la TVA réduite à 5,5% et certaines aides locales. Attention : le cumul ne peut dépasser 90-100% du coût total des travaux selon votre profil.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h4>Quel est le délai pour recevoir la prime ?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Après dépôt de votre facture en ligne, la prime est versée sous 15 jours en moyenne. Les ménages très modestes peuvent demander une avance de 50% pour le parcours décarbonation (30% pour le parcours accompagné).</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h4>Que se passe-t-il si mes travaux coûtent plus cher que prévu ?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Le montant de la prime est calculé sur le devis initial validé. Si le coût final est supérieur, la prime reste inchangée. Il est donc important de prévoir les travaux de manière précise dès le départ.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h4>MaPrimeRénov' est-elle accessible aux locataires ?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Non, MaPrimeRénov' est réservée aux propriétaires (occupants ou bailleurs). Les locataires peuvent bénéficier de la prime énergie CEE sous conditions, mais doivent obtenir l'accord du propriétaire pour réaliser des travaux.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h4>Y a-t-il un plafond de ressources pour en bénéficier ?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Non, il n'y a pas de plafond maximum. Tous les propriétaires peuvent en bénéficier, mais les montants varient selon les revenus (profil Bleu, Jaune, Violet ou Rose). Les ménages Rose ont accès au parcours accompagné uniquement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 data-aos="fade-up">Vérifiez Votre Éligibilité à MaPrimeRénov'</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Simulation gratuite en moins de 3 minutes. Découvrez le montant exact de vos aides.</p>
+            <a href="formulaire.html" class="btn-orange" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-calculator"></i> Calculer mes aides maintenant
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                <a href="index.html">Accueil</a>
+                <a href="formulaire.html">Simuler</a>
+                <a href="prime-cee.html">Prime CEE</a>
+                <a href="anah.html">Anah</a>
+            </p>
+            <p style="margin-top: 15px; opacity: 0.7; font-size: 0.85rem;">&copy; 2025 Éligibilité - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
