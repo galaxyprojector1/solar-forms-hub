@@ -96,7 +96,8 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%),
+                        url('/public/solar-panels-hq.jpg') center/cover no-repeat;
             min-height: 100vh;
             position: relative;
             overflow: hidden;
@@ -113,7 +114,7 @@
             bottom: 0;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
             background-size: 50px 50px;
-            opacity: 0.5;
+            opacity: 0.3;
         }
 
         .hero-container {
@@ -522,6 +523,69 @@
             justify-content: center;
             font-size: 2rem;
             margin: 0 auto 20px;
+        }
+
+        .aide-icon i {
+            color: #1e40af;
+        }
+
+        /* Hero image section */
+        .hero-image-section {
+            padding: 60px 20px;
+            background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+        }
+
+        .hero-image-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .hero-image-text h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .hero-image-text p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 1rem;
+            color: var(--dark);
+        }
+
+        .feature-list li i {
+            color: #10b981;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-image-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         .aide-card h3 {
@@ -1049,6 +1113,23 @@
         </div>
     </section>
 
+    <!-- Image Section - Économies -->
+    <section class="hero-image-section">
+        <div class="hero-image-container" data-aos="fade-up">
+            <img src="/public/images/savings-solar.png" alt="Famille économisant grâce à l'énergie solaire" loading="lazy">
+            <div class="hero-image-text">
+                <h2>Rejoignez les milliers de familles qui économisent</h2>
+                <p>L'énergie solaire n'est plus un luxe. Avec les aides de l'État et nos solutions clé en main, passez à l'autoconsommation et réduisez vos factures dès le premier mois.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Installation en 48h par des experts certifiés RGE</li>
+                    <li><i class="fas fa-check-circle"></i> Jusqu'à 90% du coût pris en charge par les aides</li>
+                    <li><i class="fas fa-check-circle"></i> Garantie 25 ans sur les panneaux</li>
+                    <li><i class="fas fa-check-circle"></i> Suivi de production en temps réel via app</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <!-- Aides Section -->
     <section class="aides-section" id="aides">
         <div class="section-container">
@@ -1057,28 +1138,28 @@
 
             <div class="aides-grid">
                 <div class="aide-card" data-aos="fade-up" data-aos-delay="0">
-                    <div class="aide-icon">🏛️</div>
+                    <div class="aide-icon"><i class="fas fa-landmark"></i></div>
                     <h3>MaPrimeRénov'</h3>
                     <div class="aide-amount">Jusqu'à 4 000€</div>
                     <p>Aide de l'État selon vos revenus</p>
                 </div>
 
                 <div class="aide-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="aide-icon">📜</div>
+                    <div class="aide-icon"><i class="fas fa-file-invoice-dollar"></i></div>
                     <h3>Prime CEE</h3>
                     <div class="aide-amount">Jusqu'à 2 500€</div>
                     <p>Certificats d'économies d'énergie</p>
                 </div>
 
                 <div class="aide-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="aide-icon">💰</div>
+                    <div class="aide-icon"><i class="fas fa-piggy-bank"></i></div>
                     <h3>Prime Autoconsommation</h3>
                     <div class="aide-amount">80€/kWc</div>
                     <p>Versée automatiquement par EDF</p>
                 </div>
 
                 <div class="aide-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="aide-icon">🏦</div>
+                    <div class="aide-icon"><i class="fas fa-university"></i></div>
                     <h3>Éco-PTZ</h3>
                     <div class="aide-amount">Jusqu'à 50 000€</div>
                     <p>Prêt à taux zéro sur 20 ans</p>
