@@ -17,7 +17,13 @@
       "mcp__vercel__deploy_to_vercel",
       "Bash(vercel --version:*)",
       "Bash(vercel deploy:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(cat:*)",
+      "Bash(dir /b /a \"%USERPROFILE%\\.claude\")",
+      "Bash(powershell -Command \"Get-ChildItem -Path $env:USERPROFILE\\.claude -Force | Select-Object Name\")",
+      "Bash(dir \"C:\\Users\\yohann\\.claude\")",
+      "Bash(claude mcp list:*)",
+      "mcp__perplexity__perplexity_search"
     ],
     "deny": [],
     "ask": []
