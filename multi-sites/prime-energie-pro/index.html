@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Énergie Pro - Vérifiez votre éligibilité aux aides 2025</title>
+    <meta name="description" content="Économisez jusqu'à 60% sur votre facture énergétique grâce aux aides de l'État. Vérifiez gratuitement votre éligibilité en 2 minutes.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10B981;
+            --primary-dark: #059669;
+            --primary-light: #D1FAE5;
+            --secondary: #1F2937;
+            --accent: #F59E0B;
+            --text: #374151;
+            --text-light: #6B7280;
+            --bg-gradient: linear-gradient(135deg, #ECFDF5 0%, #F0FDF4 50%, #FFFFFF 100%);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--bg-gradient);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-large {
+            padding: 18px 36px;
+            font-size: 1.1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 20px 80px;
+            background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('images/background-pattern.png') center/cover;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 span {
+            color: var(--primary);
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .trust-badge {
+            position: absolute;
+            bottom: -20px;
+            left: 20px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .trust-badge i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .trust-badge span {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        /* Process Section */
+        .process {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .process-step h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .process-step p {
+            color: var(--text-light);
+        }
+
+        /* Services Grid */
+        .services {
+            padding: 80px 20px;
+            background: var(--bg-gradient);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card .savings {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Aides Section */
+        .aides {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .aides-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .aide-card {
+            background: linear-gradient(135deg, #F0FDF4 0%, #ECFDF5 100%);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .aide-card:hover {
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+
+        .aide-card img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .aide-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .aide-card .amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--secondary) 0%, #111827 100%);
+            color: white;
+        }
+
+        .form-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .form-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .form-text h2 span {
+            color: var(--primary);
+        }
+
+        .form-text p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .form-benefits {
+            list-style: none;
+        }
+
+        .form-benefits li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .form-benefits i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .eligibility-form {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .eligibility-form h3 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .checkbox-item:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .checkbox-item input {
+            accent-color: var(--primary);
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 20px;
+            background: var(--bg-gradient);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-header img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-info h4 {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .testimonial-info span {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .testimonial-stars {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .testimonial-text {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 20px;
+            background: var(--primary);
+            text-align: center;
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .cta .btn {
+            background: white;
+            color: var(--primary);
+        }
+
+        .cta .btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 992px) {
+            nav { display: none; }
+            .hero-content { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 2.2rem; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .aides-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-container { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-text h1 { font-size: 1.8rem; }
+            .hero-stats { flex-direction: column; gap: 15px; }
+            .process-steps { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+            .aides-grid { grid-template-columns: 1fr; }
+            .checkbox-group { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+            .section-title h2 { font-size: 1.8rem; }
+        }
+
+        /* Animations */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="Prime Énergie Pro">
+                <span class="logo-text">Prime <span>Énergie</span> Pro</span>
+            </a>
+            <nav>
+                <a href="#services">Les travaux</a>
+                <a href="#aides">Aides & Subventions</a>
+                <a href="#temoignages">Témoignages</a>
+                <a href="#formulaire" class="btn btn-primary">Vérifier mon éligibilité</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text" data-aos="fade-right">
+                <h1>Économisez jusqu'à <span>60%</span> sur votre facture énergétique</h1>
+                <p class="subtitle">Profitez des aides de l'État pour rénover votre logement. Vérifiez gratuitement votre éligibilité en 2 minutes.</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">23 000€</div>
+                        <div class="stat-label">d'aides cumulables</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">48 762</div>
+                        <div class="stat-label">foyers accompagnés</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4.8/5</div>
+                        <div class="stat-label">satisfaction clients</div>
+                    </div>
+                </div>
+                <a href="#formulaire" class="btn btn-primary btn-large pulse">
+                    <i class="fas fa-calculator"></i>
+                    Simuler mes économies
+                </a>
+            </div>
+            <div class="hero-image" data-aos="fade-left">
+                <img src="images/hero-famille.png" alt="Famille heureuse devant maison rénovée">
+                <div class="trust-badge floating">
+                    <i class="fas fa-star"></i>
+                    <span>+2 500 avis vérifiés</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Comment ça marche ?</h2>
+                <p>Un processus simple et rapide pour bénéficier de vos aides</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <h3>Sélectionnez vos travaux</h3>
+                    <p>Choisissez les travaux de rénovation énergétique que vous souhaitez réaliser</p>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <h3>Vérifiez votre éligibilité</h3>
+                    <p>Renseignez quelques informations pour calculer vos aides disponibles</p>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <h3>Recevez vos aides</h3>
+                    <p>Un artisan RGE certifié réalise vos travaux et vous percevez vos aides</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Nos travaux éligibles aux aides</h2>
+                <p>Découvrez les travaux de rénovation énergétique financés par l'État</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="images/icons/pac.png" alt="Pompe à chaleur">
+                    <h3>Pompe à chaleur</h3>
+                    <p>Chauffez votre maison efficacement tout en réduisant vos factures</p>
+                    <span class="savings">Jusqu'à 11 000€ d'aides</span>
+                </div>
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="150">
+                    <img src="images/icons/solaire.png" alt="Panneaux solaires">
+                    <h3>Panneaux solaires</h3>
+                    <p>Produisez votre propre électricité et revendez le surplus</p>
+                    <span class="savings">Jusqu'à 8 000€ d'aides</span>
+                </div>
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="images/icons/isolation.png" alt="Isolation">
+                    <h3>Isolation thermique</h3>
+                    <p>Réduisez les déperditions de chaleur et gagnez en confort</p>
+                    <span class="savings">Jusqu'à 75€/m²</span>
+                </div>
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="250">
+                    <img src="images/icons/fenetres.png" alt="Fenêtres">
+                    <h3>Fenêtres double vitrage</h3>
+                    <p>Améliorez l'isolation acoustique et thermique de votre habitat</p>
+                    <span class="savings">Jusqu'à 100€/fenêtre</span>
+                </div>
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="images/icons/vmc.png" alt="VMC">
+                    <h3>VMC double flux</h3>
+                    <p>Renouvelez l'air intérieur tout en conservant la chaleur</p>
+                    <span class="savings">Jusqu'à 3 000€ d'aides</span>
+                </div>
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="350">
+                    <img src="images/icons/chaudiere.png" alt="Chaudière">
+                    <h3>Chaudière condensation</h3>
+                    <p>Optez pour un chauffage performant et économique</p>
+                    <span class="savings">Jusqu'à 4 000€ d'aides</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aides Section -->
+    <section class="aides" id="aides">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Les aides disponibles en 2025</h2>
+                <p>Cumulez plusieurs aides pour financer vos travaux</p>
+            </div>
+            <div class="aides-grid">
+                <div class="aide-card" data-aos="flip-left" data-aos-delay="100">
+                    <img src="images/badges/maprimenov.png" alt="MaPrimeRénov">
+                    <h4>MaPrimeRénov'</h4>
+                    <div class="amount">jusqu'à 10 000€</div>
+                </div>
+                <div class="aide-card" data-aos="flip-left" data-aos-delay="200">
+                    <img src="images/badges/prime-cee.png" alt="Prime CEE">
+                    <h4>Prime Énergie CEE</h4>
+                    <div class="amount">jusqu'à 5 000€</div>
+                </div>
+                <div class="aide-card" data-aos="flip-left" data-aos-delay="300">
+                    <img src="images/badges/eco-ptz.png" alt="Éco-PTZ">
+                    <h4>Éco-PTZ</h4>
+                    <div class="amount">jusqu'à 50 000€</div>
+                </div>
+                <div class="aide-card" data-aos="flip-left" data-aos-delay="400">
+                    <img src="images/badges/tva-55.png" alt="TVA réduite">
+                    <h4>TVA réduite</h4>
+                    <div class="amount">5,5% au lieu de 20%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section" id="formulaire">
+        <div class="form-container">
+            <div class="form-text" data-aos="fade-right">
+                <h2>Vérifiez votre <span>éligibilité</span> en 2 minutes</h2>
+                <p>Découvrez le montant des aides auxquelles vous avez droit pour votre projet de rénovation énergétique.</p>
+                <ul class="form-benefits">
+                    <li><i class="fas fa-check-circle"></i> Simulation 100% gratuite et sans engagement</li>
+                    <li><i class="fas fa-check-circle"></i> Résultat immédiat</li>
+                    <li><i class="fas fa-check-circle"></i> Accompagnement personnalisé</li>
+                    <li><i class="fas fa-check-circle"></i> Artisans RGE certifiés</li>
+                    <li><i class="fas fa-check-circle"></i> Aides versées directement</li>
+                </ul>
+                <img src="images/badges/rge-certifie.png" alt="RGE Certifié" style="width: 100px; margin-top: 20px; border-radius: 10px;">
+            </div>
+            <div class="eligibility-form" data-aos="fade-left">
+                <h3>Simulez vos aides maintenant</h3>
+                <form id="eligibilityForm">
+                    <div class="form-group">
+                        <label>Type de logement</label>
+                        <select required>
+                            <option value="">Sélectionnez...</option>
+                            <option value="maison">Maison individuelle</option>
+                            <option value="appartement">Appartement</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Vous êtes</label>
+                        <select required>
+                            <option value="">Sélectionnez...</option>
+                            <option value="proprietaire">Propriétaire occupant</option>
+                            <option value="bailleur">Propriétaire bailleur</option>
+                            <option value="locataire">Locataire</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Travaux souhaités</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="pac" name="travaux" value="pac">
+                                <label for="pac">Pompe à chaleur</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="solaire" name="travaux" value="solaire">
+                                <label for="solaire">Panneaux solaires</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="isolation" name="travaux" value="isolation">
+                                <label for="isolation">Isolation</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="fenetres" name="travaux" value="fenetres">
+                                <label for="fenetres">Fenêtres</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="vmc" name="travaux" value="vmc">
+                                <label for="vmc">VMC</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="chaudiere" name="travaux" value="chaudiere">
+                                <label for="chaudiere">Chaudière</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Code postal</label>
+                        <input type="text" placeholder="Ex: 75001" pattern="[0-9]{5}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary form-submit btn-large">
+                        <i class="fas fa-calculator"></i>
+                        Calculer mes aides gratuitement
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="temoignages">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Ils nous font confiance</h2>
+                <p>Découvrez les témoignages de nos clients satisfaits</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-header">
+                        <img src="images/testimonials/homme-senior.png" alt="Jean-Pierre">
+                        <div class="testimonial-info">
+                            <h4>Jean-Pierre M.</h4>
+                            <span>Toulouse (31)</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Grâce à Prime Énergie Pro, j'ai pu installer une pompe à chaleur avec 9 500€ d'aides. Ma facture de chauffage a été divisée par 3 !"</p>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-header">
+                        <img src="images/testimonials/femme-40.png" alt="Sophie">
+                        <div class="testimonial-info">
+                            <h4>Sophie L.</h4>
+                            <span>Lyon (69)</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Service impeccable du début à la fin. L'artisan était très professionnel et les aides ont été versées rapidement."</p>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-header">
+                        <img src="images/testimonials/couple-retraites.png" alt="Marie et Paul">
+                        <div class="testimonial-info">
+                            <h4>Marie & Paul D.</h4>
+                            <span>Nantes (44)</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Isolation des combles + panneaux solaires = 15 000€ d'économies sur les travaux. On recommande vivement !"</p>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="testimonial-header">
+                        <img src="images/testimonials/jeune-couple.png" alt="Lucas et Emma">
+                        <div class="testimonial-info">
+                            <h4>Lucas & Emma B.</h4>
+                            <span>Bordeaux (33)</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"En tant que jeunes propriétaires, les aides nous ont permis de rénover notre maison sans nous endetter. Merci !"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container" data-aos="zoom-in">
+            <h2>Prêt à réduire vos factures d'énergie ?</h2>
+            <p>Rejoignez les 48 762 foyers qui ont déjà bénéficié des aides</p>
+            <a href="#formulaire" class="btn btn-large">
+                <i class="fas fa-arrow-right"></i>
+                Vérifier mon éligibilité maintenant
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Prime Énergie Pro</h3>
+                <p>Votre partenaire pour la rénovation énergétique. Nous vous accompagnons dans toutes vos démarches pour obtenir les aides auxquelles vous avez droit.</p>
+                <img src="images/badges/rge-certifie.png" alt="RGE Certifié" style="width: 80px; border-radius: 8px;">
+            </div>
+            <div class="footer-links">
+                <h4>Les travaux</h4>
+                <ul>
+                    <li><a href="#">Pompe à chaleur</a></li>
+                    <li><a href="#">Panneaux solaires</a></li>
+                    <li><a href="#">Isolation</a></li>
+                    <li><a href="#">Fenêtres</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Les aides</h4>
+                <ul>
+                    <li><a href="#">MaPrimeRénov'</a></li>
+                    <li><a href="#">Prime CEE</a></li>
+                    <li><a href="#">Éco-PTZ</a></li>
+                    <li><a href="#">TVA 5,5%</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Informations</h4>
+                <ul>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Prime Énergie Pro - Tous droits réservés | Clone amélioré de eligibilite.com</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Form submission
+        document.getElementById('eligibilityForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Merci ! Un conseiller vous contactera dans les 24h pour vous présenter vos aides disponibles.');
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Checkbox styling
+        document.querySelectorAll('.checkbox-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (e.target.tagName !== 'INPUT') {
+                    const checkbox = this.querySelector('input');
+                    checkbox.checked = !checkbox.checked;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
