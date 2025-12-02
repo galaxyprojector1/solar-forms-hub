@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panneaux Solaires 2025 - Économisez 70% | Installation Express 48h</title>
+    <meta name="description" content="Installation panneaux solaires : jusqu'à 90% financé par l'État. MaPrimeRénov 2025 + CEE + TVA 5.5%. Devis gratuit en 30 secondes. 15000+ clients satisfaits.">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #f59e0b;
+            --primary-dark: #d97706;
+            --secondary: #10b981;
+            --accent: #3b82f6;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            --gradient-dark: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-xl: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* === URGENCY BAR === */
+        .urgency-bar {
+            background: linear-gradient(90deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 14px 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .urgency-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine { to { left: 100%; } }
+
+        .urgency-bar i { margin-right: 10px; }
+
+        /* === LIVE COUNTER === */
+        .live-counter {
+            background: var(--dark);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            font-size: 0.9rem;
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 0 10px #22c55e;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.9); }
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/public/images/family-solar-hero.jpg') center/cover no-repeat;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 58, 95, 0.75) 100%);
+        }
+
+        .hero-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content { color: white; }
+
+        .badge-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge-fire {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .badge-eco {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .badge-star {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .highlight {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 35px;
+            line-height: 1.7;
+        }
+
+        /* Savings Counter */
+        .savings-display {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.3));
+            border: 2px solid rgba(16, 185, 129, 0.5);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 35px;
+            backdrop-filter: blur(10px);
+        }
+
+        .savings-label {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .savings-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #4ade80;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .savings-value small {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            font-weight: 600;
+        }
+
+        .savings-detail {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Trust Row */
+        .trust-row {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .trust-item i {
+            color: #4ade80;
+            font-size: 1.1rem;
+        }
+
+        /* === FORM CARD === */
+        .form-card {
+            background: white;
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            margin: -40px -40px 30px -40px;
+            padding: 18px 40px;
+            border-radius: 28px 28px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-weight: 700;
+            color: #92400e;
+            font-size: 1rem;
+        }
+
+        .form-header i { color: #f59e0b; }
+
+        .form-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .form-subtitle {
+            color: var(--gray);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Progress */
+        .progress-wrap { margin-bottom: 30px; }
+
+        .progress-bar {
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* Form Steps */
+        .form-step { display: none; }
+        .form-step.active { display: block; animation: fadeSlide 0.4s ease; }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-question {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .options-grid { display: grid; gap: 14px; }
+
+        .option-btn {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: var(--light);
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary);
+            background: #fffbeb;
+            transform: translateX(5px);
+        }
+
+        .option-btn.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+        }
+
+        .option-icon {
+            width: 55px;
+            height: 55px;
+            background: white;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            color: var(--primary);
+        }
+
+        .option-btn.selected .option-icon {
+            background: var(--primary);
+            color: white;
+        }
+
+        .option-text strong {
+            display: block;
+            font-size: 1.05rem;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .option-text small {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Inputs */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Buttons */
+        .btn-next {
+            width: 100%;
+            padding: 20px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 16px;
+            color: white;
+            font-size: 1.15rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-next:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(245, 158, 11, 0.5);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            padding: 12px 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .btn-back:hover { color: var(--dark); }
+
+        .form-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .form-footer i { color: var(--secondary); }
+
+        /* === IMAGE SECTION === */
+        .image-section {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, var(--white) 0%, var(--light) 100%);
+        }
+
+        .image-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .image-container.reverse { direction: rtl; }
+        .image-container.reverse > * { direction: ltr; }
+
+        .section-image {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-content p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 0;
+            font-size: 1.05rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .feature-list li i {
+            color: var(--secondary);
+            font-size: 1.3rem;
+        }
+
+        /* === AIDES SECTION === */
+        .aides-section {
+            padding: 100px 20px;
+            background: var(--light);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--gray);
+        }
+
+        .aides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .aide-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .aide-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        .aide-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 25px;
+            color: #1e40af;
+        }
+
+        .aide-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .aide-amount {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 12px;
+        }
+
+        .aide-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* === PROCESS SECTION === */
+        .process-section {
+            padding: 100px 20px;
+            background: var(--dark);
+            color: white;
+        }
+
+        .process-section .section-header h2 { color: white; }
+        .process-section .section-header p { color: rgba(255,255,255,0.7); }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .process-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 20px;
+        }
+
+        .process-card h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .process-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+        }
+
+        /* === STATS SECTION === */
+        .stats-section {
+            padding: 80px 20px;
+            background: var(--gradient-primary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* === TESTIMONIALS === */
+        .testimonials-section {
+            padding: 100px 20px;
+            background: var(--light);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-avatar {
+            width: 65px;
+            height: 65px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .testimonial-info h4 {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .testimonial-info span {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .testimonial-stars {
+            color: #fbbf24;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-text {
+            color: var(--dark);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .testimonial-savings {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .testimonial-savings span { color: var(--gray); }
+        .testimonial-savings strong { color: var(--secondary); font-size: 1.2rem; }
+
+        /* === CTA SECTION === */
+        .cta-section {
+            padding: 120px 20px;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            color: #92400e;
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 24px 55px;
+            background: var(--gradient-primary);
+            color: white;
+            font-size: 1.35rem;
+            font-weight: 700;
+            border-radius: 60px;
+            text-decoration: none;
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(245, 158, 11, 0.5);
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .footer-badges {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+        }
+
+        .footer-badge i {
+            font-size: 1.8rem;
+            color: #4ade80;
+        }
+
+        .footer-legal {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* === SUCCESS MODAL === */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .success-modal.show { display: flex; }
+
+        .success-content {
+            background: white;
+            border-radius: 28px;
+            padding: 60px;
+            text-align: center;
+            max-width: 520px;
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .success-icon {
+            width: 110px;
+            height: 110px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: white;
+            margin: 0 auto 30px;
+        }
+
+        .success-content h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .success-content p {
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .success-savings-box {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .success-savings-box span {
+            display: block;
+            font-size: 1rem;
+            color: #166534;
+            margin-bottom: 8px;
+        }
+
+        .success-savings-box strong {
+            font-size: 2.8rem;
+            color: #15803d;
+            font-weight: 800;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 1024px) {
+            .hero-container,
+            .image-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .image-container.reverse { direction: ltr; }
+
+            .hero h1 { font-size: 2.8rem; }
+            .section-header h2 { font-size: 2.2rem; }
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .savings-value { font-size: 2.5rem; }
+            .section-content h2 { font-size: 2rem; }
+            .section-header h2 { font-size: 1.8rem; }
+            .cta-section h2 { font-size: 2rem; }
+            .form-card { padding: 30px; }
+            .form-header { margin: -30px -30px 25px -30px; padding: 15px 30px; }
+            .stat-number { font-size: 2.5rem; }
+            .live-counter { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Urgency Bar -->
+    <div class="urgency-bar">
+        <i class="fas fa-bolt"></i>
+        <span>OFFRE EXCEPTIONNELLE : Prime doublée jusqu'au <strong>31 décembre 2025</strong> - Plus que <strong id="spotsLeft">9</strong> créneaux disponibles ce mois !</span>
+    </div>
+
+    <!-- Live Counter -->
+    <div class="live-counter">
+        <div class="live-dot"></div>
+        <span><strong id="viewersCount">52</strong> personnes consultent cette page</span>
+        <span>|</span>
+        <span><strong id="todayLeads">143</strong> devis demandés aujourd'hui</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-right">
+                <div class="badge-row">
+                    <span class="badge badge-fire"><i class="fas fa-fire"></i> Offre 2025</span>
+                    <span class="badge badge-eco"><i class="fas fa-leaf"></i> RGE Certifié</span>
+                    <span class="badge badge-star"><i class="fas fa-star"></i> 4.9/5</span>
+                </div>
+
+                <h1>Passez au Solaire et <span class="highlight">Économisez jusqu'à 70%</span> sur vos Factures</h1>
+
+                <p class="hero-subtitle">
+                    Profitez des aides de l'État : jusqu'à <strong>90% du coût financé</strong>.
+                    Installation express en 48h par nos experts certifiés RGE.
+                </p>
+
+                <div class="savings-display">
+                    <div class="savings-label">Économies moyennes constatées</div>
+                    <div class="savings-value">
+                        <span id="heroSavingsCounter">0</span>€
+                        <small>/an</small>
+                    </div>
+                    <div class="savings-detail">
+                        <i class="fas fa-chart-line"></i> Basé sur 15 847 installations en 2024
+                    </div>
+                </div>
+
+                <div class="trust-row">
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>15 000+ clients</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Garantie 25 ans</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Devis gratuit</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Card -->
+            <div class="form-card" data-aos="fade-left">
+                <div class="form-header">
+                    <i class="fas fa-clock"></i>
+                    <span>Simulation gratuite en 30 secondes</span>
+                </div>
+
+                <h2 class="form-title">Calculez vos économies</h2>
+                <p class="form-subtitle">Et découvrez le montant de vos aides</p>
+
+                <div class="progress-wrap">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-info">
+                        <span id="stepIndicator">Étape 1/5</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                </div>
+
+                <form id="solarForm">
+                    <!-- Step 1 -->
+                    <div class="form-step active" data-step="1">
+                        <div class="step-question">Êtes-vous propriétaire de votre logement ?</div>
+                        <div class="options-grid">
+                            <div class="option-btn" data-value="oui" data-savings="300">
+                                <div class="option-icon"><i class="fas fa-home"></i></div>
+                                <div class="option-text">
+                                    <strong>Oui, je suis propriétaire</strong>
+                                    <small>Maison ou appartement</small>
+                                </div>
+                            </div>
+                            <div class="option-btn" data-value="non" data-savings="0">
+                                <div class="option-icon"><i class="fas fa-key"></i></div>
+                                <div class="option-text">
+                                    <strong>Non, je suis locataire</strong>
+                                    <small>Accord du propriétaire requis</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="form-step" data-step="2">
+                        <button type="button" class="btn-back" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Retour</button>
+                        <div class="step-question">Quel est votre type de logement ?</div>
+                        <div class="options-grid">
+                            <div class="option-btn" data-value="maison" data-savings="500">
+                                <div class="option-icon"><i class="fas fa-house-chimney"></i></div>
+                                <div class="option-text">
+                                    <strong>Maison individuelle</strong>
+                                    <small>Idéal pour le solaire</small>
+                                </div>
+                            </div>
+                            <div class="option-btn" data-value="appartement" data-savings="200">
+                                <div class="option-icon"><i class="fas fa-building"></i></div>
+                                <div class="option-text">
+                                    <strong>Appartement</strong>
+                                    <small>Dernier étage possible</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="form-step" data-step="3">
+                        <button type="button" class="btn-back" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Retour</button>
+                        <div class="step-question">Quelle est votre facture électrique mensuelle ?</div>
+                        <div class="options-grid">
+                            <div class="option-btn" data-value="moins100" data-savings="400">
+                                <div class="option-icon"><i class="fas fa-bolt"></i></div>
+                                <div class="option-text">
+                                    <strong>Moins de 100€</strong>
+                                    <small>Économies : ~400€/an</small>
+                                </div>
+                            </div>
+                            <div class="option-btn" data-value="100-150" data-savings="700">
+                                <div class="option-icon"><i class="fas fa-bolt"></i></div>
+                                <div class="option-text">
+                                    <strong>100€ à 150€</strong>
+                                    <small>Économies : ~700€/an</small>
+                                </div>
+                            </div>
+                            <div class="option-btn" data-value="150-200" data-savings="1000">
+                                <div class="option-icon"><i class="fas fa-bolt"></i></div>
+                                <div class="option-text">
+                                    <strong>150€ à 200€</strong>
+                                    <small>Économies : ~1 000€/an</small>
+                                </div>
+                            </div>
+                            <div class="option-btn" data-value="plus200" data-savings="1400">
+                                <div class="option-icon"><i class="fas fa-fire"></i></div>
+                                <div class="option-text">
+                                    <strong>Plus de 200€</strong>
+                                    <small>Économies : ~1 400€/an</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="form-step" data-step="4">
+                        <button type="button" class="btn-back" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Retour</button>
+                        <div class="step-question">Quel est votre code postal ?</div>
+                        <div class="input-group">
+                            <label>Code postal</label>
+                            <input type="text" id="codePostal" placeholder="Ex: 75001" maxlength="5" inputmode="numeric">
+                        </div>
+                        <button type="button" class="btn-next" id="btnStep4" disabled onclick="nextStep()">
+                            Continuer <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="form-step" data-step="5">
+                        <button type="button" class="btn-back" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Retour</button>
+                        <div class="step-question">Vos coordonnées pour recevoir le devis</div>
+                        <div class="input-group">
+                            <label>Prénom et nom</label>
+                            <input type="text" id="fullName" placeholder="Jean Dupont">
+                        </div>
+                        <div class="input-group">
+                            <label>Téléphone</label>
+                            <input type="tel" id="phone" placeholder="06 12 34 56 78" maxlength="14">
+                        </div>
+                        <div class="input-group">
+                            <label>Email</label>
+                            <input type="email" id="email" placeholder="jean@exemple.fr">
+                        </div>
+                        <button type="button" class="btn-next" id="btnSubmit" disabled onclick="submitForm()">
+                            <i class="fas fa-paper-plane"></i> Recevoir mon devis gratuit
+                        </button>
+                    </div>
+                </form>
+
+                <div class="form-footer">
+                    <i class="fas fa-lock"></i>
+                    <span>Vos données sont sécurisées et ne seront jamais partagées</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Section 1 -->
+    <section class="image-section">
+        <div class="image-container" data-aos="fade-up">
+            <img src="/public/images/savings-solar.png" alt="Économies énergie solaire" class="section-image">
+            <div class="section-content">
+                <h2>Rejoignez les milliers de familles qui économisent</h2>
+                <p>L'énergie solaire n'est plus un luxe. Avec les aides de l'État et nos solutions clé en main, passez à l'autoconsommation et réduisez vos factures dès le premier mois.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Installation en 48h par des experts certifiés RGE</li>
+                    <li><i class="fas fa-check-circle"></i> Jusqu'à 90% du coût pris en charge par les aides</li>
+                    <li><i class="fas fa-check-circle"></i> Garantie 25 ans sur les panneaux</li>
+                    <li><i class="fas fa-check-circle"></i> Suivi de production en temps réel via app</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aides Section -->
+    <section class="aides-section" id="aides">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Jusqu'à 90% de votre projet financé</h2>
+            <p>Cumulez les aides de l'État pour réduire drastiquement votre investissement</p>
+        </div>
+
+        <div class="aides-grid">
+            <div class="aide-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="aide-icon"><i class="fas fa-landmark"></i></div>
+                <h3>MaPrimeRénov'</h3>
+                <div class="aide-amount">Jusqu'à 4 000€</div>
+                <p>Aide de l'État selon vos revenus</p>
+            </div>
+
+            <div class="aide-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="aide-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <h3>Prime CEE</h3>
+                <div class="aide-amount">Jusqu'à 2 500€</div>
+                <p>Certificats d'économies d'énergie</p>
+            </div>
+
+            <div class="aide-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="aide-icon"><i class="fas fa-piggy-bank"></i></div>
+                <h3>Prime Autoconsommation</h3>
+                <div class="aide-amount">80€/kWc</div>
+                <p>Versée automatiquement par EDF</p>
+            </div>
+
+            <div class="aide-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="aide-icon"><i class="fas fa-university"></i></div>
+                <h3>Éco-PTZ</h3>
+                <div class="aide-amount">Jusqu'à 50 000€</div>
+                <p>Prêt à taux zéro sur 20 ans</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Section 2 - Installation -->
+    <section class="image-section" style="background: white;">
+        <div class="image-container reverse" data-aos="fade-up">
+            <img src="/public/images/technician-install.jpg" alt="Installation panneaux solaires" class="section-image">
+            <div class="section-content">
+                <h2>Installation professionnelle par des experts RGE</h2>
+                <p>Nos équipes certifiées réalisent l'installation de vos panneaux solaires en seulement 48 heures, sans aucune démarche administrative de votre part.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Étude technique gratuite de votre toiture</li>
+                    <li><i class="fas fa-check-circle"></i> Installation en 1 à 2 jours maximum</li>
+                    <li><i class="fas fa-check-circle"></i> Raccordement EDF inclus</li>
+                    <li><i class="fas fa-check-circle"></i> Formation à l'utilisation de votre installation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Comment ça marche ?</h2>
+            <p>Un processus simple en 4 étapes</p>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="process-number">1</div>
+                <h4>Simulation gratuite</h4>
+                <p>Remplissez le formulaire en 30 secondes pour estimer vos économies</p>
+            </div>
+            <div class="process-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="process-number">2</div>
+                <h4>Étude personnalisée</h4>
+                <p>Un expert analyse votre toiture et calcule le meilleur dimensionnement</p>
+            </div>
+            <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="process-number">3</div>
+                <h4>Installation express</h4>
+                <p>Nos techniciens certifiés installent vos panneaux en 48h</p>
+            </div>
+            <div class="process-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="process-number">4</div>
+                <h4>Économies immédiates</h4>
+                <p>Produisez votre électricité et réduisez vos factures dès le 1er jour</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item" data-aos="fade-up">
+                <div class="stat-number" id="statClients">0</div>
+                <div class="stat-label">Clients satisfaits</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-number" id="statInstall">0</div>
+                <div class="stat-label">Installations 2024</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-number" id="statNote">0</div>
+                <div class="stat-label">Note moyenne</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-number" id="statGarantie">0</div>
+                <div class="stat-label">Ans de garantie</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Ce que disent nos clients</h2>
+            <p>Plus de 15 000 familles nous font confiance</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">JM</div>
+                    <div class="testimonial-info">
+                        <h4>Jean-Michel D.</h4>
+                        <span>Marseille (13)</span>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                    "Installation impeccable en 2 jours. Ma facture est passée de 180€ à 45€ par mois. Je recommande à 100% !"
+                </p>
+                <div class="testimonial-savings">
+                    <span>Économies annuelles :</span>
+                    <strong>1 620€</strong>
+                </div>
+            </div>
+
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">SL</div>
+                    <div class="testimonial-info">
+                        <h4>Sophie L.</h4>
+                        <span>Lyon (69)</span>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                    "Avec les aides, j'ai payé moins de 3000€ pour une installation à 9000€. Rentabilisé en 3 ans !"
+                </p>
+                <div class="testimonial-savings">
+                    <span>Économies annuelles :</span>
+                    <strong>1 180€</strong>
+                </div>
+            </div>
+
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">PA</div>
+                    <div class="testimonial-info">
+                        <h4>Pierre A.</h4>
+                        <span>Bordeaux (33)</span>
+                    </div>
+                </div>
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">
+                    "L'équipe m'a tout expliqué clairement. Les démarches administratives ont été gérées par eux. Parfait !"
+                </p>
+                <div class="testimonial-savings">
+                    <span>Économies annuelles :</span>
+                    <strong>1 340€</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-section">
+        <div data-aos="zoom-in">
+            <h2>Ne laissez pas passer cette opportunité !</h2>
+            <p>Les aides diminuent chaque année. Profitez des montants maximum de 2025.</p>
+            <a href="#" class="cta-btn" onclick="scrollToForm(); return false;">
+                <i class="fas fa-solar-panel"></i>
+                Obtenir mon devis gratuit
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-badges">
+            <div class="footer-badge">
+                <i class="fas fa-certificate"></i>
+                <span>Certifié RGE</span>
+            </div>
+            <div class="footer-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>Garantie 25 ans</span>
+            </div>
+            <div class="footer-badge">
+                <i class="fas fa-headset"></i>
+                <span>SAV France 7j/7</span>
+            </div>
+            <div class="footer-badge">
+                <i class="fas fa-euro-sign"></i>
+                <span>Paiement sécurisé</span>
+            </div>
+        </div>
+        <p class="footer-legal">
+            * Économies estimées sur la base d'une consommation moyenne et d'un ensoleillement standard.
+            Les résultats peuvent varier selon la configuration de votre installation et votre localisation.
+            Simulation non contractuelle. Un conseiller vous contactera pour établir un devis personnalisé.
+        </p>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2>Demande envoyée !</h2>
+            <p>Un expert solaire vous contactera dans les 24h.</p>
+            <div class="success-savings-box">
+                <span>Vos économies estimées</span>
+                <strong id="finalSavingsDisplay">0€/an</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // Init AOS
+        AOS.init({ duration: 800, once: true });
+
+        // Variables
+        let currentStep = 1;
+        const totalSteps = 5;
+        let totalSavings = 0;
+
+        // DOM
+        const progressFill = document.getElementById('progressFill');
+        const stepIndicator = document.getElementById('stepIndicator');
+        const progressPercent = document.getElementById('progressPercent');
+
+        // Hero savings counter
+        function animateHeroSavings() {
+            const target = 1847;
+            const element = document.getElementById('heroSavingsCounter');
+            const duration = 2500;
+            const start = performance.now();
+
+            function animate(time) {
+                const elapsed = time - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 4);
+                element.textContent = Math.round(target * eased).toLocaleString('fr-FR');
+                if (progress < 1) requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // Stats
+        function animateStats() {
+            const stats = [
+                { id: 'statClients', target: 15847, suffix: '+' },
+                { id: 'statInstall', target: 3248, suffix: '' },
+                { id: 'statNote', target: 4.9, suffix: '/5', decimal: true },
+                { id: 'statGarantie', target: 25, suffix: '' }
+            ];
+
+            stats.forEach(stat => {
+                const element = document.getElementById(stat.id);
+                const duration = 2000;
+                const start = performance.now();
+
+                function animate(time) {
+                    const elapsed = time - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    let value = stat.target * eased;
+                    value = stat.decimal ? value.toFixed(1) : Math.round(value).toLocaleString('fr-FR');
+                    element.textContent = value + stat.suffix;
+                    if (progress < 1) requestAnimationFrame(animate);
+                }
+                requestAnimationFrame(animate);
+            });
+        }
+
+        // Live counters
+        function updateLiveCounters() {
+            const viewers = document.getElementById('viewersCount');
+            const leads = document.getElementById('todayLeads');
+
+            setInterval(() => {
+                const current = parseInt(viewers.textContent);
+                const change = Math.random() > 0.5 ? 1 : -1;
+                viewers.textContent = Math.max(40, Math.min(70, current + change));
+            }, 3000);
+
+            setInterval(() => {
+                leads.textContent = parseInt(leads.textContent) + 1;
+            }, 12000);
+        }
+
+        // Progress
+        function updateProgress() {
+            const percent = ((currentStep - 1) / totalSteps) * 100;
+            progressFill.style.width = percent + '%';
+            stepIndicator.textContent = `Étape ${currentStep}/${totalSteps}`;
+            progressPercent.textContent = Math.round(percent) + '%';
+        }
+
+        // Steps
+        function showStep(step) {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
+            updateProgress();
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        // Options
+        document.querySelectorAll('.options-grid').forEach(container => {
+            container.querySelectorAll('.option-btn').forEach(option => {
+                option.addEventListener('click', function() {
+                    container.querySelectorAll('.option-btn').forEach(o => o.classList.remove('selected'));
+                    this.classList.add('selected');
+                    totalSavings += parseInt(this.dataset.savings) || 0;
+                    setTimeout(nextStep, 300);
+                });
+            });
+        });
+
+        // Code postal
+        const codePostalInput = document.getElementById('codePostal');
+        const btnStep4 = document.getElementById('btnStep4');
+
+        codePostalInput.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '');
+            btnStep4.disabled = this.value.length !== 5;
+            if (this.value.length === 5) {
+                const southDepts = ['06', '13', '83', '34', '30', '84', '66', '11', '33', '40', '64', '31', '81', '82'];
+                if (southDepts.some(d => this.value.startsWith(d))) totalSavings += 150;
+            }
+        });
+
+        // Contact validation
+        const fullName = document.getElementById('fullName');
+        const phone = document.getElementById('phone');
+        const email = document.getElementById('email');
+        const btnSubmit = document.getElementById('btnSubmit');
+
+        function validateContact() {
+            const nameValid = fullName.value.trim().length >= 2;
+            const phoneClean = phone.value.replace(/\D/g, '');
+            const phoneValid = phoneClean.length === 10 && phoneClean.startsWith('0');
+            const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
+            btnSubmit.disabled = !(nameValid && phoneValid && emailValid);
+        }
+
+        fullName.addEventListener('input', validateContact);
+        email.addEventListener('input', validateContact);
+        phone.addEventListener('input', function() {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            this.value = value.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+            validateContact();
+        });
+
+        // Submit
+        function submitForm() {
+            document.getElementById('finalSavingsDisplay').textContent = totalSavings.toLocaleString('fr-FR') + '€/an';
+            document.getElementById('successModal').classList.add('show');
+
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#f59e0b', '#10b981', '#3b82f6'] });
+            setTimeout(() => {
+                confetti({ particleCount: 100, angle: 60, spread: 55, origin: { x: 0 } });
+                confetti({ particleCount: 100, angle: 120, spread: 55, origin: { x: 1 } });
+            }, 250);
+        }
+
+        // Scroll to form
+        function scrollToForm() {
+            document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            animateHeroSavings();
+            updateLiveCounters();
+
+            const statsSection = document.querySelector('.stats-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            observer.observe(statsSection);
+        });
+    </script>
+</body>
+</html>
