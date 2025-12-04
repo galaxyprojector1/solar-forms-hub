@@ -43,7 +43,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             overflow-x: hidden;
-            padding-top: 110px;
+            padding-top: 70px;
             padding-bottom: 80px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -147,7 +147,7 @@
         /* ========== HEADER ========== */
         .header {
             position: fixed;
-            top: 48px; /* Espace pour le bandeau urgence */
+            top: 0;
             left: 0;
             right: 0;
             background: var(--white);
@@ -876,48 +876,6 @@
         }
 
 
-        /* ========== BANDEAU URGENCE ========== */
-        .urgency-banner {
-            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
-            color: var(--white);
-            padding: 12px 0;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.95rem;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1001;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .urgency-banner .container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .urgency-banner a {
-            color: var(--white);
-            text-decoration: underline;
-            font-weight: 700;
-            transition: opacity 0.3s;
-        }
-
-        .urgency-banner a:hover {
-            opacity: 0.8;
-        }
-
-        .urgency-banner i {
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        /* Header ajusté pour le bandeau */
-        body {
-            padding-top: 120px; /* 48px bandeau + ~72px header */
-        }
 
         /* ========== COMPTEUR SOCIAL PROOF ========== */
         .social-proof-counter {
@@ -1996,13 +1954,6 @@
     </header>
 
 
-    <!-- BANDEAU URGENCE -->
-    <div class="urgency-banner">
-        <div class="container">
-            <p><i class="fas fa-exclamation-triangle"></i> <strong>ATTENTION :</strong> Aides en baisse en 2026 -
-            <a href="formulaire.html">Vérifiez votre éligibilité maintenant →</a></p>
-        </div>
-    </div>
 
     <!-- HERO SECTION V4 -->
     <section class="hero">
@@ -2051,12 +2002,6 @@
                     Calculer mes aides gratuitement
                     <i class="fas fa-arrow-right"></i>
                 </a>
-                <div class="social-proof-counter" id="socialProofCounter" style="margin-top: 12px; padding: 8px 14px; font-size: 0.8rem;">
-                    <span class="counter-number" id="demandesCount" style="padding: 3px 10px; font-size: 0.95rem;">347</span> simulations aujourd'hui
-                    <span style="margin-left: 10px; display: inline-flex; align-items: center; gap: 4px; color: var(--green); font-size: 0.8rem;">
-                        <i class="fas fa-star"></i> 4.8/5
-                    </span>
-                </div>
                 <ul class="hero-features">
                     <li><i class="fas fa-check-circle"></i> 100% Gratuit</li>
                     <li><i class="fas fa-clock"></i> 2 min</li>
@@ -2658,19 +2603,13 @@
         </div>
     </footer>
 
-    <!-- STICKY CTA MOBILE V4 -->
+    <!-- STICKY CTA MOBILE -->
     <div class="sticky-cta" style="padding: 12px 15px; background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);">
-        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
-            <div style="display: flex; flex-direction: column; gap: 2px;">
-                <span style="font-size: 0.75rem; color: rgba(255,255,255,0.8);"><i class="fas fa-fire" style="color: #F97316;"></i> <span id="stickyCTACount">347</span> simulations aujourd'hui</span>
-                <span style="font-size: 0.7rem; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 4px;">
-                    <i class="fas fa-star" style="color: #FBBF24;"></i> 4.8/5 • 100% gratuit
-                </span>
-            </div>
-            <a href="formulaire.html" class="btn-orange" style="padding: 14px 20px; font-size: 0.9rem; white-space: nowrap;">
-                Calculer mes aides <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
+        <a href="formulaire.html" class="btn-orange" style="width: 100%; justify-content: center; padding: 14px 20px; font-size: 1rem;">
+            <i class="fas fa-calculator"></i>
+            Calculer mes aides gratuitement
+            <i class="fas fa-arrow-right"></i>
+        </a>
     </div>
 
     <!-- SCRIPTS -->
