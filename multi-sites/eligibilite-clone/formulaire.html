@@ -2,471 +2,182 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire d'Éligibilité - Calculez vos aides en 2 minutes</title>
-    <meta name="description" content="Découvrez vos aides MaPrimeRénov', Prime CEE et Éco-PTZ en 2 minutes chrono.">
-
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Simulation Aides 2025 - Calculez vos aides en 90 secondes</title>
+    <meta name="description" content="Découvrez jusqu'à 25 000€ d'aides pour vos travaux de rénovation. Simulation gratuite en 90 secondes.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         :root {
             --blue-dark: #1E3A8A;
             --blue-primary: #2563EB;
             --orange: #F97316;
             --orange-dark: #EA580C;
+            --green: #10B981;
+            --green-light: #D1FAE5;
             --text-dark: #1F2937;
             --text-gray: #6B7280;
             --gray-light: #F3F4F6;
-            --green: #10B981;
-            --red: #EF4444;
             --white: #FFFFFF;
+            --red: #EF4444;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Reduced motion support */
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
             }
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #EBF4FF 0%, #F0F9FF 100%);
-            color: var(--text-dark);
+            background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
             min-height: 100vh;
+            color: var(--text-dark);
             overflow-x: hidden;
-            padding-bottom: 80px; /* Space for mobile sticky CTA */
         }
 
-        /* Header - Mobile First */
+        /* Header Minimal */
         .header {
-            background: var(--white);
-            padding: 0.875rem 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem;
+            padding: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .logo {
             font-size: 1.25rem;
             font-weight: 800;
-            color: var(--blue-primary);
+            color: var(--white);
             text-decoration: none;
-            letter-spacing: -0.5px;
         }
 
-        .nav {
-            display: none; /* Hidden on mobile by default */
-            align-items: center;
-        }
-
-        .nav-menu a {
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: color 0.3s;
-            min-height: 48px;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-menu a:hover {
-            color: var(--blue-primary);
-        }
-
-        .header-phone {
+        .progress-pill {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--text-gray);
-            font-size: 0.875rem;
         }
 
-        .header-phone i {
-            color: var(--green);
-            font-size: 1.25rem;
-            min-width: 48px;
-            min-height: 48px;
-            display: flex;
+        .progress-pill i { color: #FDE68A; }
+
+        /* Main Container */
+        .form-wrapper {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0 1rem 2rem;
+        }
+
+        /* Card Style */
+        .form-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Screens */
+        .screen {
+            display: none;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        .screen.active { display: block; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(-30px); }
+        }
+
+        /* Question Styling */
+        .question-number {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .header-phone span {
-            display: none; /* Hidden on mobile */
-        }
-
-        .header-phone strong {
-            color: var(--blue-dark);
+            width: 32px;
+            height: 32px;
+            background: var(--blue-primary);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 0.875rem;
             font-weight: 700;
-        }
-
-        /* ========== DROPDOWN MENU ========== */
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-menu .dropdown {
-            position: relative;
-        }
-
-        .nav-menu .dropdown > a {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%) translateY(10px);
-            background: var(--white, #fff);
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            padding: 12px 0;
-            min-width: 240px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 100;
-            list-style: none;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .dropdown-menu li {
-            list-style: none;
-        }
-
-        .dropdown-menu li a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 20px;
-            color: var(--text-dark, #1f2937);
-            font-weight: 500;
-            transition: all 0.2s;
-            text-decoration: none;
-        }
-
-        .dropdown-menu li a:hover {
-            background: var(--gray-light, #f3f4f6);
-            color: var(--blue-primary, #2563eb);
-        }
-
-        .dropdown-menu li a i {
-            width: 20px;
-            color: var(--orange, #f97316);
-        }
-
-        .dropdown-icon {
-            font-size: 0.7em;
-            transition: transform 0.3s;
-        }
-
-        .dropdown:hover .dropdown-icon {
-            transform: rotate(180deg);
-        }
-
-        /* Mobile dropdown - default state */
-        .dropdown-menu {
-            position: static;
-            transform: none;
-            box-shadow: none;
-            max-height: 0;
-            overflow: hidden;
-            padding: 0;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-
-        .dropdown.active .dropdown-menu {
-            max-height: 300px;
-            padding: 10px 0;
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .dropdown-menu li a {
-            color: var(--text-dark);
-            padding: 12px 20px;
-            min-height: 48px;
-        }
-
-        .dropdown-menu li a:hover {
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* Main Container - Mobile First */
-        .main-container {
-            max-width: 1400px;
-            margin: 1rem auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            align-items: start;
-        }
-
-        /* Progress Bar - Mobile First */
-        .progress-container {
-            background: var(--white);
-            padding: 1.25rem 1rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            margin-bottom: 1.5rem;
-        }
-
-        .progress-steps {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
             margin-bottom: 1rem;
         }
 
-        .progress-line {
-            position: absolute;
-            top: 20px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gray-light);
-            z-index: 1;
-        }
-
-        .progress-line-fill {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            background: linear-gradient(90deg, var(--blue-primary), var(--orange));
-            width: 0%;
-            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .progress-step {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            flex: 1;
-        }
-
-        .step-circle {
-            width: 32px;
-            height: 32px;
-            min-width: 32px;
-            min-height: 32px;
-            border-radius: 50%;
-            background: var(--white);
-            border: 2px solid var(--gray-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.75rem;
-            color: var(--text-gray);
-            transition: all 0.3s ease;
-        }
-
-        .progress-step.active .step-circle {
-            background: var(--blue-primary);
-            border-color: var(--blue-primary);
-            color: var(--white);
-            transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-
-        .progress-step.completed .step-circle {
-            background: var(--green);
-            border-color: var(--green);
-            color: var(--white);
-        }
-
-        .step-label {
-            font-size: 0.65rem;
-            font-weight: 600;
-            color: var(--text-gray);
-            text-align: center;
-            max-width: 60px;
-            line-height: 1.2;
-        }
-
-        .progress-step.active .step-label {
-            color: var(--blue-primary);
-        }
-
-        /* Form Container - Mobile First */
-        .form-container {
-            background: var(--white);
-            padding: 1.5rem 1rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .badges-row {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--gray-light);
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .badge i {
-            color: var(--green);
-        }
-
-        /* Form Steps */
-        .form-step {
-            display: none;
-            animation: slideIn 0.4s ease;
-        }
-
-        .form-step.active {
-            display: block;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .step-header {
-            margin-bottom: 1.5rem;
-        }
-
-        .step-title {
-            font-size: 1.35rem;
+        .question-title {
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--blue-dark);
-            margin-bottom: 0.5rem;
             line-height: 1.3;
+            margin-bottom: 0.5rem;
         }
 
-        .step-subtitle {
-            font-size: 0.9rem;
+        .question-subtitle {
+            font-size: 0.95rem;
             color: var(--text-gray);
-            line-height: 1.4;
+            margin-bottom: 2rem;
         }
 
-        .step-remaining {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-top: 1rem;
-        }
-
-        /* Options Cards - Mobile First */
-        .options-grid {
+        /* Choice Cards - Clickable */
+        .choices {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.875rem;
-            margin-bottom: 1.5rem;
+            gap: 1rem;
         }
 
-        .option-card {
+        .choice-card {
             background: var(--white);
-            border: 2px solid var(--gray-light);
-            border-radius: 12px;
-            padding: 1.25rem 0.75rem;
+            border: 3px solid var(--gray-light);
+            border-radius: 16px;
+            padding: 1.5rem 1rem;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             position: relative;
-            min-height: 48px;
+            min-height: 120px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .option-card:active {
-            transform: scale(0.98);
+        .choice-card:active {
+            transform: scale(0.96);
         }
 
-        @media (hover: hover) {
-            .option-card:hover {
-                border-color: var(--blue-primary);
-                transform: translateY(-4px);
-                box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
-            }
-        }
-
-        .option-card.selected {
+        .choice-card.selected {
             border-color: var(--blue-primary);
-            background: linear-gradient(135deg, #EBF4FF, #DBEAFE);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+            background: linear-gradient(135deg, #EBF4FF 0%, #DBEAFE 100%);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25);
         }
 
-        .option-card.selected::after {
+        .choice-card.selected::before {
             content: '\f00c';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: 10px;
+            right: 10px;
             width: 24px;
             height: 24px;
             background: var(--green);
@@ -475,1564 +186,1028 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
+            animation: popIn 0.3s ease;
         }
 
-        .option-icon {
-            font-size: 1.875rem;
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .choice-icon {
+            font-size: 2.5rem;
             color: var(--blue-primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            transition: transform 0.2s ease;
         }
 
-        .option-card.selected .option-icon {
+        .choice-card.selected .choice-icon {
             color: var(--orange);
+            transform: scale(1.1);
         }
 
-        .option-label {
-            font-weight: 600;
+        .choice-label {
+            font-weight: 700;
+            font-size: 0.95rem;
             color: var(--text-dark);
-            font-size: 0.85rem;
-            line-height: 1.3;
         }
 
-        /* Buttons - Mobile First */
-        .buttons-row {
+        .choice-bonus {
+            font-size: 0.75rem;
+            color: var(--green);
+            font-weight: 700;
+            margin-top: 0.5rem;
+            background: var(--green-light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+        }
+
+        /* Work Selection Cards with Aids */
+        .work-cards {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
+            gap: 1rem;
         }
 
-        .btn-option {
-            flex: 1;
-            padding: 1rem;
-            min-height: 54px;
-            border: 2px solid var(--gray-light);
+        .work-card {
             background: var(--white);
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-dark);
+            border: 3px solid var(--gray-light);
+            border-radius: 16px;
+            padding: 1.25rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            gap: 1rem;
             touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .btn-option:active {
+        .work-card:active {
             transform: scale(0.98);
         }
 
-        @media (hover: hover) {
-            .btn-option:hover {
-                border-color: var(--blue-primary);
-                transform: translateY(-2px);
-            }
+        .work-card.selected {
+            border-color: var(--green);
+            background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
         }
 
-        .btn-option.selected {
-            border-color: var(--blue-primary);
+        .work-card-icon {
+            width: 56px;
+            height: 56px;
+            min-width: 56px;
             background: var(--blue-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+            transition: all 0.2s ease;
+        }
+
+        .work-card.selected .work-card-icon {
+            background: var(--green);
+        }
+
+        .work-card-content {
+            flex: 1;
+        }
+
+        .work-card-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .work-card-aid {
+            font-size: 0.875rem;
+            color: var(--orange);
+            font-weight: 700;
+        }
+
+        .work-card-check {
+            width: 28px;
+            height: 28px;
+            border: 3px solid var(--gray-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .work-card.selected .work-card-check {
+            background: var(--green);
+            border-color: var(--green);
             color: var(--white);
         }
 
-        /* Form Fields */
-        .form-group {
+        .work-card.selected .work-card-check::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.75rem;
+        }
+
+        /* Input Styles */
+        .input-wrapper {
             margin-bottom: 1.5rem;
         }
 
-        .form-label {
+        .input-big {
+            width: 100%;
+            padding: 1.25rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            border: 3px solid var(--gray-light);
+            border-radius: 16px;
+            font-family: inherit;
+            transition: all 0.2s ease;
+            -webkit-appearance: none;
+        }
+
+        .input-big:focus {
+            outline: none;
+            border-color: var(--blue-primary);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+        }
+
+        .input-big.valid {
+            border-color: var(--green);
+            background: var(--green-light);
+        }
+
+        .input-label {
             display: block;
             font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .form-label .required {
-            color: var(--red);
-        }
-
-        .form-label .optional {
             color: var(--text-gray);
-            font-weight: 400;
-            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
         }
 
-        .form-input,
-        .form-select {
+        .input-regular {
             width: 100%;
             padding: 1rem;
-            min-height: 54px;
-            border: 2px solid var(--gray-light);
-            border-radius: 8px;
             font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.3s ease;
-            touch-action: manipulation;
-            -webkit-appearance: none;
-            appearance: none;
+            border: 2px solid var(--gray-light);
+            border-radius: 12px;
+            font-family: inherit;
+            transition: all 0.2s ease;
+            min-height: 54px;
         }
 
-        .form-select {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236B7280' d='M1.41 0L6 4.59L10.59 0L12 1.41l-6 6l-6-6z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 12px;
-            padding-right: 3rem;
-        }
-
-        .form-input:focus,
-        .form-select:focus {
+        .input-regular:focus {
             outline: none;
             border-color: var(--blue-primary);
             box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
 
-        .form-input.valid {
-            border-color: var(--green);
+        /* Slider */
+        .slider-container {
+            margin: 2rem 0;
         }
 
-        .form-input.invalid {
-            border-color: var(--red);
-        }
-
-        .input-suffix {
-            position: relative;
-        }
-
-        .input-suffix .form-input {
-            padding-right: 3rem;
-        }
-
-        .input-suffix::after {
-            content: attr(data-suffix);
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-gray);
-            font-weight: 600;
-        }
-
-        .info-message {
-            background: linear-gradient(135deg, #FEF3C7, #FDE68A);
-            border-left: 4px solid var(--orange);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: start;
-            gap: 0.75rem;
-        }
-
-        .info-message i {
-            color: var(--orange);
-            font-size: 1.2rem;
-            margin-top: 0.1rem;
-        }
-
-        .info-message-text {
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            line-height: 1.5;
-        }
-
-        /* Checkboxes - Mobile First */
-        .checkbox-group {
-            display: flex;
-            align-items: start;
-            gap: 0.75rem;
+        .slider-value {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--blue-dark);
             margin-bottom: 1rem;
+        }
+
+        .slider-value span {
+            font-size: 1.5rem;
+            color: var(--text-gray);
+        }
+
+        .slider {
+            width: 100%;
+            height: 12px;
+            border-radius: 6px;
+            background: var(--gray-light);
+            -webkit-appearance: none;
+            appearance: none;
             cursor: pointer;
         }
 
-        .checkbox-group input[type="checkbox"] {
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--orange);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.35);
+            touch-action: manipulation;
+            min-height: 60px;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-back {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: var(--gray-light);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-gray);
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .btn-back:active {
+            transform: scale(0.95);
+        }
+
+        /* Aids Counter */
+        .aids-counter {
+            background: linear-gradient(135deg, var(--green) 0%, #059669 100%);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .aids-counter-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 0.25rem;
+        }
+
+        .aids-counter-amount {
+            font-size: 2rem;
+            font-weight: 900;
+        }
+
+        /* Checkbox */
+        .checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            cursor: pointer;
+        }
+
+        .checkbox-wrapper input {
             width: 24px;
             height: 24px;
             min-width: 24px;
-            min-height: 24px;
-            margin-top: 0.1rem;
             cursor: pointer;
-            touch-action: manipulation;
         }
 
         .checkbox-label {
-            font-size: 0.9rem;
-            color: var(--text-dark);
+            font-size: 0.85rem;
+            color: var(--text-gray);
             line-height: 1.5;
         }
 
         .checkbox-label a {
             color: var(--blue-primary);
-            text-decoration: underline;
         }
 
-        /* Navigation Buttons - Mobile First */
-        .form-navigation {
-            display: flex;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-        }
-
-        .btn-nav {
-            padding: 1rem 1.5rem;
-            min-height: 54px;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            touch-action: manipulation;
-        }
-
-        .btn-nav:active {
-            transform: scale(0.98);
-        }
-
-        .btn-prev {
-            background: var(--gray-light);
-            color: var(--text-dark);
-            min-width: 48px;
-        }
-
-        @media (hover: hover) {
-            .btn-prev:hover {
-                background: #E5E7EB;
-            }
-        }
-
-        .btn-next,
-        .btn-submit {
-            flex: 1;
-            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
-            color: var(--white);
-            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
-        }
-
-        @media (hover: hover) {
-            .btn-next:hover,
-            .btn-submit:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
-            }
-        }
-
-        .btn-next:disabled,
-        .btn-submit:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Estimation Panel - Mobile First */
-        .estimation-panel {
-            background: linear-gradient(135deg, var(--blue-dark), var(--blue-primary));
-            padding: 1.5rem;
-            border-radius: 12px;
-            color: var(--white);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .estimation-header {
+        /* Loading Screen */
+        .loading-screen {
             text-align: center;
-            margin-bottom: 2rem;
+            padding: 3rem 1rem;
         }
 
-        .estimation-title {
-            font-size: 1.3rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .estimation-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .estimation-item {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .estimation-label {
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .estimation-amount {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #FDE68A;
-        }
-
-        .estimation-total {
-            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 1.5rem;
-        }
-
-        .estimation-total-label {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .estimation-total-amount {
-            font-size: 2.5rem;
-            font-weight: 900;
-            line-height: 1;
-        }
-
-        .estimation-note {
-            text-align: center;
-            font-size: 0.8rem;
-            opacity: 0.8;
-            margin-top: 1rem;
-            line-height: 1.4;
-        }
-
-        /* Testimonials */
-        .testimonial {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem;
-            border-radius: 12px;
-            margin-top: 2rem;
-        }
-
-        .testimonial-text {
-            font-size: 0.9rem;
-            font-style: italic;
-            margin-bottom: 0.75rem;
-            line-height: 1.5;
-        }
-
-        .testimonial-author {
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .testimonial-stars {
-            color: #FDE68A;
-            margin-top: 0.5rem;
-        }
-
-        /* Loading Spinner */
-        .loading-spinner {
-            display: none;
-            width: 24px;
-            height: 24px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top-color: var(--white);
+        .loading-spinner-big {
+            width: 80px;
+            height: 80px;
+            border: 6px solid var(--gray-light);
+            border-top-color: var(--blue-primary);
             border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 2rem;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        .btn-submit.loading .loading-spinner {
-            display: inline-block;
+        .loading-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin-bottom: 0.5rem;
         }
 
-        .btn-submit.loading .btn-text {
-            display: none;
+        .loading-subtext {
+            font-size: 0.95rem;
+            color: var(--text-gray);
         }
 
-        /* Mobile Sticky CTA Bar */
-        .mobile-sticky-cta {
-            display: block;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
-            padding: 0.875rem 1rem;
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
-            z-index: 99;
-            transform: translateY(0);
-            transition: transform 0.3s ease;
+        .loading-progress {
+            width: 100%;
+            height: 8px;
+            background: var(--gray-light);
+            border-radius: 4px;
+            margin-top: 2rem;
+            overflow: hidden;
         }
 
-        .mobile-sticky-cta.hidden {
-            transform: translateY(100%);
+        .loading-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue-primary), var(--orange));
+            border-radius: 4px;
+            animation: loadProgress 3s ease-out forwards;
         }
 
-        .mobile-sticky-cta-content {
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Result Screen */
+        .result-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .result-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--green) 0%, #059669 100%);
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .mobile-sticky-cta-text {
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
             color: var(--white);
-            font-size: 0.875rem;
-            font-weight: 600;
         }
 
-        .mobile-sticky-cta-amount {
-            font-size: 1.25rem;
+        .result-title {
+            font-size: 1.5rem;
             font-weight: 800;
-            color: #FDE68A;
+            color: var(--blue-dark);
+            margin-bottom: 0.5rem;
         }
 
-        .mobile-sticky-cta-btn {
-            padding: 0.75rem 1.25rem;
-            min-height: 48px;
-            background: var(--white);
+        .result-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
             color: var(--orange);
-            border: none;
-            border-radius: 8px;
-            font-size: 0.875rem;
+        }
+
+        .result-range {
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+        }
+
+        .result-items {
+            background: var(--gray-light);
+            border-radius: 16px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-item-label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .result-item-value {
             font-weight: 700;
-            cursor: pointer;
-            white-space: nowrap;
-            touch-action: manipulation;
+            color: var(--green);
         }
 
-        .mobile-sticky-cta-btn:active {
-            transform: scale(0.96);
+        .result-message {
+            text-align: center;
+            background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        /* Tablet breakpoint - 768px */
-        @media (min-width: 768px) {
-            .logo {
-                font-size: 1.5rem;
-            }
-
-            .header-content {
-                padding: 0 1.5rem;
-                gap: 2rem;
-            }
-
-            .header-phone span {
-                display: inline;
-            }
-
-            .header-phone {
-                font-size: 0.95rem;
-            }
-
-            .main-container {
-                margin: 1.5rem auto;
-                padding: 0 1.5rem;
-            }
-
-            .progress-container {
-                padding: 1.75rem 1.5rem;
-            }
-
-            .step-circle {
-                width: 38px;
-                height: 38px;
-                min-width: 38px;
-                min-height: 38px;
-                border: 3px solid var(--gray-light);
-                font-size: 0.85rem;
-            }
-
-            .step-label {
-                font-size: 0.7rem;
-                max-width: 70px;
-            }
-
-            .form-container {
-                padding: 2rem 1.5rem;
-            }
-
-            .step-title {
-                font-size: 1.6rem;
-            }
-
-            .step-subtitle {
-                font-size: 0.95rem;
-            }
-
-            .options-grid {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-                gap: 1rem;
-            }
-
-            .option-card {
-                padding: 1.5rem 1rem;
-            }
-
-            .option-icon {
-                font-size: 2.25rem;
-            }
-
-            .option-label {
-                font-size: 0.9rem;
-            }
-
-            .buttons-row {
-                flex-direction: row;
-                gap: 1rem;
-            }
-
-            .estimation-panel {
-                padding: 1.75rem;
-            }
-
-            .mobile-sticky-cta {
-                display: none;
-            }
-
-            body {
-                padding-bottom: 0;
-            }
+        .result-message i {
+            color: var(--orange);
+            margin-right: 0.5rem;
         }
 
-        /* Desktop breakpoint - 1024px */
-        @media (min-width: 1024px) {
-            .nav {
-                display: flex;
-            }
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            top: -10px;
+            width: 10px;
+            height: 10px;
+            animation: confettiFall 3s ease-in forwards;
+            z-index: 1000;
+        }
 
-            .header {
-                padding: 1rem 0;
-            }
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
 
-            .dropdown-menu {
-                position: absolute;
-                top: 100%;
-                left: 50%;
-                transform: translateX(-50%) translateY(10px);
-                background: var(--white);
-                border-radius: 12px;
-                box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-                padding: 12px 0;
-                min-width: 240px;
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-                z-index: 100;
-            }
+        /* Mobile Optimizations */
+        @media (max-width: 400px) {
+            .form-card { padding: 1.5rem 1rem; }
+            .question-title { font-size: 1.25rem; }
+            .choice-card { padding: 1rem 0.75rem; min-height: 100px; }
+            .choice-icon { font-size: 2rem; }
+            .slider-value { font-size: 2.5rem; }
+        }
 
-            .dropdown:hover .dropdown-menu {
-                opacity: 1;
-                visibility: visible;
-                transform: translateX(-50%) translateY(0);
-            }
+        /* Locataire Message */
+        .locataire-message {
+            text-align: center;
+            padding: 2rem;
+        }
 
-            .main-container {
-                margin: 2rem auto;
-                grid-template-columns: 1fr 380px;
-                gap: 2rem;
-            }
+        .locataire-icon {
+            font-size: 4rem;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
 
-            .progress-container {
-                padding: 2rem;
-                margin-bottom: 2rem;
-            }
+        .locataire-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
 
-            .step-circle {
-                width: 40px;
-                height: 40px;
-                min-width: 40px;
-                min-height: 40px;
-            }
+        .locataire-text {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
 
-            .step-label {
-                font-size: 0.75rem;
-                max-width: 80px;
-            }
+        /* Ripple Effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.3);
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
 
-            .form-container {
-                padding: 3rem;
-            }
-
-            .step-header {
-                margin-bottom: 2rem;
-            }
-
-            .step-title {
-                font-size: 1.8rem;
-            }
-
-            .step-subtitle {
-                font-size: 1rem;
-            }
-
-            .options-grid {
-                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-                margin-bottom: 2rem;
-            }
-
-            .option-card {
-                padding: 1.5rem 1rem;
-            }
-
-            .option-icon {
-                font-size: 2.5rem;
-                margin-bottom: 0.75rem;
-            }
-
-            .option-label {
-                font-size: 0.95rem;
-            }
-
-            .buttons-row {
-                margin-bottom: 2rem;
-            }
-
-            .form-navigation {
-                margin-top: 2rem;
-                gap: 1rem;
-            }
-
-            .btn-nav {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-            }
-
-            .estimation-panel {
-                padding: 2rem;
-                position: sticky;
-                top: 100px;
-            }
+        @keyframes rippleEffect {
+            to { transform: scale(4); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
-        <div class="header-content">
-            <a href="index.html" class="logo">ELIGIBILITE</a>
-            <nav class="nav">
-                <ul class="nav-menu">
-                    <li class="dropdown">
-                        <a href="#">Les dispositifs <i class="fas fa-chevron-down dropdown-icon"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="panneaux-solaires.html"><i class="fas fa-solar-panel"></i> Panneaux solaires</a></li>
-                            <li><a href="isolation.html"><i class="fas fa-home"></i> Isolation thermique</a></li>
-                            <li><a href="pompe-a-chaleur.html"><i class="fas fa-fan"></i> Pompe à chaleur</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#">Les aides <i class="fas fa-chevron-down dropdown-icon"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="maprimerenov.html"><i class="fas fa-landmark"></i> MaPrimeRenov'</a></li>
-                            <li><a href="prime-cee.html"><i class="fas fa-certificate"></i> Prime CEE</a></li>
-                            <li><a href="anah.html"><i class="fas fa-hands-helping"></i> Aides Anah</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="index.html#faq">FAQ</a></li>
-                </ul>
-            </nav>
-            <div class="header-phone">
-                <i class="fas fa-phone-volume"></i>
-                <span>Besoin d'aide ? <strong>01 89 20 03 80</strong></span>
-            </div>
+        <a href="index.html" class="logo">ELIGIBILITE</a>
+        <div class="progress-pill" id="progressPill">
+            <i class="fas fa-bolt"></i>
+            <span id="progressText">Question 1/6</span>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Left Column: Form -->
-        <div>
-            <!-- Progress Bar -->
-            <div class="progress-container">
-                <div class="progress-steps">
-                    <div class="progress-line">
-                        <div class="progress-line-fill" id="progressLineFill"></div>
+    <div class="form-wrapper">
+        <div class="form-card" id="formCard">
+
+            <!-- Screen 1: Type de logement -->
+            <div class="screen active" data-screen="1">
+                <span class="question-number">1</span>
+                <h2 class="question-title">Vous habitez dans...</h2>
+                <p class="question-subtitle">Cliquez sur votre type de logement</p>
+
+                <div class="choices">
+                    <div class="choice-card" data-value="maison" data-auto="true">
+                        <div class="choice-icon"><i class="fas fa-home"></i></div>
+                        <div class="choice-label">Une maison</div>
                     </div>
-                    <div class="progress-step active" data-step="1">
-                        <div class="step-circle">1</div>
-                        <div class="step-label">Projet</div>
-                    </div>
-                    <div class="progress-step" data-step="2">
-                        <div class="step-circle">2</div>
-                        <div class="step-label">Logement</div>
-                    </div>
-                    <div class="progress-step" data-step="3">
-                        <div class="step-circle">3</div>
-                        <div class="step-label">Chauffage</div>
-                    </div>
-                    <div class="progress-step" data-step="4">
-                        <div class="step-circle">4</div>
-                        <div class="step-label">Revenus</div>
-                    </div>
-                    <div class="progress-step" data-step="5">
-                        <div class="step-circle">5</div>
-                        <div class="step-label">Contact</div>
+                    <div class="choice-card" data-value="appartement" data-auto="true">
+                        <div class="choice-icon"><i class="fas fa-building"></i></div>
+                        <div class="choice-label">Un appartement</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Form Container -->
-            <div class="form-container">
-                <div class="badges-row">
-                    <div class="badge">
-                        <i class="fas fa-check-circle"></i>
-                        Gratuit et sans engagement
+            <!-- Screen 2: Propriétaire -->
+            <div class="screen" data-screen="2">
+                <button class="btn-back" onclick="prevScreen()"><i class="fas fa-arrow-left"></i></button>
+                <span class="question-number">2</span>
+                <h2 class="question-title">Êtes-vous propriétaire ?</h2>
+                <p class="question-subtitle">Les aides sont réservées aux propriétaires</p>
+
+                <div class="choices">
+                    <div class="choice-card" data-value="oui" data-auto="true" data-target="3">
+                        <div class="choice-icon"><i class="fas fa-key"></i></div>
+                        <div class="choice-label">Oui</div>
+                        <div class="choice-bonus">Éligible aux aides</div>
                     </div>
-                    <div class="badge">
-                        <i class="fas fa-lock"></i>
-                        Données sécurisées
+                    <div class="choice-card" data-value="non" data-auto="true" data-target="locataire">
+                        <div class="choice-icon"><i class="fas fa-user"></i></div>
+                        <div class="choice-label">Non</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen Locataire -->
+            <div class="screen" data-screen="locataire">
+                <div class="locataire-message">
+                    <div class="locataire-icon"><i class="fas fa-info-circle"></i></div>
+                    <h3 class="locataire-title">Les aides sont réservées aux propriétaires</h3>
+                    <p class="locataire-text">Vous pouvez transmettre cette simulation à votre propriétaire pour qu'il puisse bénéficier des aides disponibles.</p>
+                    <a href="index.html" class="btn-primary" style="text-decoration: none;">
+                        <i class="fas fa-home"></i> Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+
+            <!-- Screen 3: Code Postal -->
+            <div class="screen" data-screen="3">
+                <button class="btn-back" onclick="prevScreen()"><i class="fas fa-arrow-left"></i></button>
+                <span class="question-number">3</span>
+                <h2 class="question-title">Votre code postal</h2>
+                <p class="question-subtitle">Pour vérifier les aides disponibles dans votre zone</p>
+
+                <div class="input-wrapper">
+                    <input type="text"
+                           id="codePostal"
+                           class="input-big"
+                           placeholder="Ex: 75001"
+                           maxlength="5"
+                           inputmode="numeric"
+                           pattern="[0-9]{5}">
+                </div>
+
+                <button class="btn-primary" id="btnCodePostal" disabled onclick="validateCodePostal()">
+                    Continuer <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Screen 4: Surface -->
+            <div class="screen" data-screen="4">
+                <button class="btn-back" onclick="prevScreen()"><i class="fas fa-arrow-left"></i></button>
+                <span class="question-number">4</span>
+                <h2 class="question-title">Surface de votre logement</h2>
+                <p class="question-subtitle">Déplacez le curseur pour indiquer la surface</p>
+
+                <div class="slider-container">
+                    <div class="slider-value"><span id="surfaceValue">100</span> <span>m²</span></div>
+                    <input type="range" class="slider" id="surfaceSlider" min="30" max="300" value="100" step="5">
+                    <div class="slider-labels">
+                        <span>30 m²</span>
+                        <span>300 m²</span>
                     </div>
                 </div>
 
-                <form id="eligibilityForm">
-                    <!-- STEP 1: Projet -->
-                    <div class="form-step active" data-step="1">
-                        <div class="step-header">
-                            <h2 class="step-title">Quel type de travaux souhaitez-vous réaliser ?</h2>
-                            <p class="step-subtitle">Sélectionnez un ou plusieurs projets</p>
-                            <div class="step-remaining">
-                                <i class="fas fa-clock"></i>
-                                Plus que 4 étapes
-                            </div>
-                        </div>
-
-                        <div class="options-grid">
-                            <div class="option-card" data-value="pac">
-                                <div class="option-icon"><i class="fas fa-fan"></i></div>
-                                <div class="option-label">Pompe à chaleur</div>
-                            </div>
-                            <div class="option-card" data-value="isolation">
-                                <div class="option-icon"><i class="fas fa-home"></i></div>
-                                <div class="option-label">Isolation</div>
-                            </div>
-                            <div class="option-card" data-value="solaire">
-                                <div class="option-icon"><i class="fas fa-solar-panel"></i></div>
-                                <div class="option-label">Panneaux solaires</div>
-                            </div>
-                            <div class="option-card" data-value="chaudiere">
-                                <div class="option-icon"><i class="fas fa-fire"></i></div>
-                                <div class="option-label">Chaudière gaz</div>
-                            </div>
-                            <div class="option-card" data-value="vmc">
-                                <div class="option-icon"><i class="fas fa-wind"></i></div>
-                                <div class="option-label">VMC</div>
-                            </div>
-                            <div class="option-card" data-value="fenetres">
-                                <div class="option-icon"><i class="fas fa-door-open"></i></div>
-                                <div class="option-label">Fenêtres/Portes</div>
-                            </div>
-                            <div class="option-card" data-value="plusieurs">
-                                <div class="option-icon"><i class="fas fa-layer-group"></i></div>
-                                <div class="option-label">Plusieurs travaux</div>
-                            </div>
-                        </div>
-
-                        <div class="form-navigation">
-                            <button type="button" class="btn-nav btn-next" id="btnStep1Next">
-                                Continuer <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- STEP 2: Logement -->
-                    <div class="form-step" data-step="2">
-                        <div class="step-header">
-                            <h2 class="step-title">Parlez-nous de votre logement</h2>
-                            <p class="step-subtitle">Ces informations nous aident à calculer vos aides</p>
-                            <div class="step-remaining">
-                                <i class="fas fa-clock"></i>
-                                Plus que 3 étapes
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Type de bien <span class="required">*</span></label>
-                            <div class="buttons-row">
-                                <button type="button" class="btn-option" data-value="maison">
-                                    <i class="fas fa-home"></i> Maison
-                                </button>
-                                <button type="button" class="btn-option" data-value="appartement">
-                                    <i class="fas fa-building"></i> Appartement
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Vous êtes <span class="required">*</span></label>
-                            <div class="buttons-row">
-                                <button type="button" class="btn-option" data-value="proprietaire">
-                                    <i class="fas fa-key"></i> Propriétaire
-                                </button>
-                                <button type="button" class="btn-option" data-value="locataire">
-                                    <i class="fas fa-user"></i> Locataire
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="anneeConstruction">Année de construction <span class="required">*</span></label>
-                            <select id="anneeConstruction" class="form-select" required>
-                                <option value="">Sélectionnez une période</option>
-                                <option value="avant1975">Avant 1975</option>
-                                <option value="1975-1990">1975 - 1990</option>
-                                <option value="1991-2005">1991 - 2005</option>
-                                <option value="2006-2012">2006 - 2012</option>
-                                <option value="apres2012">Après 2012</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="surface">Surface habitable <span class="required">*</span></label>
-                            <div class="input-suffix" data-suffix="m²">
-                                <input type="number" id="surface" class="form-input" min="20" max="500" placeholder="100" required>
-                            </div>
-                        </div>
-
-                        <div class="form-navigation">
-                            <button type="button" class="btn-nav btn-prev">
-                                <i class="fas fa-arrow-left"></i> Retour
-                            </button>
-                            <button type="button" class="btn-nav btn-next" id="btnStep2Next">
-                                Continuer <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- STEP 3: Chauffage -->
-                    <div class="form-step" data-step="3">
-                        <div class="step-header">
-                            <h2 class="step-title">Votre système de chauffage actuel</h2>
-                            <p class="step-subtitle">Ces informations déterminent votre potentiel d'économies</p>
-                            <div class="step-remaining">
-                                <i class="fas fa-clock"></i>
-                                Plus que 2 étapes
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Type de chauffage <span class="required">*</span></label>
-                            <div class="buttons-row">
-                                <button type="button" class="btn-option" data-value="electrique">
-                                    <i class="fas fa-bolt"></i> Électrique
-                                </button>
-                                <button type="button" class="btn-option" data-value="gaz">
-                                    <i class="fas fa-fire"></i> Gaz
-                                </button>
-                            </div>
-                            <div class="buttons-row">
-                                <button type="button" class="btn-option" data-value="fioul">
-                                    <i class="fas fa-oil-can"></i> Fioul
-                                </button>
-                                <button type="button" class="btn-option" data-value="bois">
-                                    <i class="fas fa-tree"></i> Bois
-                                </button>
-                                <button type="button" class="btn-option" data-value="autre">
-                                    <i class="fas fa-question"></i> Autre
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="factureEnergie">Facture énergétique annuelle <span class="required">*</span></label>
-                            <select id="factureEnergie" class="form-select" required>
-                                <option value="">Sélectionnez un montant</option>
-                                <option value="moins1000">Moins de 1 000 €</option>
-                                <option value="1000-1500">1 000 € - 1 500 €</option>
-                                <option value="1500-2000">1 500 € - 2 000 €</option>
-                                <option value="2000-2500">2 000 € - 2 500 €</option>
-                                <option value="plus2500">Plus de 2 500 €</option>
-                            </select>
-                        </div>
-
-                        <div class="info-message">
-                            <i class="fas fa-lightbulb"></i>
-                            <div class="info-message-text">
-                                <strong>Bon à savoir :</strong> Plus votre facture est élevée, plus vous économiserez avec une pompe à chaleur ou une meilleure isolation !
-                            </div>
-                        </div>
-
-                        <div class="form-navigation">
-                            <button type="button" class="btn-nav btn-prev">
-                                <i class="fas fa-arrow-left"></i> Retour
-                            </button>
-                            <button type="button" class="btn-nav btn-next" id="btnStep3Next">
-                                Continuer <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- STEP 4: Revenus -->
-                    <div class="form-step" data-step="4">
-                        <div class="step-header">
-                            <h2 class="step-title">Vos revenus du foyer</h2>
-                            <p class="step-subtitle">Pour calculer précisément vos aides MaPrimeRénov'</p>
-                            <div class="step-remaining">
-                                <i class="fas fa-clock"></i>
-                                Dernière étape !
-                            </div>
-                        </div>
-
-                        <div class="info-message">
-                            <i class="fas fa-shield-alt"></i>
-                            <div class="info-message-text">
-                                <strong>Confidentialité garantie :</strong> Ces informations sont strictement confidentielles et nécessaires pour calculer vos aides.
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="nbPersonnes">Nombre de personnes dans le foyer <span class="required">*</span></label>
-                            <select id="nbPersonnes" class="form-select" required>
-                                <option value="">Sélectionnez</option>
-                                <option value="1">1 personne</option>
-                                <option value="2">2 personnes</option>
-                                <option value="3">3 personnes</option>
-                                <option value="4">4 personnes</option>
-                                <option value="5">5 personnes</option>
-                                <option value="6+">6 personnes ou plus</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="revenuFiscal">Revenu fiscal de référence <span class="required">*</span></label>
-                            <select id="revenuFiscal" class="form-select" required>
-                                <option value="">Sélectionnez une tranche</option>
-                                <option value="moins15000">Moins de 15 000 €</option>
-                                <option value="15000-20000">15 000 € - 20 000 €</option>
-                                <option value="20000-25000">20 000 € - 25 000 €</option>
-                                <option value="25000-30000">25 000 € - 30 000 €</option>
-                                <option value="30000-35000">30 000 € - 35 000 €</option>
-                                <option value="35000-45000">35 000 € - 45 000 €</option>
-                                <option value="45000-60000">45 000 € - 60 000 €</option>
-                                <option value="plus60000">Plus de 60 000 €</option>
-                            </select>
-                        </div>
-
-                        <div class="form-navigation">
-                            <button type="button" class="btn-nav btn-prev">
-                                <i class="fas fa-arrow-left"></i> Retour
-                            </button>
-                            <button type="button" class="btn-nav btn-next" id="btnStep4Next">
-                                Continuer <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- STEP 5: Contact -->
-                    <div class="form-step" data-step="5">
-                        <div class="step-header">
-                            <h2 class="step-title">Dernière étape : vos coordonnées</h2>
-                            <p class="step-subtitle">Pour recevoir votre estimation personnalisée</p>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Civilité <span class="required">*</span></label>
-                            <div class="buttons-row">
-                                <button type="button" class="btn-option" data-value="m">
-                                    <i class="fas fa-male"></i> M.
-                                </button>
-                                <button type="button" class="btn-option" data-value="mme">
-                                    <i class="fas fa-female"></i> Mme
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="prenom">Prénom <span class="required">*</span></label>
-                            <input type="text" id="prenom" class="form-input" placeholder="Jean" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="nom">Nom <span class="required">*</span></label>
-                            <input type="text" id="nom" class="form-input" placeholder="Dupont" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="email">Email <span class="required">*</span></label>
-                            <input type="email" id="email" class="form-input" placeholder="jean.dupont@email.com" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="telephone">
-                                Téléphone <span class="optional">(optionnel mais recommandé)</span>
-                            </label>
-                            <input type="tel" id="telephone" class="form-input" placeholder="06 12 34 56 78">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="codePostal">Code postal <span class="required">*</span></label>
-                            <input type="text" id="codePostal" class="form-input" placeholder="75001" maxlength="5" pattern="[0-9]{5}" required>
-                        </div>
-
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="consentementRGPD" required>
-                            <label class="checkbox-label" for="consentementRGPD">
-                                J'accepte d'être recontacté par téléphone et/ou email pour recevoir mon estimation personnalisée. <a href="#">Politique de confidentialité</a> <span class="required">*</span>
-                            </label>
-                        </div>
-
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="consentementMarketing">
-                            <label class="checkbox-label" for="consentementMarketing">
-                                J'accepte de recevoir des offres partenaires par email (facultatif)
-                            </label>
-                        </div>
-
-                        <div class="form-navigation">
-                            <button type="button" class="btn-nav btn-prev">
-                                <i class="fas fa-arrow-left"></i> Retour
-                            </button>
-                            <button type="submit" class="btn-nav btn-submit">
-                                <span class="btn-text">
-                                    <i class="fas fa-calculator"></i> DÉCOUVRIR MES AIDES DISPONIBLES
-                                </span>
-                                <div class="loading-spinner"></div>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Right Column: Estimation Panel -->
-        <div class="estimation-panel">
-            <div class="estimation-header">
-                <h3 class="estimation-title">Vos aides estimées</h3>
-                <p class="estimation-subtitle">Montant indicatif selon vos réponses</p>
+                <button class="btn-primary" onclick="goToScreen(5)">
+                    Continuer <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
 
-            <div class="estimation-item">
-                <div class="estimation-label">MaPrimeRénov'</div>
-                <div class="estimation-amount" id="aideMPR">5 000 €</div>
-            </div>
+            <!-- Screen 5: Sélection Travaux -->
+            <div class="screen" data-screen="5">
+                <button class="btn-back" onclick="prevScreen()"><i class="fas fa-arrow-left"></i></button>
+                <span class="question-number">5</span>
+                <h2 class="question-title">Quels travaux vous intéressent ?</h2>
+                <p class="question-subtitle">Sélectionnez un ou plusieurs projets</p>
 
-            <div class="estimation-item">
-                <div class="estimation-label">Prime CEE</div>
-                <div class="estimation-amount" id="aideCEE">3 500 €</div>
-            </div>
-
-            <div class="estimation-item">
-                <div class="estimation-label">Éco-PTZ</div>
-                <div class="estimation-amount">50 000 €</div>
-            </div>
-
-            <div class="estimation-item">
-                <div class="estimation-label">TVA réduite</div>
-                <div class="estimation-amount">5,5 %</div>
-            </div>
-
-            <div class="estimation-total">
-                <div class="estimation-total-label">TOTAL ESTIMÉ</div>
-                <div class="estimation-total-amount" id="totalEstime">8 500 €</div>
-            </div>
-
-            <div class="estimation-note">
-                * Montant indicatif sous réserve d'éligibilité. Estimation finale après étude complète de votre dossier.
-            </div>
-
-            <!-- Image réassurance: Conseiller énergétique -->
-            <div style="text-align: center; margin-top: 2rem;">
-                <img src="images/energy-advisor.jpg" alt="Conseiller énergétique vous accompagnant dans vos démarches" class="img-fluid rounded shadow-sm" style="max-width: 100%; border-radius: 12px;">
-            </div>
-
-            <div class="testimonial" id="testimonialRotate">
-                <div class="testimonial-text">
-                    "J'ai économisé 12 500€ sur l'installation de ma pompe à chaleur grâce à cette simulation !"
+                <div class="aids-counter">
+                    <div class="aids-counter-label">Total des aides estimées</div>
+                    <div class="aids-counter-amount" id="totalAidsDisplay">0 €</div>
                 </div>
-                <div class="testimonial-author">— Marie L., Nantes</div>
-                <div class="testimonial-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+
+                <div class="work-cards">
+                    <div class="work-card" data-work="pac" data-aid="11000">
+                        <div class="work-card-icon"><i class="fas fa-fan"></i></div>
+                        <div class="work-card-content">
+                            <div class="work-card-title">Pompe à chaleur</div>
+                            <div class="work-card-aid">Jusqu'à 11 000 € d'aides</div>
+                        </div>
+                        <div class="work-card-check"></div>
+                    </div>
+                    <div class="work-card" data-work="isolation" data-aid="8000">
+                        <div class="work-card-icon"><i class="fas fa-house-chimney"></i></div>
+                        <div class="work-card-content">
+                            <div class="work-card-title">Isolation thermique</div>
+                            <div class="work-card-aid">Jusqu'à 8 000 € d'aides</div>
+                        </div>
+                        <div class="work-card-check"></div>
+                    </div>
+                    <div class="work-card" data-work="solaire" data-aid="4000">
+                        <div class="work-card-icon"><i class="fas fa-solar-panel"></i></div>
+                        <div class="work-card-content">
+                            <div class="work-card-title">Panneaux solaires</div>
+                            <div class="work-card-aid">Jusqu'à 4 000 € de prime</div>
+                        </div>
+                        <div class="work-card-check"></div>
+                    </div>
+                    <div class="work-card" data-work="fenetres" data-aid="3000">
+                        <div class="work-card-icon"><i class="fas fa-door-closed"></i></div>
+                        <div class="work-card-content">
+                            <div class="work-card-title">Fenêtres / Menuiseries</div>
+                            <div class="work-card-aid">Jusqu'à 3 000 € d'aides</div>
+                        </div>
+                        <div class="work-card-check"></div>
+                    </div>
+                </div>
+
+                <button class="btn-primary" id="btnWorks" style="margin-top: 1.5rem;" disabled onclick="goToScreen(6)">
+                    Voir mes aides <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Screen 6: Contact -->
+            <div class="screen" data-screen="6">
+                <button class="btn-back" onclick="prevScreen()"><i class="fas fa-arrow-left"></i></button>
+                <span class="question-number">6</span>
+                <h2 class="question-title">Dernière étape !</h2>
+                <p class="question-subtitle">Pour recevoir votre estimation personnalisée</p>
+
+                <div class="aids-counter" style="margin-bottom: 1.5rem;">
+                    <div class="aids-counter-label">Vos aides estimées</div>
+                    <div class="aids-counter-amount" id="totalAidsContact">0 €</div>
+                </div>
+
+                <div class="input-wrapper">
+                    <label class="input-label">Prénom *</label>
+                    <input type="text" id="prenom" class="input-regular" placeholder="Jean" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label class="input-label">Nom *</label>
+                    <input type="text" id="nom" class="input-regular" placeholder="Dupont" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label class="input-label">Email *</label>
+                    <input type="email" id="email" class="input-regular" placeholder="jean@email.com" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label class="input-label">Téléphone *</label>
+                    <input type="tel" id="telephone" class="input-regular" placeholder="06 12 34 56 78" required>
+                </div>
+
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="rgpd" required>
+                    <label class="checkbox-label" for="rgpd">
+                        J'accepte d'être recontacté pour recevoir mon estimation. <a href="#">Politique de confidentialité</a>
+                    </label>
+                </div>
+
+                <button class="btn-primary" id="btnSubmit" style="margin-top: 1.5rem;" onclick="submitForm()">
+                    <i class="fas fa-calculator"></i> Calculer mes aides
+                </button>
+            </div>
+
+            <!-- Screen Loading -->
+            <div class="screen" data-screen="loading">
+                <div class="loading-screen">
+                    <div class="loading-spinner-big"></div>
+                    <div class="loading-text">Calcul de vos aides en cours...</div>
+                    <div class="loading-subtext">Analyse de votre éligibilité</div>
+                    <div class="loading-progress">
+                        <div class="loading-progress-fill"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Mobile Sticky CTA Bar -->
-    <div class="mobile-sticky-cta" id="mobileStickyCta">
-        <div class="mobile-sticky-cta-content">
-            <div>
-                <div class="mobile-sticky-cta-text">Vos aides estimées</div>
-                <div class="mobile-sticky-cta-amount" id="mobileTotalEstime">8 500 €</div>
+            <!-- Screen Result -->
+            <div class="screen" data-screen="result">
+                <div class="result-header">
+                    <div class="result-icon"><i class="fas fa-check"></i></div>
+                    <h2 class="result-title">Félicitations !</h2>
+                    <div class="result-amount" id="resultAmount">0 €</div>
+                    <div class="result-range" id="resultRange">Estimation de vos aides cumulées</div>
+                </div>
+
+                <div class="result-items" id="resultItems">
+                    <!-- Dynamically filled -->
+                </div>
+
+                <div class="result-message">
+                    <i class="fas fa-phone-alt"></i>
+                    Un conseiller vous rappelle sous 24h pour affiner votre estimation.
+                </div>
+
+                <a href="index.html" class="btn-primary" style="text-decoration: none;">
+                    <i class="fas fa-home"></i> Retour à l'accueil
+                </a>
             </div>
-            <button class="mobile-sticky-cta-btn" onclick="scrollToForm()">
-                Continuer
-            </button>
+
         </div>
     </div>
 
     <script>
-        // Form Data Storage
+        // Form Data
         const formData = {
-            projets: [],
-            typeBien: '',
-            statut: '',
-            anneeConstruction: '',
-            surface: '',
-            typeChauffage: '',
-            factureEnergie: '',
-            nbPersonnes: '',
-            revenuFiscal: '',
-            civilite: '',
+            typeLogement: '',
+            proprietaire: '',
+            codePostal: '',
+            surface: 100,
+            travaux: [],
             prenom: '',
             nom: '',
             email: '',
-            telephone: '',
-            codePostal: '',
-            consentementRGPD: false,
-            consentementMarketing: false
+            telephone: ''
         };
 
-        let currentStep = 1;
-        const totalSteps = 5;
+        let currentScreen = 1;
+        let screenHistory = [1];
 
-        // Utility: Throttle function for scroll handlers
-        function throttle(func, delay) {
-            let lastCall = 0;
-            return function(...args) {
-                const now = new Date().getTime();
-                if (now - lastCall < delay) return;
-                lastCall = now;
-                return func(...args);
-            };
-        }
-
-        // Utility: Haptic feedback (if supported)
-        function triggerHaptic(type = 'light') {
-            if (window.navigator && window.navigator.vibrate) {
-                const patterns = {
-                    light: 10,
-                    medium: 20,
-                    heavy: 30
-                };
-                window.navigator.vibrate(patterns[type] || 10);
-            }
-        }
-
-        // Scroll handler for mobile sticky CTA
-        const handleScroll = throttle(() => {
-            const stickyCta = document.getElementById('mobileStickyCta');
-            const formContainer = document.querySelector('.form-container');
-
-            if (!stickyCta || !formContainer) return;
-
-            const formRect = formContainer.getBoundingClientRect();
-            const isFormVisible = formRect.top < window.innerHeight && formRect.bottom > 0;
-
-            if (isFormVisible && currentStep < totalSteps) {
-                stickyCta.classList.remove('hidden');
-            } else {
-                stickyCta.classList.add('hidden');
-            }
-        }, 150);
-
-        // Scroll to form function
-        function scrollToForm() {
-            const formContainer = document.querySelector('.form-container');
-            if (formContainer) {
-                formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                triggerHaptic('light');
-            }
-        }
+        // Aids per work type
+        const aidsData = {
+            pac: { name: 'Pompe à chaleur', min: 8000, max: 11000 },
+            isolation: { name: 'Isolation thermique', min: 5000, max: 8000 },
+            solaire: { name: 'Panneaux solaires', min: 2500, max: 4000 },
+            fenetres: { name: 'Fenêtres', min: 1500, max: 3000 }
+        };
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            loadFromLocalStorage();
-            setupEventListeners();
-            updateProgressBar();
-            updateEstimation();
-            startTestimonialRotation();
-
-            // Add passive scroll listener
-            window.addEventListener('scroll', handleScroll, { passive: true });
-            handleScroll(); // Initial check
+            setupChoiceCards();
+            setupWorkCards();
+            setupInputs();
+            setupSlider();
         });
 
-        // Save to localStorage
-        function saveToLocalStorage() {
-            localStorage.setItem('eligibilityFormData', JSON.stringify(formData));
-        }
-
-        // Load from localStorage
-        function loadFromLocalStorage() {
-            const saved = localStorage.getItem('eligibilityFormData');
-            if (saved) {
-                Object.assign(formData, JSON.parse(saved));
-                restoreFormState();
-            }
-        }
-
-        // Restore form state from saved data
-        function restoreFormState() {
-            // Restore projets
-            formData.projets.forEach(projet => {
-                const card = document.querySelector(`.option-card[data-value="${projet}"]`);
-                if (card) card.classList.add('selected');
-            });
-
-            // Restore buttons
-            document.querySelectorAll('.btn-option').forEach(btn => {
-                const value = btn.dataset.value;
-                if (Object.values(formData).includes(value)) {
-                    btn.classList.add('selected');
-                }
-            });
-
-            // Restore inputs
-            Object.keys(formData).forEach(key => {
-                const input = document.getElementById(key);
-                if (input) input.value = formData[key];
-            });
-        }
-
-        // Setup Event Listeners
-        function setupEventListeners() {
-            // Step 1: Project cards
-            document.querySelectorAll('[data-step="1"] .option-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    triggerHaptic('light');
-                    const value = card.dataset.value;
-
-                    if (value === 'plusieurs') {
-                        // Deselect all and select only "plusieurs"
-                        document.querySelectorAll('[data-step="1"] .option-card').forEach(c => c.classList.remove('selected'));
-                        card.classList.add('selected');
-                        formData.projets = ['plusieurs'];
-                    } else {
-                        // Remove "plusieurs" if selected
-                        const plusieursCard = document.querySelector('[data-step="1"] .option-card[data-value="plusieurs"]');
-                        if (plusieursCard) plusieursCard.classList.remove('selected');
-
-                        // Toggle selection
-                        card.classList.toggle('selected');
-
-                        const index = formData.projets.indexOf(value);
-                        if (index > -1) {
-                            formData.projets.splice(index, 1);
-                        } else {
-                            formData.projets.push(value);
-                        }
-                    }
-
-                    saveToLocalStorage();
-                    updateEstimation();
-                }, { passive: true });
-            });
-
-            // Button options (generic)
-            document.querySelectorAll('.btn-option').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    triggerHaptic('light');
-                    const group = this.parentElement;
-                    group.querySelectorAll('.btn-option').forEach(b => b.classList.remove('selected'));
+        // Setup choice cards with auto-advance
+        function setupChoiceCards() {
+            document.querySelectorAll('.choice-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const parent = this.closest('.choices');
+                    parent.querySelectorAll('.choice-card').forEach(c => c.classList.remove('selected'));
                     this.classList.add('selected');
 
-                    // Save to formData based on step
-                    const step = this.closest('.form-step');
-                    const stepNum = parseInt(step.dataset.step);
+                    // Haptic feedback
+                    if (navigator.vibrate) navigator.vibrate(10);
 
-                    if (stepNum === 2) {
-                        if (group.previousElementSibling?.textContent.includes('Type de bien')) {
-                            formData.typeBien = this.dataset.value;
-                        } else if (group.previousElementSibling?.textContent.includes('Vous êtes')) {
-                            formData.statut = this.dataset.value;
-                        }
-                    } else if (stepNum === 3) {
-                        formData.typeChauffage = this.dataset.value;
-                    } else if (stepNum === 5) {
-                        formData.civilite = this.dataset.value;
-                    }
+                    // Store value
+                    const screen = this.closest('.screen').dataset.screen;
+                    if (screen === '1') formData.typeLogement = this.dataset.value;
+                    if (screen === '2') formData.proprietaire = this.dataset.value;
 
-                    saveToLocalStorage();
-                    updateEstimation();
-                });
-            });
-
-            // Form inputs
-            document.querySelectorAll('input, select').forEach(input => {
-                input.addEventListener('change', function() {
-                    formData[this.id] = this.type === 'checkbox' ? this.checked : this.value;
-                    saveToLocalStorage();
-                    updateEstimation();
-
-                    // Validation
-                    if (this.type !== 'checkbox') {
-                        validateField(this);
-                    }
-                });
-
-                input.addEventListener('blur', function() {
-                    if (this.type !== 'checkbox') {
-                        validateField(this);
+                    // Auto advance after short delay
+                    if (this.dataset.auto === 'true') {
+                        setTimeout(() => {
+                            const target = this.dataset.target || (parseInt(screen) + 1);
+                            goToScreen(target);
+                        }, 400);
                     }
                 });
             });
+        }
 
-            // Navigation buttons
-            document.querySelectorAll('.btn-next').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    if (validateStep(currentStep)) {
-                        triggerHaptic('medium');
-                        nextStep();
+        // Setup work selection cards
+        function setupWorkCards() {
+            document.querySelectorAll('.work-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+
+                    const work = this.dataset.work;
+                    const index = formData.travaux.indexOf(work);
+
+                    if (index > -1) {
+                        formData.travaux.splice(index, 1);
+                    } else {
+                        formData.travaux.push(work);
                     }
+
+                    updateTotalAids();
+
+                    // Enable/disable button
+                    document.getElementById('btnWorks').disabled = formData.travaux.length === 0;
+
+                    if (navigator.vibrate) navigator.vibrate(10);
                 });
             });
+        }
 
-            document.querySelectorAll('.btn-prev').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    triggerHaptic('light');
-                    prevStep();
-                });
+        // Update total aids display
+        function updateTotalAids() {
+            let total = 0;
+            formData.travaux.forEach(work => {
+                total += aidsData[work]?.max || 0;
             });
 
-            // Form submission
-            document.getElementById('eligibilityForm').addEventListener('submit', handleSubmit);
+            const formatted = total.toLocaleString('fr-FR') + ' €';
+            document.getElementById('totalAidsDisplay').textContent = formatted;
+
+            const contactDisplay = document.getElementById('totalAidsContact');
+            if (contactDisplay) contactDisplay.textContent = formatted;
         }
 
-        // Validate field
-        function validateField(field) {
-            if (field.required && !field.value) {
-                field.classList.add('invalid');
-                field.classList.remove('valid');
-                return false;
-            }
+        // Setup inputs
+        function setupInputs() {
+            const cpInput = document.getElementById('codePostal');
+            cpInput.addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '').slice(0, 5);
+                const isValid = /^[0-9]{5}$/.test(this.value);
+                this.classList.toggle('valid', isValid);
+                document.getElementById('btnCodePostal').disabled = !isValid;
 
-            if (field.type === 'email' && field.value) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(field.value)) {
-                    field.classList.add('invalid');
-                    field.classList.remove('valid');
-                    return false;
-                }
-            }
-
-            if (field.id === 'codePostal' && field.value) {
-                const cpRegex = /^[0-9]{5}$/;
-                if (!cpRegex.test(field.value)) {
-                    field.classList.add('invalid');
-                    field.classList.remove('valid');
-                    return false;
-                }
-            }
-
-            field.classList.remove('invalid');
-            field.classList.add('valid');
-            return true;
-        }
-
-        // Validate step
-        function validateStep(step) {
-            if (step === 1) {
-                return formData.projets.length > 0;
-            }
-
-            if (step === 2) {
-                return formData.typeBien && formData.statut &&
-                       document.getElementById('anneeConstruction').value &&
-                       document.getElementById('surface').value;
-            }
-
-            if (step === 3) {
-                return formData.typeChauffage && document.getElementById('factureEnergie').value;
-            }
-
-            if (step === 4) {
-                return document.getElementById('nbPersonnes').value &&
-                       document.getElementById('revenuFiscal').value;
-            }
-
-            if (step === 5) {
-                const prenom = document.getElementById('prenom');
-                const nom = document.getElementById('nom');
-                const email = document.getElementById('email');
-                const codePostal = document.getElementById('codePostal');
-                const rgpd = document.getElementById('consentementRGPD');
-
-                return validateField(prenom) && validateField(nom) &&
-                       validateField(email) && validateField(codePostal) && rgpd.checked;
-            }
-
-            return true;
-        }
-
-        // Next step
-        function nextStep() {
-            if (currentStep < totalSteps) {
-                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('active');
-                currentStep++;
-                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
-                updateProgressBar();
-                handleScroll(); // Update sticky CTA visibility
-                const shouldScroll = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-                window.scrollTo({ top: 0, behavior: shouldScroll });
-            }
-        }
-
-        // Previous step
-        function prevStep() {
-            if (currentStep > 1) {
-                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('active');
-                currentStep--;
-                document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
-                updateProgressBar();
-                handleScroll(); // Update sticky CTA visibility
-                const shouldScroll = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-                window.scrollTo({ top: 0, behavior: shouldScroll });
-            }
-        }
-
-        // Update progress bar
-        function updateProgressBar() {
-            const progressPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;
-            document.getElementById('progressLineFill').style.width = progressPercent + '%';
-
-            document.querySelectorAll('.progress-step').forEach(step => {
-                const stepNum = parseInt(step.dataset.step);
-                step.classList.remove('active', 'completed');
-
-                if (stepNum === currentStep) {
-                    step.classList.add('active');
-                } else if (stepNum < currentStep) {
-                    step.classList.add('completed');
+                if (isValid) {
+                    formData.codePostal = this.value;
                 }
             });
         }
 
-        // Update estimation
-        function updateEstimation() {
-            let mpr = 5000;
-            let cee = 3500;
+        // Setup slider
+        function setupSlider() {
+            const slider = document.getElementById('surfaceSlider');
+            const display = document.getElementById('surfaceValue');
 
-            // Adjust based on project type
-            if (formData.projets.includes('pac')) {
-                mpr = 7000;
-                cee = 4500;
-            } else if (formData.projets.includes('isolation')) {
-                mpr = 6000;
-                cee = 4000;
-            } else if (formData.projets.includes('plusieurs')) {
-                mpr = 10000;
-                cee = 6000;
-            }
+            slider.addEventListener('input', function() {
+                display.textContent = this.value;
+                formData.surface = parseInt(this.value);
+            });
+        }
 
-            // Adjust based on revenue
-            if (formData.revenuFiscal === 'moins15000' || formData.revenuFiscal === '15000-20000') {
-                mpr = Math.round(mpr * 1.5);
-                cee = Math.round(cee * 1.3);
-            } else if (formData.revenuFiscal === '20000-25000' || formData.revenuFiscal === '25000-30000') {
-                mpr = Math.round(mpr * 1.2);
-                cee = Math.round(cee * 1.1);
-            }
-
-            // Adjust based on heating type
-            if (formData.typeChauffage === 'fioul') {
-                mpr = Math.round(mpr * 1.3);
-                cee = Math.round(cee * 1.2);
-            }
-
-            // Adjust based on energy bill
-            if (formData.factureEnergie === 'plus2500') {
-                cee = Math.round(cee * 1.2);
-            } else if (formData.factureEnergie === '2000-2500') {
-                cee = Math.round(cee * 1.1);
-            }
-
-            const total = mpr + cee;
-            const totalText = total.toLocaleString('fr-FR') + ' €';
-
-            document.getElementById('aideMPR').textContent = mpr.toLocaleString('fr-FR') + ' €';
-            document.getElementById('aideCEE').textContent = cee.toLocaleString('fr-FR') + ' €';
-            document.getElementById('totalEstime').textContent = totalText;
-
-            // Update mobile sticky CTA
-            const mobileTotalElement = document.getElementById('mobileTotalEstime');
-            if (mobileTotalElement) {
-                mobileTotalElement.textContent = totalText;
+        // Validate code postal and advance
+        function validateCodePostal() {
+            if (/^[0-9]{5}$/.test(formData.codePostal)) {
+                goToScreen(4);
             }
         }
 
-        // Testimonial rotation
-        function startTestimonialRotation() {
-            const testimonials = [
-                {
-                    text: "J'ai économisé 12 500€ sur l'installation de ma pompe à chaleur grâce à cette simulation !",
-                    author: "Marie L., Nantes"
-                },
-                {
-                    text: "Service rapide et efficace. J'ai reçu mon devis en moins de 24h et les travaux sont terminés !",
-                    author: "Pierre D., Lyon"
-                },
-                {
-                    text: "Excellent accompagnement. L'équipe m'a guidé à chaque étape, de la simulation au paiement des aides.",
-                    author: "Sophie M., Toulouse"
-                },
-                {
-                    text: "Isolation complète de ma maison pour 3 000€ après déduction des aides. Incroyable !",
-                    author: "Jean-Paul R., Bordeaux"
-                }
-            ];
+        // Go to screen
+        function goToScreen(screenId) {
+            const current = document.querySelector('.screen.active');
+            const next = document.querySelector(`[data-screen="${screenId}"]`);
 
-            let currentIndex = 0;
+            if (!next) return;
 
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % testimonials.length;
-                const testimonial = testimonials[currentIndex];
+            current.classList.remove('active');
+            next.classList.add('active');
 
-                const container = document.getElementById('testimonialRotate');
-                container.style.opacity = '0';
+            screenHistory.push(screenId);
+            currentScreen = screenId;
 
-                setTimeout(() => {
-                    container.querySelector('.testimonial-text').textContent = `"${testimonial.text}"`;
-                    container.querySelector('.testimonial-author').textContent = `— ${testimonial.author}`;
-                    container.style.opacity = '1';
-                }, 300);
-            }, 8000);
+            updateProgress();
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Handle form submission
-        function handleSubmit(e) {
-            e.preventDefault();
+        // Previous screen
+        function prevScreen() {
+            if (screenHistory.length > 1) {
+                screenHistory.pop();
+                const prevScreenId = screenHistory[screenHistory.length - 1];
 
-            if (!validateStep(5)) {
+                const current = document.querySelector('.screen.active');
+                const prev = document.querySelector(`[data-screen="${prevScreenId}"]`);
+
+                current.classList.remove('active');
+                prev.classList.add('active');
+
+                currentScreen = prevScreenId;
+                updateProgress();
+            }
+        }
+
+        // Update progress
+        function updateProgress() {
+            const screens = ['1', '2', '3', '4', '5', '6'];
+            const idx = screens.indexOf(String(currentScreen));
+            if (idx >= 0) {
+                document.getElementById('progressText').textContent = `Question ${idx + 1}/6`;
+            }
+        }
+
+        // Submit form
+        function submitForm() {
+            // Validate
+            const prenom = document.getElementById('prenom').value.trim();
+            const nom = document.getElementById('nom').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telephone = document.getElementById('telephone').value.trim();
+            const rgpd = document.getElementById('rgpd').checked;
+
+            if (!prenom || !nom || !email || !telephone || !rgpd) {
                 alert('Veuillez remplir tous les champs obligatoires.');
                 return;
             }
 
-            triggerHaptic('heavy');
-            const submitBtn = document.querySelector('.btn-submit');
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
+            formData.prenom = prenom;
+            formData.nom = nom;
+            formData.email = email;
+            formData.telephone = telephone;
 
-            // Simulate API call
+            // Show loading
+            goToScreen('loading');
+
+            // After 3 seconds, show result
             setTimeout(() => {
-                console.log('Form submitted:', formData);
-                localStorage.removeItem('eligibilityFormData');
-                window.location.href = 'merci.html?montant=' + document.getElementById('totalEstime').textContent;
-            }, 2000);
+                showResult();
+            }, 3000);
         }
 
-        // Dropdown toggle mobile
-        document.querySelectorAll('.dropdown > a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    this.parentElement.classList.toggle('active');
+        // Show result
+        function showResult() {
+            // Calculate totals
+            let minTotal = 0;
+            let maxTotal = 0;
+            let itemsHtml = '';
+
+            formData.travaux.forEach(work => {
+                const data = aidsData[work];
+                if (data) {
+                    minTotal += data.min;
+                    maxTotal += data.max;
+                    itemsHtml += `
+                        <div class="result-item">
+                            <span class="result-item-label">${data.name}</span>
+                            <span class="result-item-value">${data.min.toLocaleString('fr-FR')} - ${data.max.toLocaleString('fr-FR')} €</span>
+                        </div>
+                    `;
                 }
             });
-        });
+
+            document.getElementById('resultAmount').textContent =
+                `${minTotal.toLocaleString('fr-FR')} - ${maxTotal.toLocaleString('fr-FR')} €`;
+            document.getElementById('resultItems').innerHTML = itemsHtml;
+
+            goToScreen('result');
+
+            // Confetti!
+            createConfetti();
+
+            // Save to localStorage
+            localStorage.setItem('simulationResult', JSON.stringify({
+                ...formData,
+                minTotal,
+                maxTotal,
+                date: new Date().toISOString()
+            }));
+        }
+
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#F97316', '#2563EB', '#10B981', '#FDE68A', '#EC4899'];
+
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = confetti.style.width;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
     </script>
 </body>
 </html>
