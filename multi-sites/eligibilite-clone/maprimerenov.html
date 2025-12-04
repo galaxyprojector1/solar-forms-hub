@@ -933,16 +933,76 @@
         }
     </style>
 
-    <!-- FOOTER -->
-    <footer class="footer">
+    <!-- TRAVAUX ELIGIBLES -->
+    <section style="padding: 60px 0; background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);">
         <div class="container">
-            <p>
-                <a href="index.html">Accueil</a>
-                <a href="formulaire.html">Simuler</a>
-                <a href="prime-cee.html">Prime CEE</a>
-                <a href="anah.html">Anah</a>
-            </p>
-            <p style="margin-top: 15px; opacity: 0.7; font-size: 0.85rem;">&copy; 2025 Éligibilité - Tous droits réservés</p>
+            <div style="text-align: center; margin-bottom: 40px;">
+                <p style="color: #2563EB; font-size: 1rem; font-weight: 600; margin-bottom: 8px;">Travaux éligibles à MaPrimeRénov'</p>
+                <h2 style="font-size: 2rem; font-weight: 800; color: #1F2937;">Quels travaux financer ?</h2>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                <a href="pompe-a-chaleur.html" style="display: block; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); text-decoration: none; color: inherit; transition: all 0.3s;">
+                    <img src="images/hero-pac.jpg" alt="Pompe à chaleur" style="width: 100%; height: 140px; object-fit: cover;">
+                    <div style="padding: 20px;">
+                        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: #2563EB;">Pompe à Chaleur</h3>
+                        <p style="color: #6B7280; font-size: 0.85rem; margin-bottom: 10px;">Jusqu'à 5 000€ MaPrimeRénov'</p>
+                        <span style="color: #10B981; font-weight: 700; font-size: 0.85rem;">Voir le guide →</span>
+                    </div>
+                </a>
+                <a href="isolation.html" style="display: block; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); text-decoration: none; color: inherit; transition: all 0.3s;">
+                    <img src="images/hero-isolation.jpg" alt="Isolation" style="width: 100%; height: 140px; object-fit: cover;">
+                    <div style="padding: 20px;">
+                        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: #10B981;">Isolation Thermique</h3>
+                        <p style="color: #6B7280; font-size: 0.85rem; margin-bottom: 10px;">Jusqu'à 75€/m² MaPrimeRénov'</p>
+                        <span style="color: #10B981; font-weight: 700; font-size: 0.85rem;">Voir le guide →</span>
+                    </div>
+                </a>
+                <a href="panneaux-solaires.html" style="display: block; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); text-decoration: none; color: inherit; transition: all 0.3s;">
+                    <img src="images/hero-solaire.jpg" alt="Panneaux solaires" style="width: 100%; height: 140px; object-fit: cover;">
+                    <div style="padding: 20px;">
+                        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: #F97316;">Panneaux Solaires</h3>
+                        <p style="color: #6B7280; font-size: 0.85rem; margin-bottom: 10px;">Jusqu'à 4 000€ + autoconso</p>
+                        <span style="color: #10B981; font-weight: 700; font-size: 0.85rem;">Voir le guide →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUTRES AIDES -->
+    <section style="padding: 50px 0; background: white;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h3 style="font-size: 1.5rem; font-weight: 700; color: #1F2937;">Cumulez avec d'autres aides</h3>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="prime-cee.html" style="display: flex; align-items: center; gap: 12px; background: #ECFDF5; padding: 16px 24px; border-radius: 12px; text-decoration: none; color: #1F2937; transition: all 0.3s;">
+                    <i class="fas fa-bolt" style="color: #10B981; font-size: 1.2rem;"></i>
+                    <span style="font-weight: 600;">Prime CEE</span>
+                    <span style="color: #10B981; font-weight: 700;">+5 000€</span>
+                </a>
+                <a href="anah.html" style="display: flex; align-items: center; gap: 12px; background: #F5F3FF; padding: 16px 24px; border-radius: 12px; text-decoration: none; color: #1F2937; transition: all 0.3s;">
+                    <i class="fas fa-building" style="color: #8B5CF6; font-size: 1.2rem;"></i>
+                    <span style="font-weight: 600;">Aides Anah</span>
+                    <span style="color: #8B5CF6; font-weight: 700;">+80%</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" style="background: #1E3A8A; color: white; padding: 40px 0;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                <a href="index.html" style="font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none;">ÉLIGIBILIT<span style="color: #F97316;">É</span></a>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <a href="index.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">Accueil</a>
+                    <a href="formulaire.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">Simuler</a>
+                    <a href="prime-cee.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">Prime CEE</a>
+                    <a href="anah.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">Anah</a>
+                </div>
+            </div>
+            <p style="margin-top: 20px; opacity: 0.7; font-size: 0.85rem; text-align: center;">&copy; 2025 Éligibilité - Tous droits réservés</p>
         </div>
     </footer>
 
