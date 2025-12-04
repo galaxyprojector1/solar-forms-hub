@@ -1,114 +1,132 @@
-# SESSION SUIVANTE - Amélioration Formulaire V2
+# SESSION SUIVANTE - Évolution Complète Formulaire
 
-## ÉTAPE 1 : INSTALLER BMAD (à faire toi-même)
+## ÉTAPE 1 : INSTALLER BMAD
 
 ```bash
 cd C:\Users\yohann\Desktop\solar-forms-hub\solar-forms-hub
 npx bmad-method@alpha install
 ```
 
-Cela installe le système multi-agents complet avec party-mode.
-
 ---
 
-## ÉTAPE 2 : PROMPT POUR LA NOUVELLE CONVERSATION
-
-Copie-colle ce bloc dans une nouvelle conversation Claude Code :
+## ÉTAPE 2 : PROMPT POUR NOUVELLE CONVERSATION
 
 ```
-## CONTEXTE PROJET
+## PROJET
 
-Je travaille sur un formulaire de simulation d'aides à la rénovation énergétique.
-- URL : https://solar-forms-hub.vercel.app/multi-sites/eligibilite-clone/formulaire.html
-- Code : C:\Users\yohann\Desktop\solar-forms-hub\solar-forms-hub\multi-sites\eligibilite-clone\formulaire.html
+Formulaire de simulation d'aides à la rénovation énergétique (solaire, PAC, isolation).
+- URL actuelle : https://solar-forms-hub.vercel.app/multi-sites/eligibilite-clone/formulaire.html
+- Cible : propriétaires de maison en France
 
-## VERSION ACTUELLE (V1)
+## OBJECTIF
 
-Le formulaire V1 fonctionne avec :
-- 6 écrans (logement → propriétaire → code postal → surface → travaux → contact)
-- Clic = avance automatique (pas de bouton "Suivant")
-- Aides affichées sur chaque travaux (PAC: 11k€, Isolation: 8k€, etc.)
-- Counter total animé en temps réel
-- Écran de calcul avec spinner + confettis à la fin
+Faire ÉVOLUER ce formulaire pour maximiser :
+1. Le taux de complétion
+2. La qualité des leads (informations collectées)
+3. L'engagement utilisateur
+4. La pertinence de la simulation
 
-## PROBLÈMES IDENTIFIÉS (Screenshots disponibles)
+## ÉTAT ACTUEL (V1)
 
-Sur mobile 375px, les écrans 1 à 4 ont BEAUCOUP D'ESPACE VIDE en bas.
-La card blanche est en haut, le fond bleu en bas est vide.
-Screenshots dans : C:\Users\yohann\Desktop\solar-forms-hub\.playwright-mcp\formulaire-mobile-screen*.png
+Le formulaire V1 fait :
+- 6 écrans linéaires (logement → propriétaire → code postal → surface → travaux → contact)
+- Clic = avance automatique
+- Affiche les aides par travaux (PAC: 11k€, etc.)
+- Confettis à la fin
 
-## AMÉLIORATIONS V2 DEMANDÉES (par priorité)
+Problèmes identifiés :
+- Espace vide sur mobile (screenshots dans .playwright-mcp/)
+- Pas de personnalisation selon la région
+- L'utilisateur ne choisit pas SUR QUOI il veut être aidé
+- Simulation trop basique (juste un total)
 
-### P0 - Centrage vertical mobile
-Les écrans 1-4 doivent centrer le contenu verticalement dans la card.
-Actuellement : card en haut, espace bleu vide en bas.
+## ÉVOLUTIONS POSSIBLES À EXPLORER
 
-### P1 - Loader après code postal
-Après saisie du code postal valide :
-1. Afficher loader "Recherche des aides dans votre région..."
-2. Pause 1.5-2 secondes
-3. Message "X aides disponibles dans le [Département]"
-4. Puis continuer vers écran surface
+### Parcours utilisateur
+- Demander d'abord sur quelles AIDES ils veulent se renseigner (MaPrimeRénov, CEE, régionales...)
+- Adapter le flow selon leurs réponses
+- Ajouter des questions de qualification (revenus, situation, urgence du projet)
 
-### P2 - Pré-cocher les travaux populaires
-Sur l'écran travaux, pré-cocher automatiquement :
-- Pompe à chaleur (11 000€)
-- Isolation thermique (8 000€)
-Total affiché dès l'arrivée : 19 000€
-L'utilisateur peut décocher s'il veut.
+### Personnalisation régionale
+- Détecter le département depuis le code postal
+- Afficher les aides régionales spécifiques
+- Zone climatique (H1/H2/H3) pour calculs plus précis
 
-### P3 - Afficher infos sur les aides
-Avant/après le code postal, afficher :
-- Zone climatique (H1/H2/H3) basée sur le département
-- Liste des aides : MaPrimeRénov', CEE, aides régionales
+### Simulation avancée
+- Calcul plus détaillé selon les barèmes 2025 (voir DONNEES-2025.md si existant)
+- Fourchettes selon les revenus
+- Cumul des aides (MPR + CEE + régional)
+- Reste à charge estimé
 
-## FICHIERS À LIRE
+### UX/Engagement
+- Pré-cocher les travaux populaires
+- Loaders avec messages contextuels
+- Progression plus engageante
+- Micro-animations
 
-1. `multi-sites/eligibilite-clone/formulaire.html` - Code actuel
-2. `multi-sites/eligibilite-clone/docs/4-next-iteration.md` - Specs détaillées
-3. `multi-sites/eligibilite-clone/SIMULATION-SPEC.md` - Specs originales
+## OUTILS MCP DISPONIBLES
 
-## OUTILS DISPONIBLES (MCP)
+- **Playwright** : tester le rendu mobile (375px), prendre des screenshots
+- **Vercel** : déployer
+- **GitHub** : commit/push
+- **Fal.ai** : générer des images (avec run_model, pas generate_image)
+- **Perplexity** : rechercher des infos sur les aides 2025
 
-- **Playwright** : pour tester le rendu mobile (375px)
-- **Vercel** : pour déployer
-- **GitHub** : pour commit/push
+## FICHIERS DU PROJET
+
+```
+multi-sites/eligibilite-clone/
+├── formulaire.html      # Code actuel à faire évoluer
+├── SIMULATION-SPEC.md   # Specs originales
+├── docs/
+│   ├── 1-analysis.md    # Analyse V1
+│   ├── 2-prd.md         # PRD V1
+│   ├── 3-ux-architecture.md
+│   └── 4-next-iteration.md  # Notes d'amélioration
+└── DONNEES-2025.md      # Barèmes officiels (si existe)
+```
+
+Screenshots mobile : `C:\Users\yohann\Desktop\solar-forms-hub\.playwright-mcp\formulaire-mobile-screen*.png`
 
 ## CE QUE JE VEUX
 
-1. Utilise le système BMAD si installé (.bmad/) avec *workflow-init
-2. Sinon, fais les 4 améliorations P0-P3 directement
-3. Teste avec Playwright sur mobile 375px
-4. Déploie sur Vercel
-5. Montre-moi les screenshots avant/après
+1. **Utilise BMAD** : Lance `*workflow-init` pour que le système multi-agents gère le projet
+2. **Explore et propose** : Analyse le formulaire actuel, propose des évolutions majeures
+3. **Sois ambitieux** : Je veux une vraie amélioration, pas juste des corrections CSS
+4. **Teste** : Utilise Playwright pour valider sur mobile
+5. **Déploie** : Push sur GitHub et déploie sur Vercel
 
-GO !
+## CONTRAINTES TECHNIQUES
+
+- HTML/CSS/JS vanilla (pas de framework)
+- Un seul fichier HTML
+- Mobile-first (375px minimum)
+- < 100KB
+- Touch targets 48px minimum
+
+LANCE *workflow-init ET PROPOSE-MOI UN PLAN D'ÉVOLUTION !
 ```
 
 ---
 
-## SCREENSHOTS DISPONIBLES (Mobile 375px)
+## RÉSUMÉ DES IDÉES D'ÉVOLUTION
 
-| Fichier | Contenu | Problème |
-|---------|---------|----------|
-| formulaire-mobile-screen1.png | Écran type logement | ESPACE VIDE en bas |
-| formulaire-mobile-screen2.png | Écran propriétaire | ESPACE VIDE en bas |
-| formulaire-mobile-screen3-codepostal.png | Code postal vide | ESPACE VIDE en bas |
-| formulaire-mobile-screen3-filled.png | Code postal rempli | ESPACE VIDE en bas |
-| formulaire-mobile-screen4-surface.png | Slider surface | ESPACE VIDE en bas |
-| formulaire-mobile-screen5-travaux.png | Sélection travaux | OK - utilise bien l'espace |
-| formulaire-mobile-screen5-selected.png | Travaux sélectionnés | OK |
-| formulaire-mobile-screen6-contact.png | Formulaire contact | OK |
+| Aspect | Actuellement | Évolution possible |
+|--------|--------------|-------------------|
+| Parcours | Linéaire fixe | Adaptatif selon les réponses |
+| Aides | Liste générique | Choix des aides à explorer |
+| Régional | Rien | Aides départementales, zone climatique |
+| Simulation | Total simple | Détail par aide, reste à charge |
+| Qualification | Basique | Revenus, urgence, situation |
+| Visuel | Statique | Images générées, animations |
 
----
+## MCP DISPONIBLES
 
-## RÉSUMÉ DES AMÉLIORATIONS
-
-```
-AVANT (V1)                          APRÈS (V2)
-─────────────────────────────────────────────────────
-Card en haut, vide en bas     →    Contenu centré verticalement
-Code postal → Surface direct  →    Code postal → Loader régional → Surface
-Travaux vides au départ       →    PAC + Isolation pré-cochés (19k€)
-Pas d'infos sur les aides     →    Zone H1/H2/H3 + liste des aides
-```
+| MCP | Usage |
+|-----|-------|
+| Playwright | Tests mobile, screenshots avant/après |
+| Vercel | Déploiement |
+| GitHub | Versioning |
+| Fal.ai | Génération d'images (familles, maisons, etc.) |
+| Perplexity | Recherche sur les aides 2025, barèmes |
+| Context7 | Documentation technique |
