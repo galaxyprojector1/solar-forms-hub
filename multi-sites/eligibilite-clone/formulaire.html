@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Simulation Aides 2025 - Calculez vos aides en 90 secondes</title>
-    <meta name="description" content="Découvrez jusqu'à 25 000€ d'aides pour vos travaux de rénovation. Simulation gratuite en 90 secondes.">
+    <title>Simulation Aides 2025 - Calculez vos aides en 2 minutes</title>
+    <meta name="description" content="Découvrez jusqu'à 25 000€ d'aides pour vos travaux de rénovation. MaPrimeRénov', CEE, aides régionales. Simulation gratuite.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --blue-dark: #1E3A8A;
             --blue-primary: #2563EB;
+            --blue-light: #DBEAFE;
             --orange: #F97316;
             --orange-dark: #EA580C;
             --green: #10B981;
             --green-light: #D1FAE5;
+            --yellow: #F59E0B;
+            --yellow-light: #FEF3C7;
             --text-dark: #1F2937;
             --text-gray: #6B7280;
             --gray-light: #F3F4F6;
@@ -35,6 +38,7 @@
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
             min-height: 100vh;
+            min-height: 100dvh;
             color: var(--text-dark);
             overflow-x: hidden;
         }
@@ -56,103 +60,136 @@
             text-decoration: none;
         }
 
-        .progress-pill {
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            color: var(--white);
-            font-size: 0.85rem;
-            font-weight: 600;
+        .progress-container {
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .progress-pill i { color: #FDE68A; }
+        .progress-bar-wrapper {
+            width: 80px;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--orange);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+
+        .progress-text {
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
 
         /* Main Container */
         .form-wrapper {
             max-width: 500px;
             margin: 0 auto;
             padding: 0 1rem 2rem;
+            min-height: calc(100vh - 80px);
+            min-height: calc(100dvh - 80px);
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Card Style */
+        /* Card Style - Optimized for mobile */
         .form-card {
             background: var(--white);
             border-radius: 24px;
-            padding: 2rem 1.5rem;
+            padding: 1.5rem;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            min-height: 400px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
             position: relative;
             overflow: hidden;
         }
 
-        /* Screens */
+        /* Screens - Transitions plus lentes pour seniors */
         .screen {
             display: none;
-            animation: slideIn 0.4s ease-out;
+            flex-direction: column;
+            flex: 1;
+            animation: slideIn 0.55s ease-in-out;
         }
 
-        .screen.active { display: block; }
+        .screen.active {
+            display: flex;
+        }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateX(30px); }
+            from { opacity: 0; transform: translateX(25px); }
             to { opacity: 1; transform: translateX(0); }
         }
 
-        @keyframes slideOut {
-            from { opacity: 1; transform: translateX(0); }
-            to { opacity: 0; transform: translateX(-30px); }
+        /* Question Header */
+        .question-header {
+            margin-bottom: 1.5rem;
         }
 
-        /* Question Styling */
         .question-number {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             background: var(--blue-primary);
             color: var(--white);
             border-radius: 50%;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .question-title {
-            font-size: 1.5rem;
+            font-size: 1.5rem; /* Augmenté de 1.35rem pour seniors */
             font-weight: 800;
             color: var(--blue-dark);
             line-height: 1.3;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.35rem;
         }
 
         .question-subtitle {
-            font-size: 0.95rem;
+            font-size: 0.95rem; /* Légèrement augmenté */
             color: var(--text-gray);
-            margin-bottom: 2rem;
+        }
+
+        /* Content area - flexible */
+        .screen-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         /* Choice Cards - Clickable */
         .choices {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            gap: 0.75rem;
+        }
+
+        .choices.single-col {
+            grid-template-columns: 1fr;
         }
 
         .choice-card {
             background: var(--white);
             border: 3px solid var(--gray-light);
             border-radius: 16px;
-            padding: 1.5rem 1rem;
+            padding: 1.25rem 1rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s ease;
             position: relative;
-            min-height: 120px;
+            min-height: 110px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -162,13 +199,13 @@
         }
 
         .choice-card:active {
-            transform: scale(0.96);
+            transform: scale(0.97);
         }
 
         .choice-card.selected {
             border-color: var(--blue-primary);
             background: linear-gradient(135deg, #EBF4FF 0%, #DBEAFE 100%);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2);
         }
 
         .choice-card.selected::before {
@@ -176,17 +213,17 @@
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 24px;
-            height: 24px;
+            top: 8px;
+            right: 8px;
+            width: 22px;
+            height: 22px;
             background: var(--green);
             color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             animation: popIn 0.3s ease;
         }
 
@@ -197,9 +234,9 @@
         }
 
         .choice-icon {
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             color: var(--blue-primary);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             transition: transform 0.2s ease;
         }
 
@@ -210,37 +247,124 @@
 
         .choice-label {
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-dark);
         }
 
         .choice-bonus {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--green);
             font-weight: 700;
-            margin-top: 0.5rem;
+            margin-top: 0.4rem;
             background: var(--green-light);
-            padding: 0.25rem 0.75rem;
+            padding: 0.2rem 0.6rem;
             border-radius: 100px;
+        }
+
+        /* Aid Type Cards (Screen 1) */
+        .aid-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .aid-card {
+            background: var(--white);
+            border: 3px solid var(--gray-light);
+            border-radius: 16px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .aid-card:active {
+            transform: scale(0.98);
+        }
+
+        .aid-card.selected {
+            border-color: var(--green);
+            background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+        }
+
+        .aid-card-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--white);
+        }
+
+        .aid-card-icon.mpr { background: linear-gradient(135deg, #2563EB, #1E40AF); }
+        .aid-card-icon.cee { background: linear-gradient(135deg, #10B981, #059669); }
+        .aid-card-icon.regional { background: linear-gradient(135deg, #F59E0B, #D97706); }
+        .aid-card-icon.all { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
+
+        .aid-card-content {
+            flex: 1;
+        }
+
+        .aid-card-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-bottom: 0.15rem;
+        }
+
+        .aid-card-desc {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        .aid-card-check {
+            width: 26px;
+            height: 26px;
+            border: 3px solid var(--gray-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .aid-card.selected .aid-card-check {
+            background: var(--green);
+            border-color: var(--green);
+            color: var(--white);
+        }
+
+        .aid-card.selected .aid-card-check::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.7rem;
         }
 
         /* Work Selection Cards with Aids */
         .work-cards {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.75rem;
         }
 
         .work-card {
             background: var(--white);
             border: 3px solid var(--gray-light);
             border-radius: 16px;
-            padding: 1.25rem;
+            padding: 1rem;
             cursor: pointer;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
         }
@@ -254,16 +378,21 @@
             background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
         }
 
+        .work-card.preselected {
+            border-color: var(--orange);
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+        }
+
         .work-card-icon {
-            width: 56px;
-            height: 56px;
-            min-width: 56px;
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
             background: var(--blue-primary);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             color: var(--white);
             transition: all 0.2s ease;
         }
@@ -278,20 +407,37 @@
 
         .work-card-title {
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-dark);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .work-card-aids {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
         }
 
         .work-card-aid {
-            font-size: 0.875rem;
-            color: var(--orange);
+            font-size: 0.7rem;
             font-weight: 700;
+            padding: 0.15rem 0.5rem;
+            border-radius: 100px;
+        }
+
+        .work-card-aid.mpr {
+            background: var(--blue-light);
+            color: var(--blue-primary);
+        }
+
+        .work-card-aid.cee {
+            background: var(--green-light);
+            color: var(--green);
         }
 
         .work-card-check {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             border: 3px solid var(--gray-light);
             border-radius: 50%;
             display: flex;
@@ -310,17 +456,17 @@
             content: '\f00c';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
         }
 
         /* Input Styles */
         .input-wrapper {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .input-big {
             width: 100%;
-            padding: 1.25rem;
+            padding: 1rem;
             font-size: 1.5rem;
             font-weight: 700;
             text-align: center;
@@ -346,19 +492,19 @@
             display: block;
             font-weight: 600;
             color: var(--text-gray);
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.85rem;
         }
 
         .input-regular {
             width: 100%;
-            padding: 1rem;
+            padding: 0.9rem;
             font-size: 1rem;
             border: 2px solid var(--gray-light);
             border-radius: 12px;
             font-family: inherit;
             transition: all 0.2s ease;
-            min-height: 54px;
+            min-height: 50px;
         }
 
         .input-regular:focus {
@@ -369,19 +515,19 @@
 
         /* Slider */
         .slider-container {
-            margin: 2rem 0;
+            margin: 1rem 0;
         }
 
         .slider-value {
             text-align: center;
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             color: var(--blue-dark);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .slider-value span {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             color: var(--text-gray);
         }
 
@@ -409,29 +555,30 @@
             display: flex;
             justify-content: space-between;
             margin-top: 0.5rem;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-gray);
         }
 
-        /* Buttons */
+        /* Buttons - Taille augmentée pour seniors */
         .btn-primary {
             width: 100%;
-            padding: 1.25rem;
+            padding: 1.2rem;
             background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
             color: var(--white);
             border: none;
             border-radius: 16px;
-            font-size: 1.1rem;
+            font-size: 1.05rem; /* Légèrement augmenté */
             font-weight: 800;
             cursor: pointer;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
+            gap: 0.6rem;
             box-shadow: 0 8px 25px rgba(249, 115, 22, 0.35);
             touch-action: manipulation;
-            min-height: 60px;
+            min-height: 60px; /* Augmenté de 56px pour seniors */
+            margin-top: auto;
         }
 
         .btn-primary:active {
@@ -445,10 +592,10 @@
 
         .btn-back {
             position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            width: 40px;
-            height: 40px;
+            top: 1rem;
+            left: 1rem;
+            width: 36px;
+            height: 36px;
             background: var(--gray-light);
             border: none;
             border-radius: 50%;
@@ -469,43 +616,83 @@
         .aids-counter {
             background: linear-gradient(135deg, var(--green) 0%, #059669 100%);
             color: var(--white);
-            padding: 1rem 1.5rem;
-            border-radius: 16px;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .aids-counter-label {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             opacity: 0.9;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.15rem;
         }
 
         .aids-counter-amount {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 900;
+        }
+
+        /* Regional Info Badge */
+        .regional-info {
+            background: var(--yellow-light);
+            border: 2px solid var(--yellow);
+            border-radius: 12px;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .regional-info-icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            background: var(--yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .regional-info-content {
+            flex: 1;
+        }
+
+        .regional-info-title {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+        }
+
+        .regional-info-desc {
+            font-size: 0.75rem;
+            color: var(--text-gray);
         }
 
         /* Checkbox */
         .checkbox-wrapper {
             display: flex;
             align-items: flex-start;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
+            gap: 0.6rem;
+            margin-top: 1rem;
             cursor: pointer;
         }
 
         .checkbox-wrapper input {
-            width: 24px;
-            height: 24px;
-            min-width: 24px;
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
             cursor: pointer;
         }
 
         .checkbox-label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-gray);
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .checkbox-label a {
@@ -515,17 +702,22 @@
         /* Loading Screen */
         .loading-screen {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 2rem 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .loading-spinner-big {
-            width: 80px;
-            height: 80px;
-            border: 6px solid var(--gray-light);
+            width: 70px;
+            height: 70px;
+            border: 5px solid var(--gray-light);
             border-top-color: var(--blue-primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 2rem;
+            margin-bottom: 1.5rem;
         }
 
         @keyframes spin {
@@ -533,88 +725,127 @@
         }
 
         .loading-text {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--blue-dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .loading-subtext {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-gray);
         }
 
-        .loading-progress {
+        .loading-steps {
+            margin-top: 1.5rem;
+            text-align: left;
             width: 100%;
-            height: 8px;
+            max-width: 280px;
+        }
+
+        .loading-step {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading-step.active {
+            opacity: 1;
+        }
+
+        .loading-step.done {
+            opacity: 1;
+        }
+
+        .loading-step-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
             background: var(--gray-light);
-            border-radius: 4px;
-            margin-top: 2rem;
-            overflow: hidden;
+            color: var(--text-gray);
         }
 
-        .loading-progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--blue-primary), var(--orange));
-            border-radius: 4px;
-            animation: loadProgress 3s ease-out forwards;
+        .loading-step.active .loading-step-icon {
+            background: var(--blue-primary);
+            color: var(--white);
+            animation: pulse 1s infinite;
         }
 
-        @keyframes loadProgress {
-            0% { width: 0%; }
-            100% { width: 100%; }
+        .loading-step.done .loading-step-icon {
+            background: var(--green);
+            color: var(--white);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .loading-step-text {
+            font-size: 0.85rem;
+            color: var(--text-dark);
         }
 
         /* Result Screen */
         .result-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .result-icon {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, var(--green) 0%, #059669 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2.5rem;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
             color: var(--white);
         }
 
         .result-title {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 800;
             color: var(--blue-dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .result-amount {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 900;
             color: var(--orange);
         }
 
-        .result-range {
-            font-size: 1rem;
-            color: var(--text-gray);
-            margin-top: 0.5rem;
-        }
-
-        .result-items {
+        .result-breakdown {
             background: var(--gray-light);
             border-radius: 16px;
-            padding: 1.25rem;
-            margin-bottom: 1.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-breakdown-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-gray);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .result-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.75rem 0;
+            padding: 0.6rem 0;
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
@@ -622,27 +853,115 @@
             border-bottom: none;
         }
 
+        .result-item-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .result-item-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--white);
+        }
+
+        .result-item-icon.mpr { background: var(--blue-primary); }
+        .result-item-icon.cee { background: var(--green); }
+        .result-item-icon.regional { background: var(--yellow); }
+
         .result-item-label {
             font-weight: 600;
+            font-size: 0.85rem;
             color: var(--text-dark);
         }
 
         .result-item-value {
             font-weight: 700;
+            font-size: 0.9rem;
             color: var(--green);
+        }
+
+        .result-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, var(--green) 0%, #059669 100%);
+            border-radius: 12px;
+            margin-top: 0.75rem;
+        }
+
+        .result-total-label {
+            font-weight: 700;
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+
+        .result-total-value {
+            font-weight: 900;
+            color: var(--white);
+            font-size: 1.25rem;
+        }
+
+        .result-works {
+            margin-bottom: 1rem;
+        }
+
+        .result-work-tag {
+            display: inline-block;
+            background: var(--blue-light);
+            color: var(--blue-primary);
+            padding: 0.35rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 0.2rem;
         }
 
         .result-message {
             text-align: center;
             background: linear-gradient(135deg, #FEF3C7, #FDE68A);
             border-radius: 12px;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
         }
 
         .result-message i {
             color: var(--orange);
-            margin-right: 0.5rem;
+            margin-right: 0.4rem;
+        }
+
+        /* Reassurance Footer */
+        .reassurance {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .reassurance-items {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .reassurance-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.7rem;
+            color: var(--text-gray);
+        }
+
+        .reassurance-item i {
+            color: var(--green);
+            font-size: 0.8rem;
         }
 
         /* Confetti */
@@ -660,29 +979,25 @@
             100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
 
-        /* Mobile Optimizations */
-        @media (max-width: 400px) {
-            .form-card { padding: 1.5rem 1rem; }
-            .question-title { font-size: 1.25rem; }
-            .choice-card { padding: 1rem 0.75rem; min-height: 100px; }
-            .choice-icon { font-size: 2rem; }
-            .slider-value { font-size: 2.5rem; }
-        }
-
         /* Locataire Message */
         .locataire-message {
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .locataire-icon {
-            font-size: 4rem;
+            font-size: 3rem;
             color: var(--orange);
             margin-bottom: 1rem;
         }
 
         .locataire-title {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--text-dark);
             margin-bottom: 0.5rem;
@@ -691,69 +1006,353 @@
         .locataire-text {
             color: var(--text-gray);
             margin-bottom: 1.5rem;
+            font-size: 0.9rem;
         }
 
-        /* Ripple Effect */
-        .ripple {
+        /* Revenue choice cards */
+        .revenue-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .revenue-card {
+            background: var(--white);
+            border: 3px solid var(--gray-light);
+            border-radius: 14px;
+            padding: 0.9rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            touch-action: manipulation;
+        }
+
+        .revenue-card:active {
+            transform: scale(0.98);
+        }
+
+        .revenue-card.selected {
+            border-color: var(--blue-primary);
+            background: var(--blue-light);
+        }
+
+        .revenue-card-color {
+            width: 12px;
+            height: 40px;
+            border-radius: 6px;
+        }
+
+        .revenue-card-color.blue { background: #2563EB; }
+        .revenue-card-color.yellow { background: #F59E0B; }
+        .revenue-card-color.violet { background: #8B5CF6; }
+        .revenue-card-color.gray { background: #9CA3AF; }
+
+        .revenue-card-content {
+            flex: 1;
+        }
+
+        .revenue-card-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .revenue-card-desc {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        /* Year choice */
+        .year-choices {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .year-choice {
+            background: var(--white);
+            border: 2px solid var(--gray-light);
+            border-radius: 10px;
+            padding: 0.75rem 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .year-choice:active {
+            transform: scale(0.97);
+        }
+
+        .year-choice.selected {
+            border-color: var(--blue-primary);
+            background: var(--blue-light);
+            color: var(--blue-primary);
+        }
+
+        /* Select All Button */
+        .select-all-wrapper {
+            margin-top: 1rem;
+        }
+
+        .btn-select-all {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: var(--gray-light);
+            border: 2px dashed var(--text-gray);
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-select-all:hover {
+            background: var(--blue-light);
+            border-color: var(--blue-primary);
+            color: var(--blue-primary);
+        }
+
+        .btn-select-all.active {
+            background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+            border: 2px solid var(--green);
+            color: var(--green);
+        }
+
+        .btn-select-all i {
+            font-size: 1rem;
+        }
+
+        /* Validation checkmark animation */
+        @keyframes checkmarkPop {
+            0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+            50% { transform: scale(1.3) rotate(0deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .choice-card.validating::after,
+        .aid-card.validating::after,
+        .revenue-card.validating::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: var(--green);
+            color: var(--white);
             border-radius: 50%;
-            background: rgba(37, 99, 235, 0.3);
-            transform: scale(0);
-            animation: rippleEffect 0.6s linear;
-            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            animation: checkmarkPop 0.4s ease-out forwards;
+            z-index: 10;
         }
 
-        @keyframes rippleEffect {
-            to { transform: scale(4); opacity: 0; }
+        /* Step encouragement message */
+        .step-encouragement {
+            text-align: center;
+            background: linear-gradient(135deg, #DBEAFE 0%, #EBF4FF 100%);
+            border-radius: 10px;
+            padding: 0.6rem 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--blue-primary);
+        }
+
+        .step-encouragement i {
+            margin-right: 0.4rem;
+        }
+
+        /* Region success message */
+        .region-success {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+            border-radius: 16px;
+            text-align: center;
+            animation: successPop 0.5s ease-out;
+        }
+
+        @keyframes successPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .region-success-icon {
+            font-size: 2.5rem;
+            color: var(--green);
+            margin-bottom: 0.5rem;
+        }
+
+        .region-success-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 380px) {
+            .form-card { padding: 1.25rem 1rem; }
+            .question-title { font-size: 1.2rem; }
+            .choice-card { padding: 1rem 0.75rem; min-height: 100px; }
+            .choice-icon { font-size: 2rem; }
+            .slider-value { font-size: 2rem; }
+        }
+
+        @media (min-height: 700px) {
+            .form-card {
+                min-height: 520px;
+            }
         }
     </style>
 </head>
 <body>
     <header class="header">
         <a href="index.html" class="logo">ELIGIBILITE</a>
-        <div class="progress-pill" id="progressPill">
-            <i class="fas fa-bolt"></i>
-            <span id="progressText">Question 1/6</span>
+        <div class="progress-container">
+            <div class="progress-bar-wrapper">
+                <div class="progress-bar-fill" id="progressBar" style="width: 12.5%"></div>
+            </div>
+            <span class="progress-text" id="progressText">1/8</span>
         </div>
     </header>
 
     <div class="form-wrapper">
         <div class="form-card" id="formCard">
 
-            <!-- Screen 1: Type de logement -->
+            <!-- Screen 1: Type d'aides (Multi-sélection) -->
             <div class="screen active" data-screen="1">
-                <span class="question-number">1</span>
-                <h2 class="question-title">Vous habitez dans...</h2>
-                <p class="question-subtitle">Cliquez sur votre type de logement</p>
+                <div class="question-header">
+                    <span class="question-number">1</span>
+                    <h2 class="question-title">Sur quelles aides souhaitez-vous vous renseigner ?</h2>
+                    <p class="question-subtitle">Sélectionnez une ou plusieurs aides</p>
+                </div>
 
-                <div class="choices">
-                    <div class="choice-card" data-value="maison" data-auto="true">
-                        <div class="choice-icon"><i class="fas fa-home"></i></div>
-                        <div class="choice-label">Une maison</div>
+                <div class="screen-content">
+                    <div class="aid-cards" id="aidCards">
+                        <div class="aid-card selected" data-value="mpr">
+                            <div class="aid-card-icon mpr"><i class="fas fa-landmark"></i></div>
+                            <div class="aid-card-content">
+                                <div class="aid-card-title">MaPrimeRénov'</div>
+                                <div class="aid-card-desc">Aide de l'État jusqu'à 11 000€</div>
+                            </div>
+                            <div class="aid-card-check"></div>
+                        </div>
+                        <div class="aid-card selected" data-value="cee">
+                            <div class="aid-card-icon cee"><i class="fas fa-leaf"></i></div>
+                            <div class="aid-card-content">
+                                <div class="aid-card-title">Prime CEE</div>
+                                <div class="aid-card-desc">Certificats d'économies d'énergie</div>
+                            </div>
+                            <div class="aid-card-check"></div>
+                        </div>
+                        <div class="aid-card selected" data-value="regional">
+                            <div class="aid-card-icon regional"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="aid-card-content">
+                                <div class="aid-card-title">Aides régionales</div>
+                                <div class="aid-card-desc">Selon votre département</div>
+                            </div>
+                            <div class="aid-card-check"></div>
+                        </div>
                     </div>
-                    <div class="choice-card" data-value="appartement" data-auto="true">
-                        <div class="choice-icon"><i class="fas fa-building"></i></div>
-                        <div class="choice-label">Un appartement</div>
+
+                    <div class="select-all-wrapper" id="selectAllWrapper">
+                        <button type="button" class="btn-select-all active" id="btnSelectAll">
+                            <i class="fas fa-check-double"></i> Toutes les aides sélectionnées
+                        </button>
+                    </div>
+                </div>
+
+                <button class="btn-primary" id="btnAidsContinue" onclick="validateAidsSelection()">
+                    Continuer <i class="fas fa-arrow-right"></i>
+                </button>
+
+                <div class="reassurance">
+                    <div class="reassurance-items">
+                        <div class="reassurance-item"><i class="fas fa-lock"></i> 100% gratuit</div>
+                        <div class="reassurance-item"><i class="fas fa-clock"></i> 2 min</div>
+                        <div class="reassurance-item"><i class="fas fa-shield-alt"></i> Sans engagement</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Screen 2: Propriétaire -->
+            <!-- Screen 2: Type de logement -->
             <div class="screen" data-screen="2">
                 <button class="btn-back" onclick="prevScreen()"><i class="fas fa-arrow-left"></i></button>
-                <span class="question-number">2</span>
-                <h2 class="question-title">Êtes-vous propriétaire ?</h2>
-                <p class="question-subtitle">Les aides sont réservées aux propriétaires</p>
+                <div class="step-encouragement"><i class="fas fa-thumbs-up"></i> Excellent choix ! Continuons...</div>
+                <div class="question-header">
+                    <span class="question-number">2</span>
+                    <h2 class="question-title">Vous habitez dans...</h2>
+                    <p class="question-subtitle">Cliquez sur votre type de logement</p>
+                </div>
 
-                <div class="choices">
-                    <div class="choice-card" data-value="oui" data-auto="true" data-target="3">
-                        <div class="choice-icon"><i class="fas fa-key"></i></div>
-                        <div class="choice-label">Oui</div>
-                        <div class="choice-bonus">Éligible aux aides</div>
+                <div class="screen-content">
+                    <div class="choices">
+                        <div class="choice-card" data-value="maison" data-auto="true">
+                            <div class="choice-icon"><i class="fas fa-home"></i></div>
+                            <div class="choice-label">Une maison</div>
+                            <div class="choice-bonus">Éligible</div>
+                        </div>
+                        <div class="choice-card" data-value="appartement" data-auto="true">
+                            <div class="choice-icon"><i class="fas fa-building"></i></div>
+                            <div class="choice-label">Un appartement</div>
+                            <div class="choice-bonus">Éligible</div>
+                        </div>
                     </div>
-                    <div class="choice-card" data-value="non" data-auto="true" data-target="locataire">
-                        <div class="choice-icon"><i class="fas fa-user"></i></div>
-                        <div class="choice-label">Non</div>
+                </div>
+
+                <div class="reassurance">
+                    <div class="reassurance-items">
+                        <div class="reassurance-item"><i class="fas fa-check-circle"></i> Barèmes 2025</div>
+                        <div class="reassurance-item"><i class="fas fa-users"></i> +15 000 simulations</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 3: Propriétaire -->
+            <div class="screen" data-screen="3">
+                <button class="btn-back" onclick="prevScreen()"><i class="fas fa-arrow-left"></i></button>
+                <div class="step-encouragement"><i class="fas fa-star"></i> Étape 3/8 - Vous avancez bien !</div>
+                <div class="question-header">
+                    <span class="question-number">3</span>
+                    <h2 class="question-title">Êtes-vous propriétaire ?</h2>
+                    <p class="question-subtitle">Les aides sont réservées aux propriétaires</p>
+                </div>
+
+                <div class="screen-content">
+                    <div class="choices">
+                        <div class="choice-card" data-value="oui" data-auto="true" data-target="4">
+                            <div class="choice-icon"><i class="fas fa-key"></i></div>
+                            <div class="choice-label">Oui</div>
+                            <div class="choice-bonus">Éligible aux aides</div>
+                        </div>
+                        <div class="choice-card" data-value="non" data-auto="true" data-target="locataire">
+                            <div class="choice-icon"><i class="fas fa-user"></i></div>
+                            <div class="choice-label">Non</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reassurance">
+                    <div class="reassurance-items">
+                        <div class="reassurance-item"><i class="fas fa-home"></i> Occupants ou bailleurs</div>
                     </div>
                 </div>
             </div>
@@ -770,21 +1369,34 @@
                 </div>
             </div>
 
-            <!-- Screen 3: Code Postal -->
-            <div class="screen" data-screen="3">
+            <!-- Screen 4: Code Postal -->
+            <div class="screen" data-screen="4">
                 <button class="btn-back" onclick="prevScreen()"><i class="fas fa-arrow-left"></i></button>
-                <span class="question-number">3</span>
-                <h2 class="question-title">Votre code postal</h2>
-                <p class="question-subtitle">Pour vérifier les aides disponibles dans votre zone</p>
+                <div class="step-encouragement"><i class="fas fa-check-circle"></i> Parfait ! Plus que 4 étapes</div>
+                <div class="question-header">
+                    <span class="question-number">4</span>
+                    <h2 class="question-title">Votre code postal</h2>
+                    <p class="question-subtitle">Pour identifier les aides de votre région</p>
+                </div>
 
-                <div class="input-wrapper">
-                    <input type="text"
-                           id="codePostal"
-                           class="input-big"
-                           placeholder="Ex: 75001"
-                           maxlength="5"
-                           inputmode="numeric"
-                           pattern="[0-9]{5}">
+                <div class="screen-content">
+                    <div class="input-wrapper">
+                        <input type="text"
+                               id="codePostal"
+                               class="input-big"
+                               placeholder="Ex: 75001"
+                               maxlength="5"
+                               inputmode="numeric"
+                               pattern="[0-9]{5}">
+                    </div>
+
+                    <div class="regional-info" id="regionalInfo" style="display: none;">
+                        <div class="regional-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="regional-info-content">
+                            <div class="regional-info-title" id="regionalTitle">Île-de-France</div>
+                            <div class="regional-info-desc" id="regionalDesc">Zone H1 • Aides régionales disponibles</div>
+                        </div>
+                    </div>
                 </div>
 
                 <button class="btn-primary" id="btnCodePostal" disabled onclick="validateCodePostal()">
@@ -792,131 +1404,208 @@
                 </button>
             </div>
 
-            <!-- Screen 4: Surface -->
-            <div class="screen" data-screen="4">
-                <button class="btn-back" onclick="prevScreen()"><i class="fas fa-arrow-left"></i></button>
-                <span class="question-number">4</span>
-                <h2 class="question-title">Surface de votre logement</h2>
-                <p class="question-subtitle">Déplacez le curseur pour indiquer la surface</p>
+            <!-- Screen 4b: Loader Régional amélioré -->
+            <div class="screen" data-screen="4b">
+                <div class="loading-screen">
+                    <div class="loading-spinner-big" id="regionSpinner"></div>
+                    <div class="loading-text" id="loaderRegionTitle">Recherche des aides...</div>
+                    <div class="loading-subtext" id="loaderRegionText">Analyse de votre région</div>
 
-                <div class="slider-container">
-                    <div class="slider-value"><span id="surfaceValue">100</span> <span>m²</span></div>
-                    <input type="range" class="slider" id="surfaceSlider" min="30" max="300" value="100" step="5">
-                    <div class="slider-labels">
-                        <span>30 m²</span>
-                        <span>300 m²</span>
+                    <div class="loading-steps" id="regionLoadingSteps">
+                        <div class="loading-step" id="regionStep1">
+                            <div class="loading-step-icon"><i class="fas fa-landmark"></i></div>
+                            <div class="loading-step-text">MaPrimeRénov' 2025</div>
+                        </div>
+                        <div class="loading-step" id="regionStep2">
+                            <div class="loading-step-icon"><i class="fas fa-leaf"></i></div>
+                            <div class="loading-step-text">Prime CEE</div>
+                        </div>
+                        <div class="loading-step" id="regionStep3">
+                            <div class="loading-step-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="loading-step-text" id="regionStep3Text">Aides régionales</div>
+                        </div>
+                    </div>
+
+                    <!-- Message de succès après détection -->
+                    <div class="region-success" id="regionSuccess" style="display: none;">
+                        <div class="region-success-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="region-success-text" id="regionSuccessText">3 types d'aides détectés !</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 5: Surface + Année -->
+            <div class="screen" data-screen="5">
+                <button class="btn-back" onclick="prevScreen()"><i class="fas fa-arrow-left"></i></button>
+                <div class="step-encouragement"><i class="fas fa-home"></i> Vous y êtes presque ! Étape 5/8</div>
+                <div class="question-header">
+                    <span class="question-number">5</span>
+                    <h2 class="question-title">Votre logement</h2>
+                    <p class="question-subtitle">Surface et ancienneté</p>
+                </div>
+
+                <div class="screen-content">
+                    <div class="slider-container">
+                        <div class="slider-value"><span id="surfaceValue">100</span> <span>m²</span></div>
+                        <input type="range" class="slider" id="surfaceSlider" min="30" max="300" value="100" step="5">
+                        <div class="slider-labels">
+                            <span>30 m²</span>
+                            <span>300 m²</span>
+                        </div>
+                    </div>
+
+                    <div class="input-label" style="margin-top: 1rem;">Année de construction</div>
+                    <div class="year-choices">
+                        <div class="year-choice" data-value="recent">Après 2010</div>
+                        <div class="year-choice selected" data-value="medium">1990-2010</div>
+                        <div class="year-choice" data-value="old">Avant 1990</div>
                     </div>
                 </div>
 
-                <button class="btn-primary" onclick="goToScreen(5)">
+                <button class="btn-primary" onclick="goToScreen(6)">
                     Continuer <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
 
-            <!-- Screen 5: Sélection Travaux -->
-            <div class="screen" data-screen="5">
+            <!-- Screen 6: Profil Revenus -->
+            <div class="screen" data-screen="6">
                 <button class="btn-back" onclick="prevScreen()"><i class="fas fa-arrow-left"></i></button>
-                <span class="question-number">5</span>
-                <h2 class="question-title">Quels travaux vous intéressent ?</h2>
-                <p class="question-subtitle">Sélectionnez un ou plusieurs projets</p>
-
-                <div class="aids-counter">
-                    <div class="aids-counter-label">Total des aides estimées</div>
-                    <div class="aids-counter-amount" id="totalAidsDisplay">0 €</div>
+                <div class="step-encouragement"><i class="fas fa-coins"></i> Plus que 2 étapes ! Courage !</div>
+                <div class="question-header">
+                    <span class="question-number">6</span>
+                    <h2 class="question-title">Votre niveau de revenus</h2>
+                    <p class="question-subtitle">Permet d'estimer précisément vos aides</p>
                 </div>
 
-                <div class="work-cards">
-                    <div class="work-card" data-work="pac" data-aid="11000">
-                        <div class="work-card-icon"><i class="fas fa-fan"></i></div>
-                        <div class="work-card-content">
-                            <div class="work-card-title">Pompe à chaleur</div>
-                            <div class="work-card-aid">Jusqu'à 11 000 € d'aides</div>
+                <div class="screen-content">
+                    <div class="revenue-cards">
+                        <div class="revenue-card" data-value="blue" data-auto="true">
+                            <div class="revenue-card-color blue"></div>
+                            <div class="revenue-card-content">
+                                <div class="revenue-card-title">Revenus très modestes</div>
+                                <div class="revenue-card-desc">Ex: 1 pers. < 17 000€/an</div>
+                            </div>
                         </div>
-                        <div class="work-card-check"></div>
+                        <div class="revenue-card" data-value="yellow" data-auto="true">
+                            <div class="revenue-card-color yellow"></div>
+                            <div class="revenue-card-content">
+                                <div class="revenue-card-title">Revenus modestes</div>
+                                <div class="revenue-card-desc">Ex: 1 pers. < 22 000€/an</div>
+                            </div>
+                        </div>
+                        <div class="revenue-card" data-value="violet" data-auto="true">
+                            <div class="revenue-card-color violet"></div>
+                            <div class="revenue-card-content">
+                                <div class="revenue-card-title">Revenus intermédiaires</div>
+                                <div class="revenue-card-desc">Ex: 1 pers. < 31 000€/an</div>
+                            </div>
+                        </div>
+                        <div class="revenue-card" data-value="unknown" data-auto="true">
+                            <div class="revenue-card-color gray"></div>
+                            <div class="revenue-card-content">
+                                <div class="revenue-card-title">Je ne sais pas</div>
+                                <div class="revenue-card-desc">Estimation moyenne</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="work-card" data-work="isolation" data-aid="8000">
-                        <div class="work-card-icon"><i class="fas fa-house-chimney"></i></div>
-                        <div class="work-card-content">
-                            <div class="work-card-title">Isolation thermique</div>
-                            <div class="work-card-aid">Jusqu'à 8 000 € d'aides</div>
-                        </div>
-                        <div class="work-card-check"></div>
+                </div>
+            </div>
+
+            <!-- Screen 7: Sélection Travaux -->
+            <div class="screen" data-screen="7">
+                <button class="btn-back" onclick="prevScreen()"><i class="fas fa-arrow-left"></i></button>
+                <div class="step-encouragement"><i class="fas fa-tools"></i> Dernière ligne droite ! Étape 7/8</div>
+                <div class="question-header">
+                    <span class="question-number">7</span>
+                    <h2 class="question-title">Quels travaux vous intéressent ?</h2>
+                    <p class="question-subtitle">Sélectionnez un ou plusieurs projets</p>
+                </div>
+
+                <div class="screen-content" style="overflow-y: auto;">
+                    <div class="aids-counter">
+                        <div class="aids-counter-label">Total des aides estimées</div>
+                        <div class="aids-counter-amount" id="totalAidsDisplay">0 €</div>
                     </div>
-                    <div class="work-card" data-work="solaire" data-aid="4000">
-                        <div class="work-card-icon"><i class="fas fa-solar-panel"></i></div>
-                        <div class="work-card-content">
-                            <div class="work-card-title">Panneaux solaires</div>
-                            <div class="work-card-aid">Jusqu'à 4 000 € de prime</div>
-                        </div>
-                        <div class="work-card-check"></div>
-                    </div>
-                    <div class="work-card" data-work="fenetres" data-aid="3000">
-                        <div class="work-card-icon"><i class="fas fa-door-closed"></i></div>
-                        <div class="work-card-content">
-                            <div class="work-card-title">Fenêtres / Menuiseries</div>
-                            <div class="work-card-aid">Jusqu'à 3 000 € d'aides</div>
-                        </div>
-                        <div class="work-card-check"></div>
+
+                    <div class="work-cards" id="workCards">
+                        <!-- Dynamically filled based on revenue profile -->
                     </div>
                 </div>
 
-                <button class="btn-primary" id="btnWorks" style="margin-top: 1.5rem;" disabled onclick="goToScreen(6)">
+                <button class="btn-primary" id="btnWorks" style="margin-top: 1rem;" disabled onclick="goToScreen(8)">
                     Voir mes aides <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
 
-            <!-- Screen 6: Contact -->
-            <div class="screen" data-screen="6">
+            <!-- Screen 8: Contact -->
+            <div class="screen" data-screen="8">
                 <button class="btn-back" onclick="prevScreen()"><i class="fas fa-arrow-left"></i></button>
-                <span class="question-number">6</span>
-                <h2 class="question-title">Dernière étape !</h2>
-                <p class="question-subtitle">Pour recevoir votre estimation personnalisée</p>
-
-                <div class="aids-counter" style="margin-bottom: 1.5rem;">
-                    <div class="aids-counter-label">Vos aides estimées</div>
-                    <div class="aids-counter-amount" id="totalAidsContact">0 €</div>
+                <div class="step-encouragement"><i class="fas fa-trophy"></i> Bravo ! C'est la dernière étape !</div>
+                <div class="question-header">
+                    <span class="question-number">8</span>
+                    <h2 class="question-title">Dernière étape !</h2>
+                    <p class="question-subtitle">Pour recevoir votre estimation détaillée</p>
                 </div>
 
-                <div class="input-wrapper">
-                    <label class="input-label">Prénom *</label>
-                    <input type="text" id="prenom" class="input-regular" placeholder="Jean" required>
+                <div class="screen-content">
+                    <div class="aids-counter" style="margin-bottom: 1rem;">
+                        <div class="aids-counter-label">Vos aides estimées</div>
+                        <div class="aids-counter-amount" id="totalAidsContact">0 €</div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label class="input-label">Prénom *</label>
+                        <input type="text" id="prenom" class="input-regular" placeholder="Jean" required>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label class="input-label">Nom *</label>
+                        <input type="text" id="nom" class="input-regular" placeholder="Dupont" required>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label class="input-label">Email *</label>
+                        <input type="email" id="email" class="input-regular" placeholder="jean@email.com" required>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label class="input-label">Téléphone *</label>
+                        <input type="tel" id="telephone" class="input-regular" placeholder="06 12 34 56 78" required>
+                    </div>
+
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="rgpd" required>
+                        <label class="checkbox-label" for="rgpd">
+                            J'accepte d'être recontacté pour recevoir mon estimation. <a href="#">Politique de confidentialité</a>
+                        </label>
+                    </div>
                 </div>
 
-                <div class="input-wrapper">
-                    <label class="input-label">Nom *</label>
-                    <input type="text" id="nom" class="input-regular" placeholder="Dupont" required>
-                </div>
-
-                <div class="input-wrapper">
-                    <label class="input-label">Email *</label>
-                    <input type="email" id="email" class="input-regular" placeholder="jean@email.com" required>
-                </div>
-
-                <div class="input-wrapper">
-                    <label class="input-label">Téléphone *</label>
-                    <input type="tel" id="telephone" class="input-regular" placeholder="06 12 34 56 78" required>
-                </div>
-
-                <div class="checkbox-wrapper">
-                    <input type="checkbox" id="rgpd" required>
-                    <label class="checkbox-label" for="rgpd">
-                        J'accepte d'être recontacté pour recevoir mon estimation. <a href="#">Politique de confidentialité</a>
-                    </label>
-                </div>
-
-                <button class="btn-primary" id="btnSubmit" style="margin-top: 1.5rem;" onclick="submitForm()">
+                <button class="btn-primary" id="btnSubmit" onclick="submitForm()">
                     <i class="fas fa-calculator"></i> Calculer mes aides
                 </button>
             </div>
 
-            <!-- Screen Loading -->
+            <!-- Screen Loading Final -->
             <div class="screen" data-screen="loading">
                 <div class="loading-screen">
                     <div class="loading-spinner-big"></div>
                     <div class="loading-text">Calcul de vos aides en cours...</div>
                     <div class="loading-subtext">Analyse de votre éligibilité</div>
-                    <div class="loading-progress">
-                        <div class="loading-progress-fill"></div>
+
+                    <div class="loading-steps">
+                        <div class="loading-step active" id="step1">
+                            <div class="loading-step-icon"><i class="fas fa-landmark"></i></div>
+                            <div class="loading-step-text">MaPrimeRénov' 2025</div>
+                        </div>
+                        <div class="loading-step" id="step2">
+                            <div class="loading-step-icon"><i class="fas fa-leaf"></i></div>
+                            <div class="loading-step-text">Prime CEE</div>
+                        </div>
+                        <div class="loading-step" id="step3">
+                            <div class="loading-step-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="loading-step-text">Aides régionales</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -927,11 +1616,21 @@
                     <div class="result-icon"><i class="fas fa-check"></i></div>
                     <h2 class="result-title">Félicitations !</h2>
                     <div class="result-amount" id="resultAmount">0 €</div>
-                    <div class="result-range" id="resultRange">Estimation de vos aides cumulées</div>
                 </div>
 
-                <div class="result-items" id="resultItems">
+                <div class="result-works" id="resultWorks">
                     <!-- Dynamically filled -->
+                </div>
+
+                <div class="result-breakdown">
+                    <div class="result-breakdown-title">Détail de vos aides</div>
+                    <div id="resultItems">
+                        <!-- Dynamically filled -->
+                    </div>
+                    <div class="result-total">
+                        <span class="result-total-label">Total estimé</span>
+                        <span class="result-total-value" id="resultTotalValue">0 €</span>
+                    </div>
                 </div>
 
                 <div class="result-message">
@@ -948,12 +1647,135 @@
     </div>
 
     <script>
-        // Form Data
+        // ========================================
+        // DATA & CONFIGURATION
+        // ========================================
+
+        // Barèmes MaPrimeRénov' 2025 par profil
+        const mprBaremes = {
+            blue: { // Très modestes
+                pac_air_eau: 5000,
+                pac_geo: 11000,
+                isolation_murs_ext: 75, // par m²
+                isolation_murs_int: 25,
+                isolation_combles: 25,
+                fenetres: 100, // par équipement
+                chauffe_eau_thermo: 1200,
+                vmc_double_flux: 2500
+            },
+            yellow: { // Modestes
+                pac_air_eau: 4000,
+                pac_geo: 9000,
+                isolation_murs_ext: 60,
+                isolation_murs_int: 20,
+                isolation_combles: 20,
+                fenetres: 80,
+                chauffe_eau_thermo: 800,
+                vmc_double_flux: 2000
+            },
+            violet: { // Intermédiaires
+                pac_air_eau: 3000,
+                pac_geo: 6000,
+                isolation_murs_ext: 40,
+                isolation_murs_int: 15,
+                isolation_combles: 15,
+                fenetres: 40,
+                chauffe_eau_thermo: 400,
+                vmc_double_flux: 1500
+            },
+            unknown: { // Estimation moyenne (jaune)
+                pac_air_eau: 4000,
+                pac_geo: 9000,
+                isolation_murs_ext: 60,
+                isolation_murs_int: 20,
+                isolation_combles: 20,
+                fenetres: 80,
+                chauffe_eau_thermo: 800,
+                vmc_double_flux: 2000
+            }
+        };
+
+        // Prime CEE par travaux (montants moyens)
+        const ceeBaremes = {
+            pac_air_eau: { H1: 4500, H2: 3800, H3: 3000 },
+            pac_geo: { H1: 5500, H2: 4500, H3: 3500 },
+            isolation: { H1: 12, H2: 10, H3: 8 }, // par m²
+            fenetres: { H1: 80, H2: 65, H3: 50 }, // par fenêtre
+            solaire: { H1: 1000, H2: 900, H3: 800 }
+        };
+
+        // Zones climatiques par département
+        const zonesClimatiques = {
+            H1: ['01','02','03','05','07','08','10','14','15','19','21','23','25','26','38','39','42','43','45','51','52','54','55','57','58','59','60','61','62','63','67','68','69','70','71','73','74','75','76','77','78','80','87','88','89','90','91','92','93','94','95'],
+            H2: ['04','06','09','11','12','13','16','17','18','22','24','27','28','29','30','31','32','33','34','35','36','37','40','41','44','46','47','48','49','50','53','56','64','65','66','72','79','81','82','83','84','85','86'],
+            H3: ['2A','2B','20','83','06','13']
+        };
+
+        // Aides régionales par département
+        const aidesRegionales = {
+            '75': { name: 'Île-de-France', aid: 'Éco-rénovons Paris', amount: 2000 },
+            '77': { name: 'Île-de-France', aid: 'Prime Région IDF', amount: 1500 },
+            '78': { name: 'Île-de-France', aid: 'Prime Région IDF', amount: 1500 },
+            '91': { name: 'Île-de-France', aid: 'Prime Région IDF', amount: 1500 },
+            '92': { name: 'Île-de-France', aid: 'Prime Région IDF', amount: 1500 },
+            '93': { name: 'Île-de-France', aid: 'Prime Région IDF', amount: 1500 },
+            '94': { name: 'Île-de-France', aid: 'Prime Région IDF', amount: 1500 },
+            '95': { name: 'Île-de-France', aid: 'Prime Région IDF', amount: 1500 },
+            '31': { name: 'Occitanie', aid: 'Éco-chèque logement', amount: 1500 },
+            '34': { name: 'Occitanie', aid: 'Éco-chèque logement', amount: 1500 },
+            '69': { name: 'Auvergne-Rhône-Alpes', aid: 'Prime Région AURA', amount: 1000 },
+            '59': { name: 'Hauts-de-France', aid: 'Prime éco-logis', amount: 1500 },
+            '62': { name: 'Hauts-de-France', aid: 'Prime éco-logis', amount: 1500 },
+            '44': { name: 'Pays de la Loire', aid: 'Aide régionale', amount: 800 },
+            '33': { name: 'Nouvelle-Aquitaine', aid: 'Prime régionale', amount: 1000 }
+        };
+
+        // Travaux disponibles
+        const travauxData = {
+            pac: {
+                name: 'Pompe à chaleur air-eau',
+                icon: 'fa-fan',
+                mprKey: 'pac_air_eau',
+                ceeKey: 'pac_air_eau'
+            },
+            isolation: {
+                name: 'Isolation thermique',
+                icon: 'fa-house-chimney',
+                mprKey: 'isolation_murs_ext',
+                ceeKey: 'isolation',
+                surface: 80 // m² moyen
+            },
+            solaire: {
+                name: 'Panneaux solaires',
+                icon: 'fa-solar-panel',
+                mprKey: null,
+                ceeKey: 'solaire',
+                fixedAid: 4000 // Prime autoconso
+            },
+            fenetres: {
+                name: 'Fenêtres / Menuiseries',
+                icon: 'fa-door-closed',
+                mprKey: 'fenetres',
+                ceeKey: 'fenetres',
+                count: 6 // nombre moyen
+            }
+        };
+
+        // ========================================
+        // FORM STATE
+        // ========================================
+
         const formData = {
+            selectedAids: ['mpr', 'cee', 'regional'], // Multi-select aides
             typeLogement: '',
             proprietaire: '',
             codePostal: '',
+            department: '',
+            zone: 'H2',
+            region: null,
             surface: 100,
+            yearBuilt: 'medium',
+            revenueProfile: 'unknown',
             travaux: [],
             prenom: '',
             nom: '',
@@ -961,53 +1783,361 @@
             telephone: ''
         };
 
+        // Timing configuration (seniors-friendly)
+        const TRANSITION_DELAY = 700;  // ms avant transition (était 400)
+        const ANIMATION_DURATION = 550; // ms durée slide (était 400)
+
         let currentScreen = 1;
         let screenHistory = [1];
+        const totalScreens = 8;
 
-        // Aids per work type
-        const aidsData = {
-            pac: { name: 'Pompe à chaleur', min: 8000, max: 11000 },
-            isolation: { name: 'Isolation thermique', min: 5000, max: 8000 },
-            solaire: { name: 'Panneaux solaires', min: 2500, max: 4000 },
-            fenetres: { name: 'Fenêtres', min: 1500, max: 3000 }
-        };
+        // ========================================
+        // INITIALIZATION
+        // ========================================
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            setupAidCards();
             setupChoiceCards();
-            setupWorkCards();
+            setupRevenueCards();
+            setupYearChoices();
             setupInputs();
             setupSlider();
         });
 
-        // Setup choice cards with auto-advance
+        // ========================================
+        // SETUP FUNCTIONS
+        // ========================================
+
+        function setupAidCards() {
+            // Multi-select aid cards
+            document.querySelectorAll('#aidCards .aid-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                    const value = this.dataset.value;
+
+                    if (this.classList.contains('selected')) {
+                        if (!formData.selectedAids.includes(value)) {
+                            formData.selectedAids.push(value);
+                        }
+                    } else {
+                        formData.selectedAids = formData.selectedAids.filter(a => a !== value);
+                    }
+
+                    if (navigator.vibrate) navigator.vibrate(10);
+                    updateSelectAllButton();
+                    updateAidsContinueButton();
+                });
+            });
+
+            // Select All button
+            document.getElementById('btnSelectAll').addEventListener('click', function() {
+                const allCards = document.querySelectorAll('#aidCards .aid-card');
+                const allSelected = formData.selectedAids.length === 3;
+
+                if (allSelected) {
+                    // Deselect all
+                    allCards.forEach(c => c.classList.remove('selected'));
+                    formData.selectedAids = [];
+                } else {
+                    // Select all
+                    allCards.forEach(c => c.classList.add('selected'));
+                    formData.selectedAids = ['mpr', 'cee', 'regional'];
+                }
+
+                if (navigator.vibrate) navigator.vibrate(10);
+                updateSelectAllButton();
+                updateAidsContinueButton();
+            });
+        }
+
+        function updateSelectAllButton() {
+            const btn = document.getElementById('btnSelectAll');
+            const allSelected = formData.selectedAids.length === 3;
+
+            if (allSelected) {
+                btn.classList.add('active');
+                btn.innerHTML = '<i class="fas fa-check-double"></i> Toutes les aides sélectionnées';
+            } else {
+                btn.classList.remove('active');
+                btn.innerHTML = '<i class="fas fa-plus"></i> Tout sélectionner';
+            }
+        }
+
+        function updateAidsContinueButton() {
+            const btn = document.getElementById('btnAidsContinue');
+            btn.disabled = formData.selectedAids.length === 0;
+        }
+
+        function validateAidsSelection() {
+            if (formData.selectedAids.length > 0) {
+                goToScreen(2);
+            }
+        }
+
         function setupChoiceCards() {
             document.querySelectorAll('.choice-card').forEach(card => {
                 card.addEventListener('click', function() {
                     const parent = this.closest('.choices');
-                    parent.querySelectorAll('.choice-card').forEach(c => c.classList.remove('selected'));
+                    parent.querySelectorAll('.choice-card').forEach(c => {
+                        c.classList.remove('selected');
+                        c.classList.remove('validating');
+                    });
                     this.classList.add('selected');
 
-                    // Haptic feedback
                     if (navigator.vibrate) navigator.vibrate(10);
 
-                    // Store value
                     const screen = this.closest('.screen').dataset.screen;
-                    if (screen === '1') formData.typeLogement = this.dataset.value;
-                    if (screen === '2') formData.proprietaire = this.dataset.value;
+                    if (screen === '2') formData.typeLogement = this.dataset.value;
+                    if (screen === '3') formData.proprietaire = this.dataset.value;
 
-                    // Auto advance after short delay
                     if (this.dataset.auto === 'true') {
+                        // Add validation animation
+                        this.classList.add('validating');
+
                         setTimeout(() => {
+                            this.classList.remove('validating');
                             const target = this.dataset.target || (parseInt(screen) + 1);
                             goToScreen(target);
-                        }, 400);
+                        }, TRANSITION_DELAY);
                     }
                 });
             });
         }
 
-        // Setup work selection cards
+        function setupRevenueCards() {
+            document.querySelectorAll('.revenue-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.revenue-card').forEach(c => {
+                        c.classList.remove('selected');
+                        c.classList.remove('validating');
+                    });
+                    this.classList.add('selected');
+                    formData.revenueProfile = this.dataset.value;
+
+                    if (navigator.vibrate) navigator.vibrate(10);
+
+                    // Add validation animation
+                    this.classList.add('validating');
+
+                    setTimeout(() => {
+                        this.classList.remove('validating');
+                        renderWorkCards();
+                        goToScreen(7);
+                    }, TRANSITION_DELAY);
+                });
+            });
+        }
+
+        function setupYearChoices() {
+            document.querySelectorAll('.year-choice').forEach(choice => {
+                choice.addEventListener('click', function() {
+                    document.querySelectorAll('.year-choice').forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    formData.yearBuilt = this.dataset.value;
+                    if (navigator.vibrate) navigator.vibrate(10);
+                });
+            });
+        }
+
+        function setupInputs() {
+            const cpInput = document.getElementById('codePostal');
+            cpInput.addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '').slice(0, 5);
+                const isValid = /^[0-9]{5}$/.test(this.value);
+                this.classList.toggle('valid', isValid);
+                document.getElementById('btnCodePostal').disabled = !isValid;
+
+                if (isValid) {
+                    formData.codePostal = this.value;
+                    formData.department = this.value.substring(0, 2);
+                    detectRegion();
+                } else {
+                    document.getElementById('regionalInfo').style.display = 'none';
+                }
+            });
+        }
+
+        function setupSlider() {
+            const slider = document.getElementById('surfaceSlider');
+            const display = document.getElementById('surfaceValue');
+
+            slider.addEventListener('input', function() {
+                display.textContent = this.value;
+                formData.surface = parseInt(this.value);
+            });
+        }
+
+        // ========================================
+        // REGION DETECTION
+        // ========================================
+
+        function detectRegion() {
+            const dept = formData.department;
+
+            // Detect climate zone
+            if (zonesClimatiques.H1.includes(dept)) {
+                formData.zone = 'H1';
+            } else if (zonesClimatiques.H3.includes(dept)) {
+                formData.zone = 'H3';
+            } else {
+                formData.zone = 'H2';
+            }
+
+            // Detect regional aid
+            formData.region = aidesRegionales[dept] || null;
+
+            // Update UI
+            const regionalInfo = document.getElementById('regionalInfo');
+            const regionalTitle = document.getElementById('regionalTitle');
+            const regionalDesc = document.getElementById('regionalDesc');
+
+            if (formData.region) {
+                regionalTitle.textContent = formData.region.name;
+                regionalDesc.textContent = `Zone ${formData.zone} • ${formData.region.aid} disponible`;
+            } else {
+                regionalTitle.textContent = `Département ${dept}`;
+                regionalDesc.textContent = `Zone ${formData.zone} • Vérification des aides locales`;
+            }
+
+            regionalInfo.style.display = 'flex';
+        }
+
+        function validateCodePostal() {
+            if (/^[0-9]{5}$/.test(formData.codePostal)) {
+                goToScreen('4b');
+
+                // Reset animation state
+                const steps = ['regionStep1', 'regionStep2', 'regionStep3'];
+                steps.forEach(id => {
+                    const el = document.getElementById(id);
+                    el.classList.remove('active', 'done');
+                });
+                document.getElementById('regionSuccess').style.display = 'none';
+                document.getElementById('regionSpinner').style.display = 'block';
+
+                // Count selected aids for success message
+                const aidsCount = formData.selectedAids.length;
+
+                // Animated steps detection (3 seconds total)
+                // Step 1: MPR (0-800ms)
+                setTimeout(() => {
+                    document.getElementById('regionStep1').classList.add('active');
+                    document.getElementById('loaderRegionText').textContent = 'Vérification MaPrimeRénov\'...';
+                }, 100);
+
+                // Step 1 done, Step 2 active (800-1600ms)
+                setTimeout(() => {
+                    document.getElementById('regionStep1').classList.remove('active');
+                    document.getElementById('regionStep1').classList.add('done');
+                    document.getElementById('regionStep2').classList.add('active');
+                    document.getElementById('loaderRegionText').textContent = 'Vérification Prime CEE...';
+                }, 900);
+
+                // Step 2 done, Step 3 active (1600-2400ms)
+                setTimeout(() => {
+                    document.getElementById('regionStep2').classList.remove('active');
+                    document.getElementById('regionStep2').classList.add('done');
+                    document.getElementById('regionStep3').classList.add('active');
+                    document.getElementById('regionStep3Text').textContent =
+                        formData.region ? formData.region.aid : 'Aides régionales';
+                    document.getElementById('loaderRegionText').textContent =
+                        `Recherche aides en zone ${formData.zone}...`;
+                }, 1700);
+
+                // All done, show success (2400-3000ms)
+                setTimeout(() => {
+                    document.getElementById('regionStep3').classList.remove('active');
+                    document.getElementById('regionStep3').classList.add('done');
+                    document.getElementById('regionSpinner').style.display = 'none';
+                    document.getElementById('loaderRegionTitle').textContent = 'Analyse terminée !';
+                    document.getElementById('loaderRegionText').textContent =
+                        formData.region ? formData.region.name : `Département ${formData.department}`;
+
+                    // Show success message
+                    const successEl = document.getElementById('regionSuccess');
+                    successEl.style.display = 'block';
+                    document.getElementById('regionSuccessText').textContent =
+                        `${aidsCount} type${aidsCount > 1 ? 's' : ''} d'aides détecté${aidsCount > 1 ? 's' : ''} !`;
+                }, 2400);
+
+                // Transition to next screen
+                setTimeout(() => {
+                    goToScreen(5);
+                }, 3200);
+            }
+        }
+
+        // ========================================
+        // WORK CARDS RENDERING
+        // ========================================
+
+        function renderWorkCards() {
+            const container = document.getElementById('workCards');
+            const profile = formData.revenueProfile;
+            const zone = formData.zone;
+
+            let html = '';
+
+            Object.entries(travauxData).forEach(([key, work]) => {
+                let mprAmount = 0;
+                let ceeAmount = 0;
+
+                // Calculate MPR
+                if (work.mprKey && mprBaremes[profile]) {
+                    const baseAmount = mprBaremes[profile][work.mprKey];
+                    if (work.surface) {
+                        mprAmount = baseAmount * work.surface;
+                    } else if (work.count) {
+                        mprAmount = baseAmount * work.count;
+                    } else {
+                        mprAmount = baseAmount;
+                    }
+                }
+
+                // Calculate CEE
+                if (work.ceeKey && ceeBaremes[work.ceeKey]) {
+                    const ceeData = ceeBaremes[work.ceeKey];
+                    if (typeof ceeData === 'object') {
+                        ceeAmount = ceeData[zone] || 0;
+                        if (work.surface) ceeAmount *= work.surface;
+                        if (work.count) ceeAmount *= work.count;
+                    }
+                }
+
+                // Fixed aid (solaire)
+                if (work.fixedAid) {
+                    ceeAmount = work.fixedAid;
+                }
+
+                const totalAid = mprAmount + ceeAmount;
+                const isPreselected = (key === 'pac' || key === 'isolation');
+
+                html += `
+                    <div class="work-card ${isPreselected ? 'selected' : ''}" data-work="${key}" data-mpr="${mprAmount}" data-cee="${ceeAmount}">
+                        <div class="work-card-icon"><i class="fas ${work.icon}"></i></div>
+                        <div class="work-card-content">
+                            <div class="work-card-title">${work.name}</div>
+                            <div class="work-card-aids">
+                                ${mprAmount > 0 ? `<span class="work-card-aid mpr">MPR ${mprAmount.toLocaleString('fr-FR')}€</span>` : ''}
+                                ${ceeAmount > 0 ? `<span class="work-card-aid cee">CEE ${ceeAmount.toLocaleString('fr-FR')}€</span>` : ''}
+                            </div>
+                        </div>
+                        <div class="work-card-check"></div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+
+            // Pre-select PAC + Isolation
+            formData.travaux = ['pac', 'isolation'];
+            updateTotalAids();
+            document.getElementById('btnWorks').disabled = false;
+
+            // Setup click handlers
+            setupWorkCards();
+        }
+
         function setupWorkCards() {
             document.querySelectorAll('.work-card').forEach(card => {
                 card.addEventListener('click', function() {
@@ -1023,8 +2153,6 @@
                     }
 
                     updateTotalAids();
-
-                    // Enable/disable button
                     document.getElementById('btnWorks').disabled = formData.travaux.length === 0;
 
                     if (navigator.vibrate) navigator.vibrate(10);
@@ -1032,12 +2160,27 @@
             });
         }
 
-        // Update total aids display
         function updateTotalAids() {
-            let total = 0;
-            formData.travaux.forEach(work => {
-                total += aidsData[work]?.max || 0;
+            let totalMpr = 0;
+            let totalCee = 0;
+
+            document.querySelectorAll('.work-card.selected').forEach(card => {
+                // Only add MPR if selected in aids
+                if (formData.selectedAids.includes('mpr')) {
+                    totalMpr += parseInt(card.dataset.mpr) || 0;
+                }
+                // Only add CEE if selected in aids
+                if (formData.selectedAids.includes('cee')) {
+                    totalCee += parseInt(card.dataset.cee) || 0;
+                }
             });
+
+            // Add regional aid only if selected and available
+            let regionalAid = 0;
+            if (formData.selectedAids.includes('regional') && formData.region) {
+                regionalAid = formData.region.amount;
+            }
+            const total = totalMpr + totalCee + regionalAid;
 
             const formatted = total.toLocaleString('fr-FR') + ' €';
             document.getElementById('totalAidsDisplay').textContent = formatted;
@@ -1046,40 +2189,10 @@
             if (contactDisplay) contactDisplay.textContent = formatted;
         }
 
-        // Setup inputs
-        function setupInputs() {
-            const cpInput = document.getElementById('codePostal');
-            cpInput.addEventListener('input', function() {
-                this.value = this.value.replace(/\D/g, '').slice(0, 5);
-                const isValid = /^[0-9]{5}$/.test(this.value);
-                this.classList.toggle('valid', isValid);
-                document.getElementById('btnCodePostal').disabled = !isValid;
+        // ========================================
+        // NAVIGATION
+        // ========================================
 
-                if (isValid) {
-                    formData.codePostal = this.value;
-                }
-            });
-        }
-
-        // Setup slider
-        function setupSlider() {
-            const slider = document.getElementById('surfaceSlider');
-            const display = document.getElementById('surfaceValue');
-
-            slider.addEventListener('input', function() {
-                display.textContent = this.value;
-                formData.surface = parseInt(this.value);
-            });
-        }
-
-        // Validate code postal and advance
-        function validateCodePostal() {
-            if (/^[0-9]{5}$/.test(formData.codePostal)) {
-                goToScreen(4);
-            }
-        }
-
-        // Go to screen
         function goToScreen(screenId) {
             const current = document.querySelector('.screen.active');
             const next = document.querySelector(`[data-screen="${screenId}"]`);
@@ -1093,12 +2206,9 @@
             currentScreen = screenId;
 
             updateProgress();
-
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Previous screen
         function prevScreen() {
             if (screenHistory.length > 1) {
                 screenHistory.pop();
@@ -1115,18 +2225,21 @@
             }
         }
 
-        // Update progress
         function updateProgress() {
-            const screens = ['1', '2', '3', '4', '5', '6'];
+            const screens = ['1', '2', '3', '4', '5', '6', '7', '8'];
             const idx = screens.indexOf(String(currentScreen));
             if (idx >= 0) {
-                document.getElementById('progressText').textContent = `Question ${idx + 1}/6`;
+                const progress = ((idx + 1) / totalScreens) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+                document.getElementById('progressText').textContent = `${idx + 1}/${totalScreens}`;
             }
         }
 
-        // Submit form
+        // ========================================
+        // FORM SUBMISSION
+        // ========================================
+
         function submitForm() {
-            // Validate
             const prenom = document.getElementById('prenom').value.trim();
             const nom = document.getElementById('nom').value.trim();
             const email = document.getElementById('email').value.trim();
@@ -1143,55 +2256,122 @@
             formData.email = email;
             formData.telephone = telephone;
 
-            // Show loading
             goToScreen('loading');
+            animateLoadingSteps();
 
-            // After 3 seconds, show result
             setTimeout(() => {
                 showResult();
+            }, 3500);
+        }
+
+        function animateLoadingSteps() {
+            const steps = ['step1', 'step2', 'step3'];
+
+            steps.forEach((stepId, index) => {
+                setTimeout(() => {
+                    if (index > 0) {
+                        document.getElementById(steps[index - 1]).classList.remove('active');
+                        document.getElementById(steps[index - 1]).classList.add('done');
+                    }
+                    document.getElementById(stepId).classList.add('active');
+                }, index * 1000);
+            });
+
+            setTimeout(() => {
+                document.getElementById('step3').classList.remove('active');
+                document.getElementById('step3').classList.add('done');
             }, 3000);
         }
 
-        // Show result
-        function showResult() {
-            // Calculate totals
-            let minTotal = 0;
-            let maxTotal = 0;
-            let itemsHtml = '';
+        // ========================================
+        // RESULT DISPLAY
+        // ========================================
 
-            formData.travaux.forEach(work => {
-                const data = aidsData[work];
-                if (data) {
-                    minTotal += data.min;
-                    maxTotal += data.max;
-                    itemsHtml += `
-                        <div class="result-item">
-                            <span class="result-item-label">${data.name}</span>
-                            <span class="result-item-value">${data.min.toLocaleString('fr-FR')} - ${data.max.toLocaleString('fr-FR')} €</span>
-                        </div>
-                    `;
+        function showResult() {
+            let totalMpr = 0;
+            let totalCee = 0;
+            let itemsHtml = '';
+            let worksHtml = '';
+
+            // Calculate totals based on selected aids
+            document.querySelectorAll('.work-card.selected').forEach(card => {
+                // Only count MPR if selected
+                if (formData.selectedAids.includes('mpr')) {
+                    totalMpr += parseInt(card.dataset.mpr) || 0;
                 }
+                // Only count CEE if selected
+                if (formData.selectedAids.includes('cee')) {
+                    totalCee += parseInt(card.dataset.cee) || 0;
+                }
+
+                const workKey = card.dataset.work;
+                const workName = travauxData[workKey]?.name || workKey;
+                worksHtml += `<span class="result-work-tag">${workName}</span>`;
             });
 
-            document.getElementById('resultAmount').textContent =
-                `${minTotal.toLocaleString('fr-FR')} - ${maxTotal.toLocaleString('fr-FR')} €`;
+            // Regional aid only if selected
+            let regionalAid = 0;
+            if (formData.selectedAids.includes('regional') && formData.region) {
+                regionalAid = formData.region.amount;
+            }
+            const total = totalMpr + totalCee + regionalAid;
+
+            // Build result items - only show selected aid types
+            if (totalMpr > 0 && formData.selectedAids.includes('mpr')) {
+                itemsHtml += `
+                    <div class="result-item">
+                        <div class="result-item-left">
+                            <div class="result-item-icon mpr"><i class="fas fa-landmark"></i></div>
+                            <span class="result-item-label">MaPrimeRénov'</span>
+                        </div>
+                        <span class="result-item-value">${totalMpr.toLocaleString('fr-FR')} €</span>
+                    </div>
+                `;
+            }
+
+            if (totalCee > 0 && formData.selectedAids.includes('cee')) {
+                itemsHtml += `
+                    <div class="result-item">
+                        <div class="result-item-left">
+                            <div class="result-item-icon cee"><i class="fas fa-leaf"></i></div>
+                            <span class="result-item-label">Prime CEE</span>
+                        </div>
+                        <span class="result-item-value">${totalCee.toLocaleString('fr-FR')} €</span>
+                    </div>
+                `;
+            }
+
+            if (regionalAid > 0 && formData.selectedAids.includes('regional')) {
+                itemsHtml += `
+                    <div class="result-item">
+                        <div class="result-item-left">
+                            <div class="result-item-icon regional"><i class="fas fa-map-marker-alt"></i></div>
+                            <span class="result-item-label">${formData.region.aid}</span>
+                        </div>
+                        <span class="result-item-value">${regionalAid.toLocaleString('fr-FR')} €</span>
+                    </div>
+                `;
+            }
+
+            document.getElementById('resultAmount').textContent = total.toLocaleString('fr-FR') + ' €';
             document.getElementById('resultItems').innerHTML = itemsHtml;
+            document.getElementById('resultTotalValue').textContent = total.toLocaleString('fr-FR') + ' €';
+            document.getElementById('resultWorks').innerHTML = worksHtml;
 
             goToScreen('result');
-
-            // Confetti!
             createConfetti();
 
             // Save to localStorage
             localStorage.setItem('simulationResult', JSON.stringify({
                 ...formData,
-                minTotal,
-                maxTotal,
+                totalMpr,
+                totalCee,
+                regionalAid,
+                total,
                 date: new Date().toISOString()
             }));
         }
 
-        // Create confetti
         function createConfetti() {
             const colors = ['#F97316', '#2563EB', '#10B981', '#FDE68A', '#EC4899'];
 
