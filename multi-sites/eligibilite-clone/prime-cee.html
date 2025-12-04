@@ -26,6 +26,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* === BASE MOBILE (375px+) === */
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text-dark);
@@ -57,7 +58,7 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--blue-dark);
         }
@@ -67,12 +68,16 @@
         .btn-header {
             background: var(--blue-dark);
             color: var(--white);
-            padding: 12px 20px;
+            padding: 12px 16px;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-decoration: none;
             transition: all 0.3s;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-header:hover {
@@ -82,17 +87,17 @@
 
         /* HERO AIDE */
         .hero-aide {
-            padding: 140px 0 80px;
+            padding: 100px 0 40px;
             background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
             text-align: center;
         }
 
         .aide-logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 30px;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
             background: var(--white);
-            border-radius: 20px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -100,19 +105,19 @@
         }
 
         .aide-logo i {
-            font-size: 4rem;
+            font-size: 2.5rem;
             color: var(--green-primary);
         }
 
         .hero-aide h1 {
-            font-size: 3rem;
+            font-size: 1.75rem;
             font-weight: 800;
             color: var(--text-dark);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .hero-aide .subtitle {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--text-gray);
             max-width: 700px;
             margin: 0 auto;
@@ -120,12 +125,12 @@
 
         /* PRINCIPE SECTION */
         .principe-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--white);
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--text-dark);
             text-align: center;
@@ -136,15 +141,15 @@
             max-width: 900px;
             margin: 0 auto;
             background: var(--gray-light);
-            padding: 40px;
-            border-radius: 20px;
-            border-left: 6px solid var(--green-primary);
+            padding: 25px;
+            border-radius: 16px;
+            border-left: 4px solid var(--green-primary);
         }
 
         .principe-content p {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: var(--text-gray);
-            line-height: 1.8;
+            line-height: 1.7;
             margin-bottom: 15px;
         }
 
@@ -154,54 +159,54 @@
 
         /* MONTANTS SECTION */
         .montants-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--gray-light);
         }
 
         .montants-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .montant-card {
             background: var(--white);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             transition: all 0.3s;
             border-top: 4px solid var(--green-primary);
         }
 
         .montant-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
         }
 
         .montant-card i {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--green-primary);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .montant-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: var(--text-dark);
         }
 
         .montant-value {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
             color: var(--green-primary);
             margin-bottom: 10px;
         }
 
         .montant-detail {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-gray);
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         .badge {
@@ -210,53 +215,58 @@
             color: var(--white);
             padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
         /* FOURNISSEURS SECTION */
         .fournisseurs-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--white);
         }
 
         .fournisseurs-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 40px;
         }
 
         .fournisseur-card {
             background: var(--gray-light);
-            padding: 30px 20px;
-            border-radius: 16px;
+            padding: 20px 15px;
+            border-radius: 12px;
             text-align: center;
             transition: all 0.3s;
+            min-height: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .fournisseur-card:hover {
             background: var(--white);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
         }
 
         .fournisseur-card i {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--green-primary);
-            margin-bottom: 15px;
         }
 
         .fournisseur-card h4 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
             color: var(--text-dark);
         }
 
         /* CUMUL SECTION */
         .cumul-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--gray-light);
         }
 
@@ -264,135 +274,24 @@
             max-width: 800px;
             margin: 0 auto;
             background: var(--white);
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         .cumul-item {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 30px;
-            margin-bottom: 30px;
-            padding: 25px;
+            text-align: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
             background: var(--gray-light);
             border-radius: 12px;
         }
 
         .cumul-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--green-primary);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            flex-shrink: 0;
-        }
-
-        .cumul-content h4 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .cumul-content p {
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-
-        .cumul-plus {
-            text-align: center;
-            font-size: 2rem;
-            color: var(--green-primary);
-            font-weight: 800;
-            margin: 20px 0;
-        }
-
-        .cumul-total {
-            text-align: center;
-            padding: 30px;
-            background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-dark) 100%);
-            color: var(--white);
-            border-radius: 12px;
-            margin-top: 30px;
-        }
-
-        .cumul-total h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .cumul-total .total-value {
-            font-size: 3rem;
-            font-weight: 800;
-        }
-
-        /* CONDITIONS SECTION */
-        .conditions-section {
-            padding: 80px 0;
-            background: var(--white);
-        }
-
-        .conditions-list {
-            max-width: 900px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .condition-item {
-            display: flex;
-            align-items: start;
-            gap: 20px;
-            background: var(--gray-light);
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 4px solid var(--green-primary);
-        }
-
-        .condition-item i {
-            font-size: 1.8rem;
-            color: var(--green-primary);
-            flex-shrink: 0;
-            margin-top: 5px;
-        }
-
-        .condition-item h4 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .condition-item p {
-            color: var(--text-gray);
-            line-height: 1.7;
-        }
-
-        /* OBTENIR SECTION */
-        .obtenir-section {
-            padding: 80px 0;
-            background: var(--gray-light);
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .step-card {
-            background: var(--white);
-            padding: 35px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
-
-        .step-number {
             width: 60px;
             height: 60px;
             background: var(--green-primary);
@@ -402,64 +301,184 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .cumul-content h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .cumul-content p {
+            color: var(--text-gray);
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .cumul-plus {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--green-primary);
             font-weight: 800;
-            margin: 0 auto 20px;
+            margin: 15px 0;
+        }
+
+        .cumul-total {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-dark) 100%);
+            color: var(--white);
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .cumul-total h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .cumul-total .total-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        /* CONDITIONS SECTION */
+        .conditions-section {
+            padding: 60px 0;
+            background: var(--white);
+        }
+
+        .conditions-list {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .condition-item {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            background: var(--gray-light);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--green-primary);
+            min-height: 48px;
+        }
+
+        .condition-item i {
+            font-size: 1.5rem;
+            color: var(--green-primary);
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .condition-item h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .condition-item p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        /* OBTENIR SECTION */
+        .obtenir-section {
+            padding: 60px 0;
+            background: var(--gray-light);
+        }
+
+        .steps-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            min-height: 48px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--green-primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin: 0 auto 15px;
         }
 
         .step-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .step-card p {
             color: var(--text-gray);
-            line-height: 1.7;
+            line-height: 1.6;
+            font-size: 0.9rem;
         }
 
         /* CTA SECTION */
         .cta-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-dark) 100%);
             text-align: center;
             color: var(--white);
         }
 
         .cta-section h2 {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            font-size: 1rem;
+            margin-bottom: 25px;
             opacity: 0.9;
         }
 
         .btn-orange {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            gap: 10px;
             background: var(--orange);
             color: var(--white);
-            padding: 18px 32px;
+            padding: 16px 24px;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.95rem;
             text-decoration: none;
             transition: all 0.3s;
+            min-height: 48px;
         }
 
         .btn-orange:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.4);
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
         }
 
         /* FOOTER */
         .footer {
             background: var(--blue-dark);
-            padding: 40px 0 20px;
+            padding: 30px 0 20px;
             color: var(--white);
             text-align: center;
         }
@@ -467,28 +486,126 @@
         .footer a {
             color: rgba(255,255,255,0.8);
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 10px;
             transition: color 0.3s;
+            display: inline-block;
+            padding: 8px 12px;
+            min-height: 48px;
+            line-height: 32px;
         }
 
         .footer a:hover {
             color: var(--orange);
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero-aide h1 { font-size: 2rem; }
-            .section-title { font-size: 1.8rem; }
-            .montants-grid { grid-template-columns: 1fr; }
-            .fournisseurs-grid { grid-template-columns: repeat(2, 1fr); }
-            .steps-grid { grid-template-columns: 1fr; }
-            .cumul-item { flex-direction: column; text-align: center; }
+        /* === TABLET (768px+) === */
+        @media (min-width: 768px) {
+            .logo { font-size: 1.8rem; }
+            .btn-header { font-size: 0.9rem; padding: 12px 20px; }
+
+            .hero-aide { padding: 120px 0 60px; }
+            .hero-aide h1 { font-size: 2.5rem; }
+            .aide-logo { width: 100px; height: 100px; margin-bottom: 25px; }
+            .aide-logo i { font-size: 3.5rem; }
+            .hero-aide .subtitle { font-size: 1.1rem; }
+
+            .principe-section { padding: 80px 0; }
+            .section-title { font-size: 2rem; margin-bottom: 40px; }
+            .principe-content { padding: 35px; }
+            .principe-content p { font-size: 1.05rem; }
+
+            .montants-section { padding: 80px 0; }
+            .montants-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+            .montant-card { padding: 30px; }
+            .montant-card h3 { font-size: 1.4rem; }
+            .montant-value { font-size: 2.5rem; }
+            .montant-detail { font-size: 0.95rem; }
+
+            .fournisseurs-section { padding: 80px 0; }
+            .fournisseurs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .fournisseur-card { padding: 25px 20px; }
+            .fournisseur-card i { font-size: 2.3rem; }
+            .fournisseur-card h4 { font-size: 1.05rem; }
+
+            .cumul-section { padding: 80px 0; }
+            .cumul-schema { padding: 40px; }
+            .cumul-item { flex-direction: row; text-align: left; gap: 25px; padding: 25px; margin-bottom: 25px; }
+            .cumul-icon { width: 70px; height: 70px; font-size: 1.8rem; }
+            .cumul-content h4 { font-size: 1.2rem; }
+            .cumul-content p { font-size: 0.95rem; }
+            .cumul-plus { font-size: 1.8rem; }
+            .cumul-total { padding: 28px; margin-top: 25px; }
+            .cumul-total h3 { font-size: 1.4rem; }
+
+            .conditions-section { padding: 80px 0; }
+            .conditions-list { gap: 18px; }
+            .condition-item { padding: 22px; gap: 18px; }
+            .condition-item i { font-size: 1.7rem; }
+            .condition-item h4 { font-size: 1.15rem; }
+            .condition-item p { font-size: 0.95rem; }
+
+            .obtenir-section { padding: 80px 0; }
+            .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+            .step-card { padding: 30px; }
+            .step-number { width: 55px; height: 55px; font-size: 1.4rem; margin-bottom: 18px; }
+            .step-card h3 { font-size: 1.2rem; }
+            .step-card p { font-size: 0.95rem; }
+
+            .cta-section { padding: 80px 0; }
+            .cta-section h2 { font-size: 2rem; margin-bottom: 18px; }
+            .cta-section p { font-size: 1.1rem; }
+            .btn-orange { padding: 17px 28px; font-size: 0.98rem; }
+
+            .footer { padding: 40px 0 20px; }
+            .footer a { margin: 0 15px; }
         }
 
-        @media (max-width: 480px) {
-            .hero-aide { padding: 120px 0 60px; }
-            .btn-header { font-size: 0.8rem; padding: 10px 16px; }
-            .fournisseurs-grid { grid-template-columns: 1fr; }
+        /* === DESKTOP (1024px+) === */
+        @media (min-width: 1024px) {
+            .hero-aide { padding: 140px 0 80px; }
+            .hero-aide h1 { font-size: 3rem; }
+            .aide-logo { width: 120px; height: 120px; margin-bottom: 30px; }
+            .aide-logo i { font-size: 4rem; }
+            .hero-aide .subtitle { font-size: 1.2rem; }
+
+            .section-title { font-size: 2.5rem; }
+            .principe-content { padding: 40px; }
+            .principe-content p { font-size: 1.1rem; }
+
+            .montants-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
+            .montant-card { padding: 35px; }
+            .montant-card i { font-size: 3rem; margin-bottom: 20px; }
+            .montant-card h3 { font-size: 1.5rem; margin-bottom: 20px; }
+
+            .fournisseurs-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
+            .fournisseur-card { padding: 30px 20px; }
+            .fournisseur-card i { font-size: 2.5rem; margin-bottom: 15px; }
+            .fournisseur-card h4 { font-size: 1.1rem; }
+
+            .cumul-schema { padding: 50px; }
+            .cumul-item { gap: 30px; padding: 25px; margin-bottom: 30px; }
+            .cumul-icon { width: 80px; height: 80px; font-size: 2rem; }
+            .cumul-content h4 { font-size: 1.3rem; }
+            .cumul-content p { font-size: 1rem; }
+            .cumul-plus { font-size: 2rem; margin: 20px 0; }
+            .cumul-total { padding: 30px; margin-top: 30px; }
+            .cumul-total h3 { font-size: 1.5rem; margin-bottom: 15px; }
+            .cumul-total .total-value { font-size: 3rem; }
+
+            .condition-item { padding: 25px; gap: 20px; }
+            .condition-item i { font-size: 1.8rem; margin-top: 5px; }
+            .condition-item h4 { font-size: 1.2rem; margin-bottom: 8px; }
+            .condition-item p { font-size: 1rem; line-height: 1.7; }
+
+            .steps-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
+            .step-card { padding: 35px; }
+            .step-number { width: 60px; height: 60px; font-size: 1.5rem; margin-bottom: 20px; }
+            .step-card h3 { font-size: 1.3rem; margin-bottom: 15px; }
+            .step-card p { line-height: 1.7; }
+
+            .cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
+            .cta-section p { font-size: 1.2rem; margin-bottom: 30px; }
+            .btn-orange { padding: 18px 32px; font-size: 1rem; gap: 12px; }
         }
     </style>
 </head>
@@ -821,7 +938,7 @@
     <div style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #2563eb, #1d4ed8); padding: 12px 16px; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15); display: none;" class="sticky-cta-mobile">
         <div style="display: flex; align-items: center; justify-content: space-between;">
             <span style="color: white; font-size: 0.9rem;">Jusqu'à <strong>5 000€</strong> CEE</span>
-            <a href="formulaire.html" style="display: inline-block; background: #F59E0B; color: white; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none;">Tester mon éligibilité</a>
+            <a href="formulaire.html" style="display: inline-flex; align-items: center; justify-content: center; background: #F59E0B; color: white; padding: 12px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; min-height: 48px;">Tester mon éligibilité</a>
         </div>
     </div>
 
@@ -849,7 +966,27 @@
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        // Detect reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Initialize AOS with reduced motion support
+        AOS.init({
+            duration: prefersReducedMotion ? 0 : 800,
+            once: true,
+            disable: prefersReducedMotion
+        });
+
+        // Add haptic feedback on CTA buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaButtons = document.querySelectorAll('.btn-orange, .btn-header');
+            ctaButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (navigator.vibrate) {
+                        navigator.vibrate(10);
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

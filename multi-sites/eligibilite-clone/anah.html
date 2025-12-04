@@ -26,6 +26,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* === BASE MOBILE (375px+) === */
         body {
             font-family: 'Inter', sans-serif;
             color: var(--text-dark);
@@ -57,7 +58,7 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--blue-dark);
         }
@@ -67,12 +68,16 @@
         .btn-header {
             background: var(--blue-dark);
             color: var(--white);
-            padding: 12px 20px;
+            padding: 12px 16px;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-decoration: none;
             transition: all 0.3s;
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-header:hover {
@@ -82,14 +87,14 @@
 
         /* HERO AIDE */
         .hero-aide {
-            padding: 140px 0 80px;
+            padding: 100px 0 40px;
             background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
             text-align: center;
         }
 
         .aide-logo {
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
             margin: 0 auto 30px;
             background: var(--white);
             border-radius: 20px;
@@ -100,19 +105,19 @@
         }
 
         .aide-logo i {
-            font-size: 4rem;
+            font-size: 2.5rem;
             color: var(--violet-primary);
         }
 
         .hero-aide h1 {
-            font-size: 3rem;
+            font-size: 1.75rem;
             font-weight: 800;
             color: var(--text-dark);
             margin-bottom: 20px;
         }
 
         .hero-aide .subtitle {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--text-gray);
             max-width: 700px;
             margin: 0 auto;
@@ -120,12 +125,12 @@
 
         /* PARCOURS SECTION */
         .parcours-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--white);
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--text-dark);
             text-align: center;
@@ -137,47 +142,51 @@
             margin: 0 auto 50px;
             background: linear-gradient(135deg, var(--violet-primary) 0%, var(--violet-dark) 100%);
             color: var(--white);
-            padding: 40px;
+            padding: 30px 20px;
             border-radius: 20px;
             text-align: center;
         }
 
         .parcours-highlight h3 {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 15px;
         }
 
         .parcours-highlight p {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             line-height: 1.8;
             opacity: 0.95;
         }
 
         /* MONTANTS TABLE */
         .montants-table-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--gray-light);
         }
 
         .taux-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
             margin-bottom: 40px;
         }
 
         .taux-card {
             background: var(--white);
-            padding: 30px 20px;
+            padding: 25px 15px;
             border-radius: 16px;
             text-align: center;
             border-top: 4px solid var(--violet-primary);
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            min-height: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .taux-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
             color: var(--violet-primary);
@@ -185,14 +194,14 @@
         }
 
         .taux-value {
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: 800;
             color: var(--violet-primary);
             margin-bottom: 10px;
         }
 
         .taux-detail {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-gray);
         }
 
@@ -208,6 +217,7 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            font-size: 0.75rem;
         }
 
         .gain-table thead {
@@ -217,13 +227,13 @@
 
         .gain-table th,
         .gain-table td {
-            padding: 15px;
+            padding: 10px 6px;
             text-align: center;
         }
 
         .gain-table th {
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
         }
 
         .gain-table tbody tr {
@@ -236,37 +246,37 @@
 
         .montant-highlight {
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--violet-primary);
         }
 
         /* CONDITIONS SECTION */
         .conditions-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--white);
         }
 
         .conditions-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .condition-card {
             background: var(--gray-light);
-            padding: 35px;
+            padding: 25px;
             border-radius: 16px;
             border-left: 5px solid var(--violet-primary);
         }
 
         .condition-card i {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--violet-primary);
             margin-bottom: 20px;
         }
 
         .condition-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 15px;
         }
@@ -274,6 +284,7 @@
         .condition-card p {
             color: var(--text-gray);
             line-height: 1.7;
+            font-size: 0.95rem;
         }
 
         .condition-card ul {
@@ -284,37 +295,37 @@
         .condition-card ul li {
             color: var(--text-gray);
             margin-bottom: 8px;
+            font-size: 0.9rem;
         }
 
         /* MAR SECTION */
         .mar-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--gray-light);
         }
 
         .mar-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
         }
 
         .mar-image {
             background: linear-gradient(135deg, var(--violet-primary) 0%, var(--violet-dark) 100%);
-            padding: 60px;
+            padding: 40px 30px;
             border-radius: 20px;
             text-align: center;
             color: var(--white);
         }
 
         .mar-image i {
-            font-size: 6rem;
+            font-size: 4rem;
             margin-bottom: 20px;
             opacity: 0.9;
         }
 
         .mar-text h3 {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 20px;
             color: var(--text-dark);
@@ -324,18 +335,19 @@
             color: var(--text-gray);
             line-height: 1.8;
             margin-bottom: 15px;
+            font-size: 0.95rem;
         }
 
         .mar-missions {
             background: var(--white);
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
             margin-top: 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .mar-missions h4 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 15px;
             color: var(--violet-primary);
@@ -349,23 +361,24 @@
             color: var(--text-gray);
             margin-bottom: 10px;
             line-height: 1.6;
+            font-size: 0.9rem;
         }
 
         /* AUTRES AIDES SECTION */
         .autres-aides-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--white);
         }
 
         .aides-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .aide-card {
             background: var(--gray-light);
-            padding: 35px;
+            padding: 25px;
             border-radius: 16px;
             transition: all 0.3s;
         }
@@ -377,13 +390,13 @@
         }
 
         .aide-card i {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--violet-primary);
             margin-bottom: 20px;
         }
 
         .aide-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 15px;
         }
@@ -391,12 +404,12 @@
         .aide-card p {
             color: var(--text-gray);
             line-height: 1.7;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         /* BENEFICIAIRES SECTION */
         .beneficiaires-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--gray-light);
         }
 
@@ -413,6 +426,7 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            font-size: 0.8rem;
         }
 
         .revenus-table thead {
@@ -422,13 +436,13 @@
 
         .revenus-table th,
         .revenus-table td {
-            padding: 15px;
+            padding: 12px 8px;
             text-align: left;
         }
 
         .revenus-table th {
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .revenus-table tbody tr {
@@ -446,20 +460,20 @@
 
         /* CTA SECTION */
         .cta-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: linear-gradient(135deg, var(--violet-primary) 0%, var(--violet-dark) 100%);
             text-align: center;
             color: var(--white);
         }
 
         .cta-section h2 {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 800;
             margin-bottom: 20px;
         }
 
         .cta-section p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             margin-bottom: 30px;
             opacity: 0.9;
         }
@@ -467,15 +481,17 @@
         .btn-orange {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
             background: var(--orange);
             color: var(--white);
-            padding: 18px 32px;
+            padding: 14px 24px;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.95rem;
             text-decoration: none;
             transition: all 0.3s;
+            min-height: 48px;
         }
 
         .btn-orange:hover {
@@ -496,26 +512,318 @@
             text-decoration: none;
             margin: 0 15px;
             transition: color 0.3s;
+            display: inline-block;
+            min-height: 48px;
+            line-height: 48px;
         }
 
         .footer a:hover {
             color: var(--orange);
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero-aide h1 { font-size: 2rem; }
-            .section-title { font-size: 1.8rem; }
-            .taux-grid { grid-template-columns: repeat(2, 1fr); }
-            .conditions-grid { grid-template-columns: 1fr; }
-            .mar-content { grid-template-columns: 1fr; }
-            .aides-grid { grid-template-columns: 1fr; }
+        /* === TABLET (768px+) === */
+        @media (min-width: 768px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .btn-header {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+
+            .hero-aide {
+                padding: 120px 0 60px;
+            }
+
+            .hero-aide h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-aide .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .aide-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .aide-logo i {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .parcours-section {
+                padding: 70px 0;
+            }
+
+            .parcours-highlight {
+                padding: 35px;
+            }
+
+            .parcours-highlight h3 {
+                font-size: 1.7rem;
+            }
+
+            .parcours-highlight p {
+                font-size: 1.05rem;
+            }
+
+            .montants-table-section {
+                padding: 70px 0;
+            }
+
+            .taux-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .taux-value {
+                font-size: 2.5rem;
+            }
+
+            .conditions-section {
+                padding: 70px 0;
+            }
+
+            .conditions-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .mar-section {
+                padding: 70px 0;
+            }
+
+            .mar-content {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 60px;
+            }
+
+            .mar-image {
+                padding: 50px 40px;
+            }
+
+            .mar-image i {
+                font-size: 5rem;
+            }
+
+            .autres-aides-section {
+                padding: 70px 0;
+            }
+
+            .aides-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .beneficiaires-section {
+                padding: 70px 0;
+            }
+
+            .gain-table {
+                font-size: 0.85rem;
+            }
+
+            .gain-table th,
+            .gain-table td {
+                padding: 12px 10px;
+            }
+
+            .cta-section {
+                padding: 70px 0;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .cta-section p {
+                font-size: 1.1rem;
+            }
         }
 
-        @media (max-width: 480px) {
-            .hero-aide { padding: 120px 0 60px; }
-            .btn-header { font-size: 0.8rem; padding: 10px 16px; }
-            .taux-grid { grid-template-columns: 1fr; }
+        /* === DESKTOP (1024px+) === */
+        @media (min-width: 1024px) {
+            .hero-aide {
+                padding: 140px 0 80px;
+            }
+
+            .hero-aide h1 {
+                font-size: 3rem;
+            }
+
+            .hero-aide .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .aide-logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .aide-logo i {
+                font-size: 4rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .parcours-section {
+                padding: 80px 0;
+            }
+
+            .parcours-highlight {
+                padding: 40px;
+            }
+
+            .parcours-highlight h3 {
+                font-size: 1.8rem;
+            }
+
+            .parcours-highlight p {
+                font-size: 1.1rem;
+            }
+
+            .montants-table-section {
+                padding: 80px 0;
+            }
+
+            .taux-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .taux-card {
+                padding: 30px 20px;
+            }
+
+            .taux-value {
+                font-size: 3rem;
+            }
+
+            .conditions-section {
+                padding: 80px 0;
+            }
+
+            .conditions-grid {
+                gap: 30px;
+            }
+
+            .condition-card {
+                padding: 35px;
+            }
+
+            .condition-card i {
+                font-size: 2.5rem;
+            }
+
+            .condition-card h3 {
+                font-size: 1.4rem;
+            }
+
+            .condition-card p {
+                font-size: 1rem;
+            }
+
+            .mar-section {
+                padding: 80px 0;
+            }
+
+            .mar-image {
+                padding: 60px;
+            }
+
+            .mar-image i {
+                font-size: 6rem;
+            }
+
+            .mar-text h3 {
+                font-size: 2rem;
+            }
+
+            .mar-text p {
+                font-size: 1rem;
+            }
+
+            .mar-missions {
+                padding: 25px;
+            }
+
+            .mar-missions h4 {
+                font-size: 1.2rem;
+            }
+
+            .mar-missions li {
+                font-size: 1rem;
+            }
+
+            .autres-aides-section {
+                padding: 80px 0;
+            }
+
+            .aides-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+
+            .aide-card {
+                padding: 35px;
+            }
+
+            .aide-card i {
+                font-size: 2.5rem;
+            }
+
+            .aide-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .aide-card p {
+                font-size: 0.95rem;
+            }
+
+            .beneficiaires-section {
+                padding: 80px 0;
+            }
+
+            .gain-table {
+                font-size: 0.9rem;
+            }
+
+            .gain-table th,
+            .gain-table td {
+                padding: 15px;
+            }
+
+            .montant-highlight {
+                font-size: 1.2rem;
+            }
+
+            .cta-section {
+                padding: 80px 0;
+            }
+
+            .cta-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .cta-section p {
+                font-size: 1.2rem;
+            }
+
+            .btn-orange {
+                padding: 18px 32px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -911,7 +1219,7 @@
     <div style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #2563eb, #1d4ed8); padding: 12px 16px; z-index: 1000; box-shadow: 0 -4px 12px rgba(0,0,0,0.15); display: none;" class="sticky-cta-mobile">
         <div style="display: flex; align-items: center; justify-content: space-between;">
             <span style="color: white; font-size: 0.9rem;">Jusqu'à <strong>80%</strong> financés</span>
-            <a href="formulaire.html" style="display: inline-block; background: #F59E0B; color: white; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none;">Tester mon éligibilité</a>
+            <a href="formulaire.html" style="display: inline-flex; align-items: center; justify-content: center; background: #F59E0B; color: white; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; min-height: 48px;">Tester mon éligibilité</a>
         </div>
     </div>
 
@@ -939,7 +1247,24 @@
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        // Support reduced motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        AOS.init({
+            duration: prefersReducedMotion ? 0 : 800,
+            once: true,
+            disable: prefersReducedMotion
+        });
+
+        // Haptic feedback sur boutons CTA
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.btn-orange, .btn-header').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (navigator.vibrate) {
+                        navigator.vibrate(10);
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
